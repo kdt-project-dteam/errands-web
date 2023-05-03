@@ -8,6 +8,10 @@ const Wanter_comment = function (Sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true,
       },
+      wanter_comment_board_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       wanter_comment_writer: {
         type: DataTypes.STRING(20),
         allowNull: false,

@@ -64,4 +64,26 @@ db.Helper_comment.belongsTo(db.User_info, {
   onUpdate: "cascade",
 });
 
+db.Wanter_board.hasMany(db.Wanter_comment, {
+  foreignKey: "wanter_comment_board_id",
+  sourceKey: "wanter_board_id",
+});
+db.Wanter_comment.belongsTo(db.Wanter_board, {
+  foreignKey: "wanter_comment_board_id",
+  sourceKey: "wanter_board_id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
+db.Helper_board.hasMany(db.Helper_comment, {
+  foreignKey: "helper_comment_board_id",
+  sourceKey: "helper_board_id",
+});
+db.Helper_comment.belongsTo(db.Helper_board, {
+  foreignKey: "helper_comment_board_id",
+  sourceKey: "helper_board_id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
 module.exports = db;

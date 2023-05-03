@@ -8,6 +8,10 @@ const Helper_comment = function (Sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true,
       },
+      helper_comment_board_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       helper_comment_writer: {
         type: DataTypes.STRING(20),
         allowNull: false,
