@@ -1,0 +1,35 @@
+.board_page {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 1fr 3fr 1fr;
+    background-color: aquamarine;
+    text-align: center;
+    grid-row-start: 2;
+    height: 100vh;
+    margin-top: 20px;
+    
+    .left {
+        background-color: chartreuse;
+        display: block;
+    }
+
+    .right {
+        background-color: chartreuse;
+        display: block;
+    }
+
+    .center {
+        background-color: cornflowerblue;
+        grid-template-rows: 1fr 15fr;
+        .options {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+}
+
+@media screen and (min-width : 400px) {
+    .left,.right{
+        display: none;
+    }
+}
