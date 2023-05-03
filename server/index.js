@@ -1,13 +1,16 @@
-const express = require('express');
+const express = require("express");
 const app = express();
+const cors = require("cors");
 const PORT = 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const indexRouter = require('./routes');
-app.use('/', indexRouter);
+app.use(cors());
+
+const indexRouter = require("./routes/errands");
+app.use("/", indexRouter);
 
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });

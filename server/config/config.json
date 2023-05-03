@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "user",
+    "password": "5656",
+    "database": "errands_app",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
