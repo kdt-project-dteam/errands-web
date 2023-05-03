@@ -1,0 +1,29 @@
+@import './utils.scss';
+
+.header {
+  width: 100vw;
+  height: 50px;
+  background-color: $main-color;
+  text-align: center;
+  line-height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .header-logo {
+    font-size: 1.2rem;
+    padding-left: 2rem;
+  }
+  .header-link {
+    a {
+      margin: 10px;
+    }
+  }
+  .header-nav {
+    font-size: 1rem;
+    padding-right: 2rem;
+    ul {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
