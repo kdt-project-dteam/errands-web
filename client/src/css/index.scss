@@ -1,1 +1,23 @@
-// index.scss
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f2f2f2;
+  overflow-x: hidden;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+// @font-face {
+//   font-family: SDG;
+//   font-style: normal;
+//   font-weight: normal;
+//   src: local('SDG'),
+//     url('/client/public/font/AppleSDGothicNeoL.ttf') format('ttf');
+// }

@@ -1,0 +1,115 @@
+@import './utils.scss';
+
+.card {
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.main {
+  background-color: $background-color;
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 2rem;
+  margin: 0 auto;
+  @include mobile {
+    width: 100vw;
+    flex-direction: column;
+  }
+  .main-left {
+    width: 50%;
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    @include mobile {
+      width: 100%;
+    }
+    h2 {
+      width: 80%;
+      margin: 0 auto;
+      padding: 1rem 0;
+    }
+    .main-card {
+      width: 80%;
+      margin: 0 auto;
+      height: 80%;
+      background-color: #fff;
+      align-items: center;
+      border-radius: $bor-radius;
+      padding: 1rem;
+      ul {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        li {
+          width: 100%;
+          background-color: aqua;
+          border: 1px solid gray;
+          height: 20%;
+        }
+      }
+    }
+  }
+  .main-right {
+    width: 50%;
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    @include mobile {
+      width: 100%;
+    }
+    h2 {
+      width: 80%;
+      margin: 0 auto;
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      div {
+        display: block;
+        width: 20%;
+        height: 100%;
+      }
+      .ft-08 {
+        font-size: 0.8rem;
+        height: 100%;
+        background-color: #fff;
+        text-align: center;
+        line-height: 100%;
+        border-radius: $bor-radius;
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        justify-content: center;
+        transition: 0.5s;
+        &:hover {
+          scale: 1.1;
+          transition: 0.5s;
+        }
+      }
+    }
+    .sub-card {
+      width: 80%;
+      height: 35%;
+      background-color: #fff;
+      margin: 0 auto;
+      border-radius: $bor-radius;
+      padding: 1rem;
+      ul {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        li {
+          width: 100%;
+          height: 33%;
+          background-color: aqua;
+          border: 1px solid gray;
+        }
+      }
+    }
+  }
+}
