@@ -68,8 +68,8 @@ exports.read_wanter_board = async (req, res) => {
 // 게시물 생성
 exports.create_wanter_board = async (req, res) => {
   try {
-    await Errands.Wanter_board.create({
-      wanter_board_writer: req.body.user_name,
+    const result = await Errands.Wanter_board.create({
+      wanter_board_writer: req.body.wanter_board_name,
       wanter_board_title: req.body.wanter_board_title,
       wanter_board_content: req.body.wanter_board_content,
       wanter_board_place: req.body.wanter_board_place,
@@ -194,12 +194,8 @@ exports.read_few_helper_board = async (req, res) => {
 // 전체 다 가져오기
 exports.read_helper_board = async (req, res) => {
   try {
-    const result = await Errands.Helper_board.create({
-      helper_board_writer: req.body.user_name,
-      helper_board_title: req.body.helper_board_title,
-      helper_board_content: req.body.helper_board_content,
-      helper_board_place: req.body.helper_board_place,
-      helper_board_done: false,
+    const result = await Errands.Helper_board.findAll({
+      order: [["helper_board_date", "asc"]],
     });
     res.send(result);
   } catch (err) {
