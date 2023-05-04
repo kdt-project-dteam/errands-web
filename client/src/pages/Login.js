@@ -1,21 +1,33 @@
 import '../css/Login.scss';
-
+// /api/login
 const Login = () => {
     return (
         <>
-            <div>
+            <div className="Login">
                 <div className="background">
-                    <div>LOGIN</div>
+                    <div id="LOGIN">LOGIN</div>
                     <br />
-                    <input type="text" id="ID" placeholder="ID" />
+                    <label htmlfor="ID" />
+                    아이디
                     <br />
-
-                    <input type="password" id="PW" placeholder="PASSWORD" />
-
+                    <div id="input1">
+                        <input type="text" id="ID" placeholder="ID" />
+                    </div>
                     <br />
-                    <button>로그인</button>
+                    <label htmlfor="PW" />
+                    비밀번호
                     <br />
-                    <button>회원가입</button>
+                    <div id="input2">
+                        {' '}
+                        <input type="password" id="PW" placeholder="PASSWORD" />
+                    </div>
+                    <br />
+                    <div id="button">
+                        <button>로그인</button>
+                        <br />
+                        <div>계정이 없으신가요?</div>
+                        <div>회원가입</div>
+                    </div>
                 </div>
             </div>
         </>

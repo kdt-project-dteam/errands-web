@@ -1,31 +1,22 @@
 $font-size: 20px;
-.Login {
+.Signup {
     .background {
-        margin-top: 5%;
-        margin-bottom: 5%;
         border-radius: 5%;
-        margin: auto;
         position: relative;
-        width: 30vw;
-        height: 70vh;
-
+        text-align: center;
+        width: 50vw;
+        height: 100vh;
+        margin: auto;
         border: solid 1px;
 
-        #LOGIN {
+        div {
             font-size: 50px;
             margin-top: 30%;
         }
-        label {
-            margin-left: 30%;
-        }
-        #input1,
-        #input2,
-        #button {
-            text-align: center;
-        }
+
         #ID,
         #PW,
-        #text {
+        #NAME {
             margin-top: 0.5rem;
             font-size: $font-size;
             width: 12vw;
