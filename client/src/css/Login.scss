@@ -1,0 +1,30 @@
+$font-size: 20px;
+.background {
+    border-radius: 5%;
+    position: relative;
+    text-align: center;
+    width: 50vw;
+    height: 100vh;
+    margin: auto;
+    border: solid 1px;
+
+    div {
+        font-size: 50px;
+        margin-top: 30%;
+    }
+
+    #ID,
+    #PW,
+    #text {
+        margin-top: 0.5rem;
+        font-size: $font-size;
+        width: 12vw;
+    }
+    button {
+        margin-top: 0.5rem;
+        width: 12vw;
+        height: 3.5vh;
+        background-color: black;
+        color: white;
+    }
+}
