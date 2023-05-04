@@ -2,46 +2,68 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controller/Cerrands");
 
-// POST - register
-router.post("/register", controller.register);
+// /api/xxxx
+// ======= User sign =======
+router.post("/login", controller.userLogin);
 
-// POST - Login
-router.post("/login", controller.loginUser);
+router.post("/register", controller.userRegister);
 
-// GET - show all boards
-router.get("/boards", controller.showAllBoards);
+// ======= Wanter_board =======
+router.get("/mainWanter", controller.read_few_wanter_board);
 
-// POST - create board
-router.post("/board", controller.createBoard);
+router.get("/wanter", controller.read_wanter_board);
 
-// PATCH - board
-router.patch("/board/:board_id", controller.updateBoard);
+router.post("/wanter/:boardId", controller.create_wanter_board);
 
-// DELETE - board
-router.delete("/board/:board_id", controller.deleteBoard);
+router.patch("/wanter/:boardId", controller.update_wanter_board);
 
-// GET - show all meeting
-router.get("/meetings", controller.showAllMeetings);
+router.delete("/wanter/:boardId", controller.delete_wanter_board);
 
-// POST - create meeting
-router.post("/meeting", controller.createMeeting);
+// ======= Wanter_comment =======
+router.get("/wanter/:boardId/comment", controller.read_wanter_comment);
 
-// PATCH - meeting
-router.patch("/meeting/:meeting_id", controller.updateMeeting);
+router.post(
+  "/wanter/:boardId/comment/:commentId",
+  controller.create_wanter_comment
+);
 
-// DELETE - meeting
-router.delete("/meeting/:meeting_Id", controller.deleteMeeting);
+router.patch(
+  "/wanter/:boardId/comment/:commentId",
+  controller.update_wanter_comment
+);
 
-// GET - show comment
-router.get("/comments/:board_id", controller.showComment);
+router.delete(
+  "/wanter/:boardId/comment/:commentId",
+  controller.delete_wanter_comment
+);
 
-// POST - create comment
-router.post("/comment/:board_id", controller.createComment);
+// ======= Helper_board =======
+router.get("/mainHelper", controller.read_few_helper_board);
 
-// PATCH - comment
-router.patch("/comment/:comment_id", controller.updateComment);
+router.get("/helper", controller.read_helper_board);
 
-// DELETE - comment
-router.delete("/comment/:comment_id", controller.deleteComment);
+router.post("/helper/:boardId", controller.create_helper_board);
+
+router.patch("/helper/:boardId", controller.update_helper_board);
+
+router.delete("/helper/:boardId", controller.delete_helper_board);
+
+// ======= Helper_comment =======
+router.get("/helper/:boardId/comment", controller.read_helper_comment);
+
+router.post(
+  "/helper/:boardId/comment/:commentId",
+  controller.create_helper_comment
+);
+
+router.patch(
+  "/helper/:boardId/comment/:commentId",
+  controller.update_helper_comment
+);
+
+router.delete(
+  "/helper/:boardId/comment/:commentId",
+  controller.delete_helper_comment
+);
 
 module.exports = router;
