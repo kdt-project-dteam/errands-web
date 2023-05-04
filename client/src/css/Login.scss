@@ -1,0 +1,67 @@
+$font-size: 20px;
+.Login {
+    .background {
+        background-color: white;
+        margin-bottom: 5rem;
+        border-radius: 5%;
+        margin-top: 5rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 25vw;
+        height: 70vh;
+        box-shadow: 3px 3px 3px 3px #999;
+
+        border: solid 1px;
+        #logo {
+            background-color: aqua;
+            margin-top: 5rem;
+            height: 2.5rem;
+            text-align: center;
+            font-size: 30px;
+        }
+        #LOGIN {
+            font-size: 45px;
+            margin-top: 2.5rem;
+            margin-left: 5.5rem;
+        }
+        label {
+            margin-left: 5.5rem;
+            color: red;
+        }
+        #input1,
+        #input2,
+        #button {
+            text-align: center;
+        }
+        input {
+            width: 20rem;
+        }
+
+        #ID,
+        #PW {
+            margin-top: 0.5rem;
+            font-size: $font-size;
+        }
+        p {
+            font-size: 20px;
+            margin-left: 5.5rem;
+        }
+
+        button {
+            margin-top: 2rem;
+            width: 20rem;
+            height: 5.5vh;
+            background-color: black;
+            color: white;
+        }
+        button:active {
+            box-shadow: inset -0.3rem -0.1rem 1.4rem #fbfbfb, inset 0.3rem 0.4rem 0.8rem #bec5d0;
+            cursor: pointer;
+        }
+        #Signup {
+            color: red;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+    }
+}
