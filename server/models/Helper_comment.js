@@ -21,7 +21,7 @@ const Helper_comment = function (Sequelize, DataTypes) {
         allowNull: false,
       },
       helper_comment_date: {
-        type: TIMESTAMP,
+        type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal(
           "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"

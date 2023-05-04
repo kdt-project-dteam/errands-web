@@ -24,8 +24,12 @@ const Wanter_board = function (Sequelize, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
+      wanter_board_dead_line: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+      },
       wanter_board_date: {
-        type: TIMESTAMP,
+        type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal(
           "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
@@ -34,6 +38,11 @@ const Wanter_board = function (Sequelize, DataTypes) {
       wanter_board_hit: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
+      },
+      wanter_board_done: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
     },
     { tableName: "wanter_board", freezeTableName: true, timestamps: false }
