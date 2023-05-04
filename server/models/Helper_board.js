@@ -1,6 +1,6 @@
 const Helper_board = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    "helper_board",
+    'helper_board',
     {
       helper_board_id: {
         type: DataTypes.INTEGER,
@@ -27,9 +27,7 @@ const Helper_board = function (Sequelize, DataTypes) {
       helper_board_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       helper_board_hit: {
         type: DataTypes.INTEGER,
@@ -41,7 +39,7 @@ const Helper_board = function (Sequelize, DataTypes) {
         defaultValue: false,
       },
     },
-    { tableName: "helper_board", freezeTableName: true, timestamps: false }
+    { tableName: 'helper_board', freezeTableName: true, timestamps: false }
   );
   return model;
 };

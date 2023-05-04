@@ -1,5 +1,5 @@
-const Errands = require("../models");
-const { Op } = require("sequelize");
+const Errands = require('../models');
+const { Op } = require('sequelize');
 // Access => Errands.User_info or Helper_board etc
 
 // ======= User sign =======
@@ -42,7 +42,7 @@ exports.userRegister = async (req, res) => {
 exports.read_few_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
-      order: [["wanter_board_dead_line", "desc"]],
+      order: [['wanter_board_dead_line', 'desc']],
       limit: 5,
     });
     res.send(result);
@@ -55,7 +55,7 @@ exports.read_few_wanter_board = async (req, res) => {
 exports.read_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
-      order: [["wanter_board_date", "asc"]],
+      order: [['wanter_board_date', 'asc']],
     });
     res.send(result);
 
@@ -68,7 +68,7 @@ exports.read_wanter_board = async (req, res) => {
 // 게시물 생성
 exports.create_wanter_board = async (req, res) => {
   try {
-    await Errands.Wanter_board.create({
+    const [result] = await Errands.Wanter_board.create({
       wanter_board_writer: req.body.user_name,
       wanter_board_title: req.body.wanter_board_title,
       wanter_board_content: req.body.wanter_board_content,
@@ -133,6 +133,7 @@ exports.read_wanter_comment = async (req, res) => {
 exports.create_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.create({
+      wanter_comment_board_id: req.params.boardId,
       wanter_comment_writer: req.body.user_name,
       wanter_comment_content: req.body.wanter_comment_content,
     });
@@ -182,7 +183,7 @@ exports.delete_wanter_comment = async (req, res) => {
 exports.read_few_helper_board = async (req, res) => {
   try {
     const result = await Errands.Helper_board.findAll({
-      order: [["helper_board_date", "asc"]],
+      order: [['helper_board_date', 'asc']],
       limit: 3,
     });
     res.send(result);
