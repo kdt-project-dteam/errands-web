@@ -37,7 +37,6 @@ export default function Main() {
                     <div className='ft-08 card' >
                         <Link to={'/boardDetail'}> 전체 글</Link>
                     </div>
-
                 </h2>
                 <div className='main-card card'>
                     <ul>
@@ -67,6 +66,10 @@ export default function Main() {
             <div className='main-right'>
                 <h2>
                     <div>급구!✈️</div>
+                    <div className='ft-08 card'>
+                        구인
+                    </div>
+                    <div className='ft-08 card'>
                     <div className='ft-08 card' onClick={() => { setBoardState('offer') }}>
                         구인
                     </div>
@@ -115,7 +118,6 @@ export default function Main() {
                                 </Link>
                             )
                         })}
-
                     </ul>
                 </div>
                 <h2>랭킹🥇</h2>

@@ -8,7 +8,6 @@ import './css/index.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-
 export default function App() {
   // main = 메인페이지
   // boardDetail = 게시글 상세보기

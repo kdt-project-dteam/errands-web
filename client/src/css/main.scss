@@ -74,6 +74,10 @@
         height: 100%;
         overflow-y: scroll;
         li {
+          width: 100%;
+          background-color: aqua;
+          border: 1px solid gray;
+          heght: 20%;
           @include mobile {
             height: 40%;
           }
@@ -209,7 +213,6 @@
     }
   }
 }
-
 .sub-card-rank {
   display: flex;
   flex-direction: row;
