@@ -18,12 +18,12 @@ const User_info = function (Sequelize, DataTypes) {
       },
       user_name: {
         type: DataTypes.STRING(20),
-        allowNull: false,
+        allowNull: true,
         unique: true,
       },
       user_type: {
         type: DataTypes.STRING(4),
-        allowNull: false,
+        allowNull: true,
       },
     },
     { tableName: "user_info", freezeTableName: true, timestamps: false }
