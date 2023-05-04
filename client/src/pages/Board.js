@@ -8,7 +8,14 @@ import JobSeeker from "../components/JobSeeker"
 
 export default function Board() {
 
-      const [menu, setMenu] = useState();
+      const [menu, setMenu] = useState(JobOffer);
+      const [search,setSearch] = useState();
+
+      const onChangeSearch = (e) => {
+            e.preventDefault();
+            setSearch(e.target.value);
+      }
+    
 
 
 
@@ -18,8 +25,8 @@ export default function Board() {
         <h1 className="board_page left">left</h1>
         <div className="board_page center">
             <span className="option">
-            <button className="option" onClick={()=> setMenu(JobOffer)}>구인</button>
-            <button className="option" onClick={()=> setMenu(JobSeeker)}>구직</button>
+            <button className="option item" onClick={()=> setMenu(JobOffer)}>구인</button>
+            <button className="option item" onClick={()=> setMenu(JobSeeker)}>구직</button>
             </span>
             <div className="category">
                 <div className="category category_items">
@@ -30,7 +37,11 @@ export default function Board() {
                         </select>
                     </div>
                     <div className="category category_items input">
-                        <input placeholder="검색어를 입력하세요"></input>
+                        <input 
+                        placeholder="검색어를 입력하세요"
+                        value={search}
+                        onChange={onChangeSearch}
+                        ></input>
                     </div>
                 </div>
             </div>

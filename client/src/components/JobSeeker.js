@@ -1,10 +1,17 @@
 import React from 'react'
-import Table from 'react-bootstrap/Table';
+import { Link } from 'react-router-dom';
+import BoardDetail from '../pages/BoardDetail';
 
 export default function JobOffer() {
     return (<>
-        <Table striped bordered hover className="board_items">
-               <thead>
+        <table className="board_items">
+                <colgroup>
+                    <col width="13.4%"/>
+                    <col width="60%"/>
+                    <col width="13.3%"/>
+                    <col width="13.3%"/>
+                </colgroup>
+               <thead className='board_header'>
                 <tr>
                     <th>작성자</th>
                     <th>제목</th>
@@ -13,13 +20,13 @@ export default function JobOffer() {
                 </tr> 
                </thead>
                <tbody>
-                <tr>
+                <tr className='board_son'>
                     <td>영희</td>
-                    <td>대흥역 배달부탁드립니다 ㅠㅠㅠ</td>
+                    <Link to = "/pages/BoardDetail"><td className='son_title'>대흥역 배달 부탁드립니다 ㅠㅠㅠㅠ</td></Link>
                     <td>2023.05.04</td>
                     <td>2</td>
                 </tr>
                </tbody>            
-           </Table>
+           </table>
         </>)
 }
