@@ -4,6 +4,12 @@
     "password": "5656",
     "database": "errands_app",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "timezone": "Asia/Seoul",
+    "dialectOptions": {
+      "charset": "utf8",
+      "dateStrings": true,
+      "typeCast": true
+    }
   }
 }

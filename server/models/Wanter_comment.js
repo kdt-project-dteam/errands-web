@@ -23,9 +23,7 @@ const Wanter_comment = function (Sequelize, DataTypes) {
       wanter_comment_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     },
     { tableName: "wanter_comment", freezeTableName: true, timestamps: false }

@@ -31,9 +31,7 @@ const Wanter_board = function (Sequelize, DataTypes) {
       wanter_board_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       wanter_board_hit: {
         type: DataTypes.INTEGER,
