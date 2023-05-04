@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { asyncUpAxios, asyncUpAxios2 } from './store/testCounter';
+import { asyncUpAxios, helperBoardSetter, wanterBoardSetter } from './store/testCounter';
 
 const reducerSlice = createSlice({
   name: 'store',
@@ -26,14 +26,24 @@ const reducerSlice = createSlice({
     builder.addCase(asyncUpAxios.rejected, (state, action) => {
       state.status = 'fail'
     })
-    builder.addCase(asyncUpAxios2.pending, (state, action) => {
+    builder.addCase(helperBoardSetter.pending, (state, action) => {
       state.status = 'Loading'
     })
-    builder.addCase(asyncUpAxios2.fulfilled, (state, action) => {
-      state.value2 = action.payload
+    builder.addCase(helperBoardSetter.fulfilled, (state, action) => {
+      state.helperBoard = action.payload
       state.status = 'complete'
     })
-    builder.addCase(asyncUpAxios2.rejected, (state, action) => {
+    builder.addCase(helperBoardSetter.rejected, (state, action) => {
+      state.status = 'fail'
+    })
+    builder.addCase(wanterBoardSetter.pending, (state, action) => {
+      state.status = 'Loading'
+    })
+    builder.addCase(wanterBoardSetter.fulfilled, (state, action) => {
+      state.wanterBoard = action.payload
+      state.status = 'complete'
+    })
+    builder.addCase(wanterBoardSetter.rejected, (state, action) => {
       state.status = 'fail'
     })
   }
