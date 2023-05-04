@@ -65,6 +65,18 @@ exports.read_wanter_board = async (req, res) => {
   }
 };
 
+// 게시물 하나만 보여주기
+exports.read_one_wanter_board = async (req, res) => {
+  try {
+    const result = await Errands.Wanter_board.findOne({
+      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // 게시물 생성
 exports.create_wanter_board = async (req, res) => {
   try {
@@ -205,11 +217,23 @@ exports.read_few_helper_board = async (req, res) => {
 exports.read_helper_board = async (req, res) => {
   try {
     const result = await Errands.Helper_board.findAll({
-      helper_board_writer: req.body.user_name,
+      helper_board_writer: req.body.helper_board_writer,
       helper_board_title: req.body.helper_board_title,
       helper_board_content: req.body.helper_board_content,
       helper_board_place: req.body.helper_board_place,
       helper_board_done: false,
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 게시물 하나만 가져오기
+exports.read_one_helper_board = async (req, res) => {
+  try {
+    const result = await Errands.Helper_board.findOne({
+      where: { helper_board_id: { [Op.eq]: req.params.boardId } },
     });
     res.send(result);
   } catch (err) {
@@ -289,7 +313,7 @@ exports.create_helper_comment = async (req, res) => {
   try {
     const result = await Errands.Helper_comment.create({
       helper_comment_board_id: req.params.boardId,
-      helper_comment_writer: req.body.user_name,
+      helper_comment_writer: req.body.helper_comment_writer,
       helper_comment_content: req.body.helper_comment_content,
     });
     res.send(result);

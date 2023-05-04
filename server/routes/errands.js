@@ -13,6 +13,8 @@ router.get("/mainWanter", controller.read_few_wanter_board);
 
 router.get("/wanter", controller.read_wanter_board);
 
+router.get("/wanter/:boardId", controller.read_one_wanter_board);
+
 router.post("/wanter/:boardId", controller.create_wanter_board);
 
 router.patch("/wanter/:boardId", controller.update_wanter_board);
@@ -41,6 +43,8 @@ router.delete(
 router.get("/mainHelper", controller.read_few_helper_board);
 
 router.get("/helper", controller.read_helper_board);
+
+router.get("/helper/:boardId", controller.read_one_helper_board);
 
 router.post("/helper/:boardId", controller.create_helper_board);
 
