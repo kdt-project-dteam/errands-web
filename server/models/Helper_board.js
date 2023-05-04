@@ -28,17 +28,12 @@ const Helper_board = function (Sequelize, DataTypes) {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+          "CURRENT_TIMESTAMP"
         ),
       },
       helper_board_hit: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
-      },
-      helper_board_done: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
       },
     },
     { tableName: "helper_board", freezeTableName: true, timestamps: false }

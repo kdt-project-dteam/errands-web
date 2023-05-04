@@ -1,11 +1,38 @@
-const initialState = false;
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const testCounter = (state = initialState, action) => {
-    if (action.type === 'CHANGE') {
-        return !state
-    } else {
-        return state
-    };
-}
+export const asyncUpAxios = createAsyncThunk(
+    'testCounter/dataFetching',
+    async () => {
+        const res = await axios.get('/api/wanter');
+        console.log(res.data);
+        return res.data;
+    }
+)
 
-export default testCounter;
+export const helperBoardSetter = createAsyncThunk(
+    'testCounter/helperBoardSetter',
+    async () => {
+        const res = await axios.get('/api/mainHelper');
+        console.log(res.data);
+        return res.data;
+    }
+)
+
+export const wanterBoardSetter = createAsyncThunk(
+    'testCounter/wanterBoardSetter',
+    async () => {
+        const res = await axios.get('/api/mainWanter');
+        console.log(res.data);
+        return res.data;
+    }
+)
+
+// export const searchBoard = createAsyncThunk(
+//     'testCounter/searchBoard',
+//     async () => {
+//         const res = await axios.get('/api/');
+//         console.log(res.data);
+//         return res.data;
+//     }
+// )
