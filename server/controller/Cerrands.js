@@ -55,12 +55,6 @@ exports.read_few_wanter_board = async (req, res) => {
 exports.read_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
-      attribute: [
-        "wanter_board_writer",
-        "wanter_board_title",
-        "wanter_board_content",
-        "",
-      ],
       order: [["wanter_board_date", "asc"]],
     });
     res.send(result);
@@ -75,7 +69,7 @@ exports.read_wanter_board = async (req, res) => {
 exports.create_wanter_board = async (req, res) => {
   try {
     await Errands.Wanter_board.create({
-      wanter_board_writer: "",
+      wanter_board_writer: req.body.user_name,
       wanter_board_title: req.body.wanter_board_title,
       wanter_board_content: req.body.wanter_board_content,
       wanter_board_place: req.body.wanter_board_place,
@@ -139,7 +133,7 @@ exports.read_wanter_comment = async (req, res) => {
 exports.create_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.create({
-      //   wanter_comment_writer: req.params.user_name,
+      wanter_comment_writer: req.body.user_name,
       wanter_comment_content: req.body.wanter_comment_content,
     });
     res.send(result);
@@ -201,7 +195,7 @@ exports.read_few_helper_board = async (req, res) => {
 exports.read_helper_board = async (req, res) => {
   try {
     const result = await Errands.Helper_board.create({
-      //   helper_board_writer: req.params.user_name,
+      helper_board_writer: req.body.user_name,
       helper_board_title: req.body.helper_board_title,
       helper_board_content: req.body.helper_board_content,
       helper_board_place: req.body.helper_board_place,
@@ -284,7 +278,7 @@ exports.read_helper_comment = async (req, res) => {
 exports.create_helper_comment = async (req, res) => {
   try {
     const result = await Errands.Helper_comment.create({
-      //   helper_comment_writer: req.params.user_name,
+      helper_comment_writer: req.body.user_name,
       helper_comment_content: req.body.helper_comment_content,
     });
     res.send(result);
