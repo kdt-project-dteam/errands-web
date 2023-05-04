@@ -9,13 +9,13 @@ export default function Header() {
             <div className='header-link'>
                 <Link to={'/'}>Main</Link>
                 <Link to={'/boardDetail'}>Board</Link>
-                <Link to={'/members'}>Member</Link>
+                <Link to={'/members'}>MyPage</Link>
                 <Link to={'/login'}>로그인</Link>
                 <Link to={'/signup'}>회원가입</Link>
             </div>
             <div className='header-nav'>
                 <ul>
-                    <li>MyPage</li>
+                    <li><Link to={'/members'}>MyPage</Link></li>
                 </ul>
             </div>
         </div>

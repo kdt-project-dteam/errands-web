@@ -1,11 +1,20 @@
-const initialState = false;
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const testCounter = (state = initialState, action) => {
-    if (action.type === 'CHANGE') {
-        return !state
-    } else {
-        return state
-    };
-}
+export const asyncUpAxios = createAsyncThunk(
+    'testCounter/dataFetching',
+    async () => {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/comments');
+        console.log(res.data);
+        return res.data;
+    }
+)
 
-export default testCounter;
+export const asyncUpAxios2 = createAsyncThunk(
+    'testCounter/dataFetching2',
+    async () => {
+        const res = await axios.get('https://jsonplaceholder.typicode.com/users');
+        console.log(res.data);
+        return res.data;
+    }
+)
