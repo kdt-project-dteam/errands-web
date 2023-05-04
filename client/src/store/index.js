@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
-import testCounter from './testCounter';
+// import { combineReducers } from 'redux';
+// import dataFetching from './testCounter';
 
-const rootReducer = combineReducers({
-    test: testCounter,
-})
+// const rootReducer = combineReducers({
+//     test: dataFetching,
+// })
 
-export default rootReducer;
+// export default rootReducer;
