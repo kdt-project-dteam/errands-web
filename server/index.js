@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 const indexRouter = require("./routes/errands");
-app.use("/", indexRouter);
+app.use("/api", indexRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
