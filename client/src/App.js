@@ -4,6 +4,9 @@ import BoardDetail from './pages/BoardDetail';
 import Members from './pages/Members';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import './css/index.scss';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function App() {
   // main = 메인페이지
@@ -13,6 +16,7 @@ export default function App() {
   // signup = 회원가입
   return (
     <div>
+      <Header />
       <Routes>
         <Route path='/' element={<Main />}></Route>
         <Route path='/boardDetail' element={<BoardDetail />}></Route>
@@ -20,6 +24,7 @@ export default function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<Signup />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
 }
