@@ -25,6 +25,10 @@ const Notice = function (Sequelize, DataTypes) {
         allowNull: false,
         defaultValue: Sequelize.liter("CURRENT_TIMESTAMP"),
       },
+      notice_hit: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
     { tableName: "notice", freezeTableName: true, timestamps: false }
   );
