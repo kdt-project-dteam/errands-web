@@ -58,7 +58,7 @@ export default function Main() {
                                     </li>
                                 </Link>
                             )
-                        }) : 'null'}
+                        }) : "null"}
                     </ul>
                 </div>
             </div>
@@ -93,7 +93,25 @@ export default function Main() {
                                     </li>
                                 </Link>
                             )
-                        }) : ''}
+                        }) : wanterBoard ? wanterBoard.map((data) => {
+                            return (
+                                <Link to={`/boardDetail/:${data.wanter_board_id}`}>
+                                    <li className='card'>
+                                        <div className='li-top'>
+                                            <div className='li-top-title'>{data.wanter_board_id}</div>
+                                            <div className='li-top-author'>{data.wanter_board_writer}</div>
+                                        </div>
+                                        <div className='li-bottom'>
+                                            <div className='li-bottom-time'>
+                                                {data.wanter_board_date}
+                                            </div>
+                                            <div className='li-bottom-hit'>
+                                                {data.wanter_board_hit}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </Link>)
+                        }) : 'null'}
                     </ul>
                 </div>
                 <h2>랭킹🥇</h2>

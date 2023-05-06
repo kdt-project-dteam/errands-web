@@ -30,7 +30,7 @@ export default function JobOffer() {
                     <td>2023.05.04</td>
                     <td>13</td>
                 </tr>
-                {value.map((data) => {
+                {value ? value.map((data) => {
                     return (
                         <tr className='board_son'>
                             <td>{data.wanter_board_writer}</td>
@@ -39,7 +39,7 @@ export default function JobOffer() {
                             <td>{data.wanter_board_hit}</td>
                         </tr>
                     )
-                })}
+                }) : "null"}
             </tbody>
         </table>
     </>)

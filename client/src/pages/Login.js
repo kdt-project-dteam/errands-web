@@ -1,33 +1,70 @@
 import '../css/Login.scss';
+import React, { useState } from 'react';
+import axios from 'axios';
 // /api/login
 const Login = () => {
+    const [userId, setUserId] = useState('');
+    const [userPw, setUserPw] = useState('');
+    const LoginFunc = async (e) => {
+        e.preventDefault();
+        if (!userId && !userPw) {
+            return alert('ID와 Password를 입력하세요');
+        }
+        if (!userId) {
+            return alert('ID를 입력하세요');
+        }
+        if (!userPw) {
+            return alert('Password를 입력하세요');
+        }
+        const { data } = await axios({
+            method: 'post',
+            url: 'http://localhost:8080/api/login',
+            data: {
+                user_id: userId,
+                user_pw: userPw,
+            },
+        });
+        alert(JSON.stringify(data.original));
+    };
     return (
-        <>
-            <div className="Login">
-                <div className="background">
-                    <div id="logo">LOGO</div>
-                    <div className='w-80-setter'>
-                        <div id="LOGIN">LOGIN</div>
-                        <p>아이디</p>
-                        <div id="input1">
-                            <input type="text" id="ID" placeholder="ID" />
-                        </div>
-                        <p>비밀번호</p>
-                        <div id="input2">
-                            <input type="password" id="PW" placeholder="PASSWORD" />
-                        </div>
-                        <div id="button">
-                            <button className='login-button'>로그인</button>
-                            <div className='signup-checker'>계정이 없으신가요?</div>
-                            <a href="http://localhost:3000/Signup" taget="_blank">
-                                회원가입
-                            </a>
-                        </div>
+        <div className="login-container">
+            <div className="login-contents">
+                <h2>LOGIN</h2>
+                <form>
+                    <div className="field">
+                        <input
+                            type="text"
+                            required
+                            autoComplete="off"
+                            id="id"
+                            value={userId}
+                            onChange={(e) => setUserId(e.target.value)}
+                        />
+                        <label htmlFor="id" title="아이디" data-title="아이디"></label>
                     </div>
-                </div>
+                    <div className="field">
+                        <input
+                            type="password"
+                            required
+                            autoComplete="off"
+                            id="password"
+                            value={userPw}
+                            onChange={(e) => setUserPw(e.target.value)}
+                        />
+                        <label htmlFor="password" title="비밀번호" data-title="비밀번호"></label>
+                    </div>
+                    <div className="button-container">
+                        <button type="button" onClick={LoginFunc}>
+                            로그인
+                        </button>
+                        <p>계정이 없으신가요?</p>
+                        <a href="http://localhost:3000/Signup" target="_blank">
+                            회원가입
+                        </a>
+                    </div>
+                </form>
             </div>
-        </>
+        </div>
     );
 };
-
 export default Login;
