@@ -94,6 +94,31 @@ exports.userLogout = async (req, res) => {
   }
 };
 
+// 메인페이지 상위 5명 보여주기
+exports.read_few_user = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findAll({
+      order: [['user_like', 'desc']],
+      limit: 5,
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 전체 다 보여주기
+exports.read_user = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findAll({
+      order: [['user_like', 'desc']],
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {
@@ -208,7 +233,9 @@ exports.delete_wanter_board = async (req, res) => {
 // 댓글 보여주기
 exports.read_wanter_comment = async (req, res) => {
   try {
-    const result = await Errands.Wanter_comment.findAll();
+    const result = await Errands.Wanter_comment.findAll({
+      wanter_comment_board_id: { [Op.eq]: req.params.boardId },
+    });
     res.send(result);
   } catch (err) {
     res.send(err);
@@ -403,7 +430,7 @@ exports.delete_helper_board = async (req, res) => {
 exports.read_helper_comment = async (req, res) => {
   try {
     const result = await Errands.Helper_comment.findAll({
-      //
+      wanter_comment_board_id: { [Op.eq]: req.params.boardId },
     });
     res.send(result);
   } catch (err) {
