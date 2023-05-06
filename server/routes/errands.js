@@ -26,7 +26,7 @@ router.get("/user/:user", controller.read_detail_user);
 // 추천누르기
 router.post("/user/:user/userLike", controller.userLike);
 
-// router.post("/checkId", controller.checkUserId);
+router.post("/checkId", controller.checkUserId);
 
 router.post("/checkName", controller.checkUserName);
 
