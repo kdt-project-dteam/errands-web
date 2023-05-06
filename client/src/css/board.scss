@@ -16,7 +16,7 @@
 .board_page {
   display: grid;
   box-sizing: border-box;
-  height: 1000px;
+  height: 100vh;
   grid-template-columns: 1fr 5fr 1fr;
   text-align: center;
   margin: 10px;
@@ -78,9 +78,17 @@
       height: 10vh;
       padding: 10px;
       border-bottom: 1px solid gray;
+
+      &:hover {
+        background-color: #ebe6e6;
+      }
+
       .son_title {
         height: 100px;
         line-height: 100px;
+        &:hover {
+          text-decoration-line: underline;
+        }
       }
     }
 

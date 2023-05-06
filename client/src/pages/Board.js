@@ -5,6 +5,9 @@ import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker"
 import '../css/board.scss';
 import {BiSearchAlt2} from 'react-icons/bi'
+import Pagination from "../components/Pagination";
+import axios from 'axios'
+import { useEffect } from "react";
 
 
 
@@ -12,6 +15,23 @@ export default function Board() {
 
     const [menu, setMenu] = useState(JobOffer);
     const [search, setSearch] = useState();
+    const [info,setInfo] = useState([]);
+        
+        async function handlePostInfo(){
+              const result = await axios({
+                  url : `http://localhost:8080/api/wanter`,
+                  method: 'GET',
+                  headers: {
+                      "Content-Type": "application/json"
+                  }
+              })
+              setInfo(result.data.reverse());
+          }
+      
+          useEffect(() =>{
+              handlePostInfo()
+          },[])
+
 
     const onChangeSearch = (e) => {
         e.preventDefault();
@@ -50,7 +70,8 @@ export default function Board() {
                         </div>
                     </div>
                 </div>
-                <div children={menu} />
+                <div children = {menu} />
+                <div children = {Pagination}/>
             </div>
             <h1 className="board_page right"></h1>
         </div>
