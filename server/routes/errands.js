@@ -8,9 +8,9 @@ router.post('/login', controller.userLogin);
 
 router.post('/register', controller.userRegister);
 
-router.post('/checkId', controller.checkUserId);
+// router.post('/checkId', controller.checkUserId);
 
-router.post('/checkName', controller.checkUserName);
+// router.post('/checkName', controller.checkUserName);
 
 // ======= Wanter_board =======
 router.get('/mainWanter', controller.read_few_wanter_board);
@@ -19,7 +19,7 @@ router.get('/wanter', controller.read_wanter_board);
 
 router.get('/wanter/:boardId', controller.read_one_wanter_board);
 
-router.post('/wanter/:boardId', controller.create_wanter_board);
+router.post('/wanter', controller.create_wanter_board);
 
 router.patch('/wanter/:boardId', controller.update_wanter_board);
 

@@ -8,12 +8,19 @@ import {BiSearchAlt2} from 'react-icons/bi'
 import Pagination from "../components/Pagination";
 import axios from 'axios'
 import { useEffect } from "react";
-
-
-
+import { useSelector } from 'react-redux';
 export default function Board() {
-
-    const [menu, setMenu] = useState(JobOffer);
+    const value = useSelector(state => {
+        return state.someReducer.value
+    })
+    const helperAll = useSelector(state => {
+        return state.someReducer.helperAll
+    })
+    const [menu, setMenu] = useState(1);
+    const menuArr = [
+        { id: 1, name: '구인' },
+        { id: 2, name: '구직' }
+    ]
     const [search, setSearch] = useState();
     const [info,setInfo] = useState([]);
         
@@ -39,15 +46,15 @@ export default function Board() {
     }
 
     return (<>
-        <div className="page_header">
-            <img src={process.env.PUBLIC_URL + "/img/doWorks.png"} alt='....' />
-        </div>
         <div className="board_page">
             <h1 className="board_page left"></h1>
             <div className="board_page center">
                 <span className="option">
-                    <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
-                    <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button>
+                    {menuArr.map(menu => {
+                        return <button key={menu.id} className="option item card" onClick={() => setMenu(menu.id)}>{menu.name}</button>
+                    })}
+                    {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
+                    <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
                 </span>
                 <div className="category card">
                     <div className="category category_items">
@@ -70,8 +77,9 @@ export default function Board() {
                         </div>
                     </div>
                 </div>
-                <div children = {menu} />
-                <div children = {Pagination}/>
+                {menu === 1 ?
+                    <JobOffer data={value} /> : <JobSeeker data={helperAll} />
+                }
             </div>
             <h1 className="board_page right"></h1>
         </div>

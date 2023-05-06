@@ -23,11 +23,6 @@ export default function Main() {
     })
     // 구인구직 게시판 상태 [offer : 구인] , [search : 구직]
     const [boardState, setBoardState] = useState('offer');
-    useEffect(() => {
-        dispatch(asyncUpAxios())
-        dispatch(helperBoardSetter())
-        dispatch(wanterBoardSetter())
-    }, [])
     return (
         <div className='main'>
             <div className='main-left'>

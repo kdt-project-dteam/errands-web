@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function JobOffer() {
-    const dispatch = useDispatch();
-    const value = useSelector(state => {
-        return state.someReducer.value
-    })
+export default function JobOffer({ data }) {
     return (<>
         <table className="board_items">
             <colgroup>
@@ -24,22 +20,16 @@ export default function JobOffer() {
                 </tr>
             </thead>
             <tbody>
-                <tr className='board_son'>
-                    <td>영희</td>
-                    <Link to="/pages/BoardDetail"><td className='son_title'>대흥역 배달 부탁드립니다 ㅠㅠㅠㅠ</td></Link>
-                    <td>2023.05.04</td>
-                    <td>2</td>
-                </tr>
-                {value.map((data) => {
+                {data ? data.map((data) => {
                     return (
                         <tr className='board_son'>
-                            <td>{data.wanter_board_writer}</td>
-                            <Link to="/board/BoardDetail"><td className='son_title'>{data.wanter_board_title}</td></Link>
-                            <td>{data.wanter_board_time}</td>
-                            <td>{data.wanter_board_hit}</td>
+                            <td>{data.helper_board_writer}</td>
+                            <td className='son_title'><Link to={`/board/BoardDetail/helper/${data.helper_board_id}`}>{data.helper_board_title}</Link></td>
+                            <td>{data.helper_board_date}</td>
+                            <td>{data.helper_board_hit}</td>
                         </tr>
                     )
-                })}
+                }) : "null"}
 
             </tbody>
         </table>

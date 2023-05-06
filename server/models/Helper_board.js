@@ -27,9 +27,7 @@ const Helper_board = function (Sequelize, DataTypes) {
       helper_board_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP"
-        ),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       helper_board_hit: {
         type: DataTypes.INTEGER,

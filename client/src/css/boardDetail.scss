@@ -26,7 +26,6 @@
     }
   }
 
-
   .Detail_page_Header {
     text-align: center;
     margin-top: 10px;
@@ -72,11 +71,11 @@
         cursor: pointer;
         font-size: xx-large;
       }
-
     }
     .comment {
       margin: 40px 0;
       border-top: 1px solid #ddd;
+      padding-bottom: 2rem;
       h3 {
         font-weight: bold;
         color: orange;
@@ -85,7 +84,6 @@
         margin-bottom: -2rem;
       }
       .form {
-
         box-sizing: border-box;
         color: black;
 
@@ -179,5 +177,4 @@
       }
     }
   }
-
 }

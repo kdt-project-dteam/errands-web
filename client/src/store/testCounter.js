@@ -10,6 +10,15 @@ export const asyncUpAxios = createAsyncThunk(
     }
 )
 
+export const helperAll = createAsyncThunk(
+    'testCounter/helperFetching',
+    async () => {
+        const res = await axios.get('/api/helper');
+        console.log(res.data);
+        return res.data;
+    }
+)
+
 export const helperBoardSetter = createAsyncThunk(
     'testCounter/helperBoardSetter',
     async () => {
