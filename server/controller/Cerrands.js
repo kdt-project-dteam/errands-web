@@ -29,7 +29,7 @@ exports.userRegister = async (req, res) => {
       user_id: req.body.user_id,
       user_pw: req.body.user_pw,
       user_name: req.body.user_name,
-      user_type: req.body.user_type.value,
+      user_type: req.body.user_type,
     });
     res.end();
   } catch (err) {
