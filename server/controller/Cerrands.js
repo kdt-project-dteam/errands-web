@@ -96,6 +96,55 @@ exports.userLogout = async (req, res) => {
   }
 };
 
+// 메인페이지 상위 5명 보여주기
+exports.read_few_user = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findAll({
+      order: [["user_like", "desc"]],
+      limit: 5,
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+// 전체 다 보여주기
+exports.read_user = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findAll({
+      order: [["user_like", "desc"]],
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// detail
+exports.read_detail_user = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findOne({
+      where: { id: { [Op.eq]: req.params.user } },
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 추천수
+exports.userLike = async (req, res) => {
+  try {
+    const result = await Errands.User_info.increment(
+      { user_like: 1 },
+      { where: { id: { [Op.eq]: req.params.user } } }
+    );
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {

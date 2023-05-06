@@ -14,6 +14,18 @@ router.post("/checkName", controller.checkUserName);
 
 router.post("/logout", controller.userLogout);
 
+// 전체 유저 확인하기
+router.get("/user", controller.read_user);
+
+// 추천수 상위 5명 유저
+router.get("/mainUser", controller.read_few_user);
+
+// 개인별 확인하기 params
+router.get("/user/:user", controller.read_detail_user);
+
+// 추천누르기
+router.post("/user/:user/userLike", controller.userLike);
+
 // router.post("/checkId", controller.checkUserId);
 
 // router.post("/checkName", controller.checkUserName);
