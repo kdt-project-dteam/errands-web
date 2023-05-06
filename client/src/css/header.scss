@@ -1,4 +1,10 @@
 @import './utils.scss';
+.d-none {
+  display: none;
+}
+.d-flex {
+  display: flex;
+}
 
 .header {
   width: 100vw;
@@ -8,22 +14,34 @@
   line-height: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   .header-logo {
     font-size: 1.2rem;
     padding-left: 2rem;
   }
   .header-link {
+    @include mobile {
+      display: none;
+    }
     a {
       margin: 10px;
     }
   }
   .header-nav {
-    font-size: 1rem;
-    padding-right: 2rem;
-    ul {
-      display: flex;
-      flex-direction: row;
+    @include mobile {
+      display: block;
     }
+    display: none;
+  }
+}
+
+.burger-menu {
+  width: 100vw;
+  flex-direction: column;
+  background-color: $main-color;
+  padding: 1rem;
+  a {
+    margin: 0.2rem;
+    text-align: center;
   }
 }
