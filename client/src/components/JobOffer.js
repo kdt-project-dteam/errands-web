@@ -24,17 +24,11 @@ export default function JobOffer() {
                 </tr>
             </thead>
             <tbody>
-                <tr className='board_son'>
-                    <td>철수</td>
-                    <Link to="/board/BoardDetail"><td className='son_title'>공덕역 배달이요~</td></Link>
-                    <td>2023.05.04</td>
-                    <td>13</td>
-                </tr>
                 {value ? value.map((data) => {
                     return (
                         <tr className='board_son'>
                             <td>{data.wanter_board_writer}</td>
-                            <Link to="/board/BoardDetail"><td className='son_title'>{data.wanter_board_title}</td></Link>
+                            <td className='son_title'><Link to="/board/BoardDetail">{data.wanter_board_title}</Link></td>
                             <td>{data.wanter_board_date}</td>
                             <td>{data.wanter_board_hit}</td>
                         </tr>

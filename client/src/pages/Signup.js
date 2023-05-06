@@ -52,7 +52,7 @@ const Signup = () => {
                             type="radio"
                             id="select"
                             name="shop"
-                            value="wanter"
+                            value="W"
                             onClick={(e) => setUserType(e.target.value)}
                         />
                         <label htmlFor="select">구인자</label>
@@ -60,7 +60,7 @@ const Signup = () => {
                             type="radio"
                             id="select2"
                             name="shop"
-                            value="helper"
+                            value="H"
                             onClick={(e) => setUserType(e.target.value)}
                         />
                         <label htmlFor="select2">구직자</label>

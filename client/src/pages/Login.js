@@ -10,13 +10,13 @@ const Login = () => {
         if (!userId && !userPw) {
             return alert('ID와 Password를 입력하세요');
         }
-        if (!userId) {
+        else if (!userId) {
             return alert('ID를 입력하세요');
         }
-        if (!userPw) {
+        else if (!userPw) {
             return alert('Password를 입력하세요');
         }
-        const { data } = await axios({
+        const data = await axios({
             method: 'post',
             url: 'http://localhost:8080/api/login',
             data: {
@@ -24,7 +24,14 @@ const Login = () => {
                 user_pw: userPw,
             },
         });
-        alert(JSON.stringify(data.original));
+        if (data.data === true) {
+            alert('로그인 성공');
+            window.location.href = '/';
+        } else {
+            alert('ID,PW 불일치..');
+            setUserId('');
+            setUserPw('');
+        }
     };
     return (
         <div className="login-container">
