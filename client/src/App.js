@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import './css/index.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Board from './pages/Board';
 
 export default function App() {
   // main = 메인페이지
@@ -19,7 +20,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Main />}></Route>
-        <Route path='/boardDetail' element={<BoardDetail />}></Route>
+        <Route path='/board' element={<Board />}></Route>
         <Route path='/members' element={<Members />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<Signup />}></Route>

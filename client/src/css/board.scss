@@ -1,81 +1,96 @@
+@import './utils.scss';
+
 .page_header {
-    text-align: center;
-    background-color: yellow;
+  width: 100%;
+  height: 20rem;
+  text-align: center;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
 }
 .board_page {
-    display: grid;
-    box-sizing: border-box;
-    grid-template-columns: 1fr 5fr 1fr;
-    height: 100vh;
-    text-align: center;
-    margin: 10px;
-    
-    .left {
-        background-color: chartreuse;
-        display: block;
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: 1fr 5fr 1fr;
+  text-align: center;
+  margin: 10px;
+
+  .left {
+    display: block;
+  }
+
+  .right {
+    display: block;
+  }
+
+  .center {
+    // background-color: cornflowerblue;
+    display: block;
+
+    .option {
+      display: flex;
+      justify-content: space-evenly;
+      height: 3rem;
+
+      .item {
+        width: 12%;
+        border: none;
+        background-color: $main-color;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
     }
 
-    .right {
-        background-color: chartreuse;
-        display: block;
+    .board_items {
+      // background-color: rgba(255, 0, 0, 0.344);
+      width: 100%;
+      overflow-y: scroll;
+      border-collapse: collapse;
+      .thead {
+        background-color: black;
+      }
     }
 
-    .center {
-        // background-color: cornflowerblue;
-        display: block;
-        
-        .option {
-            display: flex;
-            justify-content: space-evenly;
-            background-color: rgba(255, 127, 80, 0.485);
+    .board_header {
+      color: white;
+      height: 4rem;
+      color: black;
+      border-bottom: 1px solid gray;
+    }
 
-            .item{
-                border: none;
-                background-color: rgba(43, 226, 174, 0.447);
-                border-radius: 10px;
-                font-size: 20px;
-                cursor: pointer;
-            }
-        }
-
-        .board_items {
-            // background-color: rgba(255, 0, 0, 0.344);
-            width: 100%;
-            .thead{
-                background-color: black;
-            }
-        }
-
-        .board_header {
-            background-color: black;
-            color: white;
-        }
-
-        .board_son {
-            border-bottom: dashed rgba(128, 128, 128, 0.468);
-            
-        }
+    .board_son {
+      height: 10vh;
+      padding: 10px;
+      border-bottom: 1px solid gray;
+      .son_title {
+        height: 100px;
+        line-height: 100px;
+      }
+    }
 
     .category {
-        background-color: blueviolet;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      margin: 10px;
+      font-size: 13px;
+      outline: none;
+      background-color: $main-color;
+      border-radius: $bor-radius;
+
+      .category_items {
         display: flex;
-        flex-direction: row-reverse;
-        margin: 5px;
-        font-size: 13px;
-        outline: none;
-
-        .category_items{
-            display: flex;
-            justify-content: space-between;
-        }
-    }
-
-    }
-
-    a:-webkit-any-link {
-        text-decoration: none;
-        color: black;
-        cursor: pointer;
+        justify-content: space-between;
       }
-}
+    }
+  }
 
+  a:-webkit-any-link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/main.scss';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { asyncUpAxios, helperBoardSetter, wanterBoardSetter } from '../store/testCounter';
@@ -35,7 +34,7 @@ export default function Main() {
                 <h2>
                     <div>모집🚗</div>
                     <div className='ft-08 card' >
-                        <Link to={'/boardDetail'}> 전체 글</Link>
+                        <Link to={'/board'}> 전체 글</Link>
                     </div>
                 </h2>
                 <div className='main-card card'>
@@ -66,10 +65,6 @@ export default function Main() {
             <div className='main-right'>
                 <h2>
                     <div>급구!✈️</div>
-                    <div className='ft-08 card'>
-                        구인
-                    </div>
-                    <div className='ft-08 card'>
                     <div className='ft-08 card' onClick={() => { setBoardState('offer') }}>
                         구인
                     </div>
@@ -98,26 +93,7 @@ export default function Main() {
                                     </li>
                                 </Link>
                             )
-                        }) : wanterBoard.map((data) => {
-                            return (
-                                <Link to={`/boardDetail/:${data.wanter_board_id}`}>
-                                    <li>
-                                        <div className='li-top'>
-                                            <div className='li-top-title'>{data.wanter_board_title}</div>
-                                            <div className='li-top-author'>{data.wanter_board_writer}</div>
-                                        </div>
-                                        <div className='li-bottom'>
-                                            <div className='li-bottom-time'>
-                                                {data.wanter_board_date}
-                                            </div>
-                                            <div className='li-bottom-hit'>
-                                                {data.wanter_board_hit}
-                                            </div>
-                                        </div>
-                                    </li>
-                                </Link>
-                            )
-                        })}
+                        }) : ''}
                     </ul>
                 </div>
                 <h2>랭킹🥇</h2>
