@@ -8,7 +8,7 @@ const Notice = function (Sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true,
       },
-      notie_writer: {
+      notice_writer: {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
@@ -35,4 +35,4 @@ const Notice = function (Sequelize, DataTypes) {
   return model;
 };
 
-module.exports = notice;
+module.exports = Notice;
