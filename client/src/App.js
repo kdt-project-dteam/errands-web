@@ -1,10 +1,36 @@
-import axios from "axios";
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import BoardDetail from "./pages/BoardDetail";
+import Members from "./pages/Members";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import "./css/index.scss";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Board from "./pages/Board";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  asyncUpAxios,
+  helperBoardSetter,
+  wanterBoardSetter,
+  helperAll,
+} from "../src/store/testCounter";
 
 export default function App() {
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // wanter all
+    dispatch(asyncUpAxios());
+    // helper all
+    dispatch(helperAll());
+    // helper 5
+    dispatch(helperBoardSetter());
+    // wanter 5
+    dispatch(wanterBoardSetter());
+  }, []);
   // main = 메인페이지
+  // board = 게시글
   // boardDetail = 게시글 상세보기
   // members = 마이페이지
   // login = 로그인페이지
@@ -23,21 +49,18 @@ export default function App() {
   };
   return (
     <div>
-      <input
-        type="text"
-        name="user_id"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-      />
-      <input
-        type="text"
-        name="user_pw"
-        value={pw}
-        onChange={(e) => setPw(e.target.value)}
-      />
-      {/* <input type="text" />
-        <input type="text" /> */}
-      <button onClick={login}>로그인</button>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/board" element={<Board />}></Route>
+        <Route
+          path="/board/boardDetail/:wanterHelper/:boardId"
+          element={<BoardDetail />}
+        ></Route>
+        <Route path="/members" element={<Members />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+      </Routes>
     </div>
   );
 }

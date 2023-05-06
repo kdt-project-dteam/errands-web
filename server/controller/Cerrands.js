@@ -70,15 +70,7 @@ exports.userRegister = async (req, res) => {
     const result = await Errands.User_info.findOne({
       where: { user_id: { [Op.eq]: req.body.user_id } },
     });
-    console.log(result);
-    if (!result) {
-      Errands.User_info.create({
-        user_id: req.body.user_id,
-        user_pw: req.body.user_pw,
-        user_name: req.body.user_name,
-        user_type: req.body.user_type,
-      });
-    }
+    res.end();
   } catch (err) {
     res.send(err);
   }
@@ -176,23 +168,11 @@ exports.read_wanter_board = async (req, res) => {
   }
 };
 
-// 게시물 하나만 보여주기
-exports.read_one_wanter_board = async (req, res) => {
-  try {
-    const result = await Errands.Wanter_board.findOne({
-      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-    });
-    res.send(result);
-  } catch (err) {
-    res.send(err);
-  }
-};
-
 // 게시물 생성
 exports.create_wanter_board = async (req, res) => {
   try {
-    const [result] = await Errands.Wanter_board.create({
-      wanter_board_writer: req.body.user_name,
+    const result = await Errands.Wanter_board.create({
+      wanter_board_writer: req.body.wanter_board_name,
       wanter_board_title: req.body.wanter_board_title,
       wanter_board_content: req.body.wanter_board_content,
       wanter_board_place: req.body.wanter_board_place,
@@ -276,7 +256,7 @@ exports.create_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.create({
       wanter_comment_board_id: req.params.boardId,
-      wanter_comment_writer: req.session.user_name,
+      wanter_comment_writer: req.body.user_name,
       wanter_comment_content: req.body.wanter_comment_content,
     });
     res.send(result);

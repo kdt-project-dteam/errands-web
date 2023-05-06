@@ -1,0 +1,180 @@
+@import './utils.scss';
+
+.boardDetail_page {
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: 1fr 6fr 1fr;
+  height: 200vh;
+  text-align: center;
+  margin: 10px;
+
+  @include mobile {
+    grid-template-columns: 1fr 100fr 1fr;
+    margin: 5px;
+    
+  }
+
+  .right {
+    @include mobile {
+      display: block;
+    }
+  }
+
+  .left {
+    @include mobile {
+      display: block;
+    }
+  }
+
+  .Detail_page_Header {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+  }
+  .center {
+    display: block;
+    .writer_header_form {
+      box-sizing: border-box;
+      display: block;
+      text-align: start;
+      padding: 10px 0 10px 0;
+      .title {
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .date {
+        border-bottom: 1px solid #ddd;
+        color: gray;
+      }
+    }
+    .paragraph {
+      text-align: start;
+      overflow-x: auto;
+      padding: 50px 0;
+      display: block;
+      .user_paragraph {
+        line-height: 1rem;
+        font-size: 16px;
+      }
+      .p {
+        display: block;
+      }
+    }
+    .paragraph_ext {
+      display: block;
+
+      .likes_btn {
+        width: 150px;
+        height: 60px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: xx-large;
+      }
+    }
+    .comment {
+      margin: 40px 0;
+      border-top: 1px solid #ddd;
+      padding-bottom: 2rem;
+      h3 {
+        font-weight: bold;
+        color: orange;
+        text-align: start;
+        margin-top: 1.5rem;
+        margin-bottom: -2rem;
+      }
+      .form {
+        box-sizing: border-box;
+        color: black;
+
+        fieldset {
+          border: 0;
+          margin-top: 10px;
+        }
+
+        legend {
+          text-align: start;
+          font-weight: bold;
+          margin-top: 5px;
+          margin-bottom: 10px;
+        }
+        .comment_textarea {
+          width: 100%;
+          height: 100px;
+          background-color: #f9f9f9;
+          border: none;
+          outline: none;
+          resize: none;
+        }
+        .comment_write_form {
+          margin: 10px;
+          box-sizing: border-box;
+          border: 1px solid #ddd;
+          width: 100%;
+          background-color: #f9f9f9;
+        }
+        .comment_submit_form {
+          display: flex;
+          justify-content: space-between;
+          border-top: 1px solid #e8e8e8;
+          height: 45px;
+          .comment_count {
+            padding: 0.5rem;
+            margin-left: 1rem;
+          }
+          .comment_submit {
+            width: 20%;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .comment_list {
+      display: block;
+      margin-top: 10px;
+      text-align: start;
+      .comment_list_user {
+        width: 100%;
+        box-sizing: border-box;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        .user_comment {
+          display: flex;
+          justify-content: space-between;
+          padding: 1rem;
+          flex-wrap: wrap;
+          .user_comment_form {
+            display: flex;
+          }
+          .user_comment_top {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+          }
+          .user_comment_date {
+            color: gray;
+            font-weight: bold;
+            padding: 0.25rem;
+            font-size: 13px;
+          }
+          .user_comment_btn {
+            border: none;
+            border-left: 1px solid #ddd;
+            background-color: #f2f2f2;
+            color: gray;
+            font-weight: bold;
+            padding: 0.25rem;
+            font-size: 13px;
+            cursor: pointer;
+          }
+          .user_comment_text {
+            width: 100%;
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+}
