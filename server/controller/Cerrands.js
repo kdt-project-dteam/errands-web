@@ -1,5 +1,6 @@
 const Errands = require('../models');
 const { Op } = require('sequelize');
+const { checkout } = require('../routes/errands');
 // Access => Errands.User_info or Helper_board etc
 
 // ======= User sign =======
@@ -22,16 +23,54 @@ exports.userLogin = async (req, res) => {
   }
 };
 
+// ID 중복 검사
+exports.checkUserId = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findOne({
+      where: { user_id: { [Op.eq]: req.body.user_id } },
+    });
+    console.log(result);
+    if (result.dataValues.user_id) {
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 닉네임 중복검사
+exports.checkUserName = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findOne({
+      where: { user_name: { [Op.eq]: req.body.user_name } },
+    });
+    if (result.dataValues.user_name !== null) {
+      res.send(false);
+    } else {
+      res.send(true);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // 회원가입
 exports.userRegister = async (req, res) => {
   try {
-    await Errands.User_info.create({
-      user_id: req.body.user_id,
-      user_pw: req.body.user_pw,
-      user_name: req.body.user_name,
-      user_type: req.body.user_type.value,
+    const result = await Errands.User_info.findOne({
+      where: { user_id: req.body.user_id },
     });
-    res.end();
+    console.log(result);
+    if (!result) {
+      Errands.User_info.create({
+        user_id: req.body.user_id,
+        user_pw: req.body.user_pw,
+        user_name: req.body.user_name,
+        user_type: req.body.user_type,
+      });
+    }
   } catch (err) {
     res.send(err);
   }
@@ -369,7 +408,7 @@ exports.delete_helper_comment = async (req, res) => {
 exports.read_few_notice = async (req, res) => {
   try {
     const result = await Errands.Notice.findAll({
-      order: [["notice_date", "desc"]],
+      order: [['notice_date', 'desc']],
       limit: 5,
     });
     res.send(result);
@@ -382,7 +421,7 @@ exports.read_few_notice = async (req, res) => {
 exports.read_notice = async (req, res) => {
   try {
     const result = await Errands.Notice.findAll({
-      order: [["wanter_board_date", "asc"]],
+      order: [['wanter_board_date', 'asc']],
     });
   } catch (err) {
     res.send(err);
