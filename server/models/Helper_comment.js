@@ -1,6 +1,6 @@
 const Helper_comment = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    "helper_comment",
+    'helper_comment',
     {
       helper_comment_id: {
         type: DataTypes.INTEGER,
@@ -28,7 +28,7 @@ const Helper_comment = function (Sequelize, DataTypes) {
         ),
       },
     },
-    { tableName: "helper_comment", freezeTableName: true, timestamps: false }
+    { tableName: 'helper_comment', freezeTableName: true, timestamps: false }
   );
   return model;
 };

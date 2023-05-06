@@ -1,6 +1,6 @@
 const Wanter_board = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    "wanter_board",
+    'wanter_board',
     {
       wanter_board_id: {
         type: DataTypes.INTEGER,
@@ -45,7 +45,7 @@ const Wanter_board = function (Sequelize, DataTypes) {
         defaultValue: false,
       },
     },
-    { tableName: "wanter_board", freezeTableName: true, timestamps: false }
+    { tableName: 'wanter_board', freezeTableName: true, timestamps: false }
   );
   return model;
 };

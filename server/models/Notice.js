@@ -1,44 +1,38 @@
-const Helper_board = function (Sequelize, DataTypes) {
+const Notice = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    'helper_board',
+    'notice',
     {
-      helper_board_id: {
+      notice_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      helper_board_writer: {
+      notice_writer: {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
-      helper_board_title: {
+      notice_title: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      helper_board_content: {
+      notice_content: {
         type: DataTypes.STRING(1000),
         allowNull: false,
       },
-      helper_board_place: {
-        type: DataTypes.STRING(200),
-        allowNull: false,
-      },
-      helper_board_date: {
+      notice_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP"
-        ),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
-      helper_board_hit: {
+      notice_hit: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
     },
-    { tableName: 'helper_board', freezeTableName: true, timestamps: false }
+    { tableName: 'notice', freezeTableName: true, timestamps: false }
   );
   return model;
 };
 
-module.exports = Helper_board;
+module.exports = Notice;

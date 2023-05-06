@@ -1,6 +1,6 @@
 const Wanter_comment = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    "wanter_comment",
+    'wanter_comment',
     {
       wanter_comment_id: {
         type: DataTypes.INTEGER,
@@ -28,7 +28,7 @@ const Wanter_comment = function (Sequelize, DataTypes) {
         ),
       },
     },
-    { tableName: "wanter_comment", freezeTableName: true, timestamps: false }
+    { tableName: 'wanter_comment', freezeTableName: true, timestamps: false }
   );
   return model;
 };
