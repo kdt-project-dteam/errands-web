@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { asyncUpAxios, helperBoardSetter, wanterBoardSetter } from './store/testCounter';
+import { asyncUpAxios, helperAll, helperBoardSetter, wanterBoardSetter } from './store/testCounter';
 
 const reducerSlice = createSlice({
   name: 'store',
@@ -44,6 +44,16 @@ const reducerSlice = createSlice({
       state.status = 'complete'
     })
     builder.addCase(wanterBoardSetter.rejected, (state, action) => {
+      state.status = 'fail'
+    })
+    builder.addCase(helperAll.pending, (state, action) => {
+      state.status = 'Loading'
+    })
+    builder.addCase(helperAll.fulfilled, (state, action) => {
+      state.helperAll = action.payload
+      state.status = 'complete'
+    })
+    builder.addCase(helperAll.rejected, (state, action) => {
       state.status = 'fail'
     })
   }

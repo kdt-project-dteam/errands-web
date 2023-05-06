@@ -19,6 +19,7 @@ db.Wanter_board = require("./Wanter_board")(sequelize, Sequelize);
 db.Wanter_comment = require("./Wanter_comment")(sequelize, Sequelize);
 db.Helper_board = require("./Helper_board")(sequelize, Sequelize);
 db.Helper_comment = require("./Helper_comment")(sequelize, Sequelize);
+db.Notice = require("./Notice")(sequelize, Sequelize);
 
 db.User_info.hasMany(db.Wanter_board, {
   foreignKey: "wanter_board_writer",
@@ -84,6 +85,17 @@ db.Helper_comment.belongsTo(db.Helper_board, {
   sourceKey: "helper_board_id",
   onUpdate: "cascade",
   onDelete: "cascade",
+});
+
+db.User_info.hasMany(db.Notice, {
+  foreignKey: "notice_writer",
+  sourceKey: "user_name",
+});
+db.Notice.belongsTo(db.User_info, {
+  foreignKey: "notice_writer",
+  targetKey: "user_name",
+  onDelete: "cascade",
+  onUpdate: "cascade",
 });
 
 module.exports = db;

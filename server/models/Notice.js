@@ -1,34 +1,38 @@
-const Helper_comment = function (Sequelize, DataTypes) {
+const Notice = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    'helper_comment',
+    'notice',
     {
-      helper_comment_id: {
+      notice_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      helper_comment_board_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      helper_comment_writer: {
+      notice_writer: {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
-      helper_comment_content: {
+      notice_title: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
+      notice_content: {
         type: DataTypes.STRING(1000),
         allowNull: false,
       },
-      helper_comment_date: {
+      notice_date: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
+      notice_hit: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
-    { tableName: 'helper_comment', freezeTableName: true, timestamps: false }
+    { tableName: 'notice', freezeTableName: true, timestamps: false }
   );
   return model;
 };
 
-module.exports = Helper_comment;
+module.exports = Notice;
