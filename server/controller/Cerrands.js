@@ -1,6 +1,5 @@
 const Errands = require('../models');
 const { Op } = require('sequelize');
-const { checkout } = require('../routes/errands');
 // Access => Errands.User_info or Helper_board etc
 
 // ======= User sign =======
@@ -35,11 +34,10 @@ exports.checkUserId = async (req, res) => {
       where: { user_id: { [Op.eq]: req.body.user_id } },
     });
     console.log(result);
-    if (result.dataValues.user_id) {
-      res.send(false);
-    } else {
-      res.send(true);
+    if (!result) {
+      return res.send(true);
     }
+    return res.send(false);
   } catch (err) {
     res.send(err);
   }
@@ -51,11 +49,11 @@ exports.checkUserName = async (req, res) => {
     const result = await Errands.User_info.findOne({
       where: { user_name: { [Op.eq]: req.body.user_name } },
     });
-    if (result.dataValues.user_name !== null) {
-      res.send(false);
-    } else {
-      res.send(true);
+    console.log(result);
+    if (!result) {
+      return res.send(true);
     }
+    return res.send(false);
   } catch (err) {
     res.send(err);
   }
