@@ -1,3 +1,5 @@
+@import './utils.scss';
+
 .boardDetail_page {
   display: grid;
   box-sizing: border-box;
@@ -5,6 +7,25 @@
   height: 200vh;
   text-align: center;
   margin: 10px;
+
+  @include mobile {
+    display: flex;
+    margin: 0px;
+  }
+
+  .right {
+    @include mobile {
+      display: block;
+    }
+  }
+
+  .left {
+    @include mobile {
+      display: block;
+    }
+  }
+
+
   .Detail_page_Header {
     text-align: center;
     margin-top: 10px;
@@ -42,9 +63,18 @@
     }
     .paragraph_ext {
       display: block;
+
+      .likes_btn {
+        width: 150px;
+        height: 60px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: xx-large;
+      }
+
     }
     .comment {
-      margin: 60px 0;
+      margin: 40px 0;
       border-top: 1px solid #ddd;
       h3 {
         font-weight: bold;
@@ -97,6 +127,7 @@
             width: 20%;
             background-color: black;
             color: white;
+            cursor: pointer;
           }
         }
       }
@@ -137,6 +168,7 @@
             font-weight: bold;
             padding: 0.25rem;
             font-size: 13px;
+            cursor: pointer;
           }
           .user_comment_text {
             width: 100%;
@@ -146,4 +178,5 @@
       }
     }
   }
+
 }

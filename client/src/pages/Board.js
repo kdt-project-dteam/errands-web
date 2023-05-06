@@ -6,6 +6,7 @@ import JobSeeker from "../components/JobSeeker"
 import '../css/board.scss';
 
 
+
 export default function Board() {
 
     const [menu, setMenu] = useState(JobOffer);
