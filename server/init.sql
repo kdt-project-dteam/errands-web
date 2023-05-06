@@ -23,7 +23,7 @@ create table wanter_board (
     wanter_board_date timestamp not null default current_timestamp,
     wanter_board_hit int default 0,
     wanter_board_dead_line varchar(10),
-    wanter_board_done BOOLEAN not null default false,
+    wanter_board_done BOOLEAN not null default false
 
 );
 
