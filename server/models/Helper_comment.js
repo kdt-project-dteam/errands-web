@@ -1,6 +1,6 @@
 const Helper_comment = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    "helper_comment",
+    'helper_comment',
     {
       helper_comment_id: {
         type: DataTypes.INTEGER,
@@ -23,12 +23,10 @@ const Helper_comment = function (Sequelize, DataTypes) {
       helper_comment_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal(
-          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-        ),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     },
-    { tableName: "helper_comment", freezeTableName: true, timestamps: false }
+    { tableName: 'helper_comment', freezeTableName: true, timestamps: false }
   );
   return model;
 };
