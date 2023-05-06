@@ -54,8 +54,15 @@
         margin-bottom: -2rem;
       }
       .form {
+
         box-sizing: border-box;
         color: black;
+
+        fieldset {
+          border: 0;
+          margin-top: 10px;
+        }
+
         legend {
           text-align: start;
           font-weight: bold;
@@ -68,6 +75,7 @@
           background-color: #f9f9f9;
           border: none;
           outline: none;
+          resize: none;
         }
         .comment_write_form {
           margin: 10px;
@@ -124,7 +132,7 @@
           .user_comment_btn {
             border: none;
             border-left: 1px solid #ddd;
-            background-color: white;
+            background-color: #f2f2f2;
             color: gray;
             font-weight: bold;
             padding: 0.25rem;
