@@ -70,4 +70,17 @@ router.delete(
   controller.delete_helper_comment
 );
 
+// ======= Notice Board =======
+router.get("/mainNotice", controller.read_few_notice);
+
+router.get("/notice", controller.read_notice);
+
+router.get("/notice/:boardId", controller.read_one_notice);
+
+router.post("/notice/:boardId", controller.create_notice);
+
+router.patch("/helper/:boardId", controller.update_notice);
+
+router.delete("/notice/:boardId", controller.delete_notice);
+
 module.exports = router;
