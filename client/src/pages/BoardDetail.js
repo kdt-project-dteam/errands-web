@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/boardDetail.scss'
+import {AiOutlineHeart} from 'react-icons/ai';
 export default function BoardDetail() {
     return (<>
         <div className='boardDetail_page'>
@@ -20,7 +21,7 @@ export default function BoardDetail() {
                     </div>
                 </section>
                 <div className='paragraph_ext'>
-                    <button>좋아요</button>
+                    <button className='likes_btn'><AiOutlineHeart /></button>
                 </div>
                 <div className='comment'>
                     <h3>댓글 1</h3>
