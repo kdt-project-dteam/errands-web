@@ -13,7 +13,7 @@ router.get("/mainWanter", controller.read_few_wanter_board);
 
 router.get("/wanter", controller.read_wanter_board);
 
-router.post("/wanter/:boardId", controller.create_wanter_board);
+router.post("/wanter", controller.create_wanter_board);
 
 router.patch("/wanter/:boardId", controller.update_wanter_board);
 

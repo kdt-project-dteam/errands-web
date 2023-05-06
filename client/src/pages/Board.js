@@ -4,6 +4,7 @@ import { useState } from "react";
 import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker"
 import '../css/board.scss';
+import {BiSearchAlt2} from 'react-icons/bi'
 
 
 
@@ -22,7 +23,7 @@ export default function Board() {
             <img src={process.env.PUBLIC_URL + "/img/doWorks.png"} alt='....' />
         </div>
         <div className="board_page">
-            <h1 className="board_page left">left</h1>
+            <h1 className="board_page left"></h1>
             <div className="board_page center">
                 <span className="option">
                     <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
@@ -37,17 +38,21 @@ export default function Board() {
                             </select>
                         </div>
                         <div className="category category_items input">
-                            <input
+                            <button type="submit">
+                                <BiSearchAlt2/>
+                            </button>
+                            <input 
+                            type="text"
                                 placeholder="검색어를 입력하세요"
                                 value={search}
                                 onChange={onChangeSearch}
-                            ></input>
+                            />
                         </div>
                     </div>
                 </div>
                 <div children={menu} />
             </div>
-            <h1 className="board_page right">right</h1>
+            <h1 className="board_page right"></h1>
         </div>
     </>
     )
