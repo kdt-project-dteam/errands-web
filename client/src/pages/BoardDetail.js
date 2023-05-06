@@ -96,7 +96,7 @@ export default function BoardDetail() {
                     {
                         commentList ? commentList.map((data, idx) => {
                             return (
-                                <div className='comment_list'>
+                                <div className='comment_list' key={idx}>
                                     <ul className='comment_list_user'>
                                         <li className='user_comment'>
                                             <div className='user_comment_top'>
