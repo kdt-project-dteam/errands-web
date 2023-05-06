@@ -17,9 +17,9 @@ export default function Board() {
     }
 
     return (<>
-        <div className="page_header">
+        {/* <div className="page_header">
             <img src={process.env.PUBLIC_URL + "/img/doWorks.png"} alt='....' />
-        </div>
+        </div> */}
         <div className="board_page">
             <h1 className="board_page left">left</h1>
             <div className="board_page center">
