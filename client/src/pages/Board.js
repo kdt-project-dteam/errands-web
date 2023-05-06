@@ -4,8 +4,11 @@ import { useState } from "react";
 import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker"
 import '../css/board.scss';
+import {BiSearchAlt2} from 'react-icons/bi'
+import Pagination from "../components/Pagination";
+import axios from 'axios'
+import { useEffect } from "react";
 import { useSelector } from 'react-redux';
-
 export default function Board() {
     const value = useSelector(state => {
         return state.someReducer.value
@@ -19,6 +22,24 @@ export default function Board() {
         { id: 2, name: '구직' }
     ]
     const [search, setSearch] = useState();
+    const [info,setInfo] = useState([]);
+        
+        async function handlePostInfo(){
+              const result = await axios({
+                  url : `http://localhost:8080/api/wanter`,
+                  method: 'GET',
+                  headers: {
+                      "Content-Type": "application/json"
+                  }
+              })
+              setInfo(result.data.reverse());
+          }
+      
+          useEffect(() =>{
+              handlePostInfo()
+          },[])
+
+
     const onChangeSearch = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
@@ -26,7 +47,7 @@ export default function Board() {
 
     return (<>
         <div className="board_page">
-            <h1 className="board_page left">left</h1>
+            <h1 className="board_page left"></h1>
             <div className="board_page center">
                 <span className="option">
                     {menuArr.map(menu => {
@@ -44,11 +65,15 @@ export default function Board() {
                             </select>
                         </div>
                         <div className="category category_items input">
-                            <input
+                            <button type="submit">
+                                <BiSearchAlt2/>
+                            </button>
+                            <input 
+                            type="text"
                                 placeholder="검색어를 입력하세요"
                                 value={search}
                                 onChange={onChangeSearch}
-                            ></input>
+                            />
                         </div>
                     </div>
                 </div>
@@ -56,7 +81,7 @@ export default function Board() {
                     <JobOffer data={value} /> : <JobSeeker data={helperAll} />
                 }
             </div>
-            <h1 className="board_page right">right</h1>
+            <h1 className="board_page right"></h1>
         </div>
     </>
     )

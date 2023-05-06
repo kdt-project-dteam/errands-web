@@ -1,6 +1,6 @@
 const Notice = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
-    'notice',
+    "notice",
     {
       notice_id: {
         type: DataTypes.INTEGER,
@@ -23,14 +23,14 @@ const Notice = function (Sequelize, DataTypes) {
       notice_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       notice_hit: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
     },
-    { tableName: 'notice', freezeTableName: true, timestamps: false }
+    { tableName: "notice", freezeTableName: true, timestamps: false }
   );
   return model;
 };
