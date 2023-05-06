@@ -17,7 +17,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: process.env.SECRET_KEY, // env설정하기
-    cookie: { expires: 60 * 60 * 24 },
+    cookie: { maxAge: 60 * 6000 * 24 },
   })
 );
 

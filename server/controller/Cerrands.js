@@ -1,6 +1,5 @@
 const Errands = require("../models");
 const { Op } = require("sequelize");
-const { checkout } = require("../routes/errands");
 // Access => Errands.User_info or Helper_board etc
 
 // ======= User sign =======
@@ -14,11 +13,12 @@ exports.userLogin = async (req, res) => {
       },
     });
     if (result != null) {
-      console.log(result.dataValues.user_name);
       req.session.user_name = result.dataValues.user_name;
       req.session.user_type = result.dataValues.user_type;
+      console.log(result.dataValues.user_name);
       console.log(req.session.user_name);
       console.log(req.session.user_type);
+      console.log(req.session);
       res.send(true);
     } else {
       res.send(false);
@@ -51,10 +51,10 @@ exports.checkUserName = async (req, res) => {
     const result = await Errands.User_info.findOne({
       where: { user_name: { [Op.eq]: req.body.user_name } },
     });
-    if (result.dataValues.user_name !== null) {
-      res.send(false);
-    } else {
+    if (!result) {
       res.send(true);
+    } else {
+      res.send(false);
     }
   } catch (err) {
     res.send(err);
@@ -210,7 +210,9 @@ exports.delete_wanter_board = async (req, res) => {
 // 댓글 보여주기
 exports.read_wanter_comment = async (req, res) => {
   try {
-    const result = await Errands.Wanter_comment.findAll();
+    const result = await Errands.Wanter_comment.findAll({
+      where: { wanter_comment_board_id: { [Op.eq]: req.params.boardId } },
+    });
     res.send(result);
   } catch (err) {
     res.send(err);
@@ -405,7 +407,7 @@ exports.delete_helper_board = async (req, res) => {
 exports.read_helper_comment = async (req, res) => {
   try {
     const result = await Errands.Helper_comment.findAll({
-      //
+      where: { wanter_comment_board_id: { [Op.eq]: req.params.boardId } },
     });
     res.send(result);
   } catch (err) {
