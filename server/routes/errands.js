@@ -12,11 +12,17 @@ router.post("/checkId", controller.checkUserId);
 
 router.post("/checkName", controller.checkUserName);
 
-router.post("/logout", controller.userLogout);
+router.post('/logout', controller.userLogout);
 
-// router.post("/checkId", controller.checkUserId);
+router.post('/checkId', controller.checkUserId);
 
-// router.post("/checkName", controller.checkUserName);
+router.post('/checkName', controller.checkUserName);
+
+// ======= 유저목록 상위 5 ========
+router.get('/mainUser', controller.read_few_user);
+
+// ======= 유저목록 =======
+router.get('/user', controller.read_user);
 
 // ======= Wanter_board =======
 router.get("/mainWanter", controller.read_few_wanter_board);

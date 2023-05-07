@@ -99,11 +99,7 @@ exports.checkUserName = async (req, res) => {
 exports.userRegister = async (req, res) => {
   try {
     const result = await Errands.User_info.findOne({
-<<<<<<< HEAD
-      where: { user_id: req.body.user_id },
-=======
       where: { user_id: { [Op.eq]: req.body.user_id } },
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     });
     console.log(result);
     if (!result) {
@@ -197,19 +193,6 @@ exports.update_wanter_board = async (req, res) => {
   console.log(req.params.boardId);
   console.log(req.params.wanter_board_id);
   try {
-<<<<<<< HEAD
-    const [result] = await Errands.Wanter_board.update(
-      {
-        wanter_board_title: req.body.wanter_board_title,
-        wanter_board_content: req.body.wanter_board_place,
-        wanter_board_place: req.body.wanter_board_place,
-        wanter_board_done: req.body.done,
-      },
-      { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
-    );
-    if (result === 0) {
-      return res.send(false);
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
@@ -231,7 +214,6 @@ exports.update_wanter_board = async (req, res) => {
       res.send(true);
     } else {
       res.send("작성자만 수정할 수 있습니다");
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     }
   } catch (err) {
     res.send(err);
@@ -241,14 +223,9 @@ exports.update_wanter_board = async (req, res) => {
 // 게시물 삭제
 exports.delete_wanter_board = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const result = await Errands.Wanter_board.destroy({
-      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     });
     if (auth.dataValues.user_name == req.session.user_name) {
       const result = Errands.Wanter_board.destroy({
@@ -271,14 +248,8 @@ exports.delete_wanter_board = async (req, res) => {
 exports.read_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.findAll({
-<<<<<<< HEAD
-      where: { wanter_comment_board_id: { [Op.eq]: req.params.boardId } }
-    });
-
-=======
       where: { wanter_comment_board_id: { [Op.eq]: req.params.boardId } },
     });
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     res.send(result);
   } catch (err) {
     res.send(err);
@@ -302,17 +273,6 @@ exports.create_wanter_comment = async (req, res) => {
 // 댓글 수정
 exports.update_wanter_comment = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const [result] = await Errands.Wanter_comment.update(
-      {
-        wanter_comment_content: req.body.wanter_comment_content,
-      },
-      {
-        where: {
-          wanter_comment_id: { [Op.eq]: req.params.commentId },
-          wanter_comment_board_id: { [Op.eq]: req.params.boardId },
-        },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
@@ -331,7 +291,6 @@ exports.update_wanter_comment = async (req, res) => {
       );
       if (result === 0) {
         return res.send(false);
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
       }
       res.send(true);
     } else {
@@ -345,17 +304,9 @@ exports.update_wanter_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_wanter_comment = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const result = await Errands.Wanter_comment.destroy({
-      where: {
-        wanter_comment_id: { [Op.eq]: req.params.commentId },
-        wanter_comment_board_id: { [Op.eq]: req.params.boardId },
-      },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     });
     if (auth.dataValues.user_name == req.session.user_name) {
       const result = Errands.Wanter_comment.destroy({
@@ -394,11 +345,7 @@ exports.read_few_helper_board = async (req, res) => {
 exports.read_helper_board = async (req, res) => {
   try {
     const result = await Errands.Helper_board.findAll({
-<<<<<<< HEAD
-      helper_board_writer: req.body.helper_board_writer,
-=======
       helper_board_writer: req.session.user_name,
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
       helper_board_title: req.body.helper_board_title,
       helper_board_content: req.body.helper_board_content,
       helper_board_place: req.body.helper_board_place,
@@ -426,11 +373,7 @@ exports.read_one_helper_board = async (req, res) => {
 exports.create_helper_board = async (req, res) => {
   try {
     const result = await Errands.Helper_board.create({
-<<<<<<< HEAD
-      helper_board_writer: req.body.helper_board_writer,
-=======
       helper_board_writer: req.session.user_name,
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
       helper_board_title: req.body.helper_board_title,
       helper_board_content: req.body.helper_board_content,
       helper_board_place: req.body.helper_board_place,
@@ -445,17 +388,6 @@ exports.create_helper_board = async (req, res) => {
 // 게시물 수정
 exports.update_helper_board = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const [result] = await Errands.Helper_board.update(
-      {
-        helper_board_title: req.body.helper_board_title,
-        helper_board_content: req.body.helper_board_content,
-        helper_board_place: req.body.helper_board_place,
-        helper_board_done: req.body.done,
-      },
-      {
-        where: { helper_board_id: { [Op.eq]: req.params.boardId } },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
@@ -474,7 +406,6 @@ exports.update_helper_board = async (req, res) => {
       );
       if (result === 0) {
         return res.send(false);
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
       }
       res.send(true);
     } else {
@@ -488,14 +419,9 @@ exports.update_helper_board = async (req, res) => {
 // 게시물 삭제
 exports.delete_helper_board = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const result = await Errands.Helper_board.destroy({
-      where: { helper_board_id: { [Op.eq]: req.params.boardId } },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     });
     if (auth.dataValues.user_name == req.session.user_name) {
       const result = Errands.Helper_board.destroy({
@@ -531,11 +457,7 @@ exports.create_helper_comment = async (req, res) => {
   try {
     const result = await Errands.Helper_comment.create({
       helper_comment_board_id: req.params.boardId,
-<<<<<<< HEAD
-      helper_comment_writer: req.body.helper_comment_writer,
-=======
       helper_comment_writer: req.session.user_name,
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
       helper_comment_content: req.body.helper_comment_content,
     });
     res.send(result);
@@ -547,17 +469,6 @@ exports.create_helper_comment = async (req, res) => {
 // 댓글 수정
 exports.update_helper_comment = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const [result] = await Errands.Helper_comment.update(
-      {
-        helper_comment_content: req.body.helper_comment_content,
-      },
-      {
-        where: {
-          helper_comment_id: { [Op.eq]: req.params.commentId },
-          helper_comment_board_id: { [Op.eq]: req.params.boardId },
-        },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
@@ -576,7 +487,6 @@ exports.update_helper_comment = async (req, res) => {
       );
       if (result === 0) {
         return res.send(false);
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
       }
       res.send(true);
     } else {
@@ -590,103 +500,9 @@ exports.update_helper_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_helper_comment = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const result = await Errands.Helper_comment.destroy({
-      where: {
-        helper_comment_id: { [Op.eq]: req.params.commentId },
-        helper_comment_board_id: { [Op.eq]: req.params.boardId },
-      },
-    });
-    if (!result) {
-      return res.send(false);
-    }
-    res.send(true);
-  } catch (err) {
-    res.send(err);
-  }
-};
-
-// ======= Notice Board =======
-
-// 메인페이지 몇 개만 불러오기 일단 만듬
-exports.read_few_notice = async (req, res) => {
-  try {
-    const result = await Errands.Notice.findAll({
-      order: [['notice_date', 'desc']],
-      limit: 5,
-    });
-    res.send(result);
-  } catch (err) {
-    res.send(err);
-  }
-};
-
-// 전체 불러오기
-exports.read_notice = async (req, res) => {
-  try {
-    const result = await Errands.Notice.findAll({
-      order: [['wanter_board_date', 'asc']],
-    });
-  } catch (err) {
-    res.send(err);
-  }
-};
-
-// 하나만 불러오기
-exports.read_one_notice = async (req, res) => {
-  try {
-    const result = await Errands.Notice.findOne({
-      where: { notice_id: { [Op.eq]: req.params.boardId } },
-    });
-    res.send(result);
-  } catch (err) {
-    res.send(err);
-  }
-};
-
-// 공지 생성
-exports.create_notice = async (req, res) => {
-  try {
-    const result = await Errands.notice.create({
-      notice_writer: req.body.notice_writer,
-      notice_title: req.body.notice_title,
-      notice_content: req.body.notice_content,
-    });
-    res.send(result);
-  } catch (err) {
-    res.send(err);
-  }
-};
-
-// 공지 수정
-exports.update_notice = async (req, res) => {
-  try {
-    const [result] = await Errands.Notice.update(
-      {
-        notice_title: req.body.notice_title,
-        notice_content: req.body.notice_content,
-      },
-      { where: { notice_id: { [Op.eq]: req.params.boardId } } }
-    );
-    if (result === 0) {
-      return res.send(false);
-    }
-    res.send(true);
-  } catch (err) {
-    res.send(err);
-  }
-};
-
-// 공지 삭제
-exports.delete_notice = async (req, res) => {
-  try {
-    const result = await Errands.Notice.destroy({
-      where: { notice_id: { [Op.eq]: req.params.boardId } },
-=======
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
     });
     if (auth.dataValues.user_name == req.session.user_name) {
       const result = Errands.Helper_comment.destroy({
