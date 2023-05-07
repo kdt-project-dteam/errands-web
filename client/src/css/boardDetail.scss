@@ -9,8 +9,9 @@
   margin: 10px;
 
   @include mobile {
-    display: flex;
-    margin: 0px;
+    grid-template-columns: 1fr 100fr 1fr;
+    margin: 5px;
+    
   }
 
   .right {
