@@ -26,6 +26,10 @@ const User_info = function (Sequelize, DataTypes) {
         type: DataTypes.STRING(4),
         allowNull: true,
       },
+      user_like: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
     },
     { tableName: 'user_info', freezeTableName: true, timestamps: false }
   );
