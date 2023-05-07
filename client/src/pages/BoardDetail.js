@@ -18,6 +18,8 @@ export default function BoardDetail() {
     let data;
     const { boardId } = useParams();
     const { wanterHelper } = useParams();
+    const [commentData, setCommentData] = useState('');
+    const [commentList, setCommentList] = useState([]);
     if (value && wanterHelper === 'wanter') {
         const result = value.filter((data) => data.wanter_board_id === Number(boardId));
         data = result;
@@ -25,8 +27,7 @@ export default function BoardDetail() {
         const result = helperAll.filter((data) => data.helper_board_id === Number(boardId));
         data = result
     }
-    const [commentData, setCommentData] = useState('');
-    const [commentList, setCommentList] = useState([]);
+
     const sendCommentData = async () => {
         const result = await axios({
             method: "POST",

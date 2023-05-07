@@ -28,7 +28,7 @@ router.delete('/wanter/:boardId', controller.delete_wanter_board);
 // ======= Wanter_comment =======
 router.get('/wanter/:boardId/comment', controller.read_wanter_comment);
 
-router.post('/wanter/:boardId/comment/:commentId', controller.create_wanter_comment);
+router.post('/wanter/:boardId/comment', controller.create_wanter_comment);
 
 router.patch('/wanter/:boardId/comment/:commentId', controller.update_wanter_comment);
 
