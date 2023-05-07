@@ -34,11 +34,7 @@ router.delete("/wanter/:boardId", controller.delete_wanter_board);
 // ======= Wanter_comment =======
 router.get("/wanter/:boardId/comment", controller.read_wanter_comment);
 
-<<<<<<< HEAD
-router.post('/wanter/:boardId/comment', controller.create_wanter_comment);
-=======
 router.post("/wanter/:boardId/comment", controller.create_wanter_comment);
->>>>>>> 4a85c6c155f17b513439e09be1bd2b00e248b44d
 
 router.patch(
   "/wanter/:boardId/comment/:commentId",
