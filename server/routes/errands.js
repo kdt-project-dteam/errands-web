@@ -18,9 +18,21 @@ router.post('/checkId', controller.checkUserId);
 
 router.post('/checkName', controller.checkUserName);
 
+<<<<<<< HEAD
 // ======= 유저목록 상위 5 ========
 router.get('/mainUser', controller.read_few_user);
 
+=======
+router.post('/logout', controller.userLogout);
+
+router.post('/checkId', controller.checkUserId);
+
+router.post('/checkName', controller.checkUserName);
+
+// ======= 유저목록 상위 5 ========
+router.get('/mainUser', controller.read_few_user);
+
+>>>>>>> 263ffc392e82286fe85449e017db3956ca799c06
 // ======= 유저목록 =======
 router.get('/user', controller.read_user);
 
