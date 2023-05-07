@@ -136,7 +136,11 @@ exports.userLogout = async (req, res) => {
 exports.read_few_user = async (req, res) => {
   try {
     const result = await Errands.User_info.findAll({
+<<<<<<< HEAD
       order: [['user_like', 'desc']],
+=======
+      order: [["user_like", "desc"]],
+>>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
       limit: 5,
     });
     res.send(result);
@@ -144,12 +148,19 @@ exports.read_few_user = async (req, res) => {
     res.send(err);
   }
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
 // 전체 다 보여주기
 exports.read_user = async (req, res) => {
   try {
     const result = await Errands.User_info.findAll({
+<<<<<<< HEAD
       order: [['user_like', 'desc']],
+=======
+      order: [["user_like", "desc"]],
+>>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
     });
     res.send(result);
   } catch (err) {
@@ -157,6 +168,34 @@ exports.read_user = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
+=======
+// detail
+exports.read_detail_user = async (req, res) => {
+  try {
+    const result = await Errands.User_info.findOne({
+      where: { id: { [Op.eq]: req.params.user } },
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 추천수
+exports.userLike = async (req, res) => {
+  try {
+    const result = await Errands.User_info.increment(
+      { user_like: 1 },
+      { where: { id: { [Op.eq]: req.params.user } } }
+    );
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+>>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
 // ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {
