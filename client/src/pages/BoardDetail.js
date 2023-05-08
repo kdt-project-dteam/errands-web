@@ -58,10 +58,13 @@ export default function BoardDetail() {
         console.log(result)
     }
 
-    const deleteComment = async () => {
+    const deleteComment = async (commentId) => {
         const result = await axios({
-
+            method: "DELETE",
+            url: `/api/wanter/${boardId}/comment/${commentId}`,
+            withCredentials: true,
         })
+        console.log(result)
     }
 
     const updateComment = async () => {
@@ -139,8 +142,8 @@ export default function BoardDetail() {
                                                 <div>{data.wanter_comment_writer}</div>
                                                 <div className='user_comment_form'>
                                                     <div className='user_comment_date'>{data.wanter_comment_date}</div>
-                                                    <button type='button' onClick={updateComment(data.wanter_comment_id)} className='user_comment_btn'>수정</button>
-                                                    <button type='button' onClick={deleteComment(data.wanter_comment_id)} className='user_comment_btn'>삭제</button>
+                                                    <button type='button' onClick={() => updateComment(data.wanter_comment_id)} className='user_comment_btn'>수정</button>
+                                                    <button type='button' onClick={() => deleteComment(data.wanter_comment_id)} className='user_comment_btn'>삭제</button>
                                                 </div>
                                             </div>
                                             <div className='user_comment_text'>{data.wanter_comment_content}</div>
