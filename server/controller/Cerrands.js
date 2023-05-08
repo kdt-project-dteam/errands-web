@@ -13,13 +13,14 @@ exports.userLogin = async (req, res) => {
       },
     });
     if (result != null) {
-      req.session.user_name = result.dataValues.user_name;
-      req.session.user_type = result.dataValues.user_type;
+      req.session.user_info = result.dataValues; // v
+      console.log("======================");
+      console.log(req.session.user_info.user_name); // v
+      console.log(req.session.user_info.user_type);
+      console.log("======================");
       console.log(result.dataValues.user_name);
-      console.log(req.session.user_name);
-      console.log(req.session.user_type);
       console.log(req.session);
-      res.send(true);
+      res.send({ user_info: result, msg: true });
     } else {
       res.send(false);
     }
@@ -27,7 +28,6 @@ exports.userLogin = async (req, res) => {
     res.send(err);
   }
 };
-
 // ID 중복 검사
 exports.checkUserId = async (req, res) => {
   try {
@@ -97,11 +97,7 @@ exports.checkUserName = async (req, res) => {
 exports.userRegister = async (req, res) => {
   try {
     const result = await Errands.User_info.findOne({
-<<<<<<< HEAD
-      where: { user_id: { [Op.eq]: req.body.user_id } },
-=======
       where: { user_id: req.body.user_id },
->>>>>>> 263ffc392e82286fe85449e017db3956ca799c06
     });
     console.log(result);
     if (!result) {
@@ -136,11 +132,7 @@ exports.userLogout = async (req, res) => {
 exports.read_few_user = async (req, res) => {
   try {
     const result = await Errands.User_info.findAll({
-<<<<<<< HEAD
-      order: [['user_like', 'desc']],
-=======
       order: [["user_like", "desc"]],
->>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
       limit: 5,
     });
     res.send(result);
@@ -148,19 +140,11 @@ exports.read_few_user = async (req, res) => {
     res.send(err);
   }
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
 // 전체 다 보여주기
 exports.read_user = async (req, res) => {
   try {
     const result = await Errands.User_info.findAll({
-<<<<<<< HEAD
-      order: [['user_like', 'desc']],
-=======
       order: [["user_like", "desc"]],
->>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
     });
     res.send(result);
   } catch (err) {
@@ -168,8 +152,6 @@ exports.read_user = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
 // detail
 exports.read_detail_user = async (req, res) => {
   try {
@@ -195,7 +177,6 @@ exports.userLike = async (req, res) => {
   }
 };
 
->>>>>>> 8c77f1b8468b5957e71e5086ac02ced815e24dae
 // ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {
@@ -255,12 +236,6 @@ exports.create_wanter_board = async (req, res) => {
 
 // 게시물 수정
 exports.update_wanter_board = async (req, res) => {
-<<<<<<< HEAD
-  console.log('**********************8');
-  console.log(req.params.boardId);
-  console.log(req.params.wanter_board_id);
-=======
->>>>>>> 263ffc392e82286fe85449e017db3956ca799c06
   try {
     const auth = await Errands.User_info.findOne({
       attributes: ['user_name'],
@@ -317,11 +292,9 @@ exports.delete_wanter_board = async (req, res) => {
 exports.read_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.findAll({
-<<<<<<< HEAD
-      where: { wanter_comment_board_id: { [Op.eq]: req.params.boardId } },
-=======
-      wanter_comment_board_id: { [Op.eq]: req.params.boardId },
->>>>>>> 263ffc392e82286fe85449e017db3956ca799c06
+      where: {
+        wanter_comment_board_id: { [Op.eq]: req.params.boardId }
+      }
     });
     res.send(result);
   } catch (err) {
@@ -334,11 +307,7 @@ exports.create_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.create({
       wanter_comment_board_id: req.params.boardId,
-<<<<<<< HEAD
-      wanter_comment_writer: req.body.user_name,
-=======
       wanter_comment_writer: req.session.user_name,
->>>>>>> 263ffc392e82286fe85449e017db3956ca799c06
       wanter_comment_content: req.body.wanter_comment_content,
     });
     res.send(result);
@@ -521,11 +490,7 @@ exports.delete_helper_board = async (req, res) => {
 exports.read_helper_comment = async (req, res) => {
   try {
     const result = await Errands.Helper_comment.findAll({
-<<<<<<< HEAD
-      where: { wanter_comment_board_id: { [Op.eq]: req.params.boardId } },
-=======
       wanter_comment_board_id: { [Op.eq]: req.params.boardId },
->>>>>>> 263ffc392e82286fe85449e017db3956ca799c06
     });
     res.send(result);
   } catch (err) {
