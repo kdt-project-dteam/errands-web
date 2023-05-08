@@ -99,7 +99,6 @@ exports.userRegister = async (req, res) => {
     const result = await Errands.User_info.findOne({
       where: { user_id: req.body.user_id },
     });
-    console.log(result);
     if (!result) {
       Errands.User_info.create({
         user_id: req.body.user_id,
