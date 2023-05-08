@@ -4,15 +4,18 @@ import { useState } from "react";
 import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker"
 import '../css/board.scss';
-import { BiSearchAlt2 } from 'react-icons/bi'
+import {BiSearchAlt2} from 'react-icons/bi'
 import Pagination from "../components/Pagination";
 import axios from 'axios'
 import { useEffect } from "react";
 import { useSelector } from 'react-redux';
+
 export default function Board() {
+    // wanter 전체 게시물
     const value = useSelector(state => {
         return state.someReducer.value
     })
+    // helper 전체 게시물
     const helperAll = useSelector(state => {
         return state.someReducer.helperAll
     })
@@ -22,22 +25,22 @@ export default function Board() {
         { id: 2, name: '구직' }
     ]
     const [search, setSearch] = useState();
-    const [info, setInfo] = useState([]);
-
-    // async function handlePostInfo() {
-    //     const result = await axios({
-    //         url: `http://localhost:8080/api/wanter`,
-    //         method: 'GET',
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     })
-    //     setInfo(result.data.reverse());
-    // }
-
-    // useEffect(() => {
-    //     handlePostInfo()
-    // }, [])
+    const [info,setInfo] = useState([]);
+        
+        // async function handlePostInfo(){
+        //       const result = await axios({
+        //           url : `http://localhost:8080/api/wanter`,
+        //           method: 'GET',
+        //           headers: {
+        //               "Content-Type": "application/json"
+        //           }
+        //       })
+        //       setInfo(result.data.reverse());
+        //   } console.log(handlePostInfo.wanter_board_d);
+      
+        //   useEffect(() =>{
+        //       handlePostInfo()
+        //   },[])
 
 
     const onChangeSearch = (e) => {
@@ -66,10 +69,10 @@ export default function Board() {
                         </div>
                         <div className="category category_items input">
                             <button type="submit">
-                                <BiSearchAlt2 />
+                                <BiSearchAlt2/>
                             </button>
-                            <input
-                                type="text"
+                            <input 
+                            type="text"
                                 placeholder="검색어를 입력하세요"
                                 value={search}
                                 onChange={onChangeSearch}
