@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const cors = require('cors');
 const http = require('http').Server(app);
@@ -13,17 +13,17 @@ app.use(express.json());
 
 app.use(cors());
 app.use(
-  session({
-    resave: false,
-    saveUninitialized: false,
-    secret: process.env.SECRET_KEY, // env설정하기
-    cookie: { maxAge: 60 * 6000 * 24 },
-  })
+    session({
+        resave: false,
+        saveUninitialized: false,
+        secret: process.env.SECRET_KEY, // env설정하기
+        cookie: { maxAge: 60 * 6000 * 24 },
+    })
 );
 
-const indexRouter = require("./routes/errands");
-app.use("/api", indexRouter);
+const indexRouter = require('./routes/errands');
+app.use('/api', indexRouter);
 
 http.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+    console.log(`http://localhost:${PORT}`);
 });

@@ -13,6 +13,27 @@ import { useEffect, useState } from 'react';
 import { asyncUpAxios, helperBoardSetter, wanterBoardSetter, helperAll, allUserData } from '../src/store/testCounter';
 
 export default function App() {
+<<<<<<< HEAD
+    // main = 메인페이지
+    // boardDetail = 게시글 상세보기
+    // members = 마이페이지
+    // login = 로그인페이지
+    // signup = 회원가입
+    return (
+        <div>
+            <Header />
+            <Routes>
+                <Route path="/" element={<Main />}></Route>
+                <Route path="/board" element={<Board />}></Route>
+                <Route path="/board/boardDetail" element={<BoardDetail />}></Route>
+                <Route path="/members" element={<Members />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/signup" element={<Signup />}></Route>
+            </Routes>
+            <Footer />
+        </div>
+    );
+=======
   const dispatch = useDispatch();
   useEffect(() => {
     // wanter all
@@ -45,4 +66,5 @@ export default function App() {
       </Routes>
     </div>
   );
+>>>>>>> bd0deb4b706f77804a987c83399669f76d344ce1
 }

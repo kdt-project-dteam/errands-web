@@ -7,6 +7,8 @@ const Signup = () => {
     const [userPw, setUserPw] = useState('');
     const [userName, setUserName] = useState('');
     const [userType, setUserType] = useState('');
+    const [CheckId, setCheckId] = useState('');
+    const [CheckName, setCheckName] = useState('');
     const SignupFunc = async (e) => {
         console.log('> userId : ', userId);
         console.log('> userPw : ', userPw);
@@ -22,8 +24,48 @@ const Signup = () => {
                 user_name: userName,
                 user_type: userType,
             },
+        }).then(() => {
+            window.location.href = '/';
         });
         console.log('> res : ', res);
+    };
+    const CheckIdFunc = async (e) => {
+        const res = await axios({
+            method: 'post',
+            url: 'http://localhost:8080/api/checkId',
+            data: {
+                user_id: CheckId,
+            },
+        }).then((res) => {
+            if (res.data === false) {
+                const element = document.getElementById('possibleId');
+                element.innerHTML = '<div>사용이 불가한 아이디 입니다<div>';
+
+                setUserId('');
+            } else {
+                const element = document.getElementById('possibleId');
+                element.innerHTML = '<div>사용이 가능한 아이디 입니다<div>';
+            }
+        });
+    };
+
+    const CheckNameFunc = async (e) => {
+        const res = await axios({
+            method: 'post',
+            url: 'http://localhost:8080/api/checkName',
+            data: {
+                user_name: CheckName,
+            },
+        }).then((res) => {
+            if (res.data === false) {
+                const element = document.getElementById('possibleName');
+                element.innerHTML = '<div>사용이 불가능한 이름 입니다<div>';
+                setUserName('');
+            } else {
+                const element = document.getElementById('possibleName');
+                element.innerHTML = '<div>사용이 가능한 이름 입니다<div>';
+            }
+        });
     };
     return (
         <div className="signup-container">
@@ -31,10 +73,21 @@ const Signup = () => {
                 <h2>SIGNUP</h2>
                 <div>
                     <div className="field">
-                        <input type="text" id="id" value={userId} onChange={(e) => setUserId(e.target.value)} />
+                        <input
+                            type="text"
+                            id="id"
+                            value={userId}
+                            onChange={(e) => {
+                                setUserId(e.target.value);
+                                setCheckId(e.target.value);
+                            }}
+                        />
                         <label htmlFor="id" title="아이디" data-title="아이디"></label>
+                        <button onClick={CheckIdFunc}>중복확인</button>
+                        <div id="possibleId"></div>
                     </div>
-                    <div className="field">
+
+                    <div className="passwordField">
                         <input
                             type="password"
                             id="password"
@@ -44,8 +97,18 @@ const Signup = () => {
                         <label htmlFor="password" title="비밀번호" data-title="비밀번호"></label>
                     </div>
                     <div className="field">
-                        <input type="text" id="name" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                        <input
+                            type="text"
+                            id="name"
+                            value={userName}
+                            onChange={(e) => {
+                                setUserName(e.target.value);
+                                setCheckName(e.target.value);
+                            }}
+                        />
                         <label htmlFor="name" title="이름" data-title="이름"></label>
+                        <button onClick={CheckNameFunc}>중복확인</button>
+                        <div className="possibleName"></div>
                     </div>
                     <div className="select">
                         <input
@@ -72,9 +135,15 @@ const Signup = () => {
                         <p>이미 계정이 있으십니까?</p>
                         <a href="http://localhost:3000/login">로그인하기</a>
                     </div>
+                    <div className="hr-sect">또는</div>
+                    <button className="kakaoLogin">
+                        <img src="/img/kakaoLogo.png" alt="kakaoLogo" />
+                        카카오 계정으로 가입하기
+                    </button>
                 </div>
             </div>
         </div>
     );
 };
+
 export default Signup;

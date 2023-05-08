@@ -13,33 +13,35 @@ const Login = () => {
         e.preventDefault();
         if (!userId && !userPw) {
             return alert('ID와 Password를 입력하세요');
-        }
-        else if (!userId) {
+        } else if (!userId) {
             return alert('ID를 입력하세요');
-        }
-        else if (!userPw) {
+        } else if (!userPw) {
             return alert('Password를 입력하세요');
         }
-        const data = await axios({
+        await axios({
             method: 'post',
             url: 'http://localhost:8080/api/login',
             data: {
                 user_id: userId,
                 user_pw: userPw,
-            }, withCredentials: true,
+            },
+            withCredentials: true,
         });
         if (data.data.msg === true) {
             alert('로그인 성공');
-            dispatch(newStore.actions.userInfoReducers({
-                isLogin: true,
-                userInfo: data.data.user_info,
-            }))
+            dispatch(
+                newStore.actions.userInfoReducers({
+                    isLogin: true,
+                    userInfo: data.data.user_info,
+                })
+            );
         } else {
             alert('ID,PW 불일치..');
             setUserId('');
             setUserPw('');
         }
     };
+
     return (
         <div className="login-container">
             <div className="login-contents">
@@ -76,6 +78,11 @@ const Login = () => {
                             회원가입
                         </a> */}
                     </div>
+                    <div className="hr-sect">또는</div>
+                    <button className="kakaoLogin" onClick={kakaoLogin}>
+                        <img src="/img/kakaoLogo.png" alt="kakaoLogo" />
+                        카카오 계정으로 로그인
+                    </button>
                 </form>
             </div>
         </div>

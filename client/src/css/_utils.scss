@@ -5,7 +5,7 @@ $bor-radius: 1rem;
 $breakpoint-mobile: 768px;
 
 @mixin mobile {
-  @media (max-width: $breakpoint-mobile) {
-    @content;
-  }
+    @media (max-width: $breakpoint-mobile) {
+        @content;
+    }
 }
