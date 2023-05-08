@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { asyncUpAxios, helperAll, helperBoardSetter, wanterBoardSetter } from './store/testCounter';
+import { allUserData, asyncUpAxios, helperAll, helperBoardSetter, wanterBoardSetter } from './store/testCounter';
 
 const reducerSlice = createSlice({
   name: 'store',
@@ -13,7 +13,7 @@ const reducerSlice = createSlice({
   reducers: {
     someAction: function () {
 
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncUpAxios.pending, (state, action) => {
@@ -56,12 +56,36 @@ const reducerSlice = createSlice({
     builder.addCase(helperAll.rejected, (state, action) => {
       state.status = 'fail'
     })
+    builder.addCase(allUserData.pending, (state, action) => {
+      state.status = 'Loading'
+    })
+    builder.addCase(allUserData.fulfilled, (state, action) => {
+      state.allUserData = action.payload
+      state.status = 'complete'
+    })
+    builder.addCase(allUserData.rejected, (state, action) => {
+      state.status = 'fail'
+    })
   }
 })
 
-const store = configureStore({
+export const newStore = createSlice({
+  name: "newStore",
+  initialState: {
+    isLogin: false,
+  },
+  reducers: {
+    userInfoReducers: function (state, action) {
+      state.isLogin = action.payload.isLogin;
+      state.userInfo = action.payload.userInfo;
+    }
+  }
+})
+
+export const store = configureStore({
   reducer: {
-    someReducer: reducerSlice.reducer
+    someReducer: reducerSlice.reducer,
+    newReducer: newStore.reducer
   }
 }, composeWithDevTools())
 

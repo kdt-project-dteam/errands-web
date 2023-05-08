@@ -15,8 +15,8 @@ import {
   helperBoardSetter,
   wanterBoardSetter,
   helperAll,
+  allUserData,
 } from "../src/store/testCounter";
-import axios from "axios";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -29,6 +29,8 @@ export default function App() {
     dispatch(helperBoardSetter());
     // wanter 5
     dispatch(wanterBoardSetter());
+    // user all
+    dispatch(allUserData());
   }, []);
   // main = 메인페이지
   // board = 게시글

@@ -37,11 +37,13 @@ export const wanterBoardSetter = createAsyncThunk(
     }
 )
 
-// export const searchBoard = createAsyncThunk(
-//     'testCounter/searchBoard',
-//     async () => {
-//         const res = await axios.get('/api/');
-//         console.log(res.data);
-//         return res.data;
-//     }
-// )
+
+
+export const allUserData = createAsyncThunk(
+    'testCounter/allUserData',
+    async () => {
+        const res = await axios.get('/api/user');
+        console.log(res.data);
+        return res.data;
+    }
+)

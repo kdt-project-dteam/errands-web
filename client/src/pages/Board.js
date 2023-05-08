@@ -9,10 +9,13 @@ import Pagination from "../components/Pagination";
 import axios from 'axios'
 import { useEffect } from "react";
 import { useSelector } from 'react-redux';
+
 export default function Board() {
+    // wanter 전체 게시물
     const value = useSelector(state => {
         return state.someReducer.value
     })
+    // helper 전체 게시물
     const helperAll = useSelector(state => {
         return state.someReducer.helperAll
     })
@@ -24,20 +27,20 @@ export default function Board() {
     const [search, setSearch] = useState();
     const [info,setInfo] = useState([]);
         
-        async function handlePostInfo(){
-              const result = await axios({
-                  url : `http://localhost:8080/api/wanter`,
-                  method: 'GET',
-                  headers: {
-                      "Content-Type": "application/json"
-                  }
-              })
-              setInfo(result.data.reverse());
-          }
+        // async function handlePostInfo(){
+        //       const result = await axios({
+        //           url : `http://localhost:8080/api/wanter`,
+        //           method: 'GET',
+        //           headers: {
+        //               "Content-Type": "application/json"
+        //           }
+        //       })
+        //       setInfo(result.data.reverse());
+        //   } console.log(handlePostInfo.wanter_board_d);
       
-          useEffect(() =>{
-              handlePostInfo()
-          },[])
+        //   useEffect(() =>{
+        //       handlePostInfo()
+        //   },[])
 
 
     const onChangeSearch = (e) => {

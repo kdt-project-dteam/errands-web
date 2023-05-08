@@ -1,8 +1,12 @@
 import "../css/Login.scss";
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { newStore } from "../index.js";
+
 // /api/login
 const Login = () => {
+  const dispatch = useDispatch();
   const [userId, setUserId] = useState("");
   const [userPw, setUserPw] = useState("");
   const LoginFunc = async (e) => {
@@ -23,17 +27,15 @@ const Login = () => {
       },
       withCredentials: true,
     });
-    // const data = await axios.post(
-    //   "http://localhost:8080/api/login",
-    //   { user_id: userId, user_pw: userPw },
-    //   { withCredentials: true }
-    // );
-    console.log(data.data);
-    if (data.data.msg) {
+    if (data.data.msg === true) {
       alert("로그인 성공");
-      //   window.location.href = "/";
+      dispatch(
+        newStore.actions.userInfoReducers({
+          isLogin: true,
+          userInfo: data.data.user_info,
+        })
+      );
     } else {
-      console.log(data);
       alert("ID,PW 불일치..");
       setUserId("");
       setUserPw("");
@@ -75,20 +77,11 @@ const Login = () => {
               로그인
             </button>
             <p>계정이 없으신가요?</p>
-            <a href="http://localhost:3000/Signup" target="_blank">
-              회원가입
-            </a>
+            {/* <a href="http://localhost:3000/Signup" target="_blank">
+                            회원가입
+                        </a> */}
           </div>
         </form>
-        <button
-          onClick={() => {
-            axios.post("http://localhost:8080/api/logout", null, {
-              withCredentials: true, // with
-            });
-          }}
-        >
-          로그아웃
-        </button>
       </div>
     </div>
   );
