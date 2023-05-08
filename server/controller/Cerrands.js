@@ -77,7 +77,7 @@ exports.userRegister = async (req, res) => {
 // 로그아웃
 exports.userLogout = (req, res) => {
   try {
-    console.log(req.session.user_info);
+    console.log(req.session);
     req.session.destroy((err) => {
       if (err) {
         throw err;
@@ -140,6 +140,57 @@ exports.userLike = async (req, res) => {
   }
 };
 
+// 회원탈퇴
+exports.userWithdrawal = async (req, res) => {
+  try {
+    //   const auth = await Errands.User_info.findOne({
+    //      attributes: ['user_name'],
+    //      where: { user_name: { [Op.eq]: req.session.user_name } },
+    //    });
+    //    console.log(req.session.user_name);
+    //    if (auth.dataValues.user_name == req.session.user_name) {
+    const result = await Errands.User_info.destroy({
+      where: { user_id: { [Op.eq]: req.params.userId } },
+    });
+    console.log(result);
+    if (!result) {
+      res.send(false);
+    } else {
+      req.session.destroy();
+      res.send(true);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+// 회원정보 수정
+exports.update_user_info = async (req, res) => {
+  try {
+    // const auth = await Errands.User_info.findOne({
+    //   attributes: ['user_name'],
+    //   where: { user_name: { [Op.eq]: req.session.user_name } },
+    // });
+    // if (auth.dataValues.user_name == req.session.user_name) {
+    const [result] = await Errands.User_info.update(
+      {
+        user_id: req.body.user_id,
+        user_pw: req.body.user_pw,
+        user_name: req.body.user_name,
+        user_type: req.body.user_type,
+      },
+      { where: { user_id: { [Op.eq]: req.params.userId } } }
+    );
+    console.log(result);
+    if (result === 1) {
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {
@@ -194,7 +245,7 @@ exports.update_wanter_board = async (req, res) => {
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     console.log(auth);
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const [result] = Errands.Wanter_board.update(
         {
           wanter_board_title: req.body.wanter_board_title,
@@ -223,7 +274,7 @@ exports.delete_wanter_board = async (req, res) => {
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const result = Errands.Wanter_board.destroy({
         where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
       });
@@ -257,7 +308,7 @@ exports.create_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.create({
       wanter_comment_board_id: req.params.boardId,
-      wanter_comment_writer: req.body.user_name,
+      wanter_comment_writer: req.session.user_info.user_name,
       wanter_comment_content: req.body.wanter_comment_content,
     });
     res.send(result);
@@ -271,9 +322,10 @@ exports.update_wanter_comment = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
+      // 수정필요
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const [result] = Errands.Wanter_comment.update(
         {
           wanter_comment_content: req.body.wanter_comment_content,
@@ -290,7 +342,7 @@ exports.update_wanter_comment = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 삭제할 수 있습니다");
+      res.send("작성자만 수정할 수 있습니다");
     }
   } catch (err) {
     res.send(err);
@@ -302,9 +354,12 @@ exports.delete_wanter_comment = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
+      // 수정필요 req.params.commentId 테이블 찾고
+      where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
+      console.log(auth);
+      console.log(req.session.user_info.user_name);
       const result = Errands.Wanter_comment.destroy({
         where: {
           wanter_comment_id: { [Op.eq]: req.params.commentId },
@@ -388,7 +443,7 @@ exports.update_helper_board = async (req, res) => {
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const [result] = Errands.Helper_board.update(
         {
           helper_board_title: req.body.helper_board_title,
@@ -469,7 +524,7 @@ exports.update_helper_comment = async (req, res) => {
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const [result] = Errands.Helper_comment.update(
         {
           helper_comment_content: req.body.helper_comment_content,
@@ -500,7 +555,7 @@ exports.delete_helper_comment = async (req, res) => {
       attributes: ["user_name"],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const result = Errands.Helper_comment.destroy({
         where: {
           helper_comment_id: { [Op.eq]: req.params.commentId },
@@ -540,6 +595,7 @@ exports.read_notice = async (req, res) => {
     const result = await Errands.Notice.findAll({
       order: [["wanter_board_date", "asc"]],
     });
+    res.send(result);
   } catch (err) {
     res.send(err);
   }

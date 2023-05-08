@@ -19,7 +19,7 @@ app.use(
     saveUninitialized: false,
     secret: process.env.SECRET_KEY, // env설정하기
     sameSite: "None",
-    cookie: { maxAge: 60 * 6000 * 24 },
+    cookie: { maxAge: 60 * 6000 * 2400 },
   })
 );
 
