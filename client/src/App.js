@@ -16,6 +16,7 @@ import {
   wanterBoardSetter,
   helperAll,
 } from "../src/store/testCounter";
+import axios from "axios";
 
 export default function App() {
   const dispatch = useDispatch();
