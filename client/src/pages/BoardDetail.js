@@ -73,13 +73,15 @@ export default function BoardDetail() {
     console.log(result);
   };
 
-  const deleteComment = async () => {
+  const deleteComment = async (commentId) => {
     const result = await axios({
       method: "DELETE",
-      url: `/api/wanter/${boardId}/comment/}`,
+      url: `/api/wanter/${boardId}/comment/${commentId}}`,
+      // data: { wanter_comment_writer: commentList.wanter_comment_writer },
       withCredentials: true,
     });
     console.log(result.data);
+    console.log(commentId);
   };
 
   useEffect(() => {
@@ -158,7 +160,9 @@ export default function BoardDetail() {
                                 <button
                                   type="button"
                                   className="user_comment_btn"
-                                  onClick={deleteComment}
+                                  onClick={() =>
+                                    deleteComment(data.wanter_comment_id)
+                                  }
                                 >
                                   삭제
                                 </button>

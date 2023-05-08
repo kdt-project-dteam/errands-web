@@ -372,8 +372,9 @@ exports.update_wanter_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_wanter_comment = async (req, res) => {
   try {
-    console.log(req.params);
+    console.log(req.params); //{ boardId: '2', commentId: '16}' }
     console.log(req.session.user_info);
+    console.log(req.body);
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
       // 수정필요 req.params.commentId 테이블 찾고
