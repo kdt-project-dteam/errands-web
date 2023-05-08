@@ -4,6 +4,14 @@
     box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.14);
 }
 
+.main-banner {
+  width: 100vw;
+  height: 70vh;
+  background-color: #41887d;
+  background-size: cover;
+  overflow: hidden;
+}
+
 .main {
     background-color: $background-color;
     width: 80vw;

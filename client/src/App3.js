@@ -12,7 +12,6 @@ export default function App3() {
         <Routes>
             <Route path='/' element={<Board/>}></Route>
         </Routes>
-        <Footer/>
     </div>
     )
 }

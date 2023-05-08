@@ -10,6 +10,15 @@ export const asyncUpAxios = createAsyncThunk(
     }
 )
 
+export const helperAll = createAsyncThunk(
+    'testCounter/helperFetching',
+    async () => {
+        const res = await axios.get('/api/helper');
+        console.log(res.data);
+        return res.data;
+    }
+)
+
 export const helperBoardSetter = createAsyncThunk(
     'testCounter/helperBoardSetter',
     async () => {
@@ -28,11 +37,13 @@ export const wanterBoardSetter = createAsyncThunk(
     }
 )
 
-// export const searchBoard = createAsyncThunk(
-//     'testCounter/searchBoard',
-//     async () => {
-//         const res = await axios.get('/api/');
-//         console.log(res.data);
-//         return res.data;
-//     }
-// )
+
+
+export const allUserData = createAsyncThunk(
+    'testCounter/allUserData',
+    async () => {
+        const res = await axios.get('/api/user');
+        console.log(res.data);
+        return res.data;
+    }
+)

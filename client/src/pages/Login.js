@@ -1,8 +1,12 @@
 import '../css/Login.scss';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { newStore } from '../index.js';
+
 // /api/login
 const Login = () => {
+    const dispatch = useDispatch();
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const LoginFunc = async (e) => {
@@ -21,33 +25,21 @@ const Login = () => {
                 user_id: userId,
                 user_pw: userPw,
             },
-        }).then((res) => {
-            if (res.data === true) {
-                alert('로그인 성공');
-                window.location.href = '/';
-            } else {
-                alert('ID 또는 PW가 불일치합니다');
-                setUserId('');
-                setUserPw('');
-            }
+            withCredentials: true,
         });
-        const KakaoLogIn = () => {
-            // 카카오 로그인 함수를 실행시키면 아래에 설정해 놓은 KAKAO_AUTH_URL 주소로 이동한다.
-            // 이동 된 창에서 kakao 계정 로그인을 시도할 수 있으며 로그인 버튼 클릭 시 Redirect URI로 이동하면서 빈 화면과 함게 인가코드가 발급된다.(인가코드는 파라미터 값에 들어가 있다!)
-            const REST_API_KEY = 'REST API KEY';
-            const REDIRECT_URI = 'http://localhost:3000/oauth';
-            const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-            const kakaoLogin = () => {
-                window.location.href = KAKAO_AUTH_URL;
-            };
-
-            return (
-                <React.Fragment>
-                    <button onClick={kakaoLogin}>kakaoLogin</button>
-                </React.Fragment>
+        if (data.data.msg === true) {
+            alert('로그인 성공');
+            dispatch(
+                newStore.actions.userInfoReducers({
+                    isLogin: true,
+                    userInfo: data.data.user_info,
+                })
             );
-        };
+        } else {
+            alert('ID,PW 불일치..');
+            setUserId('');
+            setUserPw('');
+        }
     };
 
     return (
@@ -82,9 +74,9 @@ const Login = () => {
                             로그인
                         </button>
                         <p>계정이 없으신가요?</p>
-                        <a href="http://localhost:3000/Signup" target="_blank">
+                        {/* <a href="http://localhost:3000/Signup" target="_blank">
                             회원가입
-                        </a>
+                        </a> */}
                     </div>
                     <div className="hr-sect">또는</div>
                     <button className="kakaoLogin" onClick={kakaoLogin}>
