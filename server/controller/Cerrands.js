@@ -20,9 +20,7 @@ exports.userLogin = async (req, res) => {
       console.log("======================");
       console.log(result.dataValues.user_name);
       console.log(req.session);
-      req.session.save(() => {
-        res.send(true);
-      });
+      res.send({ user_info: result, msg: true });
     } else {
       res.send(false);
     }
@@ -77,13 +75,15 @@ exports.userRegister = async (req, res) => {
 };
 
 // 로그아웃
-exports.userLogout = async (req, res) => {
+exports.userLogout = (req, res) => {
   try {
-    await req.session.destroy((err) => {
+    console.log(req.session.user_info);
+    req.session.destroy((err) => {
       if (err) {
         throw err;
       }
-      req.session;
+      console.log("로그아웃 여부");
+      console.log(req.session);
       res.send(true);
     });
   } catch (err) {
@@ -148,6 +148,7 @@ exports.read_few_wanter_board = async (req, res) => {
       order: [["wanter_board_dead_line", "desc"]],
       limit: 5,
     });
+    console.log(req.session);
     res.send(result);
   } catch (err) {
     res.send(err);
