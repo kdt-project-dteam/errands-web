@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import Board from './pages/Board';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { asyncUpAxios, helperBoardSetter, wanterBoardSetter, helperAll } from '../src/store/testCounter';
+import { asyncUpAxios, helperBoardSetter, wanterBoardSetter, helperAll, allUserData } from '../src/store/testCounter';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -23,6 +23,8 @@ export default function App() {
     dispatch(helperBoardSetter())
     // wanter 5
     dispatch(wanterBoardSetter())
+    // user all
+    dispatch(allUserData())
   }, [])
   // main = 메인페이지
   // board = 게시글

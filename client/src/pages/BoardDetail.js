@@ -33,7 +33,6 @@ export default function BoardDetail() {
             method: "POST",
             url: `/api/wanter/${boardId}/comment`,
             data: {
-                user_name: "테스트",
                 wanter_comment_content: `${commentData}`,
             }
         })
@@ -59,6 +58,36 @@ export default function BoardDetail() {
         console.log(result)
     }
 
+    const deleteComment = async () => {
+        const result = await axios({
+
+        })
+    }
+
+    const updateComment = async () => {
+        const result = await axios({
+
+        })
+    }
+
+    const deleteBoard = async () => {
+        const result = await axios({
+
+        })
+    }
+
+    const updateBoard = async () => {
+        const result = await axios({
+
+        })
+    }
+
+    const pressLikesButton = async () => {
+        const result = await axios({
+
+        })
+    }
+
     useEffect(() => {
         getCommentData()
     }, [])
@@ -70,7 +99,13 @@ export default function BoardDetail() {
                 <h1 className='Detail_page_Header'>구인 게시판</h1>
                 <div className='writer_header_form'>
                     <span className='writer_header_form title'>{data[0].wanter_board_title}</span>
-                    <span className='writer_header_form date'>{data[0].wanter_board_date}</span>
+                    <span className='writer_header_form date'>
+                        <span>{data[0].wanter_board_date}</span>
+                        <div className='user_comment_form'>
+                            <button type='button' onClick={updateBoard}>수정</button>
+                            <button type='button' onClick={deleteBoard}>삭제</button>
+                        </div>
+                    </span>
                 </div>
                 <section className='paragraph'>
                     <div className='user_paragraph'>
@@ -78,7 +113,7 @@ export default function BoardDetail() {
                     </div>
                 </section>
                 <div className='paragraph_ext'>
-                    <button className='likes_btn'><AiOutlineHeart /></button>
+                    <button onClick={pressLikesButton} className='likes_btn'><AiOutlineHeart /></button>
                 </div>
                 <div className='comment'>
                     <h3>댓글 1</h3>
@@ -104,8 +139,8 @@ export default function BoardDetail() {
                                                 <div>{data.wanter_comment_writer}</div>
                                                 <div className='user_comment_form'>
                                                     <div className='user_comment_date'>{data.wanter_comment_date}</div>
-                                                    <button type='button' className='user_comment_btn'>수정</button>
-                                                    <button type='button' className='user_comment_btn'>삭제</button>
+                                                    <button type='button' onClick={updateComment(data.wanter_comment_id)} className='user_comment_btn'>수정</button>
+                                                    <button type='button' onClick={deleteComment(data.wanter_comment_id)} className='user_comment_btn'>삭제</button>
                                                 </div>
                                             </div>
                                             <div className='user_comment_text'>{data.wanter_comment_content}</div>

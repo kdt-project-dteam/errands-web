@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function JobOffer({ data }) {
+    console.log(data);
     return (<>
         <table className="board_items">
             <colgroup>
@@ -20,7 +21,7 @@ export default function JobOffer({ data }) {
                 </tr>
             </thead>
             <tbody>
-                {data ? data.map((data) => {
+                {/* {data ? data.map((data) => {
                     return (
                         <tr className='board_son'>
                             <td>{data.helper_board_writer}</td>
@@ -29,7 +30,7 @@ export default function JobOffer({ data }) {
                             <td>{data.helper_board_hit}</td>
                         </tr>
                     )
-                }) : "null"}
+                }) : "null"} */}
 
             </tbody>
         </table>
