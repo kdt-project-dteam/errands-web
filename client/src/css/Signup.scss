@@ -10,7 +10,7 @@ body {
     .signup-contents {
         min-width: 350px;
         width: 25vw;
-        height: 65vh;
+        height: 70vh;
         border-radius: 0.8vw;
         overflow: hidden;
         background-color: white;
@@ -42,9 +42,6 @@ body {
                         opacity: 0.8;
                     }
                 }
-                div {
-                    width: 100%;
-                }
                 label::before {
                     content: attr(title);
                     position: absolute;
@@ -69,6 +66,48 @@ body {
                     color: #222;
                     border: 1px solid #ccc;
                     border-radius: 3px;
+                    &:focus {
+                        outline: 0;
+                        border-color: blue;
+                    }
+                    &:valid + label::before {
+                        @extend .label-before;
+                        content: attr(data-title);
+                    }
+                    &:focus + label::before {
+                        @extend .label-before;
+                        color: blue;
+                    }
+                }
+                div {
+                    font-size: 2px;
+                    color: red;
+                }
+            }
+            .passwordField {
+                position: relative;
+                margin: 15px 0;
+                text-align: center;
+                label::before {
+                    content: attr(title);
+                    position: absolute;
+                    top: 0;
+                    left: 15px;
+                    line-height: 40px;
+                    font-size: 14px;
+                    color: #777;
+                    transition: 300ms all;
+                }
+                input {
+                    width: 70%;
+                    line-height: 40px;
+                    padding: 0 15px;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    color: #222;
+                    border: 1px solid #ccc;
+                    border-radius: 3px;
+                    margin-right: 27%;
                     &:focus {
                         outline: 0;
                         border-color: blue;
@@ -139,6 +178,40 @@ body {
                     text-decoration: underline;
                 }
             }
+        }
+    }
+    .hr-sect {
+        display: flex;
+        flex-basis: 100%;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.35);
+        font-size: 12px;
+        margin: 8px 0px;
+    }
+    .hr-sect::before,
+    .hr-sect::after {
+        content: '';
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.35);
+        height: 1px;
+        font-size: 0px;
+        line-height: 0px;
+        margin: 0px 16px;
+    }
+    .kakaoLogin {
+        background-color: #f7e600;
+        color: black;
+        line-height: 40px;
+        font-size: 14px;
+        width: 100%;
+        border: 1px;
+        &:hover,
+        &:active {
+            opacity: 0.8;
+        }
+        img {
+            width: 1.2rem;
+            height: 1.2rem;
         }
     }
 }
