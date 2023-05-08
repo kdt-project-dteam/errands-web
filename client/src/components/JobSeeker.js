@@ -11,19 +11,19 @@ export default function JobOffer({ data }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
 
-    const[pageNumberLimit,setPageNumberLimit] = useState(5);
-    const[maxPageNumberLimit,setMaxPageNumberLimit] = useState(5);
-    const[minPageNumberLimit,setMinPageNumberLimit] = useState(0);
-    
+    const [pageNumberLimit, setPageNumberLimit] = useState(5);
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
+    const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
 
     const handleClick = (event) => {
         setCurrentPage(Number(event.target.id));
     }
-    
+
     const NextBtn = () => {
         setCurrentPage(currentPage + 1);
 
-        if(currentPage + 1 > maxPageNumberLimit){
+        if (currentPage + 1 > maxPageNumberLimit) {
             setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
             setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
         }
@@ -32,7 +32,7 @@ export default function JobOffer({ data }) {
     const PrevBtn = () => {
         setCurrentPage(currentPage - 1);
 
-         if((currentPage - 1) % pageNumberLimit == 0 ){
+        if ((currentPage - 1) % pageNumberLimit == 0) {
             setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
             setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
         }
@@ -40,35 +40,35 @@ export default function JobOffer({ data }) {
 
 
     const pages = [];
-    for(let i = 1; i <= Math.ceil(data.length/itemsPerPage); i++){
+    for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
         pages.push(i);
     }
 
 
-    const indexOfLastItems = currentPage*itemsPerPage;
+    const indexOfLastItems = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItems - itemsPerPage;
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItems);
 
     const renderPageNumbers = pages.map((number) => {
-       
-        if(number < maxPageNumberLimit + 1 && number > minPageNumberLimit){
+
+        if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
             return (
                 <li
-                key={number}
-                id={number}
-                onClick={handleClick}
+                    key={number}
+                    id={number}
+                    onClick={handleClick}
                 >
                     {number}
                 </li>
             )
-            } else {
-                return "null";
-            }
+        } else {
+            return "null";
+        }
     })
 
-    
 
-    
+
+
     return (<>
         {/* <table className="board_items">
             <colgroup>
@@ -128,16 +128,16 @@ export default function JobOffer({ data }) {
         </table>
         <ul className='pagination'>
             <li>
-                <button 
-                onClick={PrevBtn}
-                disabled = {currentPage == pages[0] ? true : false}
+                <button
+                    onClick={PrevBtn}
+                    disabled={currentPage == pages[0] ? true : false}
                 >이전</button>
             </li>
             {renderPageNumbers}
             <li>
-                <button 
-                onClick={NextBtn}
-                disabled = {currentPage == pages[pages.length - 1] ? true : false}
+                <button
+                    onClick={NextBtn}
+                    disabled={currentPage == pages[pages.length - 1] ? true : false}
                 >다음</button>
             </li>
         </ul>
