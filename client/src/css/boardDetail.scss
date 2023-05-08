@@ -54,7 +54,12 @@
       padding: 50px 0;
       display: block;
       .user_paragraph {
+        height: 200px;
+        width: 80%;
         line-height: 1rem;
+        word-break: break-all;
+        word-wrap: break-word;
+        white-space: pre-wrap;
         font-size: 16px;
       }
       .p {
