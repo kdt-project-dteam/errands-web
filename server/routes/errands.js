@@ -12,7 +12,7 @@ router.post("/checkId", controller.checkUserId);
 
 router.post("/checkName", controller.checkUserName);
 
-router.post('/logout', controller.userLogout);
+router.post("/logout", controller.userLogout);
 
 // 전체 유저 확인하기
 router.get("/user", controller.read_user);
@@ -26,21 +26,15 @@ router.get("/user/:user", controller.read_detail_user);
 // 추천누르기
 router.post("/user/:user/userLike", controller.userLike);
 
-// router.post("/checkId", controller.checkUserId);
+router.post("/checkId", controller.checkUserId);
 
-router.post('/checkName', controller.checkUserName);
-
-router.post('/logout', controller.userLogout);
-
-router.post('/checkId', controller.checkUserId);
-
-router.post('/checkName', controller.checkUserName);
+router.post("/checkName", controller.checkUserName);
 
 // ======= 유저목록 상위 5 ========
-router.get('/mainUser', controller.read_few_user);
+router.get("/mainUser", controller.read_few_user);
 
 // ======= 유저목록 =======
-router.get('/user', controller.read_user);
+router.get("/user", controller.read_user);
 
 // ======= Wanter_board =======
 router.get("/mainWanter", controller.read_few_wanter_board);
