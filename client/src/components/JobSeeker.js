@@ -86,7 +86,7 @@ export default function JobOffer({ data }) {
                 </tr>
             </thead>
             <tbody>
-                {data ? data.map((data) => {
+                {/* {data ? data.map((data) => {
                     return (
                         <tr className='board_son'>
                             <td>{data.helper_board_writer}</td>

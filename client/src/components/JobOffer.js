@@ -4,10 +4,6 @@ import { useSelector } from 'react-redux';
 
 export default function JobOffer({ data }) {
     console.log(data)
-    // const value = useSelector(state => {
-    //     return state.someReducer.value
-    // })
-    // const value = null;
     return (<>
         <table className="board_items">
             <colgroup>
