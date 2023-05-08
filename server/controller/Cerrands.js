@@ -307,7 +307,7 @@ exports.create_wanter_comment = async (req, res) => {
   try {
     const result = await Errands.Wanter_comment.create({
       wanter_comment_board_id: req.params.boardId,
-      wanter_comment_writer: req.session.user_name,
+      wanter_comment_writer: req.session.user_info.user_name,
       wanter_comment_content: req.body.wanter_comment_content,
     });
     res.send(result);
@@ -350,11 +350,13 @@ exports.update_wanter_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_wanter_comment = async (req, res) => {
   try {
+    console.log(req.params);
+    console.log(req.session.user_info);
     const auth = await Errands.User_info.findOne({
       attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
+      where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
     });
-    if (auth.dataValues.user_name == req.session.user_name) {
+    if (auth) {
       const result = Errands.Wanter_comment.destroy({
         where: {
           wanter_comment_id: { [Op.eq]: req.params.commentId },
