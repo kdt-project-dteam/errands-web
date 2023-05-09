@@ -109,4 +109,10 @@ router.patch("/notice/:boardId", controller.update_notice);
 
 router.delete("/notice/:boardId", controller.delete_notice);
 
+// search
+router.get(
+  "/search/:boardType/:search/:optionValue",
+  controller.search_wanter_board
+);
+
 module.exports = router;
