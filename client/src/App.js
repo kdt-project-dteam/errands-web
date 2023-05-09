@@ -4,6 +4,7 @@ import BoardDetail from './pages/BoardDetail';
 import Members from './pages/Members';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import MyPage from './pages/MyPage';
 import './css/index.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -43,6 +44,12 @@ export default function App() {
                 <Route path="/members" element={<Members />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
+                <Route path="/mypage" element={<MyPage />}></Route>
+                {/* <Route path="/myImformation" element={<MyImformation />}></Route>
+                <Route path="/mywrite" element={<MyPage />}></Route>
+                <Route path="/myComment" element={<MyPage />}></Route>
+                <Route path="/withDraw" element={<MyPage />}></Route>
+                <Route path="/signOut" element={<MyPage />}></Route> */}
             </Routes>
         </div>
     );

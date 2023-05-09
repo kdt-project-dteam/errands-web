@@ -11,7 +11,6 @@ const Login = () => {
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const LoginFunc = async (e) => {
-        const inputRef = useRef(null);
         e.preventDefault();
         if (!userId && !userPw) {
             return alert('ID와 Password를 입력하세요');
