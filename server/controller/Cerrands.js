@@ -76,6 +76,7 @@ exports.userRegister = async (req, res) => {
         user_type: req.body.user_type,
       });
     }
+    res.send(true);
   } catch (err) {
     res.send(err);
   }
