@@ -76,7 +76,7 @@ export default function BoardDetail() {
     const deleteComment = async () => {
         const result = await axios({
             method: "DELETE",
-            url: `/api/wanter/${boardId}/comment/}`,
+            url: `/api/wanter/${boardId}/comment/`,
             withCredentials: true,
         });
         console.log(result.data);
