@@ -29,12 +29,8 @@ const Login = () => {
     });
     if (data.data.msg === true) {
       alert("로그인 성공");
-      dispatch(
-        newStore.actions.userInfoReducers({
-          isLogin: true,
-          userInfo: data.data.user_info,
-        })
-      );
+      localStorage.setItem('userName', data.data.user_info.user_name);
+      window.location.href = '/';
     } else {
       alert("ID,PW 불일치..");
       setUserId("");

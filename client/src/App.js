@@ -38,18 +38,6 @@ export default function App() {
   // members = 마이페이지
   // login = 로그인페이지
   // signup = 회원가입
-  const login = () => {
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/api/login",
-      data: {
-        user_id: id,
-        user_pw: pw,
-      },
-    }).then((result) => {
-      console.log(result);
-    });
-  };
   return (
     <div>
       <Header />
