@@ -23,7 +23,7 @@ const Notice = function (Sequelize, DataTypes) {
       notice_date: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       notice_hit: {
         type: DataTypes.INTEGER,
