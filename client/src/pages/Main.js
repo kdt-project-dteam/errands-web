@@ -44,21 +44,21 @@ export default function Main() {
                         <ul>
                             {value
                                 ? value.map((data) => {
-                                      return (
-                                          <Link to={`/boardDetail/:${data.wanter_board_id}`}>
-                                              <li className="card">
-                                                  <div className="li-top">
-                                                      <div className="li-top-title">{data.wanter_board_id}</div>
-                                                      <div className="li-top-author">{data.wanter_board_writer}</div>
-                                                  </div>
-                                                  <div className="li-bottom">
-                                                      <div className="li-bottom-time">{data.wanter_board_date}</div>
-                                                      <div className="li-bottom-hit">{data.wanter_board_hit}</div>
-                                                  </div>
-                                              </li>
-                                          </Link>
-                                      );
-                                  })
+                                    return (
+                                        <Link to={`/boardDetail/:${data.wanter_board_id}`}>
+                                            <li className="card">
+                                                <div className="li-top">
+                                                    <div className="li-top-title">{data.wanter_board_id}</div>
+                                                    <div className="li-top-author">{data.wanter_board_writer}</div>
+                                                </div>
+                                                <div className="li-bottom">
+                                                    <div className="li-bottom-time">{data.wanter_board_date}</div>
+                                                    <div className="li-bottom-hit">{data.wanter_board_hit}</div>
+                                                </div>
+                                            </li>
+                                        </Link>
+                                    );
+                                })
                                 : 'null'}
                         </ul>
                     </div>
@@ -85,39 +85,39 @@ export default function Main() {
                         <ul>
                             {boardState !== 'offer'
                                 ? helperBoard.map((data) => {
-                                      return (
-                                          <Link to={`/boardDetail/:${data.helper_board_id}`}>
-                                              <li key={data.helper_board_id}>
-                                                  <div className="li-top">
-                                                      <div className="li-top-title">{data.helper_board_title}</div>
-                                                      <div className="li-top-author">{data.helper_board_writer}</div>
-                                                  </div>
-                                                  <div className="li-bottom">
-                                                      <div className="li-bottom-time">{data.helper_board_date}</div>
-                                                      <div className="li-bottom-hit">{data.helper_board_hit}</div>
-                                                  </div>
-                                              </li>
-                                          </Link>
-                                      );
-                                  })
+                                    return (
+                                        <Link to={`/boardDetail/:${data.helper_board_id}`}>
+                                            <li key={data.helper_board_id}>
+                                                <div className="li-top">
+                                                    <div className="li-top-title">{data.helper_board_title}</div>
+                                                    <div className="li-top-author">{data.helper_board_writer}</div>
+                                                </div>
+                                                <div className="li-bottom">
+                                                    <div className="li-bottom-time">{data.helper_board_date}</div>
+                                                    <div className="li-bottom-hit">{data.helper_board_hit}</div>
+                                                </div>
+                                            </li>
+                                        </Link>
+                                    );
+                                })
                                 : wanterBoard
-                                ? wanterBoard.map((data) => {
-                                      return (
-                                          <Link to={`/boardDetail/:${data.wanter_board_id}`}>
-                                              <li key={data.wanter_board_id} className="card">
-                                                  <div className="li-top">
-                                                      <div className="li-top-title">{data.wanter_board_id}</div>
-                                                      <div className="li-top-author">{data.wanter_board_writer}</div>
-                                                  </div>
-                                                  <div className="li-bottom">
-                                                      <div className="li-bottom-time">{data.wanter_board_date}</div>
-                                                      <div className="li-bottom-hit">{data.wanter_board_hit}</div>
-                                                  </div>
-                                              </li>
-                                          </Link>
-                                      );
-                                  })
-                                : 'null'}
+                                    ? wanterBoard.map((data) => {
+                                        return (
+                                            <Link to={`/boardDetail/:${data.wanter_board_id}`}>
+                                                <li key={data.wanter_board_id} className="card">
+                                                    <div className="li-top">
+                                                        <div className="li-top-title">{data.wanter_board_id}</div>
+                                                        <div className="li-top-author">{data.wanter_board_writer}</div>
+                                                    </div>
+                                                    <div className="li-bottom">
+                                                        <div className="li-bottom-time">{data.wanter_board_date}</div>
+                                                        <div className="li-bottom-hit">{data.wanter_board_hit}</div>
+                                                    </div>
+                                                </li>
+                                            </Link>
+                                        );
+                                    })
+                                    : 'null'}
                         </ul>
                     </div>
                     <h2>랭킹🥇</h2>
@@ -125,14 +125,14 @@ export default function Main() {
                         <ul>
                             {allUserData
                                 ? allUserData.map((data) => {
-                                      return (
-                                          <li className="sub-card-rank">
-                                              <div className="sub-card-rank-icon">{data.user_id}</div>
-                                              <div className="sub-card-rank-name">{data.user_name}</div>
-                                              <div className="sub-card-rank-number">{data.user_like}</div>
-                                          </li>
-                                      );
-                                  })
+                                    return (
+                                        <li className="sub-card-rank">
+                                            <div className="sub-card-rank-icon">{data.user_id}</div>
+                                            <div className="sub-card-rank-name">{data.user_name}</div>
+                                            <div className="sub-card-rank-number">{data.user_like}</div>
+                                        </li>
+                                    );
+                                })
                                 : 'null'}
                         </ul>
                     </div>

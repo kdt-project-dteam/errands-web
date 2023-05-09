@@ -1,6 +1,7 @@
 import '../css/Signup.scss';
 import axios from 'axios';
 import React, { useState } from 'react';
+import SocialLogin from '../components/SocialLogin';
 // /api/login
 const Signup = () => {
     const [userId, setUserId] = useState('');
@@ -15,9 +16,9 @@ const Signup = () => {
         console.log('> userPw : ', userPw);
         console.log('> userName : ', userName);
         console.log('> userType : ', userType);
-        e.preventDefault();
         if (CheckedId === true && CheckName === true) {
-            const res = await axios({
+            console.log("=====")
+            const result = await axios({
                 method: 'post',
                 url: 'http://localhost:8080/api/register',
                 data: {
@@ -26,10 +27,13 @@ const Signup = () => {
                     user_name: userName,
                     user_type: userType,
                 },
-            }).then(() => {
+            })
+            if (result.data === true) {
+                alert('회원가입 성공!')
                 window.location.href = '/';
-            });
-            console.log('> res : ', res);
+            } else {
+                alert("에러로 회원가입 실패")
+            }
         } else {
             alert('중복검사 하세요');
         }
@@ -149,8 +153,8 @@ const Signup = () => {
                         <a href="http://localhost:3000/login">로그인하기</a>
                     </div>
                     <div className="hr-sect">또는</div>
-                    <button className="kakaoSignup" onClick={SignupFunc}>
-                        <img src="/img/kakaoSignup.png" alt="kakaoLogo" />
+                    <button className="kakaoSignup">
+                        <SocialLogin />
                     </button>
                 </div>
             </div>
