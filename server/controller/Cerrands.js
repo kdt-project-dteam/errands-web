@@ -32,9 +32,9 @@ exports.checkUserId = async (req, res) => {
     });
     console.log(result);
     if (!result) {
-      return res.send(false);
-    } else {
       return res.send(true);
+    } else {
+      return res.send(false);
     }
   } catch (err) {
     res.send(err);
@@ -45,8 +45,10 @@ exports.checkUserId = async (req, res) => {
 exports.checkUserName = async (req, res) => {
   try {
     const result = await Errands.User_info.findOne({
+      // attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.body.user_name } },
     });
+    // result
     if (!result) {
       return res.send(true);
     } else {
@@ -149,28 +151,28 @@ exports.userLike = async (req, res) => {
 // 회원탈퇴
 exports.userWithdrawal = async (req, res) => {
   try {
-    //   const auth = await Errands.User_info.findOne({
-    //      attributes: ['user_name'],
-    //      where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
-    //    });
-    //    console.log(req.session.user_name);
-    //    if (auth.dataValues.user_name == req.session.user_info.user_name) {
-    const result = await Errands.User_info.destroy({
-      where: { user_id: { [Op.eq]: req.params.userId } },
+    const auth = await Errands.User_info.findOne({
+      attributes: ["user_name"],
+      where: { user_id: { [Op.eq]: req.params.commentId } },
     });
-    console.log(result);
-    if (!result) {
-      res.send(false);
-    } else {
-      req.session.destroy();
-      res.send(true);
+    if (auth.dataValues.user_name == req.session.user_info.user_name) {
+      const result = await Errands.User_info.destroy({
+        where: { user_id: { [Op.eq]: req.params.userId } },
+      });
+      console.log(result);
+      if (!result) {
+        res.send(false);
+      } else {
+        req.session.destroy();
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
   }
 };
 // 회원정보 수정
-exports.update_user_info = async (req, res) => {
+exports.userUpdate = async (req, res) => {
   try {
     // const auth = await Errands.User_info.findOne({
     //   attributes: ['user_name'],
@@ -186,11 +188,17 @@ exports.update_user_info = async (req, res) => {
       },
       { where: { user_id: { [Op.eq]: req.params.userId } } }
     );
-    console.log(result);
-    if (result === 1) {
-      res.send(true);
-    } else {
+    if (result === 0) {
       res.send(false);
+    } else {
+      const update_session = Errands.User_info.findOne({
+        where: {
+          user_id: req.session.user_id,
+          user_pw: req.session.user_pw,
+        },
+      });
+      req.session.user_info = update_session.dataValues;
+      res.send(true);
     }
   } catch (err) {
     res.send(err);
