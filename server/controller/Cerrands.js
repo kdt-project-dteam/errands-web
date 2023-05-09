@@ -37,9 +37,9 @@ exports.checkUserId = async (req, res) => {
     });
     console.log(result);
     if (!result) {
-      return res.send(false);
-    } else {
       return res.send(true);
+    } else {
+      return res.send(false);
     }
   } catch (err) {
     res.send(err);
@@ -50,8 +50,10 @@ exports.checkUserId = async (req, res) => {
 exports.checkUserName = async (req, res) => {
   try {
     const result = await Errands.User_info.findOne({
+      // attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.body.user_name } },
     });
+    // result
     if (!result) {
       return res.send(true);
     } else {
@@ -76,6 +78,7 @@ exports.userRegister = async (req, res) => {
         user_name: req.body.user_name,
         user_type: req.body.user_type,
       });
+      res.send(true);
     }
   } catch (err) {
     res.send(err);
@@ -175,7 +178,7 @@ exports.userUpdate = async (req, res) => {
     //   attributes: ['user_name'],
     //   where: { user_name: { [Op.eq]: req.params.user_name } },
     // });
-    // if (auth.dataValues.user_name == req.session.user_name) {
+    // if (auth.dataValues.user_name == req.session.user_info.user_name) {
     const [result] = await Errands.User_info.update(
       {
         user_id: req.body.user_id,
@@ -197,6 +200,14 @@ exports.userUpdate = async (req, res) => {
       req.session.user_info = update_session.dataValues;
       res.send(ture);
     }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+exports.search_wanter_board = async (req, res) => {
+  try {
+    const result = req.params.optionValue;
   } catch (err) {
     res.send(err);
   }
