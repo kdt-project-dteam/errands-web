@@ -78,6 +78,10 @@ export const newStore = createSlice({
     userInfoReducers: function (state, action) {
       state.isLogin = action.payload.isLogin;
       state.userInfo = action.payload.userInfo;
+    },
+    userLogout: function (state, action) {
+      state.isLogin = action.payload.isLogin;
+      state.userInfo = null;
     }
   }
 })
