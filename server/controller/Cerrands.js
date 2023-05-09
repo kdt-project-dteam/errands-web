@@ -1,5 +1,5 @@
-const Errands = require("../models");
-const { Op } = require("sequelize");
+const Errands = require('../models');
+const { Op } = require('sequelize');
 // Access => Errands.User_info or Helper_board etc
 
 // ======= User sign =======
@@ -14,10 +14,10 @@ exports.userLogin = async (req, res) => {
     });
     if (result != null) {
       req.session.user_info = result.dataValues; // v
-      console.log("======================");
+      console.log('======================');
       console.log(req.session.user_info.user_name); // v
       console.log(req.session.user_info.user_type);
-      console.log("======================");
+      console.log('======================');
       console.log(result.dataValues.user_name);
       console.log(req.session);
       res.send({ user_info: result, msg: true });
@@ -90,7 +90,7 @@ exports.userLogout = (req, res) => {
       if (err) {
         throw err;
       }
-      console.log("로그아웃 여부");
+      console.log('로그아웃 여부');
       console.log(req.session);
       res.send(true);
     });
@@ -103,7 +103,7 @@ exports.userLogout = (req, res) => {
 exports.read_few_user = async (req, res) => {
   try {
     const result = await Errands.User_info.findAll({
-      order: [["user_like", "desc"]],
+      order: [['user_like', 'desc']],
       limit: 5,
     });
     res.send(result);
@@ -115,7 +115,7 @@ exports.read_few_user = async (req, res) => {
 exports.read_user = async (req, res) => {
   try {
     const result = await Errands.User_info.findAll({
-      order: [["user_like", "desc"]],
+      order: [['user_like', 'desc']],
     });
     res.send(result);
   } catch (err) {
@@ -138,10 +138,7 @@ exports.read_detail_user = async (req, res) => {
 // 추천수
 exports.userLike = async (req, res) => {
   try {
-    const result = await Errands.User_info.increment(
-      { user_like: 1 },
-      { where: { id: { [Op.eq]: req.params.user } } }
-    );
+    const result = await Errands.User_info.increment({ user_like: 1 }, { where: { id: { [Op.eq]: req.params.user } } });
     res.send(result);
   } catch (err) {
     res.send(err);
@@ -151,32 +148,32 @@ exports.userLike = async (req, res) => {
 // 회원탈퇴
 exports.userWithdrawal = async (req, res) => {
   try {
-    //   const auth = await Errands.User_info.findOne({
-    //      attributes: ['user_name'],
-    //      where: { user_name: { [Op.eq]: req.session.user_name } },
-    //    });
-    //    console.log(req.session.user_name);
-    //    if (auth.dataValues.user_name == req.session.user_name) {
-    const result = await Errands.User_info.destroy({
-      where: { user_id: { [Op.eq]: req.params.userId } },
+    const auth = await Errands.User_info.findOne({
+      attributes: ['user_name'],
+      where: { user_id: { [Op.eq]: req.params.commentId } },
     });
-    console.log(result);
-    if (!result) {
-      res.send(false);
-    } else {
-      req.session.destroy();
-      res.send(true);
+    if (auth.dataValues.user_name == req.session.user_info.user_name) {
+      const result = await Errands.User_info.destroy({
+        where: { user_id: { [Op.eq]: req.params.userId } },
+      });
+      console.log(result);
+      if (!result) {
+        res.send(false);
+      } else {
+        req.session.destroy();
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
   }
 };
 // 회원정보 수정
-exports.update_user_info = async (req, res) => {
+exports.userUpdate = async (req, res) => {
   try {
     // const auth = await Errands.User_info.findOne({
     //   attributes: ['user_name'],
-    //   where: { user_name: { [Op.eq]: req.session.user_name } },
+    //   where: { user_name: { [Op.eq]: req.params.user_name } },
     // });
     // if (auth.dataValues.user_name == req.session.user_name) {
     const [result] = await Errands.User_info.update(
@@ -188,11 +185,17 @@ exports.update_user_info = async (req, res) => {
       },
       { where: { user_id: { [Op.eq]: req.params.userId } } }
     );
-    console.log(result);
-    if (result === 1) {
-      res.send(true);
-    } else {
+    if (result === 0) {
       res.send(false);
+    } else {
+      const update_session = Errands.User_info.findOne({
+        where: {
+          user_id: req.session.user_id,
+          user_pw: req.session.user_pw,
+        },
+      });
+      req.session.user_info = update_session.dataValues;
+      res.send(ture);
     }
   } catch (err) {
     res.send(err);
@@ -204,7 +207,7 @@ exports.update_user_info = async (req, res) => {
 exports.read_few_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
-      order: [["wanter_board_dead_line", "desc"]],
+      order: [['wanter_board_dead_line', 'desc']],
       limit: 5,
     });
     console.log(req.session);
@@ -218,7 +221,7 @@ exports.read_few_wanter_board = async (req, res) => {
 exports.read_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
-      order: [["wanter_board_date", "asc"]],
+      order: [['wanter_board_date', 'asc']],
     });
     res.send(result);
 
@@ -261,7 +264,7 @@ exports.create_wanter_board = async (req, res) => {
 exports.update_wanter_board = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     console.log(auth);
@@ -280,7 +283,7 @@ exports.update_wanter_board = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 수정할 수 있습니다");
+      res.send('작성자만 수정할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -291,7 +294,7 @@ exports.update_wanter_board = async (req, res) => {
 exports.delete_wanter_board = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     if (auth) {
@@ -303,7 +306,7 @@ exports.delete_wanter_board = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 삭제할 수 있습니다");
+      res.send('작성자만 삭제할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -341,7 +344,7 @@ exports.create_wanter_comment = async (req, res) => {
 exports.update_wanter_comment = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       // 수정필요
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
@@ -362,7 +365,7 @@ exports.update_wanter_comment = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 수정할 수 있습니다");
+      res.send('작성자만 수정할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -375,7 +378,7 @@ exports.delete_wanter_comment = async (req, res) => {
     console.log(req.params);
     console.log(req.session.user_info);
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       // 수정필요 req.params.commentId 테이블 찾고
       where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
     });
@@ -393,7 +396,7 @@ exports.delete_wanter_comment = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 댓글 삭제할 수 있습니다");
+      res.send('작성자만 댓글 삭제할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -405,7 +408,7 @@ exports.delete_wanter_comment = async (req, res) => {
 exports.read_few_helper_board = async (req, res) => {
   try {
     const result = await Errands.Helper_board.findAll({
-      order: [["helper_board_date", "asc"]],
+      order: [['helper_board_date', 'asc']],
       limit: 3,
     });
     res.send(result);
@@ -462,7 +465,7 @@ exports.create_helper_board = async (req, res) => {
 exports.update_helper_board = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     if (auth) {
@@ -482,7 +485,7 @@ exports.update_helper_board = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 수정할 수 있습니다");
+      res.send('작성자만 수정할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -493,7 +496,7 @@ exports.update_helper_board = async (req, res) => {
 exports.delete_helper_board = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     if (auth.dataValues.user_name == req.session.user_name) {
@@ -505,7 +508,7 @@ exports.delete_helper_board = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 삭제할 수 있습니다");
+      res.send('작성자만 삭제할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -543,7 +546,7 @@ exports.create_helper_comment = async (req, res) => {
 exports.update_helper_comment = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     if (auth) {
@@ -563,7 +566,7 @@ exports.update_helper_comment = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 수정할 수 있습니다");
+      res.send('작성자만 수정할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -574,7 +577,7 @@ exports.update_helper_comment = async (req, res) => {
 exports.delete_helper_comment = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_name"],
+      attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.session.user_name } },
     });
     if (auth) {
@@ -589,7 +592,7 @@ exports.delete_helper_comment = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("작성자만 삭제할 수 있습니다");
+      res.send('작성자만 삭제할 수 있습니다');
     }
   } catch (err) {
     res.send(err);
@@ -602,7 +605,7 @@ exports.delete_helper_comment = async (req, res) => {
 exports.read_few_notice = async (req, res) => {
   try {
     const result = await Errands.Notice.findAll({
-      order: [["notice_date", "desc"]],
+      order: [['notice_date', 'desc']],
       limit: 5,
     });
     res.send(result);
@@ -615,7 +618,7 @@ exports.read_few_notice = async (req, res) => {
 exports.read_notice = async (req, res) => {
   try {
     const result = await Errands.Notice.findAll({
-      order: [["wanter_board_date", "asc"]],
+      order: [['wanter_board_date', 'asc']],
     });
     res.send(result);
   } catch (err) {
@@ -639,10 +642,10 @@ exports.read_one_notice = async (req, res) => {
 exports.create_notice = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_type"],
+      attributes: ['user_type'],
       where: { user_type: { [Op.eq]: req.session.user_type } },
     });
-    if (auth.dataValues.user_type == "root") {
+    if (auth.dataValues.user_type == 'root') {
       const result = Errands.Notice.create({
         notice_writer: req.session.user_name,
         notice_title: req.body.notice_title,
@@ -651,7 +654,7 @@ exports.create_notice = async (req, res) => {
 
       res.send(result);
     } else {
-      res.send("생성 권한이 없습니다");
+      res.send('생성 권한이 없습니다');
     }
   } catch (err) {
     res.send(err);
@@ -662,10 +665,10 @@ exports.create_notice = async (req, res) => {
 exports.update_notice = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_type"],
+      attributes: ['user_type'],
       where: { user_type: { [Op.eq]: req.session.user_type } },
     });
-    if (auth.dataValues.user_type == "root") {
+    if (auth.dataValues.user_type == 'root') {
       const [result] = Errands.Notice.update(
         {
           notice_title: req.body.notice_title,
@@ -678,7 +681,7 @@ exports.update_notice = async (req, res) => {
       }
       res.send(true);
     } else {
-      res.send("수정 권한이 없습니다");
+      res.send('수정 권한이 없습니다');
     }
   } catch (err) {
     res.send(err);
@@ -689,12 +692,12 @@ exports.update_notice = async (req, res) => {
 exports.delete_notice = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
-      attributes: ["user_type"],
+      attributes: ['user_type'],
       where: { user_type: { [Op.eq]: req.session.user_type } },
     });
     console.log(auth);
     if (auth) {
-      if (auth.dataValues.user_type == "root") {
+      if (auth.dataValues.user_type == 'root') {
         const result = Errands.Notice.destroy({
           where: { notice_id: { [Op.eq]: req.params.boardId } },
         });
@@ -704,7 +707,7 @@ exports.delete_notice = async (req, res) => {
         return res.send(true);
       }
     } else {
-      res.send("삭제 권한이 없습니다");
+      res.send('삭제 권한이 없습니다');
     }
   } catch (err) {
     res.send(err);
