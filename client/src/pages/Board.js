@@ -4,19 +4,17 @@ import { useState } from "react";
 import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker"
 import '../css/board.scss';
-import {BiSearchAlt2} from 'react-icons/bi'
-import Pagination from "../components/Pagination";
+import { BiSearchAlt2 } from 'react-icons/bi'
 import axios from 'axios'
-import { useEffect } from "react";
 import { useSelector } from 'react-redux';
 
 export default function Board() {
     // wanter 전체 게시물
-    const value = useSelector(state => {
+    let value = useSelector(state => {
         return state.someReducer.value
     })
     // helper 전체 게시물
-    const helperAll = useSelector(state => {
+    let helperAll = useSelector(state => {
         return state.someReducer.helperAll
     })
     const [menu, setMenu] = useState(1);
@@ -25,27 +23,25 @@ export default function Board() {
         { id: 2, name: '구직' }
     ]
     const [search, setSearch] = useState();
-    const [info,setInfo] = useState([]);
-        
-        // async function handlePostInfo(){
-        //       const result = await axios({
-        //           url : `http://localhost:8080/api/wanter`,
-        //           method: 'GET',
-        //           headers: {
-        //               "Content-Type": "application/json"
-        //           }
-        //       })
-        //       setInfo(result.data.reverse());
-        //   } console.log(handlePostInfo.wanter_board_d);
-      
-        //   useEffect(() =>{
-        //       handlePostInfo()
-        //   },[])
+    const [info, setInfo] = useState([]);
+    const [optionValue, setOptionValue] = useState();
 
+    const searchText = () => {
+        axios({
+            method: "GET",
+            url: `/api/search/${search}/${optionValue}`,
+        }).then((res) => {
+            console.log(res.data);
+        })
+    }
 
     const onChangeSearch = (e) => {
-        e.preventDefault();
         setSearch(e.target.value);
+    }
+
+    const optionValueChange = (e) => {
+        console.log(optionValue)
+        setOptionValue(e.target.value);
     }
 
     return (<>
@@ -62,17 +58,18 @@ export default function Board() {
                 <div className="category card">
                     <div className="category category_items">
                         <div className="category category_items select">
-                            <select>
-                                <option value="title">제목</option>
-                                <option value="writer">작성자</option>
+                            <select onChange={optionValueChange}>
+                                <option value="wanter_board_title">제목</option>
+                                <option value="wanter_board_writer">작성자</option>
+                                <option value="wanter_board_location">지역</option>
                             </select>
                         </div>
                         <div className="category category_items input">
-                            <button type="submit">
-                                <BiSearchAlt2/>
+                            <button type="button" onClick={searchText}>
+                                <BiSearchAlt2 />
                             </button>
-                            <input 
-                            type="text"
+                            <input
+                                type="text"
                                 placeholder="검색어를 입력하세요"
                                 value={search}
                                 onChange={onChangeSearch}

@@ -47,8 +47,14 @@ export default function Header() {
         <Link to={"/board"}>Board</Link>
         <Link to={"/members"}>Member</Link>
         <Link to={"/members"}>MyPage</Link>
-        <Link to={"/login"}>로그인</Link>
-        <Link to={"/signup"}>회원가입</Link>
+        {localStorage.getItem('userName') ? <a href='/' onClick={() => {
+          localStorage.clear();
+        }}>로그아웃</a> :
+          <>
+            <Link to={"/login"}>로그인</Link>
+            <Link to={"/signup"}>회원가입</Link>
+          </>
+        }
       </div>
     </>
   );

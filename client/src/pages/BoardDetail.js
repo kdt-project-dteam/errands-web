@@ -118,7 +118,7 @@ export default function BoardDetail() {
                             </button>
                         </div>
                         <div className="comment">
-                            <h3>댓글 1</h3>
+                            <h3>댓글 {commentList.length}</h3>
                             <div className="comment form">
                                 <fieldset>
                                     <legend>댓글 쓰기</legend>
