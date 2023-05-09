@@ -1,31 +1,37 @@
-import { Routes, Route } from 'react-router-dom';
-import Main from './pages/Main';
-import BoardDetail from './pages/BoardDetail';
-import Members from './pages/Members';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import './css/index.scss';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Board from './pages/Board';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { asyncUpAxios, helperBoardSetter, wanterBoardSetter, helperAll, allUserData } from '../src/store/testCounter';
+import { Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import BoardDetail from "./pages/BoardDetail";
+import Members from "./pages/Members";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import "./css/index.scss";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Board from "./pages/Board";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  asyncUpAxios,
+  helperBoardSetter,
+  wanterBoardSetter,
+  helperAll,
+  allUserData,
+} from "../src/store/testCounter";
 
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     // wanter all
-    dispatch(asyncUpAxios())
+    dispatch(asyncUpAxios());
     // helper all
-    dispatch(helperAll())
+    dispatch(helperAll());
     // helper 5
-    dispatch(helperBoardSetter())
+    dispatch(helperBoardSetter());
     // wanter 5
-    dispatch(wanterBoardSetter())
+    dispatch(wanterBoardSetter());
     // user all
-    dispatch(allUserData())
-  }, [])
+    dispatch(allUserData());
+  }, []);
   // main = 메인페이지
   // board = 게시글
   // boardDetail = 게시글 상세보기
@@ -36,12 +42,15 @@ export default function App() {
     <div>
       <Header />
       <Routes>
-        <Route path='/' element={<Main />}></Route>
-        <Route path='/board' element={<Board />}></Route>
-        <Route path='/board/boardDetail/:wanterHelper/:boardId' element={<BoardDetail />}></Route>
-        <Route path='/members' element={<Members />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/signup' element={<Signup />}></Route>
+        <Route path="/" element={<Main />}></Route>
+        <Route path="/board" element={<Board />}></Route>
+        <Route
+          path="/board/boardDetail/:wanterHelper/:boardId"
+          element={<BoardDetail />}
+        ></Route>
+        <Route path="/members" element={<Members />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
       </Routes>
     </div>
   );
