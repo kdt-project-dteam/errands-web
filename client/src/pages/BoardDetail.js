@@ -65,21 +65,27 @@ export default function BoardDetail() {
         console.log(result);
     };
 
-    const updateComment = async () => {
+    const updateComment = async (commentId) => {
         const result = await axios({
             method: "PATCH",
-            url: `/api/wanter/${boardId}/comment/10`,
+            url: `/api/wanter/${boardId}/comment/${commentId}`,
+            withCredentials: true,
         });
         console.log(result);
     };
 
-    const deleteComment = async () => {
+    const deleteComment = async (commentId) => {
         const result = await axios({
             method: "DELETE",
-            url: `/api/wanter/${boardId}/comment/`,
+            url: `/api/wanter/${boardId}/comment/${commentId}`,
             withCredentials: true,
         });
-        console.log(result.data);
+        if (result.data === true) {
+            alert('삭제되었습니다.');
+        } else {
+            alert(result.data);
+        }
+        getCommentData();
     };
 
     useEffect(() => {
@@ -112,7 +118,7 @@ export default function BoardDetail() {
                             </button>
                         </div>
                         <div className="comment">
-                            <h3>댓글 1</h3>
+                            <h3>댓글 {commentList.length}</h3>
                             <div className="comment form">
                                 <fieldset>
                                     <legend>댓글 쓰기</legend>
@@ -151,14 +157,14 @@ export default function BoardDetail() {
                                                             <button
                                                                 type="button"
                                                                 className="user_comment_btn"
-                                                                onClick={updateComment}
+                                                                onClick={() => updateComment(data.wanter_comment_id)}
                                                             >
                                                                 수정
                                                             </button>
                                                             <button
                                                                 type="button"
                                                                 className="user_comment_btn"
-                                                                onClick={deleteComment}
+                                                                onClick={() => deleteComment(data.wanter_comment_id)}
                                                             >
                                                                 삭제
                                                             </button>
