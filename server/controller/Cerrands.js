@@ -326,6 +326,9 @@ exports.delete_wanter_board = async (req, res) => {
   }
 };
 
+// 조회수 up
+// exports.hit_wanter_board = async (req, res) => {};
+
 // ======= Wanter_comment =======
 // 댓글 보여주기
 exports.read_wanter_comment = async (req, res) => {
@@ -558,6 +561,9 @@ exports.delete_helper_board = async (req, res) => {
     res.send(err);
   }
 };
+
+// 조회수 up
+// exports.hit_helper_board = async (req, res) => {};
 
 // ======= Helper_comment =======
 // 댓글 보여주기
