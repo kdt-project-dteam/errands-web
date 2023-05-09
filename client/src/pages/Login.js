@@ -73,9 +73,6 @@ const Login = () => {
               로그인
             </button>
             <p>계정이 없으신가요?</p>
-            {/* <a href="http://localhost:3000/Signup" target="_blank">
-                            회원가입
-                        </a> */}
           </div>
         </form>
       </div>
