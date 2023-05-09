@@ -328,7 +328,17 @@ exports.delete_wanter_board = async (req, res) => {
 };
 
 // 조회수 up
-// exports.hit_wanter_board = async (req, res) => {};
+exports.hit_wanter_board = async (req, res) => {
+  try {
+    const result = await Errands.Wanter_board.increment(
+      { wanter_board_hit: 1 },
+      { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+    );
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 // ======= Wanter_comment =======
 // 댓글 보여주기
@@ -564,7 +574,17 @@ exports.delete_helper_board = async (req, res) => {
 };
 
 // 조회수 up
-// exports.hit_helper_board = async (req, res) => {};
+exports.hit_helper_board = async (req, res) => {
+  try {
+    const result = await Errands.Helper_board.increment(
+      { helper_board_hit: 1 },
+      { where: { helper_board_id: { [Op.eq]: req.params.boardId } } }
+    );
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
 
 // ======= Helper_comment =======
 // 댓글 보여주기
