@@ -1,6 +1,7 @@
 import '../css/Signup.scss';
 import axios from 'axios';
 import React, { useState } from 'react';
+import SocialLogin from '../components/SocialLogin';
 // /api/login
 const Signup = () => {
     const [userId, setUserId] = useState('');
@@ -68,6 +69,7 @@ const Signup = () => {
                     <div className="button-container">
                         <button onClick={SignupFunc}>가입하기</button>
                     </div>
+                    <SocialLogin />
                     <div className="goLogin">
                         <p>이미 계정이 있으십니까?</p>
                         <a href="http://localhost:3000/login">로그인하기</a>
