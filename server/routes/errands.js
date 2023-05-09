@@ -45,13 +45,15 @@ router.get('/mainWanter', controller.read_few_wanter_board);
 
 router.get('/wanter', controller.read_wanter_board);
 
-// router.get("/wanter/:boardId", controller.read_one_wanter_board);
+router.get("/wanter/:boardId", controller.read_one_wanter_board);
 
 router.post('/wanter', controller.create_wanter_board);
 
 router.patch('/wanter/:boardId', controller.update_wanter_board);
 
 router.delete('/wanter/:boardId', controller.delete_wanter_board);
+
+router.post("/wanter/:boardId/hit", controller.hit_wanter_board);
 
 // ======= Wanter_comment =======
 router.get('/wanter/:boardId/comment', controller.read_wanter_comment);
@@ -74,6 +76,8 @@ router.post('/helper', controller.create_helper_board);
 router.patch('/helper/:boardId', controller.update_helper_board);
 
 router.delete('/helper/:boardId', controller.delete_helper_board);
+
+router.post("/helper/:boardId/hit", controller.hit_helper_board);
 
 // ======= Helper_comment =======
 router.get('/helper/:boardId/comment', controller.read_helper_comment);

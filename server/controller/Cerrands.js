@@ -246,15 +246,19 @@ exports.read_one_wanter_board = async (req, res) => {
 // 게시물 생성
 exports.create_wanter_board = async (req, res) => {
   try {
-    const [result] = await Errands.Wanter_board.create({
-      wanter_board_writer: req.body.user_name,
-      wanter_board_title: req.body.wanter_board_title,
-      wanter_board_content: req.body.wanter_board_content,
-      wanter_board_place: req.body.wanter_board_place,
-      wanter_board_dead_line: req.body.wanter_board_dead_line,
-      wanter_board_done: false,
-    });
-    res.send(result);
+    if (!req.session.user_info) {
+      res.send('로그인하시오');
+    } else {
+      const [result] = await Errands.Wanter_board.create({
+        wanter_board_writer: req.body.user_name,
+        wanter_board_title: req.body.wanter_board_title,
+        wanter_board_content: req.body.wanter_board_content,
+        wanter_board_place: req.body.wanter_board_place,
+        wanter_board_dead_line: req.body.wanter_board_dead_line,
+        wanter_board_done: false,
+      });
+      res.send(result);
+    }
   } catch (err) {
     res.send(err);
   }
@@ -263,27 +267,30 @@ exports.create_wanter_board = async (req, res) => {
 // 게시물 수정
 exports.update_wanter_board = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    console.log(auth);
-    if (auth) {
-      const [result] = Errands.Wanter_board.update(
-        {
-          wanter_board_title: req.body.wanter_board_title,
-          wanter_board_content: req.body.wanter_board_place,
-          wanter_board_place: req.body.wanter_board_place,
-          wanter_board_done: req.body.done,
-        },
-        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
-      );
-      if (result === 0) {
-        return res.send(false);
-      }
-      res.send(true);
+    if (!req.session.user_info) {
+      res.send('로그인하시오');
     } else {
-      res.send('작성자만 수정할 수 있습니다');
+      const auth = await Errands.Wanter_board.findOne({
+        attributes: ['wanter_board_writer'],
+        where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+      });
+      if (auth.dataValues.wanter_board_writer !== req.session.user_info_user_name) {
+        res.send('작성자만 수정가능');
+      } else {
+        const [result] = Errands.Wanter_board.update(
+          {
+            wanter_board_title: req.body.wanter_board_title,
+            wanter_board_content: req.body.wanter_board_place,
+            wanter_board_place: req.body.wanter_board_place,
+            wanter_board_done: req.body.done,
+          },
+          { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+        );
+        if (result === 0) {
+          return res.send(false);
+        }
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
@@ -293,21 +300,37 @@ exports.update_wanter_board = async (req, res) => {
 // 게시물 삭제
 exports.delete_wanter_board = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    if (auth) {
-      const result = Errands.Wanter_board.destroy({
+    if (!req.session.user_info) {
+      res.send('로그인하세욤');
+    } else {
+      const auth = await Errands.Wanter_board.findOne({
+        attributes: ['wanter_board_writer'],
         where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
       });
-      if (!result) {
-        return res.send(false);
+      if (auth.dataValues.wanter_board_writer !== req.session.user_info.user_name) {
+        res.send('작성자만 삭제 가능');
+      } else {
+        const result = Errands.Wanter_board.destroy({
+          where: {
+            wanter_board_id: { [Op.eq]: req.params.boardId },
+          },
+        });
+        if (!result) {
+          return res.send(false);
+        }
+        res.send(true);
       }
-      res.send(true);
-    } else {
-      res.send('작성자만 삭제할 수 있습니다');
     }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 조회수 up
+exports.hit_wanter_board = async (req, res) => {
+  try {
+    const result = await Errands.Wanter_board.increment({ wanter_board_hit: 1 }, { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } });
+    res.send(result);
   } catch (err) {
     res.send(err);
   }
@@ -329,12 +352,16 @@ exports.read_wanter_comment = async (req, res) => {
 // 댓글 생성
 exports.create_wanter_comment = async (req, res) => {
   try {
-    const result = await Errands.Wanter_comment.create({
-      wanter_comment_board_id: req.params.boardId,
-      wanter_comment_writer: req.session.user_info.user_name,
-      wanter_comment_content: req.body.wanter_comment_content,
-    });
-    res.send(result);
+    if (!req.session.user_info) {
+      res.send('로그인하시오');
+    } else {
+      const result = await Errands.Wanter_comment.create({
+        wanter_comment_board_id: req.params.boardId,
+        wanter_comment_writer: req.session.user_info.user_name,
+        wanter_comment_content: req.body.wanter_comment_content,
+      });
+      res.send(result);
+    }
   } catch (err) {
     res.send(err);
   }
@@ -343,29 +370,33 @@ exports.create_wanter_comment = async (req, res) => {
 // 댓글 수정
 exports.update_wanter_comment = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      // 수정필요
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    if (auth) {
-      const [result] = Errands.Wanter_comment.update(
-        {
-          wanter_comment_content: req.body.wanter_comment_content,
-        },
-        {
-          where: {
-            wanter_comment_id: { [Op.eq]: req.params.commentId },
-            wanter_comment_board_id: { [Op.eq]: req.params.boardId },
-          },
-        }
-      );
-      if (result === 0) {
-        return res.send(false);
-      }
-      res.send(true);
+    if (!req.session.user_info) {
+      res.send('로그인 하세요');
     } else {
-      res.send('작성자만 수정할 수 있습니다');
+      const auth = await Errands.Wanter_comment.findOne({
+        attributes: ['wanter_comment_writer'],
+        where: { wanter_comment_id: { [Op.eq]: req.params.commentId } },
+      });
+      if (auth.dataValues.wanter_comment_writer !== req.session.user_info.user_name) {
+        res.send('작성자만 수정가능');
+      } else {
+        const [result] = Errands.Wanter_comment.update(
+          {
+            wanter_comment_content: req.body.wanter_comment_content,
+          },
+          {
+            where: {
+              wanter_comment_id: { [Op.eq]: req.params.commentId },
+              wanter_comment_board_id: { [Op.eq]: req.params.boardId },
+            },
+          }
+        );
+        if (result === 0) {
+          return res.send(false);
+        } else {
+          res.send(true);
+        }
+      }
     }
   } catch (err) {
     res.send(err);
@@ -375,28 +406,27 @@ exports.update_wanter_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_wanter_comment = async (req, res) => {
   try {
-    console.log(req.params);
-    console.log(req.session.user_info);
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      // 수정필요 req.params.commentId 테이블 찾고
-      where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
-    });
-    if (auth) {
-      console.log(auth);
-      console.log(req.session.user_info.user_name);
-      const result = Errands.Wanter_comment.destroy({
-        where: {
-          wanter_comment_id: { [Op.eq]: req.params.commentId },
-          wanter_comment_board_id: { [Op.eq]: req.params.boardId },
-        },
-      });
-      if (!result) {
-        return res.send(false);
-      }
-      res.send(true);
+    if (!req.session.user_info) {
+      res.send('로그인 하세염');
     } else {
-      res.send('작성자만 댓글 삭제할 수 있습니다');
+      const auth = await Errands.Wanter_comment.findOne({
+        attributes: ['wanter_comment_writer'],
+        where: { wanter_comment_id: { [Op.eq]: req.params.commentId } },
+      });
+      if (auth.dataValues.wanter_comment_writer !== req.session.user_info.user_name) {
+        res.send('작성자만 댓글 삭제할 수 있습니다');
+      } else {
+        const result = Errands.Wanter_comment.destroy({
+          where: {
+            wanter_comment_id: { [Op.eq]: req.params.commentId },
+            wanter_comment_board_id: { [Op.eq]: req.params.boardId },
+          },
+        });
+        if (!result) {
+          return res.send(false);
+        }
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
@@ -448,14 +478,18 @@ exports.read_one_helper_board = async (req, res) => {
 // 게시물 생성
 exports.create_helper_board = async (req, res) => {
   try {
-    const result = await Errands.Helper_board.create({
-      helper_board_writer: req.session.user_name,
-      helper_board_title: req.body.helper_board_title,
-      helper_board_content: req.body.helper_board_content,
-      helper_board_place: req.body.helper_board_place,
-      helper_board_done: false,
-    });
-    res.send(result);
+    if (!req.session.user_info) {
+      res.send('로그인하시오');
+    } else {
+      const result = await Errands.Helper_board.create({
+        helper_board_writer: req.session.user_name,
+        helper_board_title: req.body.helper_board_title,
+        helper_board_content: req.body.helper_board_content,
+        helper_board_place: req.body.helper_board_place,
+        helper_board_done: false,
+      });
+      res.send(result);
+    }
   } catch (err) {
     res.send(err);
   }
@@ -464,28 +498,32 @@ exports.create_helper_board = async (req, res) => {
 // 게시물 수정
 exports.update_helper_board = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    if (auth) {
-      const [result] = Errands.Helper_board.update(
-        {
-          helper_board_title: req.body.helper_board_title,
-          helper_board_content: req.body.helper_board_content,
-          helper_board_place: req.body.helper_board_place,
-          helper_board_done: req.body.done,
-        },
-        {
-          where: { helper_board_id: { [Op.eq]: req.params.boardId } },
-        }
-      );
-      if (result === 0) {
-        return res.send(false);
-      }
-      res.send(true);
+    if (!req.session.user_info) {
+      res.send('로그인하시오');
     } else {
-      res.send('작성자만 수정할 수 있습니다');
+      const auth = await Errands.Helper_board.findOne({
+        attributes: ['helper_board_writer'],
+        where: { helper_board_id: { [Op.eq]: req.params.boardId } },
+      });
+      if (auth.dataValues.helper_board_writer !== req.session.user_info.user_name) {
+        req.send('작성자만 수정 가능');
+      } else {
+        const [result] = Errands.Helper_board.update(
+          {
+            helper_board_title: req.body.helper_board_title,
+            helper_board_content: req.body.helper_board_content,
+            helper_board_place: req.body.helper_board_place,
+            helper_board_done: req.body.done,
+          },
+          {
+            where: { helper_board_id: { [Op.eq]: req.params.boardId } },
+          }
+        );
+        if (result === 0) {
+          return res.send(false);
+        }
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
@@ -495,21 +533,37 @@ exports.update_helper_board = async (req, res) => {
 // 게시물 삭제
 exports.delete_helper_board = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    if (auth.dataValues.user_name == req.session.user_name) {
-      const result = Errands.Helper_board.destroy({
+    if (!req.session.user_info) {
+      res.send('로그인하세욤');
+    } else {
+      const auth = await Errands.Helper_board.findOne({
+        attributes: ['helper_board_writer'],
         where: { helper_board_id: { [Op.eq]: req.params.boardId } },
       });
-      if (!result) {
-        return res.send(false);
+      if (auth.dataValues.helper_board_writer !== req.session.user_info.user_name) {
+        res.send('작성자만 삭제 가능');
+      } else {
+        const result = Errands.Helper_board.destroy({
+          where: {
+            helper_board_id: { [Op.eq]: req.params.boardId },
+          },
+        });
+        if (!result) {
+          return res.send(false);
+        }
+        res.send(true);
       }
-      res.send(true);
-    } else {
-      res.send('작성자만 삭제할 수 있습니다');
     }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 조회수 up
+exports.hit_helper_board = async (req, res) => {
+  try {
+    const result = await Errands.Helper_board.increment({ helper_board_hit: 1 }, { where: { helper_board_id: { [Op.eq]: req.params.boardId } } });
+    res.send(result);
   } catch (err) {
     res.send(err);
   }
@@ -531,12 +585,16 @@ exports.read_helper_comment = async (req, res) => {
 // 댓글 생성
 exports.create_helper_comment = async (req, res) => {
   try {
-    const result = await Errands.Helper_comment.create({
-      helper_comment_board_id: req.params.boardId,
-      helper_comment_writer: req.session.user_name,
-      helper_comment_content: req.body.helper_comment_content,
-    });
-    res.send(result);
+    if (!req.session.user_info) {
+      res.send('로그인고');
+    } else {
+      const result = await Errands.Helper_comment.create({
+        helper_comment_board_id: req.params.boardId,
+        helper_comment_writer: req.session.user_name,
+        helper_comment_content: req.body.helper_comment_content,
+      });
+      res.send(result);
+    }
   } catch (err) {
     res.send(err);
   }
@@ -545,28 +603,33 @@ exports.create_helper_comment = async (req, res) => {
 // 댓글 수정
 exports.update_helper_comment = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    if (auth) {
-      const [result] = Errands.Helper_comment.update(
-        {
-          helper_comment_content: req.body.helper_comment_content,
-        },
-        {
-          where: {
-            helper_comment_id: { [Op.eq]: req.params.commentId },
-            helper_comment_board_id: { [Op.eq]: req.params.boardId },
-          },
-        }
-      );
-      if (result === 0) {
-        return res.send(false);
-      }
-      res.send(true);
+    if (!req.session.user_info) {
+      res.send('로그인 ㄱ');
     } else {
-      res.send('작성자만 수정할 수 있습니다');
+      const auth = await Errands.Helper_comment.findOne({
+        attributes: ['helper_comment_writer'],
+        where: { helper_comment_id: { [Op.eq]: req.params.commentId } },
+      });
+      if (auth.dataValues.wanter_comment_writer !== req.session.user_info.user_name) {
+        res.send('작성자만 댓글 수정 가능');
+      } else {
+        const [result] = Errands.Helper_comment.update(
+          {
+            helper_comment_content: req.body.helper_comment_content,
+          },
+          {
+            where: {
+              helper_comment_id: { [Op.eq]: req.params.commentId },
+              helper_comment_board_id: { [Op.eq]: req.params.boardId },
+            },
+          }
+        );
+        if (result === 0) {
+          return res.send(false);
+        } else {
+          res.send(true);
+        }
+      }
     }
   } catch (err) {
     res.send(err);
@@ -576,23 +639,27 @@ exports.update_helper_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_helper_comment = async (req, res) => {
   try {
-    const auth = await Errands.User_info.findOne({
-      attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.session.user_name } },
-    });
-    if (auth) {
-      const result = Errands.Helper_comment.destroy({
-        where: {
-          helper_comment_id: { [Op.eq]: req.params.commentId },
-          helper_comment_board_id: { [Op.eq]: req.params.boardId },
-        },
-      });
-      if (!result) {
-        return res.send(false);
-      }
-      res.send(true);
+    if (!req.session.user_info) {
+      res.send('로그인 ㄱㄱ');
     } else {
-      res.send('작성자만 삭제할 수 있습니다');
+      const auth = await Errands.Helper_comment.findOne({
+        attributes: ['helper_comment_writer'],
+        where: { wanter_comment_id: { [Op.eq]: req.params.commentId } },
+      });
+      if (auth.dataValues.helper_comment_writer !== req.session.user_info.user_name) {
+        res.send('작성자만 ㄱㄴ');
+      } else {
+        const result = Errands.Helper_comment.destroy({
+          where: {
+            helper_comment_id: { [Op.eq]: req.params.commentId },
+            helper_comment_board_id: { [Op.eq]: req.params.boardId },
+          },
+        });
+        if (!result) {
+          return res.send(false);
+        }
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
