@@ -1,73 +1,78 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { allUserData, asyncUpAxios, helperAll, helperBoardSetter, wanterBoardSetter } from './store/testCounter';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App3 from "./App3";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { composeWithDevTools } from "redux-devtools-extension";
+import "bootstrap/dist/css/bootstrap.css";
+import {
+  allUserData,
+  asyncUpAxios,
+  helperAll,
+  helperBoardSetter,
+  wanterBoardSetter,
+} from "./store/testCounter";
 
 const reducerSlice = createSlice({
-  name: 'store',
+  name: "store",
   initialState: {},
   reducers: {
-    someAction: function () {
-
-    },
+    someAction: function () {},
   },
   extraReducers: (builder) => {
     builder.addCase(asyncUpAxios.pending, (state, action) => {
-      state.status = 'Loading'
-    })
+      state.status = "Loading";
+    });
     builder.addCase(asyncUpAxios.fulfilled, (state, action) => {
-      state.value = action.payload
-      state.status = 'complete'
-    })
+      state.value = action.payload;
+      state.status = "complete";
+    });
     builder.addCase(asyncUpAxios.rejected, (state, action) => {
-      state.status = 'fail'
-    })
+      state.status = "fail";
+    });
     builder.addCase(helperBoardSetter.pending, (state, action) => {
-      state.status = 'Loading'
-    })
+      state.status = "Loading";
+    });
     builder.addCase(helperBoardSetter.fulfilled, (state, action) => {
-      state.helperBoard = action.payload
-      state.status = 'complete'
-    })
+      state.helperBoard = action.payload;
+      state.status = "complete";
+    });
     builder.addCase(helperBoardSetter.rejected, (state, action) => {
-      state.status = 'fail'
-    })
+      state.status = "fail";
+    });
     builder.addCase(wanterBoardSetter.pending, (state, action) => {
-      state.status = 'Loading'
-    })
+      state.status = "Loading";
+    });
     builder.addCase(wanterBoardSetter.fulfilled, (state, action) => {
-      state.wanterBoard = action.payload
-      state.status = 'complete'
-    })
+      state.wanterBoard = action.payload;
+      state.status = "complete";
+    });
     builder.addCase(wanterBoardSetter.rejected, (state, action) => {
-      state.status = 'fail'
-    })
+      state.status = "fail";
+    });
     builder.addCase(helperAll.pending, (state, action) => {
-      state.status = 'Loading'
-    })
+      state.status = "Loading";
+    });
     builder.addCase(helperAll.fulfilled, (state, action) => {
-      state.helperAll = action.payload
-      state.status = 'complete'
-    })
+      state.helperAll = action.payload;
+      state.status = "complete";
+    });
     builder.addCase(helperAll.rejected, (state, action) => {
-      state.status = 'fail'
-    })
+      state.status = "fail";
+    });
     builder.addCase(allUserData.pending, (state, action) => {
-      state.status = 'Loading'
-    })
+      state.status = "Loading";
+    });
     builder.addCase(allUserData.fulfilled, (state, action) => {
-      state.allUserData = action.payload
-      state.status = 'complete'
-    })
+      state.allUserData = action.payload;
+      state.status = "complete";
+    });
     builder.addCase(allUserData.rejected, (state, action) => {
-      state.status = 'fail'
-    })
-  }
-})
+      state.status = "fail";
+    });
+  },
+});
 
 export const newStore = createSlice({
   name: "newStore",
@@ -86,18 +91,21 @@ export const newStore = createSlice({
   }
 })
 
-export const store = configureStore({
-  reducer: {
-    someReducer: reducerSlice.reducer,
-    newReducer: newStore.reducer
-  }
-}, composeWithDevTools())
+export const store = configureStore(
+  {
+    reducer: {
+      someReducer: reducerSlice.reducer,
+      newReducer: newStore.reducer,
+    },
+  },
+  composeWithDevTools()
+);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <App3 />
     </BrowserRouter>
   </Provider>
 );
