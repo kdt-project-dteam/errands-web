@@ -76,8 +76,7 @@ export default function BoardDetail() {
   const deleteComment = async (commentId) => {
     const result = await axios({
       method: "DELETE",
-      url: `/api/wanter/${boardId}/comment/${commentId}}`,
-      // data: { wanter_comment_writer: commentList.wanter_comment_writer },
+      url: `/api/wanter/${boardId}/comment/${commentId}`,
       withCredentials: true,
     });
     console.log(result.data);
@@ -153,7 +152,7 @@ export default function BoardDetail() {
                                 <button
                                   type="button"
                                   className="user_comment_btn"
-                                  onClick={updateComment}
+                                  onClick={() => updateComment}
                                 >
                                   수정
                                 </button>
