@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 exports.read_few_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
+      where: { wanter_board_done: { [Op.eq]: 0 } },
       order: [["wanter_board_dead_line", "desc"]],
       limit: 5,
     });

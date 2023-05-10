@@ -151,7 +151,6 @@ exports.userLike = async (req, res) => {
 };
 
 // 회원탈퇴
-// 회원탈퇴
 exports.userWithdrawal = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
@@ -217,8 +216,6 @@ exports.user_wanter_board = async (req, res) => {
     const result = await Errands.Wanter_board.findAll({
       where: { wanter_board_writer: { [Op.eq]: req.body.user_name } },
     });
-    console.log("===========================");
-    console.log(!result);
     res.send(result);
   } catch (err) {
     res.send(err);
