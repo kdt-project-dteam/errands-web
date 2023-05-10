@@ -6,19 +6,19 @@ export default function SignOut() {
             <div className="MyPage">
                 <div className="Header">
                     <div>
-                        <Link to="/myImformation">내정보</Link>
+                        <Link to="/mypage/myImformation">내정보</Link>
                     </div>
                     <div>
-                        <Link to="/myWrite">작성 글</Link>
+                        <Link to="/mypage/myWrite">작성 글</Link>
                     </div>
                     <div>
-                        <Link to="/myComment">작성 댓글</Link>
+                        <Link to="/mypage/myComment">작성 댓글</Link>
                     </div>
                     <div>
-                        <Link to="/withDraw">회원탈퇴</Link>
+                        <Link to="/mypage/withDraw">회원탈퇴</Link>
                     </div>
                     <div>
-                        <Link to="/signOut">로그아웃</Link>
+                        <Link to="/mypage/signOut">로그아웃</Link>
                     </div>
                 </div>
             </div>
