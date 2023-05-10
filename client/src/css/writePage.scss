@@ -1,0 +1,75 @@
+.WritePage {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  height: 100vh;
+
+  .WritePage-Center {
+    display: flex;
+    justify-content: center;
+
+    .Write_border_box {
+      box-sizing: border-box;
+      border: 2px solid black;
+      border-radius: 10px;
+      margin-top: 3rem;
+      width: 700px;
+      height: 800px;
+      box-shadow: 1px 0 7px 0px black;
+
+      .form-userid {
+        display: flex;
+        margin: 2rem;
+      }
+
+      .form-title {
+        display: flex;
+        margin: 2rem;
+        width: 300px;
+        justify-content: space-between;
+      }
+
+      .form-input {
+        border: 2px solid black;
+      }
+
+      .form-text {
+        display: flex;
+        margin: 2rem;
+        width: 600px;
+      }
+
+      .form-textarea {
+        width: 350px;
+        margin-left: 2rem;
+        height: 200px;
+        border: 2px solid black;
+        resize: none;
+      }
+
+      .form-deadline {
+        display: flex;
+        margin: 2rem;
+      }
+
+      .form-date {
+        margin-left: 10px;
+      }
+
+      .form-address {
+        display: flex;
+        margin: 2rem;
+      }
+
+      .submit-form {
+        display: flex;
+        margin-right: 2rem;
+        flex-direction: row-reverse;
+      }
+
+      .form-address-btn {
+        border: none;
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}
