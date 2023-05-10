@@ -23,10 +23,18 @@ export default function WithDraw() {
         })
     }
     const updateUserData = async () => {
+        const formData = {
+            user_id: myPageUserData.user_id,
+            user_pw: myPageUserData.user_pw,
+            user_name: myPageUserData.user_name,
+            user_type: myPageUserData.user_type,
+        }
         const result = await axios({
-            method: "POST",
-            url: "/api/"
+            method: "PATCH",
+            url: `/api/user/${myPageUserData.id}`,
+            data: formData
         })
+        console.log(formData)
         console.log(result)
     }
     useEffect(() => {
@@ -69,7 +77,7 @@ export default function WithDraw() {
                             <input type="text" id="NAME" name='user_name' onChange={inputChange} value={myPageUserData.user_name} />
                             <label htmlFor="NAME" data-title="이름" />
                         </div>
-                        <button>수정하기</button>
+                        <button type='button' onClick={updateUserData}>수정하기</button>
                     </form> </> : <Loading />}
             </div>
         </div>

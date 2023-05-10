@@ -1,6 +1,34 @@
 import { Link } from 'react-router-dom';
 import '../css/withDraw.scss';
+import { useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
 export default function WithDraw() {
+    const localId = localStorage.getItem('userId');
+    const [userId, setUserId] = useState('')
+    const [userPw, setUserPw] = useState('')
+    const inputChange = (e) => {
+        [e.target.name] = e.target.value
+    }
+
+    const userOut = async () => {
+        const result = await axios({
+            method: "DELETE",
+            url: `/api/user/${localId}`
+        })
+        console.log(result)
+        if (result.data === true) {
+            Swal.fire({
+                icon: 'success',
+                title: '아이디가 성공적으로 삭제되었습니다',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            localStorage.clear();
+            window.location.href = '/';
+        }
+    }
     return (
         <div className="MyPage">
             <div className="Header">
@@ -39,15 +67,15 @@ export default function WithDraw() {
                 <div>회원탈퇴를 위해 아이디와 비밀번호를 입력해주세요</div>
                 <form>
                     <div className="field">
-                        <input type="text" id="ID" />
+                        <input type="text" id="ID" onChange={inputChange} />
                         <label htmlFor="ID" data-title="아이디"></label>
                     </div>
 
                     <div className="field">
-                        <input type="password" id="PW" />
+                        <input type="password" id="PW" onChange={inputChange} />
                         <label htmlFor="PW" data-title="비밀번호" />
                         <br />
-                        <button>회원탈퇴하기</button>
+                        <button type='button' onClick={userOut}>회원탈퇴하기</button>
                     </div>
                 </form>
             </div>
