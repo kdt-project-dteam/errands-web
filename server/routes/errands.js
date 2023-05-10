@@ -13,7 +13,7 @@ router.post("/login", user_info.userLogin);
 
 router.post("/register", user_info.userRegister);
 
-router.post("/checkId", user_info.checkUserId);
+router.post("/user/checkId", user_info.checkUserId);
 
 router.post("/checkName", user_info.checkUserName);
 
@@ -45,6 +45,11 @@ router.get("/mainUser", user_info.read_few_user);
 // ======= 유저목록 =======
 router.get("/user", user_info.read_user);
 
+// 유저 작성 wanter & helper
+router.post("/user/wanter", user_info.user_wanter_board);
+
+router.post("/user/helper", user_info.user_helper_board);
+
 // ======= Wanter_board =======
 router.get("/mainWanter", wanter_board.read_few_wanter_board);
 
@@ -60,7 +65,7 @@ router.delete("/wanter/:boardId", wanter_board.delete_wanter_board);
 
 router.post("/wanter/:boardId/hit", wanter_board.hit_wanter_board);
 
-// router.get("/search/:search/:optioValue", wanter_board.search_wanter_board);
+router.patch("/wanter/:boardId/done", wanter_board.done_wanter_board);
 
 // ======= Wanter_comment =======
 router.get("/wanter/:boardId/comment", wanter_comment.read_wanter_comment);
@@ -120,10 +125,7 @@ router.patch("/notice/:boardId", notice.update_notice);
 
 router.delete("/notice/:boardId", notice.delete_notice);
 
-// search
-// router.get(
-//   "/search/:boardType/:search/:optionValue",
-//   user_info.search_wanter_board
-// );
+// search;
+router.get("/search/:boardType/:optionValue", wanter_board.search_wanter_board);
 
 module.exports = router;

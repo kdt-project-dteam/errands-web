@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 exports.read_few_wanter_board = async (req, res) => {
   try {
     const result = await Errands.Wanter_board.findAll({
+      where: { wanter_board_done: { [Op.eq]: 0 } },
       order: [["wanter_board_dead_line", "desc"]],
       limit: 5,
     });
@@ -78,7 +79,7 @@ exports.update_wanter_board = async (req, res) => {
       ) {
         res.send("작성자만 수정가능");
       } else {
-        const [result] = Errands.Wanter_board.update(
+        const [result] = await Errands.Wanter_board.update(
           {
             wanter_board_title: req.body.wanter_board_title,
             wanter_board_content: req.body.wanter_board_place,
@@ -113,7 +114,7 @@ exports.delete_wanter_board = async (req, res) => {
       ) {
         res.send("작성자만 삭제 가능");
       } else {
-        const result = Errands.Wanter_board.destroy({
+        const result = await Errands.Wanter_board.destroy({
           where: {
             wanter_board_id: { [Op.eq]: req.params.boardId },
           },
@@ -141,3 +142,82 @@ exports.hit_wanter_board = async (req, res) => {
     res.send(err);
   }
 };
+
+// 검색
+exports.search_wanter_board = async (req, res) => {
+  try {
+    const { boardType, optionValue } = req.params;
+    if (boardType == "wanter") {
+      if (optionValue == "wanter-board-writer") {
+        const result = await Errands.Wanter_board.findAll({
+          where: {
+            wanter_board_writer: { [Op.like]: `%${req.body.search}%` },
+          },
+        });
+        console.log("====");
+        console.log(req.params);
+        console.log(result);
+        res.send(result);
+      } else if (optionValue === "wanter_board_title") {
+        const result = await Errands.Wanter_board.findAll({
+          where: {
+            wanter_board_title: { [Op.like]: `%${req.body.search}%` },
+          },
+        });
+        res.send(result);
+      } else if (optionValue === "wanter_board_place") {
+        const result = await Errands.Wanter_board.findAll({
+          where: {
+            wanter_board_place: { [Op.like]: `%${req.body.search}%` },
+          },
+        });
+        res.send(result);
+      }
+    } else if (boardType == "helper") {
+      if (optionValue) {
+      }
+    } else {
+      res.send("알 수 없는 오류");
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 게시물 done 처리
+exports.done_wanter_board = async (req, res) => {
+  try {
+    // if (!req.session.user_info) {
+    //   res.send("로그인하시오");
+    // } else {
+    const auth = await Errands.Wanter_board.findOne({
+      attributes: ["wanter_board_writer"],
+      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+    });
+    if (auth.dataValues.wanter_board_writer !== req.body.user_name) {
+      res.send("작성자만 완료가능");
+    } else {
+      const [result] = await Errands.Wanter_board.update(
+        {
+          wanter_board_done: true,
+        },
+        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+      );
+      console.log("========");
+      console.log(result);
+      if (result === 0) {
+        res.send(false);
+      } else {
+        res.send(true);
+      }
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+// 완료 버튼 누르면 done value false -> true <<< ok
+// done : true
+// 게시물 검색시 done : true인건 숨기기
+// true인 게시물 따로 조회할 수 있게
+//

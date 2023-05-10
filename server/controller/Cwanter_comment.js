@@ -48,7 +48,7 @@ exports.update_wanter_comment = async (req, res) => {
       ) {
         res.send("작성자만 수정가능");
       } else {
-        const [result] = Errands.Wanter_comment.update(
+        const [result] = await Errands.Wanter_comment.update(
           {
             wanter_comment_content: req.body.wanter_comment_content,
           },
@@ -87,7 +87,7 @@ exports.delete_wanter_comment = async (req, res) => {
       ) {
         res.send("작성자만 댓글 삭제할 수 있습니다");
       } else {
-        const result = Errands.Wanter_comment.destroy({
+        const result = await Errands.Wanter_comment.destroy({
           where: {
             wanter_comment_id: { [Op.eq]: req.params.commentId },
             wanter_comment_board_id: { [Op.eq]: req.params.boardId },
