@@ -4,6 +4,7 @@ import BoardDetail from "./pages/BoardDetail";
 import Members from "./pages/Members";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import MyPage from "./pages/MyPage";
 import "./css/index.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -17,7 +18,6 @@ import {
   helperAll,
   allUserData,
 } from "../src/store/testCounter";
-import axios from "axios";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -39,18 +39,6 @@ export default function App() {
   // members = 마이페이지
   // login = 로그인페이지
   // signup = 회원가입
-  // const login = () => {
-  //   axios({
-  //     method: "POST",
-  //     url: "http://localhost:8080/api/login",
-  //     data: {
-  //       user_id: id,
-  //       user_pw: pw,
-  //     },
-  //   }).then((result) => {
-  //     console.log(result);
-  //   });
-  // };
   return (
     <div>
       <Header />
@@ -64,6 +52,12 @@ export default function App() {
         <Route path="/members" element={<Members />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/mypage" element={<MyPage />}></Route>
+        {/* <Route path="/myImformation" element={<MyImformation />}></Route>
+                <Route path="/mywrite" element={<MyPage />}></Route>
+                <Route path="/myComment" element={<MyPage />}></Route>
+                <Route path="/withDraw" element={<MyPage />}></Route>
+                <Route path="/signOut" element={<MyPage />}></Route> */}
       </Routes>
     </div>
   );

@@ -1,29 +1,89 @@
 import '../css/Signup.scss';
 import axios from 'axios';
 import React, { useState } from 'react';
+import SocialLogin from '../components/SocialLogin';
 // /api/login
 const Signup = () => {
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
     const [userName, setUserName] = useState('');
     const [userType, setUserType] = useState('');
+    const [CheckId, setCheckId] = useState('');
+    const [CheckedId, setCheckedId] = useState(false);
+    const [CheckName, setCheckName] = useState(false);
     const SignupFunc = async (e) => {
         console.log('> userId : ', userId);
         console.log('> userPw : ', userPw);
         console.log('> userName : ', userName);
         console.log('> userType : ', userType);
-        e.preventDefault();
-        const res = await axios({
+        if (CheckedId === true && CheckName === true) {
+            console.log("=====")
+            const result = await axios({
+                method: 'post',
+                url: 'http://localhost:8080/api/register',
+                data: {
+                    user_id: userId,
+                    user_pw: userPw,
+                    user_name: userName,
+                    user_type: userType,
+                },
+            })
+            if (result.data === true) {
+                alert('회원가입 성공!')
+                window.location.href = '/';
+            } else {
+                alert("에러로 회원가입 실패")
+            }
+        } else {
+            alert('중복검사 하세요');
+        }
+    };
+    const CheckIdFunc = (e) => {
+        axios({
             method: 'post',
-            url: 'http://localhost:8080/api/register',
+            url: 'http://localhost:8080/api/checkId',
             data: {
-                user_id: userId,
-                user_pw: userPw,
-                user_name: userName,
-                user_type: userType,
+                user_id: CheckId,
             },
+        }).then((res) => {
+            // console.log(res);
+            // res.data ? alert('중복된 아이디입니다') : alert('가능한 아이디 입니다');
+            if (res.data) {
+                alert('중복된 아이디 입니다.');
+            } else {
+                alert('가능한 아이디 입니다.');
+                setCheckedId(true);
+            }
+            console.log(CheckedId);
+            // if (res.data === false) {
+            //     const element = document.getElementById('possibleId');
+            //     element.innerHTML = '<div>사용이 불가한 아이디 입니다<div>';
+
+            //     setUserId('');
+            // } else {
+            //     const element = document.getElementById('possibleId');
+            //     element.innerHTML = '<div>사용이 가능한 아이디 입니다<div>';
+            // }
         });
-        console.log('> res : ', res);
+    };
+
+    const CheckNameFunc = (e) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/api/checkName',
+            data: {
+                user_name: CheckName,
+            },
+        }).then((res) => {
+            console.log(res.data);
+            if (res.data == true) {
+                alert('중복된 닉네임 입니다.');
+            } else {
+                alert('가능한 닉네임 입니다.');
+                setCheckName(true);
+            }
+            // console.log(CheckedId);
+        });
     };
     return (
         <div className="signup-container">
@@ -31,10 +91,21 @@ const Signup = () => {
                 <h2>SIGNUP</h2>
                 <div>
                     <div className="field">
-                        <input type="text" id="id" value={userId} onChange={(e) => setUserId(e.target.value)} />
+                        <input
+                            type="text"
+                            id="id"
+                            value={userId}
+                            onChange={(e) => {
+                                setUserId(e.target.value);
+                                setCheckId(e.target.value);
+                            }}
+                        />
                         <label htmlFor="id" title="아이디" data-title="아이디"></label>
+                        <button onClick={CheckIdFunc}>중복확인</button>
+                        <div id="possibleId"></div>
                     </div>
-                    <div className="field">
+
+                    <div className="passwordField">
                         <input
                             type="password"
                             id="password"
@@ -44,8 +115,17 @@ const Signup = () => {
                         <label htmlFor="password" title="비밀번호" data-title="비밀번호"></label>
                     </div>
                     <div className="field">
-                        <input type="text" id="name" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                        <input
+                            type="text"
+                            id="name"
+                            value={userName}
+                            onChange={(e) => {
+                                setUserName(e.target.value);
+                            }}
+                        />
                         <label htmlFor="name" title="이름" data-title="이름"></label>
+                        <button onClick={CheckNameFunc}>중복확인</button>
+                        <div className="possibleName"></div>
                     </div>
                     <div className="select">
                         <input
@@ -72,9 +152,14 @@ const Signup = () => {
                         <p>이미 계정이 있으십니까?</p>
                         <a href="http://localhost:3000/login">로그인하기</a>
                     </div>
+                    <div className="hr-sect">또는</div>
+                    <button className="kakaoSignup">
+                        <SocialLogin />
+                    </button>
                 </div>
             </div>
         </div>
     );
 };
+
 export default Signup;

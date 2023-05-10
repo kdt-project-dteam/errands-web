@@ -28,6 +28,7 @@ export default function Main() {
   const allUserData = useSelector((state) => {
     return state.someReducer.allUserData;
   });
+  console.log(allUserData);
   // 구인구직 게시판 상태 [offer : 구인] , [search : 구직]
   const [boardState, setBoardState] = useState("offer");
   return (
