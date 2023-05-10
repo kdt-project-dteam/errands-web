@@ -13,7 +13,7 @@ router.post("/login", user_info.userLogin);
 
 router.post("/register", user_info.userRegister);
 
-router.post("/user/checkId", user_info.checkUserId);
+router.post("/checkId", user_info.checkUserId);
 
 router.post("/checkName", user_info.checkUserName);
 
@@ -34,16 +34,6 @@ router.get("/user/:user", user_info.read_detail_user);
 
 // 추천누르기
 router.post("/user/:user/userLike", user_info.userLike);
-
-router.post("/checkId", user_info.checkUserId);
-
-router.post("/checkName", user_info.checkUserName);
-
-// ======= 유저목록 상위 5 ========
-router.get("/mainUser", user_info.read_few_user);
-
-// ======= 유저목록 =======
-router.get("/user", user_info.read_user);
 
 // 유저 작성 wanter & helper
 router.post("/user/wanter", user_info.user_wanter_board);
