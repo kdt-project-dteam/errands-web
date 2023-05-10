@@ -13,7 +13,7 @@ router.post("/login", user_info.userLogin);
 
 router.post("/register", user_info.userRegister);
 
-router.post("/user/checkId", user_info.checkUserId);
+router.post("/checkId", user_info.checkUserId);
 
 router.post("/checkName", user_info.checkUserName);
 
