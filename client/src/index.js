@@ -12,7 +12,6 @@ import {
   helperBoardSetter,
   wanterBoardSetter,
 } from "./store/testCounter";
-import App from "./App";
 
 const reducerSlice = createSlice({
   name: "store",

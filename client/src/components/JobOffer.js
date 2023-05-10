@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function JobOffer({ data }) {
+  console.log(data);
   // const [currentPage, setCurrentPage] = useState(1);
   // const [itemsPerPage, setItemsPerPage] = useState(10);
 
@@ -34,6 +35,7 @@ export default function JobOffer({ data }) {
 
   // const pages = [];
   // for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
+  //   console.log(i)
   //   pages.push(i);
   // }
 
