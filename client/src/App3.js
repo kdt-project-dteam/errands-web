@@ -5,14 +5,14 @@ import "./css/index.scss";
 import "./css/board.scss";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import WritePage from "./pages/WritePage";
+import OfferWritePage from "./pages/OfferWritePage";
 import SearchPage from "./pages/SearchPage";
 export default function App3() {
   return (
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<Board />}></Route>
+        <Route path="/" element={<OfferWritePage />}></Route>
       </Routes>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
 function SearchAddress(props) {
@@ -18,6 +18,7 @@ function SearchAddress(props) {
     }
 
     console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+    props.handleClose(); // 모달 닫기 (show state를 false로 변경)
   };
 
   const handleSearch = (data) => {

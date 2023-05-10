@@ -9,6 +9,9 @@ export default function ModalAddress() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [getAddress, setGetAddress] = useState("");
+
+  const [addressData, setAddressData] = useState();
   return (
     <>
       <Button variant="dark" onClick={handleShow}>
@@ -25,7 +28,7 @@ export default function ModalAddress() {
           <Modal.Title>주소 입력</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SearchAddress />
+          <SearchAddress handleClose={handleClose} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="dark">입력</Button>
