@@ -27,6 +27,7 @@ exports.userLogin = async (req, res) => {
 exports.checkUserId = async (req, res) => {
   try {
     const result = await Errands.User_info.findOne({
+      attributes: ["user_id"],
       where: { user_id: { [Op.eq]: req.body.user_id } },
     });
     console.log(result);
@@ -44,13 +45,15 @@ exports.checkUserId = async (req, res) => {
 exports.checkUserName = async (req, res) => {
   try {
     const result = await Errands.User_info.findOne({
-      // attributes: ['user_name'],
-      where: { user_name: { [Op.eq]: req.body.user_name } },
+      attributes: ["user_name"],
+      where: { user_name: req.body.user_name },
     });
     // result
     if (!result) {
+      console.log("없");
       return res.send(true);
     } else {
+      console.log("있");
       return res.send(false);
     }
   } catch (err) {

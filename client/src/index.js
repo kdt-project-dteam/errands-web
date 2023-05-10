@@ -13,6 +13,7 @@ import {
   helperBoardSetter,
   wanterBoardSetter,
 } from "./store/testCounter";
+import App from "./App";
 
 const reducerSlice = createSlice({
   name: "store",
@@ -87,9 +88,9 @@ export const newStore = createSlice({
     userLogout: function (state, action) {
       state.isLogin = action.payload.isLogin;
       state.userInfo = null;
-    }
-  }
-})
+    },
+  },
+});
 
 export const store = configureStore(
   {
@@ -105,7 +106,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App3 />
+      <App />
     </BrowserRouter>
   </Provider>
 );
