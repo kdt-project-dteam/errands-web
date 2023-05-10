@@ -141,3 +141,37 @@ exports.hit_wanter_board = async (req, res) => {
     res.send(err);
   }
 };
+
+// 검색
+exports.search_wanter_board = async (req, res) => {
+  try {
+    const { boardType, optionValue } = req.params;
+    if (optionValue == "wanter-board-writer") {
+      const result = await Errands.Wanter_board.findAll({
+        where: {
+          wanter_board_writer: { [Op.like]: `%${req.body.search}%` },
+        },
+      });
+      console.log("====");
+      console.log(req.params);
+      console.log(result);
+      res.send(result);
+    } else if (optionValue === "wanter_board_title") {
+      const result = await Errands.Wanter_board.findAll({
+        where: {
+          wanter_board_title: { [Op.like]: `%${req.body.search}%` },
+        },
+      });
+      res.send(result);
+    } else if (optionValue === "wanter_board_place") {
+      const result = await Errands.Wanter_board.findAll({
+        where: {
+          wanter_board_place: { [Op.like]: `%${req.body.search}%` },
+        },
+      });
+      res.send(result);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};

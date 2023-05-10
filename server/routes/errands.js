@@ -120,10 +120,7 @@ router.patch("/notice/:boardId", notice.update_notice);
 
 router.delete("/notice/:boardId", notice.delete_notice);
 
-// search
-// router.get(
-//   "/search/:boardType/:search/:optionValue",
-//   user_info.search_wanter_board
-// );
+// search;
+router.get("/search/:boardType/:optionValue", wanter_board.search_wanter_board);
 
 module.exports = router;
