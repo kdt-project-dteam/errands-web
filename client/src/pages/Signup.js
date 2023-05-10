@@ -46,24 +46,17 @@ const Signup = () => {
                 user_id: CheckId,
             },
         }).then((res) => {
-            // console.log(res);
-            // res.data ? alert('중복된 아이디입니다') : alert('가능한 아이디 입니다');
-            if (res.data) {
-                alert('중복된 아이디 입니다.');
+            if (res.data === false) {
+                const element = document.getElementById('possibleId');
+                element.innerHTML = '<div>중복된 아이디 입니다.<div>';
+                setCheckedId(false);
+
+                setUserId('');
             } else {
-                alert('가능한 아이디 입니다.');
+                const element = document.getElementById('possibleId');
+                element.innerHTML = '<div>사용이 가능한 아이디 입니다.<div>';
                 setCheckedId(true);
             }
-            console.log(CheckedId);
-            // if (res.data === false) {
-            //     const element = document.getElementById('possibleId');
-            //     element.innerHTML = '<div>사용이 불가한 아이디 입니다<div>';
-
-            //     setUserId('');
-            // } else {
-            //     const element = document.getElementById('possibleId');
-            //     element.innerHTML = '<div>사용이 가능한 아이디 입니다<div>';
-            // }
         });
     };
 
@@ -72,19 +65,29 @@ const Signup = () => {
             method: 'post',
             url: 'http://localhost:8080/api/checkName',
             data: {
-                user_name: CheckName,
+                user_name: userName,
             },
         }).then((res) => {
             console.log(res.data);
-            if (res.data == true) {
-                alert('중복된 닉네임 입니다.');
+            if (res.data === true) {
+                const element = document.querySelector('#possibleName');
+                element.innerHTML = '<div>사용이 불가능한 닉네임 입니다<div>';
+                setCheckName(false)
+
+                setUserName('');
             } else {
-                alert('가능한 닉네임 입니다.');
-                setCheckName(true);
+                const element = document.querySelector('#possibleName');
+                element.innerHTML = '<div>사용이 가능한 닉네임 입니다<div>';
+                setCheckName(true)
             }
-            // console.log(CheckedId);
         });
     };
+
+    const getKakaoLoginAccess = (kakaoLoginData) => {
+        setUserId(kakaoLoginData.profile.kakao_account.email.split('@')[0]);
+        setUserName(kakaoLoginData.profile.kakao_account.profile.nickname);
+    }
+
     return (
         <div className="signup-container">
             <div className="signup-contents">
@@ -125,7 +128,7 @@ const Signup = () => {
                         />
                         <label htmlFor="name" title="이름" data-title="이름"></label>
                         <button onClick={CheckNameFunc}>중복확인</button>
-                        <div className="possibleName"></div>
+                        <div id="possibleName"></div>
                     </div>
                     <div className="select">
                         <input
@@ -154,7 +157,7 @@ const Signup = () => {
                     </div>
                     <div className="hr-sect">또는</div>
                     <button className="kakaoSignup">
-                        <SocialLogin />
+                        <SocialLogin getKakaoLoginAccess={getKakaoLoginAccess} />
                     </button>
                 </div>
             </div>

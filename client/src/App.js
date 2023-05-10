@@ -44,11 +44,11 @@ export default function App() {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route path="/mypage" element={<MyPage />}></Route>
-                {/* <Route path="/myImformation" element={<MyImformation />}></Route>
+                {/* <Route path="/myImformation" element={<MyImformation />}></Route> */}
                 <Route path="/mywrite" element={<MyPage />}></Route>
                 <Route path="/myComment" element={<MyPage />}></Route>
                 <Route path="/withDraw" element={<MyPage />}></Route>
-                <Route path="/signOut" element={<MyPage />}></Route> */}
+                <Route path="/signOut" element={<MyPage />}></Route>
             </Routes>
         </div>
     );

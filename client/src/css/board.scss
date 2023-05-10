@@ -22,11 +22,11 @@
   margin: 10px;
 
   @include mobile {
-      grid-template-columns: 1fr 100fr 1fr;
-      margin: 5px;
-      font-size: 13px;
-      margin-left: 0;
-      margin-right: 0;
+    grid-template-columns: 1fr 100fr 1fr;
+    margin: 5px;
+    font-size: 13px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .left {
