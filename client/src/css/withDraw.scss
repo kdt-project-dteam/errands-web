@@ -1,0 +1,99 @@
+.Header {
+    display: flex;
+    width: 50%;
+    margin: 1rem auto;
+
+    div {
+        margin: 0 auto;
+        border: 1px solid black;
+        padding: 2px 2.7rem;
+    }
+}
+.body {
+    background-color: white;
+    width: 35vw;
+    height: 60vh;
+    margin: 0 auto;
+    border-radius: 5%;
+    text-align: center;
+    .memberImfor {
+        margin: 3rem 0 0.5rem;
+    }
+
+    .Signout {
+        color: red;
+        margin: 0.5rem;
+    }
+
+    .Content {
+        margin: 0.5rem;
+    }
+    .SignoutPlay {
+        color: red;
+    }
+    div {
+        margin: 0.5rem;
+    }
+
+    form {
+        margin: 1rem 1.2rem;
+        .label-before {
+            line-height: 20px;
+            font-size: 12px;
+            top: -10px;
+            background: #fff;
+            padding: 0 6px;
+            left: 9px;
+            margin-left: 25%;
+        }
+        .field {
+            position: relative;
+            margin: 15px 0;
+            label::before {
+                content: attr(title);
+                position: absolute;
+                top: 0;
+                left: 15px;
+                line-height: 40px;
+                font-size: 14px;
+                color: #777;
+                transition: 300ms all;
+            }
+            input {
+                width: 45%;
+                line-height: 35px;
+                padding: 0 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+                color: #222;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                &:focus {
+                    outline: 0;
+                    border-color: blue;
+                }
+                &:valid + label::before {
+                    @extend .label-before;
+                    content: attr(data-title);
+                }
+                &:focus + label::before {
+                    @extend .label-before;
+                    color: blue;
+                }
+            }
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            margin-top: 1rem;
+            width: 20%;
+            height: 2rem;
+
+            &:hover,
+            &:active {
+                opacity: 0.8;
+            }
+        }
+    }
+}
