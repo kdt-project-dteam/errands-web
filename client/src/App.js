@@ -8,6 +8,11 @@ import MyPage from './pages/MyPage';
 import './css/index.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MyImformation from './pages/MyImformation';
+import MyComment from './pages/MyComment';
+import MyWrite from './pages/MyWrite';
+import SignOut from './pages/SignOut';
+import WithDraw from './pages/WithDraw';
 import Board from './pages/Board';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -45,11 +50,11 @@ export default function App() {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route path="/mypage" element={<MyPage />}></Route>
-                {/* <Route path="/myImformation" element={<MyImformation />}></Route>
-                <Route path="/mywrite" element={<MyPage />}></Route>
-                <Route path="/myComment" element={<MyPage />}></Route>
-                <Route path="/withDraw" element={<MyPage />}></Route>
-                <Route path="/signOut" element={<MyPage />}></Route> */}
+                <Route path="/myImformation" element={<MyImformation />}></Route>
+                <Route path="/mywrite" element={<MyWrite />}></Route>
+                <Route path="/myComment" element={<MyComment />}></Route>
+                <Route path="/withDraw" element={<WithDraw />}></Route>
+                <Route path="/signOut" element={<SignOut />}></Route>
             </Routes>
         </div>
     );

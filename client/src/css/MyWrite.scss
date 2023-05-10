@@ -1,0 +1,27 @@
+.myWrite {
+    margin-top: 1.5rem;
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        tr {
+            &:hover,
+            &:active {
+                background-color: #e4dcdc;
+            }
+        }
+        th,
+        td {
+            border-bottom: 1px solid black;
+            padding: 1rem;
+        }
+        .title {
+            padding: 2rem 18rem;
+        }
+        .date {
+            padding: 2rem 1.5rem;
+        }
+        .number {
+            padding: 1rem;
+        }
+    }
+}

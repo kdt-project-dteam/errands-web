@@ -1,0 +1,114 @@
+.Header {
+    display: flex;
+    width: 50%;
+    margin: 1rem auto;
+
+    div {
+        margin: 0 auto;
+        border: 1px solid black;
+        padding: 2px 2.7rem;
+    }
+}
+.body {
+    background-color: white;
+    width: 35vw;
+    height: 60vh;
+    margin: 0 auto;
+    border-radius: 5%;
+    text-align: center;
+    .memberImfor {
+        margin: 3rem 0 0.5rem;
+        background-color: #fca311;
+    }
+    .imfor {
+        text-align: center;
+    }
+    p {
+        margin-top: 0.5rem;
+    }
+    .change {
+        width: 100%;
+        margin: 1rem auto;
+        background-color: #fca311;
+    }
+
+    div {
+        margin: 0.5rem;
+    }
+
+    form {
+        margin: 1rem 1.2rem;
+        .label-before {
+            line-height: 20px;
+            font-size: 12px;
+            top: -10px;
+            background: #fff;
+            padding: 0 6px;
+            left: 9px;
+            margin-left: 25%;
+        }
+        .field {
+            position: relative;
+            margin: 15px 0;
+            label::before {
+                content: attr(title);
+                position: absolute;
+                top: 0;
+                left: 15px;
+                line-height: 40px;
+                font-size: 14px;
+                color: #777;
+                transition: 300ms all;
+            }
+        }
+        .select {
+            padding: 15px 30px;
+            text-align: center;
+            input {
+                width: 200%;
+                line-height: 40px;
+                padding: 0 15px;
+                box-sizing: border-box;
+                font-size: 14px;
+                color: #222;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-right: 27%;
+            }
+            input[type='radio'] {
+                display: none;
+            }
+            input[type='radio'] + label {
+                display: inline-block;
+                cursor: pointer;
+                height: 24px;
+                width: 90px;
+                border: 1px solid #333;
+                line-height: 24px;
+                text-align: center;
+                font-weight: bold;
+                font-size: 13px;
+            }
+            input[type='radio'] + label {
+                background-color: #fff;
+                color: #333;
+            }
+            input[type='radio']:checked + label {
+                background-color: #333;
+                color: #fff;
+            }
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            width: 20%;
+            height: 2rem;
+
+            &:hover,
+            &:active {
+                opacity: 0.8;
+            }
+        }
+    }
+}
