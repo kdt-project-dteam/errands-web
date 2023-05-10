@@ -1,108 +1,129 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controller/Cerrands");
+const user_info = require("../controller/Cuser_info");
+const wanter_board = require("../controller/Cwanter_board");
+const wanter_comment = require("../controller/Cwanter_comment");
+const helper_board = require("../controller/Chelper_board");
+const helper_comment = require("../controller/Chelper_comment");
+const notice = require("../controller/Cnotice");
 
 // /api/xxxx
 // ======= User sign =======
-router.post("/login", controller.userLogin);
+router.post("/login", user_info.userLogin);
 
-router.post("/register", controller.userRegister);
+router.post("/register", user_info.userRegister);
 
-router.post("/checkId", controller.checkUserId);
+router.post("/checkId", user_info.checkUserId);
 
-router.post("/checkName", controller.checkUserName);
+router.post("/checkName", user_info.checkUserName);
 
-router.post("/logout", controller.userLogout);
+router.post("/logout", user_info.userLogout);
+
+router.delete("/user/:userId", user_info.userWithdrawal);
+
+router.patch("/user/:userId", user_info.userUpdate);
 
 // 전체 유저 확인하기
-router.get("/user", controller.read_user);
+router.get("/user", user_info.read_user);
 
 // 추천수 상위 5명 유저
-router.get("/mainUser", controller.read_few_user);
+router.get("/mainUser", user_info.read_few_user);
 
 // 개인별 확인하기 params
-router.get("/user/:user", controller.read_detail_user);
+router.get("/user/:user", user_info.read_detail_user);
 
 // 추천누르기
-router.post("/user/:user/userLike", controller.userLike);
+router.post("/user/:user/userLike", user_info.userLike);
 
-router.post("/checkId", controller.checkUserId);
+router.post("/checkId", user_info.checkUserId);
 
-router.post("/checkName", controller.checkUserName);
+router.post("/checkName", user_info.checkUserName);
 
 // ======= 유저목록 상위 5 ========
-router.get("/mainUser", controller.read_few_user);
+router.get("/mainUser", user_info.read_few_user);
 
 // ======= 유저목록 =======
-router.get("/user", controller.read_user);
+router.get("/user", user_info.read_user);
 
 // ======= Wanter_board =======
-router.get("/mainWanter", controller.read_few_wanter_board);
+router.get("/mainWanter", wanter_board.read_few_wanter_board);
 
-router.get("/wanter", controller.read_wanter_board);
+router.get("/wanter", wanter_board.read_wanter_board);
 
-// router.get("/wanter/:boardId", controller.read_one_wanter_board);
+router.get("/wanter/:boardId", wanter_board.read_one_wanter_board);
 
-router.post("/wanter", controller.create_wanter_board);
+router.post("/wanter", wanter_board.create_wanter_board);
 
-router.patch("/wanter/:boardId", controller.update_wanter_board);
+router.patch("/wanter/:boardId", wanter_board.update_wanter_board);
 
-router.delete("/wanter/:boardId", controller.delete_wanter_board);
+router.delete("/wanter/:boardId", wanter_board.delete_wanter_board);
+
+router.post("/wanter/:boardId/hit", wanter_board.hit_wanter_board);
+
+// router.get("/search/:search/:optioValue", wanter_board.search_wanter_board);
 
 // ======= Wanter_comment =======
-router.get("/wanter/:boardId/comment", controller.read_wanter_comment);
+router.get("/wanter/:boardId/comment", wanter_comment.read_wanter_comment);
 
-router.post("/wanter/:boardId/comment", controller.create_wanter_comment);
+router.post("/wanter/:boardId/comment", wanter_comment.create_wanter_comment);
 
 router.patch(
   "/wanter/:boardId/comment/:commentId",
-  controller.update_wanter_comment
+  wanter_comment.update_wanter_comment
 );
 
 router.delete(
   "/wanter/:boardId/comment/:commentId",
-  controller.delete_wanter_comment
+  wanter_comment.delete_wanter_comment
 );
 
 // ======= Helper_board =======
-router.get("/mainHelper", controller.read_few_helper_board);
+router.get("/mainHelper", helper_board.read_few_helper_board);
 
-router.get("/helper", controller.read_helper_board);
+router.get("/helper", helper_board.read_helper_board);
 
-router.get("/helper/:boardId", controller.read_one_helper_board);
+router.get("/helper/:boardId", helper_board.read_one_helper_board);
 
-router.post("/helper", controller.create_helper_board);
+router.post("/helper", helper_board.create_helper_board);
 
-router.patch("/helper/:boardId", controller.update_helper_board);
+router.patch("/helper/:boardId", helper_board.update_helper_board);
 
-router.delete("/helper/:boardId", controller.delete_helper_board);
+router.delete("/helper/:boardId", helper_board.delete_helper_board);
+
+router.post("/helper/:boardId/hit", helper_board.hit_helper_board);
 
 // ======= Helper_comment =======
-router.get("/helper/:boardId/comment", controller.read_helper_comment);
+router.get("/helper/:boardId/comment", helper_comment.read_helper_comment);
 
-router.post("/helper/:boardId/comment", controller.create_helper_comment);
+router.post("/helper/:boardId/comment", helper_comment.create_helper_comment);
 
 router.patch(
   "/helper/:boardId/comment/:commentId",
-  controller.update_helper_comment
+  helper_comment.update_helper_comment
 );
 
 router.delete(
   "/helper/:boardId/comment/:commentId",
-  controller.delete_helper_comment
+  helper_comment.delete_helper_comment
 );
 
 // ======= Notice Board =======
-router.get("/mainNotice", controller.read_few_notice);
+router.get("/mainNotice", notice.read_few_notice);
 
-router.get("/notice", controller.read_notice);
+router.get("/notice", notice.read_notice);
 
-router.get("/notice/:boardId", controller.read_one_notice);
+router.get("/notice/:boardId", notice.read_one_notice);
 
-router.post("/notice", controller.create_notice);
+router.post("/notice", notice.create_notice);
 
-router.patch("/notice/:boardId", controller.update_notice);
+router.patch("/notice/:boardId", notice.update_notice);
 
-router.delete("/notice/:boardId", controller.delete_notice);
+router.delete("/notice/:boardId", notice.delete_notice);
+
+// search
+// router.get(
+//   "/search/:boardType/:search/:optionValue",
+//   user_info.search_wanter_board
+// );
 
 module.exports = router;

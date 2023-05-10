@@ -32,13 +32,6 @@ export default function App() {
         // user all
         dispatch(allUserData());
     }, []);
-    // main = 메인페이지
-    // board = 게시글
-    // boardDetail = 게시글 상세보기
-    // members = 마이페이지
-    // login = 로그인페이지
-    // signup = 회원가입
-
     return (
         <div>
             <Header />
