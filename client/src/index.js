@@ -86,9 +86,9 @@ export const newStore = createSlice({
     userLogout: function (state, action) {
       state.isLogin = action.payload.isLogin;
       state.userInfo = null;
-    }
-  }
-})
+    },
+  },
+});
 
 export const store = configureStore(
   {
