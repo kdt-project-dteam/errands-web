@@ -51,10 +51,10 @@ exports.checkUserName = async (req, res) => {
     // result
     if (!result) {
       console.log("없");
-      return res.send(true);
+      return res.send(false);
     } else {
       console.log("있");
-      return res.send(false);
+      return res.send(true);
     }
   } catch (err) {
     res.send(err);
