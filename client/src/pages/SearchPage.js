@@ -1,11 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
 function SearchAddress(props) {
   const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
-    // console.log(data);
+    console.log(data);
     if (data.addressType === "R") {
       if (data.bname !== "") {
         extraAddress += data.bname;
@@ -23,6 +24,8 @@ function SearchAddress(props) {
   const handleSearch = (data) => {
     // console.log(data);
   };
+
+  const [getAddress, setGetAddress] = useState({});
 
   return (
     <DaumPostcode

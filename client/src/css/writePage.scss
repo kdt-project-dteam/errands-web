@@ -19,6 +19,11 @@
       .form-userid {
         display: flex;
         margin: 2rem;
+        align-items: center;
+
+        .write_userid {
+          margin-left: 2rem;
+        }
       }
 
       .form-title {
@@ -39,7 +44,7 @@
       }
 
       .form-textarea {
-        width: 350px;
+        width: 500px;
         margin-left: 2rem;
         height: 200px;
         border: 2px solid black;
@@ -57,7 +62,7 @@
 
       .form-address {
         display: flex;
-        margin: 2rem;
+        margin-left: 2rem;
       }
 
       .submit-form {
@@ -66,9 +71,23 @@
         flex-direction: row-reverse;
       }
 
+      .page-submit {
+        border: none;
+      }
+
       .form-address-btn {
         border: none;
         margin-left: 1.5rem;
+      }
+
+      .detail_address {
+        margin-left: 2rem;
+        display: flex;
+      }
+
+      .detaill_address_text {
+        margin-left: 10px;
+        width: 400px;
       }
     }
   }
