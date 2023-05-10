@@ -5,6 +5,7 @@ import Members from './pages/Members';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import MyPage from './pages/MyPage';
+import FirstPage from './pages/FirstPage';
 import './css/index.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -36,7 +37,8 @@ export default function App() {
         <div>
             <Header />
             <Routes>
-                <Route path="/" element={<Main />}></Route>
+                <Route path="/" element={<FirstPage />}></Route>
+                <Route path="/main" element={<Main />}></Route>
                 <Route path="/board" element={<Board />}></Route>
                 <Route path="/board/boardDetail/:wanterHelper/:boardId" element={<BoardDetail />}></Route>
                 <Route path="/members" element={<Members />}></Route>
