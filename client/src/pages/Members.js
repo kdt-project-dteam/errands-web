@@ -4,6 +4,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from 'react-redux';
 import MyVerticallyCenteredModal from '../components/MyVerticallyCenteredModal';
+import Loading from '../components/Loading';
 
 export default function Members() {
     const allUserData = useSelector((state) => {
@@ -29,7 +30,7 @@ export default function Members() {
                             </div>
                         </div>
                     )
-                }) : "null"}
+                }) : <Loading />}
             </div>
             <MyVerticallyCenteredModal show={modalShow} allUserData={allUserData} onHide={() => { setModalShow(false) }} />
         </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { newStore } from '../index.js';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // /api/login
 const Login = () => {
@@ -30,11 +31,21 @@ const Login = () => {
     });
     console.log(data);
     if (data.data.msg === true) {
-      alert("로그인 성공");
+      Swal.fire({
+        icon: 'success',
+        title: '회원가입 성공!',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(window.location.href = '/');
       localStorage.setItem('userName', data.data.user_info.user_name);
-      window.location.href = '/';
+      localStorage.setItem('userId', data.data.user_info.id);
     } else {
-      alert('ID,PW 불일치..');
+      Swal.fire({
+        icon: 'error',
+        title: 'ID 혹은 PW가 일치하지 않습니다.',
+        showConfirmButton: false,
+        timer: 1500
+      })
       setUserId('');
       setUserPw('');
     }

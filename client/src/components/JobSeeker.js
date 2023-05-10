@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from './Loading';
 
 export default function JobOffer({ data }) {
     // 40 / 10 = 4 반복문 1,2,3,4 버튼 -> 버튼 onclick 했을때 1번 보여주고 2번보여주고
@@ -123,7 +124,7 @@ export default function JobOffer({ data }) {
                             <td>{currentItems.helper_board_hit}</td>
                         </tr>
                     )
-                }) : "null"}
+                }) : <Loading />}
             </tbody>
         </table>
         <ul className='pagination'>

@@ -8,30 +8,39 @@
 
 .header {
   width: 100vw;
-  height: 50px;
+  height: 80px;
   background-color: $main-color;
   text-align: center;
-  line-height: 50px;
+  line-height: 80px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  .header-logo {
-    font-size: 1.2rem;
-    padding-left: 2rem;
-  }
-  .header-link {
-    @include mobile {
+  color: #fff;
+  .w-80 {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    .header-logo {
+      font-size: 1.4rem;
+      padding-left: 2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .header-link {
+      padding-left: 30px;
+      @include mobile {
+        display: none;
+      }
+      a {
+        margin: 10px;
+      }
+    }
+    .header-nav {
+      @include mobile {
+        display: block;
+      }
       display: none;
     }
-    a {
-      margin: 10px;
-    }
-  }
-  .header-nav {
-    @include mobile {
-      display: block;
-    }
-    display: none;
   }
 }
 
