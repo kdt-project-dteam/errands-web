@@ -25,7 +25,7 @@ const Wanter_board = function (Sequelize, DataTypes) {
         allowNull: false,
       },
       wanter_board_dead_line: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(50),
         allowNull: true,
       },
       wanter_board_date: {

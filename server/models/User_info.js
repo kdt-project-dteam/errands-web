@@ -7,11 +7,11 @@ const User_info = function (Sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        unique: true,
       },
       user_id: {
         type: DataTypes.STRING(20),
         allowNull: false,
+        unique: true,
       },
       user_pw: {
         type: DataTypes.STRING(20),
