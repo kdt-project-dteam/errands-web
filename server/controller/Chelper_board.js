@@ -78,7 +78,7 @@ exports.update_helper_board = async (req, res) => {
       ) {
         req.send("작성자만 수정 가능");
       } else {
-        const [result] = Errands.Helper_board.update(
+        const [result] = await Errands.Helper_board.update(
           {
             helper_board_title: req.body.helper_board_title,
             helper_board_content: req.body.helper_board_content,
@@ -115,7 +115,7 @@ exports.delete_helper_board = async (req, res) => {
       ) {
         res.send("작성자만 삭제 가능");
       } else {
-        const result = Errands.Helper_board.destroy({
+        const result = await Errands.Helper_board.destroy({
           where: {
             helper_board_id: { [Op.eq]: req.params.boardId },
           },

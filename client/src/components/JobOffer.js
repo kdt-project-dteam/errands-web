@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loading from './Loading';
 
 export default function JobOffer({ data }) {
   console.log(data);
@@ -90,7 +91,7 @@ export default function JobOffer({ data }) {
                 </tr>
               );
             })
-            : "null"}
+            : <Loading />}
         </tbody>
       </table>
       {/* <ul className="pagination">

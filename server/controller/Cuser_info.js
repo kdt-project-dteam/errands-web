@@ -69,7 +69,7 @@ exports.userRegister = async (req, res) => {
     });
     console.log(result);
     if (!result) {
-      Errands.User_info.create({
+      await Errands.User_info.create({
         user_id: req.body.user_id,
         user_pw: req.body.user_pw,
         user_name: req.body.user_name,
@@ -155,12 +155,15 @@ exports.userWithdrawal = async (req, res) => {
   try {
     const auth = await Errands.User_info.findOne({
       attributes: ["user_name"],
-      where: { user_id: { [Op.eq]: req.params.commentId } },
+      where: { id: { [Op.eq]: req.params.userId } },
     });
+    console.log(req.params);
+    console.log(auth);
     if (auth.dataValues.user_name == req.session.user_info.user_name) {
       const result = await Errands.User_info.destroy({
-        where: { user_id: { [Op.eq]: req.params.userId } },
+        where: { id: { [Op.eq]: req.params.userId } },
       });
+      console.log("===============");
       console.log(result);
       if (!result) {
         res.send(false);
@@ -188,20 +191,44 @@ exports.userUpdate = async (req, res) => {
         user_name: req.body.user_name,
         user_type: req.body.user_type,
       },
-      { where: { user_id: { [Op.eq]: req.params.userId } } }
+      { where: { id: { [Op.eq]: req.params.userId } } }
     );
     if (result === 0) {
-      res.send(false);
+      console.log(result);
+      return res.send(false);
     } else {
-      const update_session = Errands.User_info.findOne({
-        where: {
-          user_id: req.session.user_id,
-          user_pw: req.session.user_pw,
-        },
-      });
-      req.session.user_info = update_session.dataValues;
+      //   const update_session = await Errands.User_info.findOne({
+      //     where: {
+      //       user_id: req.session.user_id,
+      //       user_pw: req.session.user_pw,
+      //     },
+      //   });
+      //   req.session.user_info = update_session.dataValues;
       res.send(true);
     }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+exports.user_wanter_board = async (req, res) => {
+  try {
+    const result = await Errands.Wanter_board.findAll({
+      where: { wanter_board_writer: { [Op.eq]: req.body.user_name } },
+    });
+    res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+exports.user_helper_board = async (req, res) => {
+  try {
+    const result = await Errands.Helper_board.findAll({
+      where: { helper_board_writer: { [Op.eq]: req.body.user_name } },
+    });
+    console.log(result);
+    res.send(result);
   } catch (err) {
     res.send(err);
   }

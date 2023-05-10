@@ -45,11 +45,11 @@ export default function App() {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route path="/mypage" element={<MyPage />}></Route>
-                <Route path="/myImformation" element={<MyImformation />}></Route>
-                <Route path="/mywrite" element={<MyWrite />}></Route>
-                <Route path="/myComment" element={<MyComment />}></Route>
-                <Route path="/withDraw" element={<WithDraw />}></Route>
-                <Route path="/signOut" element={<SignOut />}></Route>
+                <Route path="/mypage/myImformation" element={<MyImformation />}></Route>
+                <Route path="/mypage/myWrite" element={<MyWrite />}></Route>
+                <Route path="/mypage/myComment" element={<MyComment />}></Route>
+                <Route path="/mypage/withDraw" element={<WithDraw />}></Route>
+                <Route path="/mypage/signOut" element={<SignOut />}></Route>
             </Routes>
         </div>
     );
