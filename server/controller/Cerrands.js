@@ -48,7 +48,6 @@ exports.checkUserName = async (req, res) => {
       // attributes: ['user_name'],
       where: { user_name: { [Op.eq]: req.body.user_name } },
     });
-    console.log("result >>>>>", result)
     // result
     if (!result) {
       return res.send(false);
