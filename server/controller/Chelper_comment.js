@@ -48,7 +48,7 @@ exports.update_helper_comment = async (req, res) => {
       ) {
         res.send("작성자만 댓글 수정 가능");
       } else {
-        const [result] = Errands.Helper_comment.update(
+        const [result] = await Errands.Helper_comment.update(
           {
             helper_comment_content: req.body.helper_comment_content,
           },
@@ -87,7 +87,7 @@ exports.delete_helper_comment = async (req, res) => {
       ) {
         res.send("작성자만 ㄱㄴ");
       } else {
-        const result = Errands.Helper_comment.destroy({
+        const result = await Errands.Helper_comment.destroy({
           where: {
             helper_comment_id: { [Op.eq]: req.params.commentId },
             helper_comment_board_id: { [Op.eq]: req.params.boardId },
