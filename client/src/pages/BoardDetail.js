@@ -7,6 +7,8 @@ import axios from "axios";
 import moment from "moment";
 import "moment/locale/ko";
 import Loading from '../components/Loading';
+import Swal from 'sweetalert2';
+import KakaoMap from '../components/KakaoMap';
 
 export default function BoardDetail() {
     const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -97,9 +99,19 @@ export default function BoardDetail() {
             withCredentials: true,
         });
         if (result.data === true) {
-            alert('삭제되었습니다.');
+            Swal.fire({
+                icon: 'success',
+                title: '삭제 완료',
+                showConfirmButton: false,
+                timer: 1500
+            })
         } else {
-            alert(result.data);
+            Swal.fire({
+                icon: 'error',
+                title: `${result.data}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
         getCommentData();
     };
@@ -129,6 +141,7 @@ export default function BoardDetail() {
                             </div>
                         </section>
                         <div className="paragraph_ext">
+                            <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
                             <button className="likes_btn">
                                 <AiOutlineHeart />
                             </button>

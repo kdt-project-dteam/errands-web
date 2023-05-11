@@ -48,24 +48,20 @@ export default function Board() {
     setOptionValue(e.target.value);
   };
 
-  return (
-    <>
-      <div className="board_page">
-        <h1 className="board_page left"></h1>
-        <div className="board_page center">
-          <span className="option">
-            {menuArr.map((menu) => {
-              return (
-                <button
-                  key={menu.id}
-                  className="option item card"
-                  onClick={() => setMenu(menu.id)}
-                >
-                  {menu.name}
-                </button>
-              );
-            })}
-            {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
+    return (<>
+        <div className="board_page">
+            <h1 className="board_page left"></h1>
+            <div className="board_page center card">
+                <h1>
+                    구인/구직 게시판
+                </h1>
+                <h3>각종 심부름을 맡기거나 해결해주세요!</h3>
+                <span className="option">
+
+                    {menuArr.map(menu => {
+                        return <button key={menu.id} className="option item card" onClick={() => setMenu(menu.id)}>{menu.name}</button>
+                    })}
+                    {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>
           <div className="category card">

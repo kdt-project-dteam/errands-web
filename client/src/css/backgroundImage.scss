@@ -1,42 +1,202 @@
-.backgroundImage {
-    position: relative;
+@import "./_utils.scss";
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 0.6;
+    transform: translateZ(20);
+  }
+}
+// .container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100vw;
+//   height: 100vh;
+//   font-size: clamp(2rem, 2.8vw, 5rem);
+//   font-family: Raleway;
+//   font-weight: bold;
+// }
 
-    img {
-        width: 100%;
-        opacity: 0.6;
-        position: absolute;
-        margin-right: 300rem;
+// .typewriter {
+//   width: 30ch;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   border-right: 4px solid #212121;
+//   animation: cursor 1s step-start infinite, text 3s steps(18) alternate infinite;
+// }
+// .typewriter:before {
+//   animation: deleting 2s steps(10) 1 normal forwards,
+//     typing-again 3s steps(10) 1s 1 normal forwards;
+//   content: "심부릉을 이용해보세요!";
+// }
+// @keyframes cursor {
+//   0%,
+//   100% {
+//     border-color: #212121;
+//   }
+// }
+
+// @keyframes text {
+//   0% {
+//     width: 0;
+//   }
+//   100% {
+//     width: 39%;
+//   }
+// }
+// @keyframes deleting {
+//   from {
+//     width: 100%;
+//   }
+//   to {
+//     width: 0;
+//   }
+// }
+
+// @keyframes typing-again {
+//   from {
+//     content: "누군가의 도움이 필요하신가요?";
+//   }
+//   to {
+//     content: "심부릉을 이용해보세요!";
+//   }
+// }
+.backgroundImage {
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 52rem;
+    opacity: 0.6;
+
+    object-fit: cover;
+  }
+  .errand {
+    .title {
+      font-size: 35px;
+      margin-top: 1.5rem;
     }
-    .errand {
-        .title {
-            font-size: 35px;
-            margin-top: 1.5rem;
-        }
-        background-color: white;
-        opacity: 0.7;
-        width: 400px;
-        height: 350px;
-        position: absolute;
-        top: 10rem;
-        left: 35rem;
-        div {
-            text-align: center;
-        }
-        .explain {
-            margin-top: 5rem;
-        }
-        button {
-            background-color: black;
-            color: white;
-            width: 11rem;
-            height: 2rem;
-            margin-top: 2rem;
-            &:active {
-                opacity: 0.8;
-            }
-            a {
-                color: white;
-            }
-        }
+    background-color: white;
+    opacity: 0.6;
+    width: 440px;
+    height: 390px;
+    position: absolute;
+    animation: fadeInUp 2s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    div {
+      text-align: center;
     }
+    .explain {
+      margin-top: 5rem;
+      font-size: 1.2rem;
+    }
+    button {
+      background-color: black;
+      color: white;
+      width: 12rem;
+      height: 3rem;
+      margin-top: 2.5rem;
+      &:active,
+      &:hover {
+        transform: scale(1.1);
+      }
+      a {
+        color: white;
+      }
+    }
+  }
+}
+.ourService {
+  margin-top: rem;
+  @include mobile {
+    height: 70%;
+  }
+  .Title {
+    font-size: 2.5rem;
+    color: black;
+    margin: 6rem;
+    text-align: center;
+  }
+  .Service {
+    @include mobile {
+      width: 100%;
+      height: 40%;
+    }
+    width: 55%;
+    height: 23rem;
+    background-color: white;
+    border-radius: 1rem;
+    margin: 2.5rem auto;
+    display: flex;
+    .img1 {
+      height: 21rem;
+      margin: 1rem;
+      @include mobile {
+        height: 40%;
+        width: 15rem;
+        margin: auto;
+      }
+    }
+    .img2 {
+      @include mobile {
+        height: 65%;
+        width: 15rem;
+        margin: auto;
+      }
+      width: 24rem;
+      height: 21rem;
+      margin: 1rem;
+      object-fit: cover;
+    }
+    .content {
+      margin: auto auto;
+      width: 14rem;
+      .innerContent1 {
+        @include mobile {
+          font-size: 1.2rem;
+        }
+        font-size: 2rem;
+      }
+      .innerContent2 {
+        @include mobile {
+          font-size: 0.8rem;
+        }
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+  //
+}
+.Footer {
+  //text-align: center;
+  width: 100%;
+  height: 30vh;
+  background-color: black;
+  text-align: center;
+
+  .Footer1 {
+    display: flex;
+
+    justify-content: center;
+    div {
+      margin: 1.2rem;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+  .Footer2 {
+    div {
+      margin: 1.2rem;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
 }

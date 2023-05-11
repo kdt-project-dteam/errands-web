@@ -96,7 +96,7 @@ export default function JobOffer({ data }) {
                       {currentItems.wanter_board_title}
                     </Link>
                   </td>
-                  <td>{currentItems.wanter_board_date}</td>
+                  <td>{currentItems.wanter_board_date.split(' ')[0]}</td>
                   <td>{currentItems.wanter_board_hit}</td>
                 </tr>
               );
