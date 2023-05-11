@@ -26,40 +26,37 @@ import {
 } from "../src/store/testCounter";
 
 export default function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // wanter all
-    dispatch(asyncUpAxios());
-    // helper all
-    dispatch(helperAll());
-    // helper 5
-    dispatch(helperBoardSetter());
-    // wanter 5
-    dispatch(wanterBoardSetter());
-    // user all
-    dispatch(allUserData());
-  }, []);
-  return (
-    <div>
-      {window.location.pathname !== "/" ? <Header /> : null}
-      <Routes>
-        <Route path="/" element={<FirstPage />}></Route>
-        <Route path="/main" element={<Main />}></Route>
-        <Route path="/board" element={<Board />}></Route>
-        <Route
-          path="/board/boardDetail/:wanterHelper/:boardId"
-          element={<BoardDetail />}
-        ></Route>
-        <Route path="/members" element={<Members />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/mypage" element={<MyPage />}></Route>
-        <Route path="/mypage/myImformation" element={<MyImformation />}></Route>
-        <Route path="/mypage/myWrite" element={<MyWrite />}></Route>
-        <Route path="/mypage/myComment" element={<MyComment />}></Route>
-        <Route path="/mypage/withDraw" element={<WithDraw />}></Route>
-        <Route path="/mypage/signOut" element={<SignOut />}></Route>
-      </Routes>
-    </div>
-  );
+    const dispatch = useDispatch();
+    useEffect(() => {
+        // wanter all
+        dispatch(asyncUpAxios());
+        // helper all
+        dispatch(helperAll());
+        // helper 5
+        dispatch(helperBoardSetter());
+        // wanter 5
+        dispatch(wanterBoardSetter());
+        // user all
+        dispatch(allUserData());
+    }, []);
+    return (
+        <div>
+            <Header />
+            <Routes>
+                <Route path="/" element={<Main />}></Route>
+                <Route path="/main" element={<Main />}></Route>
+                <Route path="/board" element={<Board />}></Route>
+                <Route path="/board/boardDetail/:wanterHelper/:boardId" element={<BoardDetail />}></Route>
+                <Route path="/members" element={<Members />}></Route>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/signup" element={<Signup />}></Route>
+                <Route path="/mypage" element={<MyPage />}></Route>
+                <Route path="/mypage/myImformation" element={<MyImformation />}></Route>
+                <Route path="/mypage/myWrite" element={<MyWrite />}></Route>
+                <Route path="/mypage/myComment" element={<MyComment />}></Route>
+                <Route path="/mypage/withDraw" element={<WithDraw />}></Route>
+                <Route path="/mypage/signOut" element={<SignOut />}></Route>
+            </Routes>
+        </div>
+    );
 }
