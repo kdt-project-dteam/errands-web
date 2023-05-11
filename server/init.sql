@@ -21,10 +21,10 @@ create table wanter_board (
     wanter_board_title varchar(100) not null,
     wanter_board_content varchar(1000) not null,
     wanter_board_place varchar(200) not null,
+    wanter_board_place_detail varchar(100) default ""
     wanter_board_date timestamp not null default current_timestamp,
     wanter_board_hit int default 0,
     wanter_board_dead_line varchar(50),
-    wanter_board_dead_line_detail varchar(100) default ""
     wanter_board_done int default 0
 
 );

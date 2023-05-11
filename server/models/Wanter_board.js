@@ -24,14 +24,14 @@ const Wanter_board = function (Sequelize, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
-      wanter_board_dead_line: {
-        type: DataTypes.STRING(50),
-        allowNull: true,
-      },
-      wanter_board_dead_line_detal: {
+      wanter_board_place_detal: {
         type: DataTypes.STRING(100),
         allowNull: true,
         defaultValue: "",
+      },
+      wanter_board_dead_line: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
       },
       wanter_board_date: {
         type: DataTypes.DATE,
