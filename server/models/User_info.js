@@ -30,6 +30,11 @@ const User_info = function (Sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      user_img: {
+        type: DataTypes.STRING(1000),
+        allowNull: false,
+        defaultValue: "",
+      },
     },
     { tableName: "user_info", freezeTableName: true, timestamps: false }
   );

@@ -3,15 +3,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import SearchAddress from "./SearchAddress";
 
-export default function ModalAddress() {
+export default function ModalAddress({ setAddress }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [getAddress, setGetAddress] = useState("");
-
-  const [addressData, setAddressData] = useState();
   return (
     <>
       <Button variant="dark" onClick={handleShow}>
@@ -28,7 +25,7 @@ export default function ModalAddress() {
           <Modal.Title>주소 입력</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SearchAddress handleClose={handleClose} />
+          <SearchAddress handleClose={handleClose} setAddress={setAddress} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="dark">입력</Button>

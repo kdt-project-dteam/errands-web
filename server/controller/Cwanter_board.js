@@ -147,11 +147,12 @@ exports.hit_wanter_board = async (req, res) => {
 exports.search_wanter_board = async (req, res) => {
   try {
     const { boardType, optionValue } = req.params;
+    const search = req.query.search;
     if (boardType == "wanter") {
-      if (optionValue == "wanter-board-writer") {
+      if (optionValue == "wanter_board_writer") {
         const result = await Errands.Wanter_board.findAll({
           where: {
-            wanter_board_writer: { [Op.like]: `%${req.body.search}%` },
+            wanter_board_writer: { [Op.like]: `%${search}%` },
           },
         });
         console.log("====");
@@ -161,14 +162,14 @@ exports.search_wanter_board = async (req, res) => {
       } else if (optionValue === "wanter_board_title") {
         const result = await Errands.Wanter_board.findAll({
           where: {
-            wanter_board_title: { [Op.like]: `%${req.body.search}%` },
+            wanter_board_title: { [Op.like]: `%${search}%` },
           },
         });
         res.send(result);
       } else if (optionValue === "wanter_board_place") {
         const result = await Errands.Wanter_board.findAll({
           where: {
-            wanter_board_place: { [Op.like]: `%${req.body.search}%` },
+            wanter_board_place: { [Op.like]: `%${search}%` },
           },
         });
         res.send(result);
@@ -183,6 +184,8 @@ exports.search_wanter_board = async (req, res) => {
     res.send(err);
   }
 };
+
+// 게시물 done, proceeding params -> session 변경
 
 // 게시물 done 처리
 exports.done_wanter_board = async (req, res) => {
@@ -216,8 +219,35 @@ exports.done_wanter_board = async (req, res) => {
   }
 };
 
-// 완료 버튼 누르면 done value false -> true <<< ok
-// done : true
-// 게시물 검색시 done : true인건 숨기기
-// true인 게시물 따로 조회할 수 있게
-//
+// 게시물 진행 중 처리
+exports.proceed_wanter_board = async (req, res) => {
+  try {
+    // if (!req.session.user_info) {
+    //   res.send("로그인하시오");
+    // } else {
+    const auth = await Errands.Wanter_board.findOne({
+      attributes: ["wanter_board_writer"],
+      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+    });
+    if (auth.dataValues.wanter_board_writer !== req.body.user_name) {
+      res.send("작성자만 완료가능");
+    } else {
+      const [result] = await Errands.Wanter_board.update(
+        {
+          wanter_board_done: 2,
+          // ture 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
+        },
+        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+      );
+      console.log("========");
+      console.log(result);
+      if (result === 0) {
+        res.send(false);
+      } else {
+        res.send(true);
+      }
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};

@@ -1,23 +1,29 @@
-import { Routes, Route } from 'react-router-dom';
-import Main from './pages/Main';
-import BoardDetail from './pages/BoardDetail';
-import Members from './pages/Members';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import MyPage from './pages/MyPage';
-import FirstPage from './pages/FirstPage';
-import './css/index.scss';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import MyImformation from './pages/MyImformation';
-import MyComment from './pages/MyComment';
-import MyWrite from './pages/MyWrite';
-import SignOut from './pages/SignOut';
-import WithDraw from './pages/WithDraw';
-import Board from './pages/Board';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { asyncUpAxios, helperBoardSetter, wanterBoardSetter, helperAll, allUserData } from '../src/store/testCounter';
+import { Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import BoardDetail from "./pages/BoardDetail";
+import Members from "./pages/Members";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import MyPage from "./pages/MyPage";
+import FirstPage from "./pages/FirstPage";
+import "./css/index.scss";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import MyImformation from "./pages/MyImformation";
+import MyComment from "./pages/MyComment";
+import MyWrite from "./pages/MyWrite";
+import SignOut from "./pages/SignOut";
+import WithDraw from "./pages/WithDraw";
+import Board from "./pages/Board";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  asyncUpAxios,
+  helperBoardSetter,
+  wanterBoardSetter,
+  helperAll,
+  allUserData,
+} from "../src/store/testCounter";
 
 export default function App() {
     const dispatch = useDispatch();

@@ -4,6 +4,7 @@ import DaumPostcode from "react-daum-postcode";
 function SearchAddress(props) {
   const handleComplete = (data) => {
     let fullAddress = data.address;
+
     let extraAddress = "";
     // console.log(data);
     if (data.addressType === "R") {
@@ -16,9 +17,9 @@ function SearchAddress(props) {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-
     console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
     props.handleClose(); // 모달 닫기 (show state를 false로 변경)
+    props.setAddress(fullAddress);
   };
 
   const handleSearch = (data) => {

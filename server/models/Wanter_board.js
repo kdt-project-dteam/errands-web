@@ -24,6 +24,11 @@ const Wanter_board = function (Sequelize, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
+      wanter_board_place_detail: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        defaultValue: "",
+      },
       wanter_board_dead_line: {
         type: DataTypes.STRING(50),
         allowNull: true,
@@ -38,9 +43,8 @@ const Wanter_board = function (Sequelize, DataTypes) {
         defaultValue: 0,
       },
       wanter_board_done: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
       },
     },
     { tableName: "wanter_board", freezeTableName: true, timestamps: false }
