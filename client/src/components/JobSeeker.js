@@ -120,7 +120,7 @@ export default function JobOffer({ data }) {
                         <tr className='board_son'>
                             <td>{currentItems.helper_board_writer}</td>
                             <td className='son_title'><Link to={`/board/BoardDetail/helper/${currentItems.helper_board_id}`}>{currentItems.helper_board_title}</Link></td>
-                            <td>{currentItems.helper_board_date}</td>
+                            <td>{currentItems.helper_board_date.split(' ')[0]}</td>
                             <td>{currentItems.helper_board_hit}</td>
                         </tr>
                     )

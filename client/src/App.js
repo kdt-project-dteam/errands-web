@@ -37,7 +37,7 @@ export default function App() {
         <div>
             <Header />
             <Routes>
-                <Route path="/" element={<FirstPage />}></Route>
+                <Route path="/" element={<Main />}></Route>
                 <Route path="/main" element={<Main />}></Route>
                 <Route path="/board" element={<Board />}></Route>
                 <Route path="/board/boardDetail/:wanterHelper/:boardId" element={<BoardDetail />}></Route>
