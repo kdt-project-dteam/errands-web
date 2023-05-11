@@ -52,9 +52,9 @@ router.get("/user/:user", user_info.read_detail_user);
 router.post("/user/:user/userLike", user_info.userLike);
 
 // 유저 작성 wanter & helper
-router.get("/user/wanter", user_info.user_wanter_board);
+router.post("/user/wanter", user_info.user_wanter_board);
 
-router.get("/user/helper", user_info.user_helper_board);
+router.post("/user/helper", user_info.user_helper_board);
 
 // 이미지파일 저장
 router.post(

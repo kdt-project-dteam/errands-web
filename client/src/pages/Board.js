@@ -9,44 +9,44 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Board() {
-  useEffect(() => {
-    localStorage.setItem("value", JSON.stringify(state.someReducer.value));
-  }, []);
+    //   useEffect(() => {
+    //     localStorage.setItem("value", JSON.stringify(state.someReducer.value));
+    //   }, []);
 
-  // wanter 전체 게시물
-  let value = useSelector((state) => {
-    return state.someReducer.value;
-  });
-  // helper 전체 게시물
-  let helperAll = useSelector((state) => {
-    return state.someReducer.helperAll;
-  });
-  const [menu, setMenu] = useState(1);
-  const menuArr = [
-    { id: 1, name: "구인" },
-    { id: 2, name: "구직" },
-  ];
-  const [search, setSearch] = useState();
-  const [info, setInfo] = useState([]);
-  const [optionValue, setOptionValue] = useState();
-
-  const searchText = () => {
-    axios({
-      method: "GET",
-      url: `/api/search/${search}/${optionValue}`,
-    }).then((res) => {
-      console.log(res.data);
+    // wanter 전체 게시물
+    let value = useSelector((state) => {
+        return state.someReducer.value;
     });
-  };
+    // helper 전체 게시물
+    let helperAll = useSelector((state) => {
+        return state.someReducer.helperAll;
+    });
+    const [menu, setMenu] = useState(1);
+    const menuArr = [
+        { id: 1, name: "구인" },
+        { id: 2, name: "구직" },
+    ];
+    const [search, setSearch] = useState();
+    const [info, setInfo] = useState([]);
+    const [optionValue, setOptionValue] = useState();
 
-  const onChangeSearch = (e) => {
-    setSearch(e.target.value);
-  };
+    const searchText = () => {
+        axios({
+            method: "GET",
+            url: `/api/search/${search}/${optionValue}`,
+        }).then((res) => {
+            console.log(res.data);
+        });
+    };
 
-  const optionValueChange = (e) => {
-    console.log(optionValue);
-    setOptionValue(e.target.value);
-  };
+    const onChangeSearch = (e) => {
+        setSearch(e.target.value);
+    };
+
+    const optionValueChange = (e) => {
+        console.log(optionValue);
+        setOptionValue(e.target.value);
+    };
 
     return (<>
         <div className="board_page">
@@ -63,37 +63,37 @@ export default function Board() {
                     })}
                     {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
-          </span>
-          <div className="category card">
-            <div className="category category_items">
-              <div className="category category_items select">
-                <select onChange={optionValueChange}>
-                  <option value="wanter_board_title">제목</option>
-                  <option value="wanter_board_writer">작성자</option>
-                  <option value="wanter_board_location">지역</option>
-                </select>
-              </div>
-              <div className="category category_items input">
-                <button type="button" onClick={searchText}>
-                  <BiSearchAlt2 />
-                </button>
-                <input
-                  type="text"
-                  placeholder="검색어를 입력하세요"
-                  value={search}
-                  onChange={onChangeSearch}
-                />
-              </div>
+                </span>
+                <div className="category card">
+                    <div className="category category_items">
+                        <div className="category category_items select">
+                            <select onChange={optionValueChange}>
+                                <option value="wanter_board_title">제목</option>
+                                <option value="wanter_board_writer">작성자</option>
+                                <option value="wanter_board_location">지역</option>
+                            </select>
+                        </div>
+                        <div className="category category_items input">
+                            <button type="button" onClick={searchText}>
+                                <BiSearchAlt2 />
+                            </button>
+                            <input
+                                type="text"
+                                placeholder="검색어를 입력하세요"
+                                value={search}
+                                onChange={onChangeSearch}
+                            />
+                        </div>
+                    </div>
+                </div>
+                {menu === 1 ? (
+                    <JobOffer data={value} />
+                ) : (
+                    <JobSeeker data={helperAll} />
+                )}
             </div>
-          </div>
-          {menu === 1 ? (
-            <JobOffer data={value} />
-          ) : (
-            <JobSeeker data={helperAll} />
-          )}
+            <h1 className="board_page right"></h1>
         </div>
-        <h1 className="board_page right"></h1>
-      </div>
     </>
-  );
+    );
 }
