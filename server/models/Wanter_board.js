@@ -24,7 +24,7 @@ const Wanter_board = function (Sequelize, DataTypes) {
         type: DataTypes.STRING(200),
         allowNull: false,
       },
-      wanter_board_place_detal: {
+      wanter_board_place_detail: {
         type: DataTypes.STRING(100),
         allowNull: true,
         defaultValue: "",
