@@ -7,6 +7,22 @@ const helper_board = require("../controller/Chelper_board");
 const helper_comment = require("../controller/Chelper_comment");
 const notice = require("../controller/Cnotice");
 
+const multer = require("multer");
+const path = require("path");
+const uploadDetail = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      done(null, "../userImg/");
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5mb제한해둠
+});
+const upload = multer({ storage: uploadDetail });
+
 // /api/xxxx
 // ======= User sign =======
 router.post("/login", user_info.userLogin);
@@ -36,9 +52,12 @@ router.get("/user/:user", user_info.read_detail_user);
 router.post("/user/:user/userLike", user_info.userLike);
 
 // 유저 작성 wanter & helper
-router.post("/user/wanter", user_info.user_wanter_board);
+router.get("/user/wanter", user_info.user_wanter_board);
 
-router.post("/user/helper", user_info.user_helper_board);
+router.get("/user/helper", user_info.user_helper_board);
+
+// 이미지파일 저장
+router.post("/user/userImg", upload.single("user_img"), user_info.set_user_img);
 
 // ======= Wanter_board =======
 router.get("/mainWanter", wanter_board.read_few_wanter_board);

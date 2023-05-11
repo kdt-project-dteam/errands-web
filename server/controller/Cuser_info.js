@@ -13,7 +13,6 @@ exports.userLogin = async (req, res) => {
     });
     if (result != null) {
       req.session.user_info = result.dataValues;
-      console.log(req.session);
       res.send({ user_info: result, msg: true });
     } else {
       res.send(false);
@@ -157,14 +156,10 @@ exports.userWithdrawal = async (req, res) => {
       attributes: ["user_name"],
       where: { id: { [Op.eq]: req.params.userId } },
     });
-    console.log(req.params);
-    console.log(auth);
     if (auth.dataValues.user_name == req.session.user_info.user_name) {
       const result = await Errands.User_info.destroy({
         where: { id: { [Op.eq]: req.params.userId } },
       });
-      console.log("===============");
-      console.log(result);
       if (!result) {
         res.send(false);
       } else {
@@ -229,6 +224,26 @@ exports.user_helper_board = async (req, res) => {
     });
     console.log(result);
     res.send(result);
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+exports.set_user_img = async (req, res) => {
+  try {
+    const [result] = await Errands.User_info.update(
+      {
+        user_img: `../../${req.file.path}`,
+      },
+      {
+        where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
+      }
+    );
+    if (result === 0) {
+      return res.send(false);
+    } else {
+      res.send(true);
+    }
   } catch (err) {
     res.send(err);
   }

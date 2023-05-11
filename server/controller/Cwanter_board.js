@@ -147,11 +147,12 @@ exports.hit_wanter_board = async (req, res) => {
 exports.search_wanter_board = async (req, res) => {
   try {
     const { boardType, optionValue } = req.params;
+    const search = req.query.search;
     if (boardType == "wanter") {
       if (optionValue == "wanter-board-writer") {
         const result = await Errands.Wanter_board.findAll({
           where: {
-            wanter_board_writer: { [Op.like]: `%${req.body.search}%` },
+            wanter_board_writer: { [Op.like]: `%${search}%` },
           },
         });
         console.log("====");
@@ -161,14 +162,14 @@ exports.search_wanter_board = async (req, res) => {
       } else if (optionValue === "wanter_board_title") {
         const result = await Errands.Wanter_board.findAll({
           where: {
-            wanter_board_title: { [Op.like]: `%${req.body.search}%` },
+            wanter_board_title: { [Op.like]: `%${search}%` },
           },
         });
         res.send(result);
       } else if (optionValue === "wanter_board_place") {
         const result = await Errands.Wanter_board.findAll({
           where: {
-            wanter_board_place: { [Op.like]: `%${req.body.search}%` },
+            wanter_board_place: { [Op.like]: `%${search}%` },
           },
         });
         res.send(result);
