@@ -1,27 +1,46 @@
-.myWrite {
-    margin-top: 1.5rem;
-    table {
+@import "./utils.scss";
+
+.MyPage {
+  width: 100%;
+  height: 100vh;
+  .my-write-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .myWrite {
+      width: 45%;
+      height: 70vh;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding: 3rem;
+      overflow-y: scroll;
+      border-radius: $bor-radius;
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #00b4d8;
+      }
+      table {
+        width: 100%;
+        height: 100vh;
         margin: 0 auto;
         border-collapse: collapse;
+        border: 1px solid gray;
+
         tr {
-            &:hover,
-            &:active {
-                background-color: #e4dcdc;
-            }
+          &:hover,
+          &:active {
+            background-color: #e4dcdc;
+          }
         }
         th,
         td {
-            border-bottom: 1px solid black;
-            padding: 1rem;
+          border: 1px solid black;
+          padding: 1rem;
         }
-        .title {
-            padding: 2rem 18rem;
-        }
-        .date {
-            padding: 2rem 1.5rem;
-        }
-        .number {
-            padding: 1rem;
-        }
+      }
     }
+  }
 }

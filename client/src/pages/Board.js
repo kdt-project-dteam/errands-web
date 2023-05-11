@@ -47,8 +47,13 @@ export default function Board() {
     return (<>
         <div className="board_page">
             <h1 className="board_page left"></h1>
-            <div className="board_page center">
+            <div className="board_page center card">
+                <h1>
+                    구인/구직 게시판
+                </h1>
+                <h3>각종 심부름을 맡기거나 해결해주세요!</h3>
                 <span className="option">
+
                     {menuArr.map(menu => {
                         return <button key={menu.id} className="option item card" onClick={() => setMenu(menu.id)}>{menu.name}</button>
                     })}

@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import "./css/index.scss";
 import "./css/board.scss";
 import Footer from "./components/Footer";
-import "bootstrap/dist/css/bootstrap.min.css";
 import OfferWritePage from "./pages/OfferWritePage";
 import SearchPage from "./pages/SearchPage";
 export default function App3() {

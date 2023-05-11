@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App3 from "./App3";
+import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
@@ -17,7 +17,7 @@ const reducerSlice = createSlice({
   name: "store",
   initialState: {},
   reducers: {
-    someAction: function () {},
+    someAction: function () { },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncUpAxios.pending, (state, action) => {
@@ -104,7 +104,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App3 />
+      <App />
     </BrowserRouter>
   </Provider>
 );

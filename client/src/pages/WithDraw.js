@@ -48,7 +48,7 @@ export default function WithDraw() {
             <div className="body">
                 <div className="memberImfor">회원탈퇴</div>
 
-                <div className="Signout">회원탈퇴시 유의사항</div>
+                <div className="Signout">유의사항</div>
                 <hr />
                 <div className="Content">
                     <p>
