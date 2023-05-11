@@ -28,7 +28,7 @@ const Wanter_board = function (Sequelize, DataTypes) {
         type: DataTypes.STRING(50),
         allowNull: true,
       },
-      wanter_board_dead_line_detal: {
+      wanter_board_dead_line_detail: {
         type: DataTypes.STRING(100),
         allowNull: true,
         defaultValue: "",

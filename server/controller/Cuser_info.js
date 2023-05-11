@@ -233,10 +233,10 @@ exports.set_user_img = async (req, res) => {
   try {
     const [result] = await Errands.User_info.update(
       {
-        user_img: `../../${req.file.path}`,
+        user_img: req.file.filename,
       },
       {
-        where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
+        where: { id: { [Op.eq]: req.params.user } },
       }
     );
     if (result === 0) {

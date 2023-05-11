@@ -12,16 +12,16 @@ const path = require("path");
 const uploadDetail = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
-      done(null, "../userImg/");
+      done(null, "../client/public/userImg/");
     },
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
-      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+      done(null, Date.now() + ext);
     },
   }),
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5mb제한해둠
+  limits: { fileSize: 1 * 1024 * 1024 }, // 1mb제한해둠
 });
-const upload = multer({ storage: uploadDetail });
+// const upload = multer({ storage: uploadDetail });
 
 // /api/xxxx
 // ======= User sign =======
@@ -57,7 +57,11 @@ router.get("/user/wanter", user_info.user_wanter_board);
 router.get("/user/helper", user_info.user_helper_board);
 
 // 이미지파일 저장
-router.post("/user/userImg", upload.single("user_img"), user_info.set_user_img);
+router.post(
+  "/user/:user/img",
+  uploadDetail.single("user_img"),
+  user_info.set_user_img
+);
 
 // ======= Wanter_board =======
 router.get("/mainWanter", wanter_board.read_few_wanter_board);
