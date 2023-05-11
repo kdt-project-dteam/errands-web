@@ -57,6 +57,8 @@ router.post("/wanter/:boardId/hit", wanter_board.hit_wanter_board);
 
 router.patch("/wanter/:boardId/done", wanter_board.done_wanter_board);
 
+router.patch("/wanter/:boardId/proceed", wanter_board.proceed_wanter_board);
+
 // ======= Wanter_comment =======
 router.get("/wanter/:boardId/comment", wanter_comment.read_wanter_comment);
 
