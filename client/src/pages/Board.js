@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker";
 import "../css/board.scss";
@@ -9,6 +9,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Board() {
+  useEffect(() => {
+    localStorage.setItem("value", JSON.stringify(state.someReducer.value));
+  }, []);
+
   // wanter 전체 게시물
   let value = useSelector((state) => {
     return state.someReducer.value;

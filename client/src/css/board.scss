@@ -1,4 +1,4 @@
-@import './utils.scss';
+@import "./utils.scss";
 
 .page_header {
   width: 100%;
@@ -119,5 +119,9 @@
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+  }
+
+  .PaginationBtn {
+    border: none;
   }
 }
