@@ -125,7 +125,7 @@ export default function Main() {
                         </div>
                     </h2>
                     <div className='swiper-section'>
-                        {/* <Swiper
+                        <Swiper
                             // install Swiper modules
                             modules={[Navigation, Pagination, Scrollbar, A11y]}
                             spaceBetween={50}
@@ -133,7 +133,7 @@ export default function Main() {
                             navigation
                             onSwiper={(swiper) => console.log(swiper)}
                         >
-                            {boardState === "offer" ? value?.wanterBoard.map((data, idx) => {
+                            {/* {boardState === "offer" ? value?.wanterBoard.map((data, idx) => {
                                 return (
                                     <SwiperSlide>
                                         <div className='swiper-card card'>
@@ -163,9 +163,9 @@ export default function Main() {
                                         </div>
                                     </SwiperSlide>
                                 )
-                            })}
+                            })} */}
 
-                        </Swiper> */}
+                        </Swiper>
                     </div>
                 </div>
                 <div className='main-3'>
@@ -180,7 +180,7 @@ export default function Main() {
                             onSwiper={(swiper) => console.log(swiper)}
                             onSlideChange={() => console.log('slide change')}
                         >
-                            {/* {allUserData ? allUserData.map((data, idx) => {
+                            {allUserData ? allUserData.map((data, idx) => {
                                 return (
                                     <SwiperSlide>
                                         <div className='swiper-card card'>
@@ -193,7 +193,7 @@ export default function Main() {
                                         </div>
                                     </SwiperSlide>
                                 )
-                            }) : "null"} */}
+                            }) : "null"}
                         </Swiper>
                     </div>
                 </div>
