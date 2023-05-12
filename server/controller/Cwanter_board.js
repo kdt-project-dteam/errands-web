@@ -55,6 +55,7 @@ exports.create_wanter_board = async (req, res) => {
         wanter_board_content: req.body.wanter_board_content,
         wanter_board_place: req.body.wanter_board_place,
         wanter_board_dead_line: req.body.wanter_board_dead_line,
+        wanter_board_place_detail: req.body.wanter_board_place_detail,
         wanter_board_done: false,
       });
       res.send(result);

@@ -117,6 +117,7 @@ export default function BoardDetail() {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         getCommentData();
     }, []);
 

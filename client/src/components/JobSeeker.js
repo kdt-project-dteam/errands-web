@@ -106,7 +106,7 @@ export default function JobSeeker({ data }) {
                                             {currentItems.helper_board_title}
                                         </Link>
                                     </td>
-                                    <td>{currentItems.helper_board_date}</td>
+                                    <td>{currentItems.helper_board_date.split(' ')[0]}</td>
                                     <td>{currentItems.helper_board_hit}</td>
                                 </tr>
                             );

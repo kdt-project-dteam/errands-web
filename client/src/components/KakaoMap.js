@@ -29,7 +29,6 @@ const KakaoMap = ({ geoLocation }) => {
                 });
                 infowindow.open(map, marker);
                 map.setCenter(coords);
-                setDraggable()
             }
         });
     }, [])
