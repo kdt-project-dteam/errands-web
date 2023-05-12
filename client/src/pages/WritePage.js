@@ -26,7 +26,7 @@ export default function WritePage({ data }) {
   const submitOffer = async (e) => {
     const result = await axios({
       method: "post",
-      url: "/api/wanter",
+      url: `${process.env.REACT_APP_DB_HOST}/api/wanter`,
       data: {
         user_name: "cccc",
         wanter_board_title: title,
@@ -41,7 +41,7 @@ export default function WritePage({ data }) {
   const submitSeeker = async (e) => {
     const result = await axios({
       method: "post",
-      url: "/api/helper",
+      url: `${process.env.REACT_APP_DB_HOST}/api/helper`,
       data: {
         user_name: "cccc",
         helper_board_title: title,
