@@ -9,10 +9,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Board() {
-  useEffect(() => {
-    localStorage.setItem("value", JSON.stringify(value));
-  }, []);
-
   // wanter 전체 게시물
   let value = useSelector((state) => {
     return state.someReducer.value;
