@@ -1,4 +1,12 @@
 @import "./_utils.scss";
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .card {
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.14);
@@ -10,30 +18,61 @@
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  animation: fadeInLeft 2s;
   .banner-left {
     width: 40%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 5rem;
-    padding-left: 8rem;
+    padding: 7rem 0 0 8rem;
     h2 {
-      font-size: 30px;
-      font-weight: 700;
+      font-size: 40px;
+      font-weight: 900;
     }
     .h3-content {
       margin-top: 1rem;
       font-size: 16px;
       color: gray;
+      &.mb-04 {
+        margin-bottom: 1rem;
+      }
     }
     .h3-content2 {
       font-size: 16px;
       color: gray;
     }
+    button {
+      display: block;
+      position: relative;
+      float: left;
+      width: 80%;
+      padding: 0;
+      margin: 10px 20px 10px 0;
+      font-weight: 600;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      border-radius: 5px;
+      transition: all 0.2s;
+      border: 0;
+      cursor: pointer;
+    }
+    .btnOrange {
+      background: $main-color;
+      &.btnPush {
+        box-shadow: 0px 5px 0px 0px #a66615;
+        &:hover {
+          margin-top: 15px;
+          margin-bottom: 5px;
+          box-shadow: 0px 0px 0px 0px #a66615;
+        }
+      }
+    }
   }
   .banner-right {
     width: 60%;
     height: 100%;
+    animation: fadeInLeft 3s;
     .lottie-item {
       width: 100%;
       height: 100%;
@@ -80,7 +119,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
       .d-flex {
         display: flex;
         flex-direction: column;

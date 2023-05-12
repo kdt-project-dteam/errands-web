@@ -11,8 +11,8 @@ export default function ModalAddress({ setAddress }) {
 
   return (
     <>
-      <Button variant="dark" onClick={handleShow}>
-        주소 입력
+      <Button onClick={handleShow}>
+        주소 찾기
       </Button>
 
       <Modal
