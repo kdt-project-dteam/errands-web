@@ -68,12 +68,13 @@ export default function Board() {
               );
             })}
 
-            <Link to="/WritePage">글 작성</Link>
-
             {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>
           <div className="category card">
+            <Link to="/WritePage">
+              <button className="writePage_btn">글 작성</button>
+            </Link>
             <div className="category category_items">
               <div className="category category_items select">
                 <select onChange={optionValueChange}>
