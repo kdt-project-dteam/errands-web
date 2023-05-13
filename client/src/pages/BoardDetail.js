@@ -113,8 +113,26 @@ export default function BoardDetail() {
         getCommentData();
     };
 
+    const hitUp = async (boardId) => {
+        if (wanterHelper === "wanter") {
+            const result = await axios({
+                method: "POST",
+                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`,
+            });
+            console.log(result);
+        } else {
+            const result = await axios({
+                method: "POST",
+                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`,
+            });
+            console.log(result)
+        }
+    }
+
     useEffect(() => {
+        hitUp(boardId)
         getCommentData();
+        window.scrollTo(0, 0)
     }, []);
 
     return (
@@ -130,7 +148,8 @@ export default function BoardDetail() {
                                     {data[0].wanter_board_title}
                                 </span>
                                 <span className="writer_header_form date">
-                                    {data[0].wanter_board_date}
+                                    <span>{data[0].wanter_board_date}</span>
+                                    <span>상세주소 : {data[0].wanter_board_place + " " + data[0].wanter_board_place_detail}</span>
                                 </span>
                             </div>
                             <section className="paragraph">
@@ -139,7 +158,7 @@ export default function BoardDetail() {
                                 </div>
                             </section>
                             <div className="paragraph_ext">
-                                <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
+                                <KakaoMap geoLocation={data[0].wanter_board_place} />
                                 <button className="likes_btn">
                                     <AiOutlineHeart />
                                 </button>

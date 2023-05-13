@@ -75,7 +75,7 @@ export default function Main() {
             </div>
             <div className="main">
                 <div className='main-1'>
-                    <h2>모집🚗</h2>
+                    <h2>도움 주실분들을 찾고있어요!🌻</h2>
                     <div className='swiper-section'>
                         <Swiper
                             // install Swiper modules
@@ -92,10 +92,10 @@ export default function Main() {
                                         <Link to={`/board/boardDetail/wanter/${data.wanter_board_id}`}>
                                             <div key={idx} className='swiper-card card'>
                                                 <p className='fs-16'>{data.wanter_board_title}</p>
-                                                <p>{data.wanter_board_writer}</p>
+                                                <p>{data.wanter_board_content.slice(0, 10) + '...'}</p>
                                                 <div className='d-flex'>
-                                                    <p>주소 : ?</p>
-                                                    <p>수고비 : 20000원</p>
+                                                    <p>작성자 : {data.wanter_board_writer}</p>
+                                                    <p>주소 : {data.wanter_board_place}</p>
                                                     <p>조회수 : {data.wanter_board_hit}</p>
                                                     <p>작성일 : {data.wanter_board_date.split(' ')[0]}</p>
                                                 </div>
@@ -103,13 +103,13 @@ export default function Main() {
                                         </Link>
                                     </SwiperSlide>
                                 )
-                            })}
+                            }).reverse()}
                         </Swiper>
                     </div>
                 </div>
                 <div className='main-2'>
                     <h2>
-                        <div>급구!✈️</div>
+                        지금 당장 해결해주세요✈️
                     </h2>
                     <div className='swiper-section'>
                         <Swiper
@@ -128,8 +128,8 @@ export default function Main() {
                                                 <p className='fs-16'>{data.wanter_board_title}</p>
                                                 <p>{data.wanter_board_writer}</p>
                                                 <div className='d-flex'>
-                                                    <p>주소 : ?</p>
-                                                    <p>수고비 : 20000원</p>
+                                                    <p>작성자 : {data.wanter_board_writer}</p>
+                                                    <p>주소 : {data.wanter_board_place}</p>
                                                     <p>조회수 : {data.wanter_board_hit}</p>
                                                     <p>작성일 : {data.wanter_board_date.split(' ')[0]}</p>
                                                 </div>
