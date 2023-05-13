@@ -94,9 +94,9 @@ export default function WritePage({ data }) {
             <div className="form-address">
               <h5 className="address_name">주소</h5>
               <div className="address-form-child">
-                <Button variant="dark" className="form-address-btn">
+                <button className="form-address-btn">
                   <ModalAddress setAddress={setAddress} />
-                </Button>
+                </button>
                 <input
                   type="text"
                   className="address_title"

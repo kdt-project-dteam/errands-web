@@ -12,6 +12,9 @@
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.14);
 }
 
+.main_page_all {
+  background-color: #f2f2f2;
+}
 .main-banner {
   width: 80vw;
   height: calc(100vh - 80px);
@@ -102,6 +105,11 @@
       }
     }
   }
+
+  // .main-3 {
+  //   background-color: #f2f2f2;
+  // }
+
   .swiper-section {
     width: 100%;
     height: 46vh;

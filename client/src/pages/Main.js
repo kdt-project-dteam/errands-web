@@ -53,7 +53,7 @@ export default function Main() {
     },
   };
   return (
-    <>
+    <div className="main_page_all">
       <div className="main-banner">
         <div className="banner-left">
           <h2>SIMVROONG</h2>
@@ -320,6 +320,6 @@ export default function Main() {
                     </div>
                 </div> */}
       </div>
-    </>
+    </div>
   );
 }

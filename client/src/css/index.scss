@@ -1,3 +1,4 @@
+// index.scss
 @font-face {
   font-family: SDGothic;
   src: url(./font/AppleSDGothicNeoL.ttf);
@@ -36,7 +37,7 @@
   }
 }
 
-body {
+.body {
   background-color: #f2f2f2;
   overflow-x: hidden;
 }

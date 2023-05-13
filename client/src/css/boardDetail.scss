@@ -1,5 +1,7 @@
-@import './utils.scss';
-
+@import "./utils.scss";
+.body {
+  background-color: #f2f2f2;
+}
 .boardDetail_page {
   display: grid;
   box-sizing: border-box;
