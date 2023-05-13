@@ -13,10 +13,8 @@ exports.userLogin = async (req, res) => {
     });
     if (result != null) {
       req.session.user_info = result.dataValues;
-      req.session.user_info;
       res.send({ user_info: result, msg: true });
     } else {
-      console.log(result);
       res.send(false);
     }
   } catch (err) {
@@ -89,7 +87,6 @@ exports.userRegister = async (req, res) => {
 exports.userLogout = (req, res) => {
   try {
     console.log(req.session);
-    console.log("================");
     req.session.destroy((err) => {
       if (err) {
         throw err;

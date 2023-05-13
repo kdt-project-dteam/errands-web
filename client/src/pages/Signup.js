@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import SocialLogin from "../components/SocialLogin";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 // /api/login
 const Signup = () => {
   const [userId, setUserId] = useState("");
@@ -37,7 +38,7 @@ const Signup = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.href = "/";
+        window.location.href = "/login";
       } else {
         Swal.fire({
           icon: "error",
@@ -176,7 +177,7 @@ const Signup = () => {
           </div>
           <div className="goLogin">
             <p>이미 계정이 있으십니까?</p>
-            <a href="http://localhost:3000/login">로그인하기</a>
+            <Link to={"/login"}>로그인</Link>
           </div>
           <div className="hr-sect">또는</div>
           <button className="kakaoSignup">
