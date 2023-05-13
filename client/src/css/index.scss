@@ -30,9 +30,9 @@
   a {
     text-decoration: none;
     color: black;
-    &:hover {
-      color: red;
-    }
+    // &:hover {
+    //   color: $main-color;
+    // }
   }
 }
 

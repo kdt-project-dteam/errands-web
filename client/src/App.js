@@ -15,14 +15,15 @@ import MyWrite from "./pages/MyWrite";
 import SignOut from "./pages/SignOut";
 import WithDraw from "./pages/WithDraw";
 import Board from "./pages/Board";
+import WritePage from './pages/WritePage';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import {
-  asyncUpAxios,
-  helperBoardSetter,
-  wanterBoardSetter,
-  helperAll,
-  allUserData,
+    asyncUpAxios,
+    helperBoardSetter,
+    wanterBoardSetter,
+    helperAll,
+    allUserData,
 } from "../src/store/testCounter";
 
 export default function App() {
@@ -50,6 +51,7 @@ export default function App() {
                 <Route path="/members" element={<Members />}></Route>
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
+                <Route path='/board/writePage' element={<WritePage />}></Route>
                 <Route path="/mypage" element={<MyPage />}></Route>
                 <Route path="/mypage/myImformation" element={<MyImformation />}></Route>
                 <Route path="/mypage/myWrite" element={<MyWrite />}></Route>

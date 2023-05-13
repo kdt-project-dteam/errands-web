@@ -9,10 +9,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Board() {
-  useEffect(() => {
-    localStorage.setItem("value", JSON.stringify(value));
-  }, []);
-
   // wanter 전체 게시물
   let value = useSelector((state) => {
     return state.someReducer.value;
@@ -33,7 +29,7 @@ export default function Board() {
   const searchText = () => {
     axios({
       method: "GET",
-      url: `/api/search/${search}/${optionValue}`,
+      url: `${process.env.REACT_APP_DB_HOST}/api/search/${search}/${optionValue}`,
     }).then((res) => {
       console.log(res.data);
     });
@@ -52,7 +48,9 @@ export default function Board() {
     <>
       <div className="board_page">
         <h1 className="board_page left"></h1>
-        <div className="board_page center">
+        <div className="board_page center card">
+          <h1>구인/구직 게시판</h1>
+          <h3>각종 심부름을 맡기거나 해결해주세요!</h3>
           <span className="option">
             {menuArr.map((menu) => {
               return (
@@ -78,7 +76,11 @@ export default function Board() {
                 </select>
               </div>
               <div className="category category_items input">
-                <button type="button" onClick={searchText}>
+                <button
+                  type="button"
+                  onClick={searchText}
+                  style={{ backgroundColor: "#fff", border: "1px solid black" }}
+                >
                   <BiSearchAlt2 />
                 </button>
                 <input

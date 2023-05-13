@@ -21,12 +21,11 @@ create table wanter_board (
     wanter_board_title varchar(100) not null,
     wanter_board_content varchar(1000) not null,
     wanter_board_place varchar(200) not null,
-    wanter_board_place_detail varchar(100) default ""
+    wanter_board_place_detail varchar(100) default "",
     wanter_board_date timestamp not null default current_timestamp,
     wanter_board_hit int default 0,
     wanter_board_dead_line varchar(50),
     wanter_board_done int default 0
-
 );
 
 create table helper_board (
@@ -63,7 +62,7 @@ create table helper_comment (
 -- 4
 
 insert into user_info(user_id,user_pw,user_name,user_type) values ('test','1234','테스트','W');
-INSERT INTO WANTER_BOARD(WANTER_BOARD_WRITER, WANTER_BOARD_TITLE, WANTER_BOARD_CONTENT, WANTER_BOARD_PLACE) value ('테스트','테스트제목','테스트내용','마포구');
-INSERT INTO HELPER_BOARD(HELPER_BOARD_WRITER, HELPER_BOARD_TITLE, HELPER_BOARD_CONTENT, HELPER_BOARD_PLACE) value ('테스트','테스트제목','테스트내용','마포구');
-INSERT INTO WANTER_COMMENT(WANTER_COMMENT_BOARD_ID,WANTER_COMMENT_WRITER,WANTER_COMMENT_CONTENT) VALUES ('1','테스트','테스트댓글');
-INSERT INTO HELPER_COMMENT(HELPER_COMMENT_BOARD_ID,HELPER_COMMENT_WRITER,HELPER_COMMENT_CONTENT) VALUES ('1','테스트','테스트헬퍼댓글');
+INSERT INTO wanter_board(WANTER_BOARD_WRITER, WANTER_BOARD_TITLE, WANTER_BOARD_CONTENT, WANTER_BOARD_PLACE) value ('테스트','테스트제목','테스트내용','마포구');
+INSERT INTO helper_board(HELPER_BOARD_WRITER, HELPER_BOARD_TITLE, HELPER_BOARD_CONTENT, HELPER_BOARD_PLACE) value ('테스트','테스트제목','테스트내용','마포구');
+INSERT INTO wanter_comment(WANTER_COMMENT_BOARD_ID,WANTER_COMMENT_WRITER,WANTER_COMMENT_CONTENT) VALUES ('1','테스트','테스트댓글');
+INSERT INTO helper_comment(HELPER_COMMENT_BOARD_ID,HELPER_COMMENT_WRITER,HELPER_COMMENT_CONTENT) VALUES ('1','테스트','테스트헬퍼댓글');
