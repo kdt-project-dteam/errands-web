@@ -118,8 +118,14 @@
   }
 
   a:-webkit-any-link {
+    padding: 0.5rem;
     text-decoration: none;
     color: black;
+    background-color: #fca311;
+    border-radius: 10px;
+    font-size: 20px;
+
+    width: 12%;
     cursor: pointer;
   }
 
