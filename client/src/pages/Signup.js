@@ -28,6 +28,7 @@ const Signup = () => {
           user_name: userName,
           user_type: userType,
         },
+        withCredentials: true,
       });
       if (result.data === true) {
         Swal.fire({
@@ -61,6 +62,7 @@ const Signup = () => {
       data: {
         user_id: CheckId,
       },
+      withCredentials: true,
     }).then((res) => {
       if (res.data === false) {
         const element = document.getElementById("possibleId");
@@ -83,6 +85,7 @@ const Signup = () => {
       data: {
         user_name: userName,
       },
+      withCredentials: true,
     }).then((res) => {
       console.log(res.data);
       if (res.data === true) {

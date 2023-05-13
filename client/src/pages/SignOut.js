@@ -10,6 +10,7 @@ export default function SignOut() {
       data: {
         user_id: myPageUser,
       },
+      withCredentials: true,
     });
     if (result.data === true) {
       localStorage.clear();

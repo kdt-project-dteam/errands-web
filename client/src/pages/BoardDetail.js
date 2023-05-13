@@ -34,6 +34,7 @@ export default function BoardDetail() {
         data = result;
     }
 
+
     const [commentData, setCommentData] = useState("");
     const [commentList, setCommentList] = useState([]);
     const sendCommentData = async () => {
@@ -272,6 +273,7 @@ export default function BoardDetail() {
                                     </div>
                                 </fieldset>
                             </div>
+
                             {commentList
                                 ? commentList.map((data, idx) => {
                                     return (
