@@ -28,6 +28,8 @@ export default function WritePage({ data }) {
       method: "post",
       url: `${process.env.REACT_APP_DB_HOST}/api/wanter`,
       data: {
+
+        wanter_board_writer : localStorage.getItem('userName'),
         wanter_board_title: title,
         wanter_board_content: content,
         wanter_board_dead_line: initialDate + " " + detailDate,
@@ -36,6 +38,8 @@ export default function WritePage({ data }) {
       },
       withCredentials: true,
     });
+    console.log(localStorage.getItem('userName'))
+    console.log(result)
   };
 
   const submitSeeker = async (e) => {
@@ -43,7 +47,7 @@ export default function WritePage({ data }) {
       method: "post",
       url: `${process.env.REACT_APP_DB_HOST}/api/helper`,
       data: {
-        user_name: "cccc",
+        user_name: localStorage.getItem('userName'),
         helper_board_title: title,
         helper_board_content: content,
         helper_board_place: address,
