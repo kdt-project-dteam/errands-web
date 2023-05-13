@@ -174,32 +174,33 @@ exports.userWithdrawal = async (req, res) => {
 // 회원정보 수정
 exports.userUpdate = async (req, res) => {
   try {
-    // const auth = await Errands.User_info.findOne({
-    //   attributes: ['user_name'],
-    //   where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
-    // });
-    // if (auth.dataValues.user_name == req.session.user_info.user_name) {
-    const [result] = await Errands.User_info.update(
-      {
-        user_id: req.body.user_id,
-        user_pw: req.body.user_pw,
-        user_name: req.body.user_name,
-        user_type: req.body.user_type,
-      },
-      { where: { id: { [Op.eq]: req.params.userId } } }
-    );
-    if (result === 0) {
-      console.log(result);
-      return res.send(false);
-    } else {
-      //   const update_session = await Errands.User_info.findOne({
-      //     where: {
-      //       user_id: req.session.user_id,
-      //       user_pw: req.session.user_pw,
-      //     },
-      //   });
-      //   req.session.user_info = update_session.dataValues;
-      res.send(true);
+    const auth = await Errands.User_info.findOne({
+      attributes: ["user_name"],
+      where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
+    });
+    if (auth.dataValues.user_name == req.session.user_info.user_name) {
+      const [result] = await Errands.User_info.update(
+        {
+          user_id: req.body.user_id,
+          user_pw: req.body.user_pw,
+          user_name: req.body.user_name,
+          user_type: req.body.user_type,
+        },
+        { where: { id: { [Op.eq]: req.params.userId } } }
+      );
+      if (result === 0) {
+        console.log(result);
+        return res.send(false);
+      } else {
+        //   const update_session = await Errands.User_info.findOne({
+        //     where: {
+        //       user_id: req.session.user_id,
+        //       user_pw: req.session.user_pw,
+        //     },
+        //   });
+        //   req.session.user_info = update_session.dataValues;
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
