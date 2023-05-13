@@ -46,20 +46,16 @@ exports.read_one_wanter_board = async (req, res) => {
 // 게시물 생성
 exports.create_wanter_board = async (req, res) => {
   try {
-    if (!req.session.user_info) {
-      res.send("로그인하시오");
-    } else {
-      const [result] = await Errands.Wanter_board.create({
-        wanter_board_writer: req.body.user_name,
-        wanter_board_title: req.body.wanter_board_title,
-        wanter_board_content: req.body.wanter_board_content,
-        wanter_board_place: req.body.wanter_board_place,
-        wanter_board_dead_line: req.body.wanter_board_dead_line,
-        wanter_board_place_detail: req.body.wanter_board_place_detail,
-        wanter_board_done: false,
-      });
-      res.send(result);
-    }
+    const [result] = await Errands.Wanter_board.create({
+      wanter_board_writer: req.body.user_name,
+      wanter_board_title: req.body.wanter_board_title,
+      wanter_board_content: req.body.wanter_board_content,
+      wanter_board_place: req.body.wanter_board_place,
+      wanter_board_dead_line: req.body.wanter_board_dead_line,
+      wanter_board_place_detail: req.body.wanter_board_place_detail,
+      wanter_board_done: false,
+    });
+    res.send(result);
   } catch (err) {
     res.send(err);
   }
