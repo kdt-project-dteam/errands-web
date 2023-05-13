@@ -1,3 +1,4 @@
+import WritePage from "./pages/WritePage";
 import { Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import BoardDetail from "./pages/BoardDetail";

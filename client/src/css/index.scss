@@ -1,4 +1,9 @@
-// index.scss
+
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_mixins.scss";
+@import "~bootstrap/scss/_modal.scss";
+
 @font-face {
   font-family: SDGothic;
   src: url(./font/AppleSDGothicNeoL.ttf);
@@ -31,9 +36,9 @@
   a {
     text-decoration: none;
     color: black;
-    // &:hover {
-    //   color: $main-color;
-    // }
+    &:hover {
+      color: red;
+    }
   }
 }
 
