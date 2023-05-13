@@ -55,7 +55,6 @@ export default function App() {
         <Route path="/members" element={<Members />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/board/writePage" element={<WritePage />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/mypage/myImformation" element={<MyImformation />}></Route>
         <Route path="/mypage/myWrite" element={<MyWrite />}></Route>

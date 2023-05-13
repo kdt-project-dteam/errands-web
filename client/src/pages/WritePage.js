@@ -94,9 +94,9 @@ export default function WritePage({ data }) {
             <div className="form-address">
               <h5 className="address_name">주소</h5>
               <div className="address-form-child">
-                <button className="form-address-btn">
+                <Button className="form-address-btn">
                   <ModalAddress setAddress={setAddress} />
-                </button>
+                </Button>
                 <input
                   type="text"
                   className="address_title"
@@ -141,14 +141,14 @@ export default function WritePage({ data }) {
               ></input>
             </div>
             <div className="submit-form">
-              <button
+              <Button
                 variant="dark"
                 type="submit"
                 className="page-submit"
                 onClick={submitOffer}
               >
                 구인글 작성
-              </button>
+              </Button>
               <button
                 variant="dark"
                 type="submit"

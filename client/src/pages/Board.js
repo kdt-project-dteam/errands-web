@@ -9,6 +9,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Board() {
+  //   useEffect(() => {
+  //     localStorage.setItem("value", JSON.stringify(state.someReducer.value));
+  //   }, []);
+
   // wanter 전체 게시물
   let value = useSelector((state) => {
     return state.someReducer.value;
@@ -63,6 +67,9 @@ export default function Board() {
                 </button>
               );
             })}
+
+            <Link to="/WritePage">글 작성</Link>
+
             {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>
