@@ -13,6 +13,7 @@ import KakaoMap from "../components/KakaoMap";
 export default function BoardDetail() {
   const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
   const [inputCount, setInputCount] = useState(0);
+  const [valueCount, setValueCount] = useState("");
   const value = useSelector((state) => {
     return state.someReducer.value;
   });
@@ -163,7 +164,12 @@ export default function BoardDetail() {
                           type="button"
                           onClick={() => {
                             inputCount == 0
-                              ? alert("한글자 이상 입력하세요!")
+                              ? Swal.fire({
+                                  icon: "error",
+                                  title: `한글자 이상 입력하세요!`,
+                                  showConfirmButton: false,
+                                  timer: 1500,
+                                })
                               : sendCommentData();
                           }}
                           className="comment_submit"
@@ -263,8 +269,13 @@ export default function BoardDetail() {
                       <button
                         type="button"
                         onClick={() => {
-                          inputCount.trim().length == 0
-                            ? alert("한글자 이상 입력하세요!")
+                          inputCount == 0
+                            ? Swal.fire({
+                                icon: "error",
+                                title: `한글자 이상 입력하세요!`,
+                                showConfirmButton: false,
+                                timer: 1500,
+                              })
                             : sendCommentData();
                         }}
                         className="comment_submit"
