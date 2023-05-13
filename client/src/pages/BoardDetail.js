@@ -12,6 +12,7 @@ import KakaoMap from "../components/KakaoMap";
 
 export default function BoardDetail() {
     const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
+    const [inputCount, setInputCount] = useState(0);
     const value = useSelector((state) => {
         return state.someReducer.value;
     });
@@ -60,6 +61,7 @@ export default function BoardDetail() {
     };
     const inputChange = (e) => {
         setCommentData(e.target.value);
+        setInputCount(e.target.value.length);
     };
 
     const getCommentData = async () => {
@@ -113,26 +115,8 @@ export default function BoardDetail() {
         getCommentData();
     };
 
-    const hitUp = async (boardId) => {
-        if (wanterHelper === "wanter") {
-            const result = await axios({
-                method: "POST",
-                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`,
-            });
-            console.log(result);
-        } else {
-            const result = await axios({
-                method: "POST",
-                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`,
-            });
-            console.log(result)
-        }
-    }
-
     useEffect(() => {
-        hitUp(boardId)
         getCommentData();
-        window.scrollTo(0, 0)
     }, []);
 
     return (
@@ -148,8 +132,7 @@ export default function BoardDetail() {
                                     {data[0].wanter_board_title}
                                 </span>
                                 <span className="writer_header_form date">
-                                    <span>{data[0].wanter_board_date}</span>
-                                    <span>상세주소 : {data[0].wanter_board_place + " " + data[0].wanter_board_place_detail}</span>
+                                    {data[0].wanter_board_date}
                                 </span>
                             </div>
                             <section className="paragraph">
@@ -158,7 +141,7 @@ export default function BoardDetail() {
                                 </div>
                             </section>
                             <div className="paragraph_ext">
-                                <KakaoMap geoLocation={data[0].wanter_board_place} />
+                                <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
                                 <button className="likes_btn">
                                     <AiOutlineHeart />
                                 </button>
@@ -172,13 +155,16 @@ export default function BoardDetail() {
                                             <textarea
                                                 className="comment_textarea"
                                                 onChange={inputChange}
+                                                maxLength={200}
                                             ></textarea>
                                             <div className="comment_submit_form">
-                                                <span className="comment_count">0/100</span>
+                                                <span className="comment_count">{inputCount}/200</span>
                                                 <button
                                                     type="button"
                                                     onClick={() => {
-                                                        sendCommentData();
+                                                        inputCount == 0
+                                                            ? alert("한글자 이상 입력하세요!")
+                                                            : sendCommentData();
                                                     }}
                                                     className="comment_submit"
                                                 >
