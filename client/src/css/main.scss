@@ -28,6 +28,9 @@
     display: flex;
     flex-direction: column;
     padding: 7rem 0 0 8rem;
+    @include mobile {
+      width: 80%;
+    }
     h2 {
       font-size: 40px;
       font-weight: 900;
@@ -36,6 +39,9 @@
       margin-top: 1rem;
       font-size: 16px;
       color: gray;
+      @include mobile {
+        display: none;
+      }
       &.mb-04 {
         margin-bottom: 1rem;
       }
@@ -43,6 +49,9 @@
     .h3-content2 {
       font-size: 16px;
       color: gray;
+      @include mobile {
+        display: none;
+      }
     }
     button {
       display: block;
@@ -76,6 +85,10 @@
     width: 60%;
     height: 100%;
     animation: fadeInLeft 3s;
+
+    @include mobile {
+      display: none;
+    }
     .lottie-item {
       width: 100%;
       height: 100%;
