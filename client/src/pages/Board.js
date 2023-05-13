@@ -33,7 +33,7 @@ export default function Board() {
   const searchText = () => {
     axios({
       method: "GET",
-      url: `/api/search/${search}/${optionValue}`,
+      url: `${process.env.REACT_APP_DB_HOST}/api/search/${search}/${optionValue}`,
     }).then((res) => {
       console.log(res.data);
     });
@@ -67,9 +67,6 @@ export default function Board() {
                 </button>
               );
             })}
-
-            <Link to="/WritePage">글 작성</Link>
-
             {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>

@@ -86,44 +86,79 @@ export default function JobSeeker({ data }) {
                   <td>{currentItems.helper_board_date.split(" ")[0]}</td>
                   <td>{currentItems.helper_board_hit}</td>
                 </tr>
-              );
-            })
-          ) : (
-            <Loading />
-          )}
-        </tbody>
-      </table>
-      <ul className="pagination">
-        <div className="form_pagination">
-          <li>
-            <button
-              onClick={PrevBtn}
-              className="PrevBtn"
-              style={
-                currentPage == pages[0]
-                  ? { visibility: "hidden" }
-                  : { visibility: "visible" }
-              }
-            >
-              {"<"}
-            </button>
-          </li>
-          {renderPageNumbers}
-          <li>
-            <button
-              onClick={NextBtn}
-              className="NextBtn"
-              style={
-                currentPage == pages[pages.length - 1]
-                  ? { visibility: "hidden" }
-                  : { visibility: "visible" }
-              }
-            >
-              {">"}
-            </button>
-          </li>
-        </div>
-      </ul>
-    </>
-  );
+            </thead>
+            <tbody>
+                {/* {data ? data.map((data) => {
+                    return (
+                        <tr className='board_son'>
+                            <td>{data.helper_board_writer}</td>
+                            <td className='son_title'><Link to={`/board/BoardDetail/helper/${data.helper_board_id}`}>{data.helper_board_title}</Link></td>
+                            <td>{data.helper_board_date}</td>
+                            <td>{data.helper_board_hit}</td>
+                        </tr>
+                    )
+                }) : "null"}
+            </tbody>
+        </table> */}
+            <table className="board_items">
+                <colgroup>
+                    <col width="13.4%" />
+                    <col width="60%" />
+                    <col width="13.3%" />
+                    <col width="13.3%" />
+                </colgroup>
+                <thead className="board_header">
+                    <tr>
+                        <th>작성자</th>
+                        <th>제목</th>
+                        <th>날짜</th>
+                        <th>조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentItems ? (
+                        currentItems.map((currentItems) => {
+                            return (
+                                <tr className="board_son">
+                                    <td>{currentItems.helper_board_writer}</td>
+                                    <td className="son_title">
+                                        <Link
+                                            to={`/board/BoardDetail/helper/${currentItems.helper_board_id}`}
+                                        >
+                                            {currentItems.helper_board_title}
+                                        </Link>
+                                    </td>
+                                    <td>{currentItems.helper_board_date}</td>
+                                    <td>{currentItems.helper_board_hit}</td>
+                                </tr>
+                            );
+                        })
+                    ) : (
+                        <Loading />
+                    )}
+                </tbody>
+            </table>
+            <ul className="pagination">
+                <li>
+                    <button
+                        onClick={PrevBtn}
+                        disabled={currentPage == pages[0] ? true : false}
+                        className="PaginationBtn"
+                    >
+                        이전
+                    </button>
+                </li>
+                {renderPageNumbers}
+                <li>
+                    <button
+                        onClick={NextBtn}
+                        disabled={currentPage == pages[pages.length - 1] ? true : false}
+                        className="PaginationBtn"
+                    >
+                        다음
+                    </button>
+                </li>
+            </ul>
+        </>
+    );
 }

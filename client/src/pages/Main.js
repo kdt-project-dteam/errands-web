@@ -18,7 +18,6 @@ import 'swiper/css/scrollbar';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Lottie from 'react-lottie';
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import LottieData from '../css/imgjson/bicycle.json';
 
 export default function Main() {
@@ -62,7 +61,9 @@ export default function Main() {
                     <h3>이웃과 함께하는 다양한 심부름</h3>
                     <h3 className='h3-content'>우리동네 헬퍼에게</h3>
                     <h3 className='h3-content2'>심부름을 요청하세요</h3>
-                    <h3 className='h3-content'>#심부름#헬프#도움#알바</h3>
+                    <h3 className='h3-content mb-04'>#심부름 #헬프 #도움 #알바</h3>
+                    <button type='button' className='btnOrange btnPush'>구인 요청하기</button>
+                    <button type='button' className='btnOrange btnPush'>구직 요청하기</button>
                 </div>
                 <div className='banner-right'>
                     <Lottie
@@ -88,16 +89,18 @@ export default function Main() {
                             {value?.map((data, idx) => {
                                 return (
                                     <SwiperSlide>
-                                        <div key={idx} className='swiper-card card'>
-                                            <p className='fs-16'>{data.wanter_board_title}</p>
-                                            <p>{data.wanter_board_writer}</p>
-                                            <div className='d-flex'>
-                                                <p>주소 : ?</p>
-                                                <p>수고비 : 20000원</p>
-                                                <p>조회수 : {data.wanter_board_hit}</p>
-                                                <p>작성일 : {data.wanter_board_date}</p>
+                                        <Link to={`/board/boardDetail/wanter/${data.wanter_board_id}`}>
+                                            <div key={idx} className='swiper-card card'>
+                                                <p className='fs-16'>{data.wanter_board_title}</p>
+                                                <p>{data.wanter_board_writer}</p>
+                                                <div className='d-flex'>
+                                                    <p>주소 : ?</p>
+                                                    <p>수고비 : 20000원</p>
+                                                    <p>조회수 : {data.wanter_board_hit}</p>
+                                                    <p>작성일 : {data.wanter_board_date.split(' ')[0]}</p>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </SwiperSlide>
                                 )
                             })}
@@ -107,22 +110,6 @@ export default function Main() {
                 <div className='main-2'>
                     <h2>
                         <div>급구!✈️</div>
-                        <div
-                            className="ft-08 card"
-                            onClick={() => {
-                                setBoardState("offer");
-                            }}
-                        >
-                            구인
-                        </div>
-                        <div
-                            className="ft-08 card"
-                            onClick={() => {
-                                setBoardState("search");
-                            }}
-                        >
-                            구직
-                        </div>
                     </h2>
                     <div className='swiper-section'>
                         <Swiper
@@ -133,37 +120,24 @@ export default function Main() {
                             navigation
                             onSwiper={(swiper) => console.log(swiper)}
                         >
-                            {/* {boardState === "offer" ? value?.wanterBoard.map((data, idx) => {
+                            {value?.map((data, idx) => {
                                 return (
                                     <SwiperSlide>
-                                        <div className='swiper-card card'>
-                                            <p className='fs-16'>{data.wanter_board_title}</p>
-                                            <p>{data.wanter_board_writer}</p>
-                                            <div className='d-flex'>
-                                                <p>주소 : ?</p>
-                                                <p>수고비 : 20000원</p>
-                                                <p>조회수 : {data.wanter_board_hit}</p>
-                                                <p>작성일 : {data.wanter_board_date}</p>
+                                        <Link to={`/board/boardDetail/wanter/${data.wanter_board_id}`}>
+                                            <div className='swiper-card card'>
+                                                <p className='fs-16'>{data.wanter_board_title}</p>
+                                                <p>{data.wanter_board_writer}</p>
+                                                <div className='d-flex'>
+                                                    <p>주소 : ?</p>
+                                                    <p>수고비 : 20000원</p>
+                                                    <p>조회수 : {data.wanter_board_hit}</p>
+                                                    <p>작성일 : {data.wanter_board_date.split(' ')[0]}</p>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </SwiperSlide>
                                 )
-                            }) : helperBoard?.map((data, idx) => {
-                                return (
-                                    <SwiperSlide>
-                                        <div className='swiper-card card'>
-                                            <p className='fs-16'>{data.helper_board_title}</p>
-                                            <p>{data.helper_board_writer}</p>
-                                            <div className='d-flex'>
-                                                <p>주소 : ?</p>
-                                                <p>수고비 : 20000원</p>
-                                                <p>조회수 : {data.helper_board_hit}</p>
-                                                <p>작성일 : {data.helper_board_date}</p>
-                                            </div>
-                                        </div>
-                                    </SwiperSlide>
-                                )
-                            })} */}
+                            })}
 
                         </Swiper>
                     </div>
