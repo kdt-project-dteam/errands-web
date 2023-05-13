@@ -256,13 +256,16 @@ export default function BoardDetail() {
                     <textarea
                       className="comment_textarea"
                       onChange={inputChange}
+                      maxLength={200}
                     ></textarea>
                     <div className="comment_submit_form">
-                      <span className="comment_count">0/100</span>
+                      <span className="comment_count">{inputCount}/200</span>
                       <button
                         type="button"
                         onClick={() => {
-                          sendCommentData();
+                          inputCount.trim().length == 0
+                            ? alert("한글자 이상 입력하세요!")
+                            : sendCommentData();
                         }}
                         className="comment_submit"
                       >
