@@ -142,7 +142,7 @@ export default function BoardDetail() {
               </section>
               <div className="paragraph_ext">
                 <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
-                <button className="likes_btn" onClick={ClickLikesBtn}>
+                <button className="likes_btn">
                   <AiOutlineHeart />
                 </button>
               </div>
@@ -272,6 +272,7 @@ export default function BoardDetail() {
                   </div>
                 </fieldset>
               </div>
+
               {commentList
                 ? commentList.map((data, idx) => {
                     return (

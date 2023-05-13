@@ -34,6 +34,7 @@ export default function Board() {
     axios({
       method: "GET",
       url: `${process.env.REACT_APP_DB_HOST}/api/search/${search}/${optionValue}`,
+      withCredentials: true,
     }).then((res) => {
       console.log(res.data);
     });
