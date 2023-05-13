@@ -9,10 +9,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 export default function Board() {
-  //   useEffect(() => {
-  //     localStorage.setItem("value", JSON.stringify(state.someReducer.value));
-  //   }, []);
-
   // wanter 전체 게시물
   let value = useSelector((state) => {
     return state.someReducer.value;
@@ -80,7 +76,11 @@ export default function Board() {
                 </select>
               </div>
               <div className="category category_items input">
-                <button type="button" onClick={searchText}>
+                <button
+                  type="button"
+                  onClick={searchText}
+                  style={{ backgroundColor: "#fff", border: "1px solid black" }}
+                >
                   <BiSearchAlt2 />
                 </button>
                 <input

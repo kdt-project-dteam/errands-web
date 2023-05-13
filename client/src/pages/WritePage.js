@@ -50,7 +50,7 @@ export default function WritePage({ data }) {
         helper_board_date: initialDate + " " + detailDate,
       },
     });
-    console.log(result.data)
+    console.log(result.data);
   };
 
   return (
@@ -62,7 +62,11 @@ export default function WritePage({ data }) {
             <h1>⌨️게시글 작성⌨️</h1>
             <div className="form-userid">
               <h5>작성자</h5>
-              <input type="text" value={localStorage.getItem('userName')} className="userid_text"></input>
+              <input
+                type="text"
+                value={localStorage.getItem("userName")}
+                className="userid_text"
+              ></input>
             </div>
             <div className="form-title">
               <h5 style={{ color: "black" }}>제목</h5>
@@ -103,7 +107,7 @@ export default function WritePage({ data }) {
             </div>
             <div className="form-address">
               <h5 className="address_name ml-0">상세주소</h5>
-              <div className='address-form-child'>
+              <div className="address-form-child">
                 <input
                   type="text"
                   className="detail_address_text"
@@ -114,10 +118,9 @@ export default function WritePage({ data }) {
                   }}
                 ></input>
               </div>
-
             </div>
             <div className="form-deadline">
-              <h5 className='address_name ml-0'>예약 시간</h5>
+              <h5 className="address_name ml-0">예약 시간</h5>
               <input
                 type="date"
                 className="form-date"
@@ -126,7 +129,7 @@ export default function WritePage({ data }) {
               ></input>
             </div>
             <div className="detail_date">
-              <h5 className='address_name ml-0'>상세 시간</h5>
+              <h5 className="address_name ml-0">상세 시간</h5>
               <input
                 type="text"
                 className="detail_date_text"

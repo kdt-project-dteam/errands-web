@@ -87,7 +87,7 @@
       border-bottom: 1px solid gray;
 
       &:hover {
-        background-color: #ebe6e6;
+        background-color: rgba(255, 166, 0, 0.589);
       }
 
       .son_title {
@@ -129,7 +129,56 @@
     margin-top: 1rem;
   }
 
-  .PaginationBtn {
+  .page_number {
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 0.5px solid rgb(227, 225, 225);
+    cursor: pointer;
+    color: rgba(255, 166, 0, 0.589);
+    background-color: white;
+  }
+
+  .PrevBtn {
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
     border: none;
+    background-color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .NextBtn {
+    margin: 5px;
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .form_pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 }
