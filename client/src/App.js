@@ -62,6 +62,7 @@ export default function App() {
         <Route path="/mypage/withDraw" element={<WithDraw />}></Route>
         <Route path="/mypage/signOut" element={<SignOut />}></Route>
       </Routes>
+      <Footer />{" "}
     </div>
   );
 }
