@@ -12,7 +12,7 @@ export default function ModalAddress({ setAddress }) {
   return (
     <>
       <Button variant="dark" onClick={handleShow}>
-        주소 입력
+        주소 찾기
       </Button>
 
       <Modal

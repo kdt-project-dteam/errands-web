@@ -24,25 +24,18 @@ export default function WritePage({ data }) {
   const [detailDate, setDetailDate] = useState("");
 
   const submitOffer = async (e) => {
-    await axios({
+    const result = await axios({
       method: "post",
       url: `${process.env.REACT_APP_DB_HOST}/api/wanter`,
       data: {
+        user_name: "cccc",
         wanter_board_title: title,
         wanter_board_content: content,
-        wanter_board_dead_line: initialDate + detailAddress,
+        wanter_board_dead_line: initialDate + " " + detailDate,
         wanter_board_place: address,
-        wanter_board_place_detail: detailDate,
+        wanter_board_place_detail: detailAddress,
       },
     });
-
-    // console.log("wanter title >>", title);
-    // console.log("wanter content>>", content);
-    // console.log("wanter date >>", initialDate + detailAddress);
-    // console.log("wanter address>>", address);
-
-    // alert("작성이 완료되었습니다!");
-    // window.location.href = "/board";
   };
 
   const submitSeeker = async (e) => {
@@ -50,18 +43,14 @@ export default function WritePage({ data }) {
       method: "post",
       url: `${process.env.REACT_APP_DB_HOST}/api/helper`,
       data: {
+        user_name: "cccc",
         helper_board_title: title,
         helper_board_content: content,
         helper_board_place: address,
-        helper_board_place_detail: detailDate,
+        helper_board_date: initialDate + " " + detailDate,
       },
     });
-
-    // console.log("helper title >>", title);
-    // console.log("helper content>>", content);
-    // console.log("helper address>>", address);
-    // alert("작성이 완료되었습니다!");
-    // window.location.href = "/board";
+    console.log(result.data);
   };
 
   return (
@@ -69,10 +58,15 @@ export default function WritePage({ data }) {
       <div className="WritePage">
         <div className="WritePage-Left"></div>
         <div className="WritePage-Center">
-          <div className="Write_border_box">
+          <div className="Write_border_box card">
+            <h1>⌨️게시글 작성⌨️</h1>
             <div className="form-userid">
               <h5>작성자</h5>
-              <input type="text" value={userid} className="userid_text"></input>
+              <input
+                type="text"
+                value={localStorage.getItem("userName")}
+                className="userid_text"
+              ></input>
             </div>
             <div className="form-title">
               <h5 style={{ color: "black" }}>제목</h5>
@@ -111,19 +105,22 @@ export default function WritePage({ data }) {
                 ></input>
               </div>
             </div>
-            <div className="detail_address">
-              <input
-                type="text"
-                className="detail_address_text"
-                placeholder="상세주소를 입력하세요. ex) **동 **호"
-                value={detailAddress}
-                onChange={(e) => {
-                  setDetailAddress(e.target.value);
-                }}
-              ></input>
+            <div className="form-address">
+              <h5 className="address_name ml-0">상세주소</h5>
+              <div className="address-form-child">
+                <input
+                  type="text"
+                  className="detail_address_text"
+                  placeholder="상세주소를 입력하세요. ex) **동 **호"
+                  value={detailAddress}
+                  onChange={(e) => {
+                    setDetailAddress(e.target.value);
+                  }}
+                ></input>
+              </div>
             </div>
             <div className="form-deadline">
-              <h5>예약 시간</h5>
+              <h5 className="address_name ml-0">예약 시간</h5>
               <input
                 type="date"
                 className="form-date"
@@ -132,7 +129,7 @@ export default function WritePage({ data }) {
               ></input>
             </div>
             <div className="detail_date">
-              <h5>상세 시간</h5>
+              <h5 className="address_name ml-0">상세 시간</h5>
               <input
                 type="text"
                 className="detail_date_text"

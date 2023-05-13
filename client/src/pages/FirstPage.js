@@ -2,10 +2,6 @@ import "../css/backgroundImage.scss";
 export default function FirstPage() {
   return (
     <>
-      {/* <div class="container">
-        <div class="typewriter">누군가의 도움이 필요하신가요?</div>
-      </div> */}
-
       <div className="backgroundImage">
         <img src="/img/backgroundImage.jpg" alt="배경사진"></img>
         <div className="errand">

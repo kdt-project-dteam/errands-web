@@ -21,17 +21,14 @@
 // }
 
 // .typewriter {
+//   font-family: "Fuzzy Bubbles", cursive;
 //   width: 30ch;
 //   white-space: nowrap;
 //   overflow: hidden;
 //   border-right: 4px solid #212121;
 //   animation: cursor 1s step-start infinite, text 3s steps(18) alternate infinite;
 // }
-// .typewriter:before {
-//   animation: deleting 2s steps(10) 1 normal forwards,
-//     typing-again 3s steps(10) 1s 1 normal forwards;
-//   content: "심부릉을 이용해보세요!";
-// }
+
 // @keyframes cursor {
 //   0%,
 //   100% {
@@ -44,26 +41,10 @@
 //     width: 0;
 //   }
 //   100% {
-//     width: 39%;
-//   }
-// }
-// @keyframes deleting {
-//   from {
-//     width: 100%;
-//   }
-//   to {
-//     width: 0;
+//     width: 45%;
 //   }
 // }
 
-// @keyframes typing-again {
-//   from {
-//     content: "누군가의 도움이 필요하신가요?";
-//   }
-//   to {
-//     content: "심부릉을 이용해보세요!";
-//   }
-// }
 .backgroundImage {
   position: relative;
 

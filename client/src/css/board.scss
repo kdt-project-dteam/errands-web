@@ -23,6 +23,7 @@
   h3 {
     padding-bottom: 2rem;
   }
+  background-color: #f2f2f2;
 
   @include mobile {
     grid-template-columns: 1fr 100fr 1fr;
@@ -61,6 +62,7 @@
         font-size: 20px;
         cursor: pointer;
         padding: 0.5rem;
+        align-items: center;
       }
     }
 
@@ -87,7 +89,7 @@
       border-bottom: 1px solid gray;
 
       &:hover {
-        background-color: #ebe6e6;
+        background-color: rgba(255, 166, 0, 0.589);
       }
 
       .son_title {
@@ -110,6 +112,10 @@
       background-color: $main-color;
       border-radius: $bor-radius;
 
+      .card {
+        align-items: center;
+      }
+
       .category_items {
         display: flex;
         justify-content: space-between;
@@ -118,8 +124,11 @@
   }
 
   a:-webkit-any-link {
+    padding: 0.5rem;
     text-decoration: none;
     color: black;
+    border-radius: 10px;
+    width: 12%;
     cursor: pointer;
   }
 
@@ -129,7 +138,66 @@
     margin-top: 1rem;
   }
 
-  .PaginationBtn {
+  .page_number {
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .active {
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border: 0.5px solid rgb(227, 225, 225);
+    cursor: pointer;
+    color: rgba(255, 166, 0, 0.589);
+    background-color: white;
+  }
+
+  .PrevBtn {
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
     border: none;
+    background-color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .NextBtn {
+    margin: 5px;
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #fff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .form_pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .writePage_btn {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    width: 60px;
+    justify-content: center;
+    background-color: black;
+    color: white;
   }
 }

@@ -12,6 +12,7 @@ import KakaoMap from "../components/KakaoMap";
 
 export default function BoardDetail() {
   const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
+  const [inputCount, setInputCount] = useState(0);
   const value = useSelector((state) => {
     return state.someReducer.value;
   });
@@ -60,6 +61,7 @@ export default function BoardDetail() {
   };
   const inputChange = (e) => {
     setCommentData(e.target.value);
+    setInputCount(e.target.value.length);
   };
 
   const getCommentData = async () => {
@@ -153,13 +155,16 @@ export default function BoardDetail() {
                       <textarea
                         className="comment_textarea"
                         onChange={inputChange}
+                        maxLength={200}
                       ></textarea>
                       <div className="comment_submit_form">
-                        <span className="comment_count">0/100</span>
+                        <span className="comment_count">{inputCount}/200</span>
                         <button
                           type="button"
                           onClick={() => {
-                            sendCommentData();
+                            inputCount == 0
+                              ? alert("한글자 이상 입력하세요!")
+                              : sendCommentData();
                           }}
                           className="comment_submit"
                         >
