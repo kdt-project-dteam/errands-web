@@ -69,6 +69,7 @@ export default function BoardDetail() {
       const result = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
+        withCredentials: true,
       });
       setCommentList(result.data);
       console.log(result);
@@ -76,6 +77,7 @@ export default function BoardDetail() {
       const result = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/comment`,
+        withCredentials: true,
       });
       setCommentList(result.data);
       console.log(result);

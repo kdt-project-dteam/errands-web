@@ -21,6 +21,7 @@ export default function MyWrite() {
       method: "POST",
       url: `${process.env.REACT_APP_DB_HOST}/api/user/helper`,
       data: { user_name: "테스트" },
+      withCredentials: true,
     });
     console.log(result.data);
     setHelperPost(result.data);

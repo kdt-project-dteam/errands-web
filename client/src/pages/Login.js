@@ -33,10 +33,10 @@ const Login = () => {
     if (data.data.msg === true) {
       Swal.fire({
         icon: "success",
-        title: "회원가입 성공!",
+        title: "로그인 성공!",
         showConfirmButton: false,
         timer: 1500,
-      }).then((window.location.href = "/"));
+      }).then((window.location.href = "/main"));
       localStorage.setItem("userName", data.data.user_info.user_name);
       localStorage.setItem("userId", data.data.user_info.id);
     } else {
