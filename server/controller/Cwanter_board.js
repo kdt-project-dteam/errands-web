@@ -190,28 +190,31 @@ exports.search_wanter_board = async (req, res) => {
 // 게시물 done 처리
 exports.done_wanter_board = async (req, res) => {
   try {
-    // if (!req.session.user_info) {
-    //   res.send("로그인하시오");
-    // } else {
-    const auth = await Errands.Wanter_board.findOne({
-      attributes: ["wanter_board_writer"],
-      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-    });
-    if (auth.dataValues.wanter_board_writer !== req.body.user_name) {
-      res.send("작성자만 완료가능");
+    if (!req.session.user_info) {
+      res.send("로그인하시오");
     } else {
-      const [result] = await Errands.Wanter_board.update(
-        {
-          wanter_board_done: true,
-        },
-        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
-      );
-      console.log("========");
-      console.log(result);
-      if (result === 0) {
-        res.send(false);
+      const auth = await Errands.Wanter_board.findOne({
+        attributes: ["wanter_board_writer"],
+        where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+      });
+      if (
+        auth.dataValues.wanter_board_writer !== req.session.user_info.user_name
+      ) {
+        res.send("작성자만 완료가능");
       } else {
-        res.send(true);
+        const [result] = await Errands.Wanter_board.update(
+          {
+            wanter_board_done: true,
+          },
+          { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+        );
+        console.log("========");
+        console.log(result);
+        if (result === 0) {
+          res.send(false);
+        } else {
+          res.send(true);
+        }
       }
     }
   } catch (err) {
@@ -220,34 +223,34 @@ exports.done_wanter_board = async (req, res) => {
 };
 
 // 게시물 진행 중 처리
-exports.proceed_wanter_board = async (req, res) => {
-  try {
-    // if (!req.session.user_info) {
-    //   res.send("로그인하시오");
-    // } else {
-    const auth = await Errands.Wanter_board.findOne({
-      attributes: ["wanter_board_writer"],
-      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-    });
-    if (auth.dataValues.wanter_board_writer !== req.body.user_name) {
-      res.send("작성자만 완료가능");
-    } else {
-      const [result] = await Errands.Wanter_board.update(
-        {
-          wanter_board_done: 2,
-          // ture 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
-        },
-        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
-      );
-      console.log("========");
-      console.log(result);
-      if (result === 0) {
-        res.send(false);
-      } else {
-        res.send(true);
-      }
-    }
-  } catch (err) {
-    res.send(err);
-  }
-};
+// exports.proceed_wanter_board = async (req, res) => {
+//   try {
+//     // if (!req.session.user_info) {
+//     //   res.send("로그인하시오");
+//     // } else {
+//     const auth = await Errands.Wanter_board.findOne({
+//       attributes: ["wanter_board_writer"],
+//       where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+//     });
+//     if (auth.dataValues.wanter_board_writer !== req.body.user_name) {
+//       res.send("작성자만 완료가능");
+//     } else {
+//       const [result] = await Errands.Wanter_board.update(
+//         {
+//           wanter_board_done: 2,
+//           // ture 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
+//         },
+//         { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+//       );
+//       console.log("========");
+//       console.log(result);
+//       if (result === 0) {
+//         res.send(false);
+//       } else {
+//         res.send(true);
+//       }
+//     }
+//   } catch (err) {
+//     res.send(err);
+//   }
+// };
