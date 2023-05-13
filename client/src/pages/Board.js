@@ -67,6 +67,9 @@ export default function Board() {
                 </button>
               );
             })}
+
+            <Link to="/WritePage">글 작성</Link>
+
             {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>
@@ -80,7 +83,11 @@ export default function Board() {
                 </select>
               </div>
               <div className="category category_items input">
-                <button type="button" onClick={searchText}>
+                <button
+                  type="button"
+                  onClick={searchText}
+                  style={{ backgroundColor: "#fff", border: "1px solid black" }}
+                >
                   <BiSearchAlt2 />
                 </button>
                 <input

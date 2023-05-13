@@ -3,22 +3,22 @@ import "../css/main.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import {
-    asyncUpAxios,
-    helperBoardSetter,
-    wanterBoardSetter,
+  asyncUpAxios,
+  helperBoardSetter,
+  wanterBoardSetter,
 } from "../store/testCounter";
 import { Link } from "react-router-dom";
-import Loading from '../components/Loading';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import Loading from "../components/Loading";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Lottie from 'react-lottie';
-import LottieData from '../css/imgjson/bicycle.json';
+import Lottie from "react-lottie";
+import LottieData from "../css/imgjson/bicycle.json";
 
 export default function Main() {
     const dispatch = useDispatch();
@@ -305,7 +305,7 @@ export default function Main() {
                         </ul>
                     </div>
                 </div> */}
-            </div >
-        </>
-    );
+      </div>
+    </>
+  );
 }
