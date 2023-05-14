@@ -21,8 +21,19 @@
     background-color: #fca311;
   }
   .imfor {
+    display: flex;
     text-align: center;
     font-weight: 700;
+
+    .userimg {
+      width: 80px;
+      height: 80px;
+    }
+
+    .imforContainer {
+      display: block;
+      text-align: center;
+    }
   }
   p {
     margin-top: 0.5rem;
@@ -76,10 +87,10 @@
         border-radius: 3px;
         margin-right: 27%;
       }
-      input[type='radio'] {
+      input[type="radio"] {
         display: none;
       }
-      input[type='radio'] + label {
+      input[type="radio"] + label {
         display: inline-block;
         cursor: pointer;
         height: 24px;
@@ -90,11 +101,11 @@
         font-weight: bold;
         font-size: 13px;
       }
-      input[type='radio'] + label {
+      input[type="radio"] + label {
         background-color: #fff;
         color: #333;
       }
-      input[type='radio']:checked + label {
+      input[type="radio"]:checked + label {
         background-color: #333;
         color: #fff;
       }

@@ -40,6 +40,27 @@ export default function WithDraw() {
   useEffect(() => {
     myPageUserAxios();
   }, []);
+
+  const setImg = async (file) => {
+    const formData = new FormData();
+    formData.append("user_img", file);
+
+    // 파일 데이터를 서버에 보냅니다.
+    const result = await axios({
+      method: "POST",
+      url: `${process.env.REACT_APP_DB_HOST}/api/user/${myPageUserData.id}/img`,
+      data: formData,
+    });
+
+    console.log(result.data); // 서버에서 보낸 응답 확인
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file); // 선택된 파일 객체 확인
+    setImg(file);
+  };
+
   return (
     <div className="MyPage">
       <div className="Header">
@@ -62,10 +83,29 @@ export default function WithDraw() {
             {" "}
             <div className="memberImfor">회원정보</div>
             <div className="imfor">
-              <div>아이디 : {myPageUserData.user_id}</div>
-              <div>닉네임 : {myPageUserData.user_name}</div>
-              <div>
-                유저타입 : {myPageUserData.user_type === "W" ? "구인" : "구직"}
+              <img
+                src={
+                  process.env.PUBLIC_URL + `/userImg/${myPageUserData.user_img}`
+                }
+                alt="test img"
+                className="userimg"
+              />
+              <div className="imforContainer">
+                <div>아이디 : {myPageUserData.user_id}</div>
+                <div>닉네임 : {myPageUserData.user_name}</div>
+                <div>
+                  유저타입 :{" "}
+                  {myPageUserData.user_type === "W" ? "구인" : "구직"}
+                </div>
+                <form onSubmit={setImg}>
+                  <input
+                    type="file"
+                    name="user_img"
+                    id="user_img"
+                    onChange={handleFileChange}
+                  />
+                  <button type="submit">submit</button>
+                </form>
               </div>
             </div>
             <div className="change">회원정보수정하기</div>
