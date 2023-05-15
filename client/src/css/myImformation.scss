@@ -19,6 +19,7 @@
   .memberImfor {
     margin: 3rem 0 0.5rem;
     background-color: #fca311;
+    color: #fff;
   }
   .imfor {
     text-align: center;
@@ -31,6 +32,7 @@
     width: 100%;
     margin: 1rem auto;
     background-color: #fca311;
+    color: #fff;
   }
 
   div {
@@ -76,10 +78,10 @@
         border-radius: 3px;
         margin-right: 27%;
       }
-      input[type='radio'] {
+      input[type="radio"] {
         display: none;
       }
-      input[type='radio'] + label {
+      input[type="radio"] + label {
         display: inline-block;
         cursor: pointer;
         height: 24px;
@@ -90,11 +92,11 @@
         font-weight: bold;
         font-size: 13px;
       }
-      input[type='radio'] + label {
+      input[type="radio"] + label {
         background-color: #fff;
         color: #333;
       }
-      input[type='radio']:checked + label {
+      input[type="radio"]:checked + label {
         background-color: #333;
         color: #fff;
       }

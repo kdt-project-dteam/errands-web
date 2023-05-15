@@ -83,7 +83,7 @@ export default function Main() {
                         {value?.map((data, idx) => {
                             return (
                                 <Link to={`/board/boardDetail/wanter/${data.wanter_board_id}`}>
-                                    <div key={idx} className='swiper-card card'>
+                                    <div data-aos="fade-left" key={idx} className='swiper-card card'>
                                         <p className='fs-22 d-flex-row jc-between'>
                                             <span><FontAwesomeIcon className='m-color' icon={faTruckFast} /> {data.wanter_board_title}</span>
                                             <span><FontAwesomeIcon className='s-color' icon={faLocationDot} />  {data.wanter_board_place}</span>
@@ -140,7 +140,7 @@ export default function Main() {
                                 return (
                                     <SwiperSlide>
                                         <Link to={`/board/boardDetail/wanter/${data.wanter_board_id}`}>
-                                            <div className='swiper-card card'>
+                                            <div data-aos="fade-left" className='swiper-card card'>
                                                 <p className='fs-16'><FontAwesomeIcon className='m-color' icon={faTruckFast} /> {data.wanter_board_title}</p>
                                                 <p>{data.wanter_board_writer}</p>
                                                 <div className='d-flex'>
@@ -187,7 +187,7 @@ export default function Main() {
                             {allUserData ? allUserData.map((data, idx) => {
                                 return (
                                     <SwiperSlide>
-                                        <div className='swiper-card card'>
+                                        <div data-aos="fade-left" className='swiper-card card'>
                                             <p className={`rank-head fs-16 rank${data.id}`}>
                                                 <span>#{idx + 1}위</span>
                                                 {rankIcon[idx] ? <span className='rank-icon'>{rankIcon[idx]}</span> : ''}

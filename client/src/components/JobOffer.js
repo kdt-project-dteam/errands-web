@@ -60,7 +60,7 @@ export default function JobOffer({ data }) {
         </li>
       );
     } else {
-      return "null";
+      return null;
     }
   });
 
