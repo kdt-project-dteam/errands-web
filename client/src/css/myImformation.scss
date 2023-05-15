@@ -1,3 +1,5 @@
+@import "./_utils.scss";
+
 .Header {
   display: flex;
   width: 50%;
@@ -9,6 +11,7 @@
     padding: 2px 2.7rem;
   }
 }
+
 .body {
   background-color: white;
   width: 35vw;
@@ -16,14 +19,30 @@
   margin: 0 auto;
   border-radius: 5%;
   text-align: center;
+
+  @include mobile {
+    width: 70vw;
+    margin: 0;
+  }
+
   .memberImfor {
     margin: 3rem 0 0.5rem;
     background-color: #fca311;
+
+    @include mobile {
+      width: 100%;
+      margin: 0;
+    }
   }
   .imfor {
-    display: flex;
-    text-align: center;
+    // display: flex;
     font-weight: 700;
+    margin: 0 auto;
+
+    @include mobile {
+      width: 100%;
+      margin: 0;
+    }
 
     .userimg {
       width: 80px;
@@ -31,8 +50,36 @@
     }
 
     .imforContainer {
-      display: block;
       text-align: center;
+      display: block;
+    }
+
+    form {
+      display: block;
+      font-size: 12px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .btnOrange {
+      cursor: pointer;
+      border-radius: 5px;
+      color: #fff;
+      transition: all 0.2s;
+      font-weight: 600;
+      color: #fff;
+      border-radius: 5px;
+      border: 0;
+      cursor: pointer;
+
+      &.btnPush {
+        box-shadow: 0px 5px 0px 0px #a66615;
+        &:hover {
+          margin-top: 15px;
+          margin-bottom: 5px;
+          box-shadow: 0px 0px 0px 0px #a66615;
+        }
+      }
     }
   }
   p {

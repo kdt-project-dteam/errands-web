@@ -97,16 +97,18 @@ export default function WithDraw() {
                   유저타입 :{" "}
                   {myPageUserData.user_type === "W" ? "구인" : "구직"}
                 </div>
-                <form onSubmit={setImg}>
-                  <input
-                    type="file"
-                    name="user_img"
-                    id="user_img"
-                    onChange={handleFileChange}
-                  />
-                  <button type="submit">submit</button>
-                </form>
               </div>
+              <form onSubmit={setImg}>
+                <input
+                  type="file"
+                  name="user_img"
+                  id="user_img"
+                  onChange={handleFileChange}
+                />
+                <button type="submit" className="btnOrange btnPush">
+                  submit
+                </button>
+              </form>
             </div>
             <div className="change">회원정보수정하기</div>
             <p>수정할 정보를 입력해주세요</p>
