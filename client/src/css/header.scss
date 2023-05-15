@@ -1,0 +1,62 @@
+@import "./utils.scss";
+.d-none {
+  display: none;
+}
+.d-flex {
+  display: flex;
+}
+
+.header {
+  width: 100vw;
+  height: 80px;
+  background-color: $main-color;
+  text-align: center;
+  line-height: 80px;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  .w-80 {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    @include mobile {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .header-logo {
+      font-size: 1.4rem;
+      padding-left: 2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .header-link {
+      padding-left: 30px;
+      @include mobile {
+        display: none;
+      }
+      a {
+        margin: 10px;
+        color: #fff !important;
+      }
+    }
+    .header-nav {
+      @include mobile {
+        display: block;
+      }
+      display: none;
+    }
+  }
+}
+
+.burger-menu {
+  width: 100vw;
+  flex-direction: column;
+  background-color: $main-color;
+  padding: 1rem;
+  a {
+    margin: 0.2rem;
+    text-align: center;
+  }
+}

@@ -1,0 +1,29 @@
+@import "./utils.scss";
+.Footer {
+  //text-align: center;
+  width: 100%;
+  height: 30vh;
+  background-color: black;
+  text-align: center;
+  margin-top: 30rem;
+
+  .Footer1 {
+    display: flex;
+
+    justify-content: center;
+    div {
+      margin: 1.2rem;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+  .Footer2 {
+    div {
+      margin: 1.2rem;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}

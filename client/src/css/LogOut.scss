@@ -1,0 +1,38 @@
+@import "./utils.scss";
+
+.logOut {
+  width: 50%;
+  height: 60vh;
+  margin: 10% auto;
+  text-align: center;
+  .logout-div {
+    color: black;
+    font-size: 1.3rem;
+    width: 100%;
+    height: 30vh;
+    margin: 0 auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: $bor-radius;
+    font-weight: 700;
+  }
+  button {
+    margin-top: 1rem;
+    background-color: $main-color;
+    color: white;
+    width: 30%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 0;
+    transition: 0.2s;
+    &:hover,
+    &:active {
+      cursor: pointer;
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+  }
+}

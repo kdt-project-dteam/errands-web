@@ -1,0 +1,68 @@
+// @import "~bootstrap/scss/_functions.scss";
+// @import "~bootstrap/scss/_variables.scss";
+// @import "~bootstrap/scss/_mixins.scss";
+// @import "~bootstrap/scss/_modal.scss";
+
+@font-face {
+  font-family: SDGothic;
+  src: url(./font/AppleSDGothicNeoL.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-family: SDGothic;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: gray;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+body {
+  background-color: #f2f2f2 !important;
+  overflow-x: hidden;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.swiper-button-prev {
+  color: $main-color;
+}
+
+.swiper-button-next {
+  color: $main-color;
+}
+
+// @font-face {
+//   font-family: SDG;
+//   font-style: normal;
+//   font-weight: normal;
+//   src: local('SDG'),
+//     url('/client/public/font/AppleSDGothicNeoL.ttf') format('ttf');
+// }

@@ -1,0 +1,27 @@
+@import "./_utils.scss";
+.Header {
+  display: flex;
+  width: 50%;
+  margin: 1rem auto;
+
+  div {
+    margin: 0 auto;
+    border: none;
+    background-color: white;
+    padding: 2px 2.7rem;
+    border-radius: 1rem;
+    &:hover {
+      scale: 1.1;
+      transition: 0.5s;
+      color: black;
+    }
+    a {
+      @include mobile {
+        display: block;
+        width: 3rem;
+        font-size: 12px;
+        height: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+@import "./_utils.scss";
+@font-face {
+  font-family: SDNeo;
+  src: url("../css/font/AppleSDGothicNeoL.ttf");
+}
+
+.backgroundImage {
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 52rem;
+
+    object-fit: cover;
+  }
+  .errand {
+    font-family: SDNeo;
+    .title {
+      font-size: 35px;
+      margin-top: 1.5rem;
+    }
+    background-color: white;
+    width: 440px;
+    height: 390px;
+    position: absolute;
+    animation: fadeInUp 2s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    div {
+      text-align: center;
+    }
+    .explain {
+      margin-top: 5rem;
+      font-size: 1.2rem;
+      @include mobile {
+        font-size: 1rem;
+      }
+    }
+    button {
+      background-color: $main-color;
+      color: white;
+      width: 12rem;
+      height: 3rem;
+      margin-top: 2.5rem;
+      border: 0;
+      border-radius: $bor-radius;
+      transition: 0.3s;
+      &:active,
+      &:hover {
+        transform: scale(1.1);
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      a {
+        color: white;
+      }
+    }
+  }
+}
+.ourService {
+  margin-top: rem;
+  @include mobile {
+    height: 70%;
+  }
+  .Title {
+    font-size: 2.5rem;
+    color: black;
+    margin: 6rem;
+    text-align: center;
+  }
+  .Service {
+    @include mobile {
+      width: 100%;
+      height: 40%;
+    }
+    width: 55%;
+    height: 23rem;
+    background-color: white;
+    border-radius: 1rem;
+    margin: 2.5rem auto;
+    display: flex;
+    .img1 {
+      height: 21rem;
+      margin: 1rem;
+      @include mobile {
+        height: 40%;
+        width: 15rem;
+        margin: auto;
+      }
+    }
+    .img2 {
+      @include mobile {
+        height: 65%;
+        width: 15rem;
+        margin: auto;
+      }
+      width: 24rem;
+      height: 21rem;
+      margin: 1rem;
+      object-fit: cover;
+    }
+    .content {
+      margin: auto auto;
+      width: 14rem;
+      .innerContent1 {
+        @include mobile {
+          font-size: 1.2rem;
+        }
+        font-size: 2rem;
+      }
+      .innerContent2 {
+        @include mobile {
+          font-size: 0.8rem;
+        }
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+  //
+}

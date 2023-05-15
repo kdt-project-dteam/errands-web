@@ -1,0 +1,260 @@
+@import "./utils.scss";
+.WritePage {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  height: 100vh;
+  input {
+    padding-left: 0.5rem;
+    height: 40px;
+  }
+  // button {
+  //   margin: 0;
+  //   padding: 0.5rem 1rem;
+
+  //   font-family: "Noto Sans KR", sans-serif;
+  //   font-size: 1rem;
+  //   font-weight: 400;
+  //   text-align: center;
+  //   text-decoration: none;
+
+  //   border: none;
+  //   border-radius: 4px;
+
+  //   display: inline-block;
+  //   width: auto;
+
+  //   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  //     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  //   cursor: pointer;
+
+  //   transition: 0.5s;
+
+  //   background-color: $main-color;
+  //   color: #fff;
+  // }
+
+  // @include mobile {
+  //   grid-template-columns: 1fr 100fr 1fr;
+  // }
+
+  .WritePage-Center {
+    display: flex;
+    justify-content: center;
+
+    .Write_border_box {
+      box-sizing: border-box;
+      border-radius: 10px;
+      margin-top: 3rem;
+      width: 700px;
+      height: 900px;
+      background-color: #fff;
+      margin-bottom: 3rem;
+      @include mobile {
+        width: 350px;
+      }
+      h1 {
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .form-userid {
+        display: flex;
+        margin: 2rem;
+        align-items: center;
+
+        .userid_text {
+          width: 50%;
+          height: 40px;
+          margin-left: 14px;
+          border: 2px solid black;
+        }
+      }
+
+      .form-title {
+        display: flex;
+        flex-direction: row;
+        margin: 2rem;
+        input {
+          width: 50%;
+          margin-left: 24px;
+          height: 40px;
+          @include mobile {
+            margin-left: 27px;
+          }
+        }
+      }
+
+      .form-input {
+        border: 2px solid black;
+
+        &:focus {
+          outline: none !important;
+          border-color: #e9af7d;
+          box-shadow: 0 0 10px #e9af7d;
+        }
+        @include mobile {
+          margin-right: 7rem;
+        }
+      }
+
+      .form-text {
+        display: flex;
+        margin: 2rem;
+        width: 600px;
+      }
+
+      .form-textarea {
+        width: 80%;
+        margin-left: 22px;
+        height: 200px;
+        border: 2px solid black;
+        resize: none;
+        padding: 0.5rem;
+
+        &:focus {
+          outline: none !important;
+          border-color: #e9af7d;
+          box-shadow: 0 0 10px #e9af7d;
+        }
+        @include mobile {
+          font-size: 0.8rem;
+          width: 40%;
+          margin-left: 22px;
+        }
+      }
+
+      .form-deadline {
+        display: flex;
+        margin: 2rem;
+      }
+
+      .form-date {
+        margin-left: 10px;
+      }
+
+      .form-address {
+        display: flex;
+        margin-left: 2rem;
+        .address-form-child {
+          display: flex;
+          flex-direction: row-reverse;
+        }
+      }
+
+      .address_name {
+        display: flex;
+        margin-left: 0;
+        align-items: center;
+        &.ml-0 {
+          margin-left: 0;
+        }
+      }
+
+      .submit-form {
+        display: flex;
+        margin-right: 2rem;
+        margin-top: 2rem;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        @include mobile {
+          display: block;
+        }
+      }
+
+      .btn_parent {
+        margin: 10px;
+      }
+
+      .page-submit {
+        background-color: black;
+        border-radius: 10px;
+        color: white;
+        height: 40px;
+        width: 70px;
+        border: none;
+        margin: 1rem;
+        margin-top: 2rem;
+      }
+
+      .address_title {
+        border: 2px solid black;
+        margin-left: 10px;
+        &:focus {
+          outline: none !important;
+          border-color: #e9af7d;
+          box-shadow: 0 0 10px #e9af7d;
+        }
+        @include mobile {
+          width: 40%;
+        }
+      }
+
+      .detail_address {
+        display: flex;
+      }
+
+      .detail_address_text {
+        margin-left: 15px;
+        width: 400px;
+        border: 2px solid black;
+
+        &:focus {
+          outline: none !important;
+          border-color: #e9af7d;
+          box-shadow: 0 0 10px #e9af7d;
+        }
+        @include mobile {
+          width: 50%;
+        }
+      }
+
+      .form-date {
+        border: 2px solid black;
+
+        &:focus {
+          outline: none !important;
+          border-color: #e9af7d;
+          box-shadow: 0 0 10px #e9af7d;
+        }
+      }
+
+      .detail_date {
+        margin-left: 2rem;
+        display: flex;
+      }
+
+      .detail_date_text {
+        margin-left: 10px;
+        width: 400px;
+        border: 2px solid black;
+        @include mobile {
+          font-size: 10px;
+          width: 70%;
+        }
+        &:focus {
+          outline: none;
+          border-color: #e9af7d;
+          box-shadow: 0 0 10px #e9af7d;
+        }
+      }
+    }
+    .form-address-btn {
+      border: none;
+      background-color: white;
+    }
+
+    .address_btn_search {
+      background-color: black;
+      border-radius: 10px;
+      color: white;
+      height: 40px;
+      width: 70px;
+      border: none;
+    }
+
+    .btn-close {
+      background-color: black;
+    }
+  }
+}

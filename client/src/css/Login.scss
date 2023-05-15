@@ -1,0 +1,130 @@
+$font-size: 17px;
+body {
+  font-family: sans-serif;
+}
+.login-container {
+  height: calc(100vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  .login-contents {
+    min-width: 350px;
+    width: 25vw;
+    height: 55vh;
+    border-radius: 0.8vw;
+    overflow: hidden;
+    background-color: white;
+    h2 {
+      margin: 1.2rem;
+    }
+    form {
+      margin: 2rem 1.2rem;
+      .label-before {
+        line-height: 20px;
+        font-size: 12px;
+        top: -10px;
+        background: #fff;
+        padding: 0 6px;
+        left: 9px;
+      }
+      .field {
+        position: relative;
+        margin: 15px 0;
+        label::before {
+          content: attr(title);
+          position: absolute;
+          top: 0;
+          left: 15px;
+          line-height: 40px;
+          font-size: 14px;
+          color: #777;
+          transition: 300ms all;
+        }
+        input {
+          width: 100%;
+          line-height: 40px;
+          padding: 0 15px;
+          box-sizing: border-box;
+          font-size: 14px;
+          color: #222;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          &:focus {
+            outline: 0;
+            border-color: blue;
+          }
+          &:valid + label::before {
+            @extend .label-before;
+            content: attr(data-title);
+          }
+          &:focus + label::before {
+            @extend .label-before;
+            color: blue;
+          }
+        }
+      }
+      //버튼
+      .button-container {
+        text-align: center;
+        button {
+          margin-top: 1rem;
+          background-color: black;
+          color: white;
+          width: 100%;
+          padding: 0.8rem;
+          font-size: 1rem;
+          &:hover,
+          &:active {
+            opacity: 0.8;
+          }
+        }
+        p {
+          margin-top: 0.5rem;
+          font-size: 11px;
+        }
+        a {
+          margin-top: 0.5rem;
+          font-size: 11px;
+          font-weight: bold;
+          color: red;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .hr-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin: 8px 0px;
+  }
+  .hr-sect::before,
+  .hr-sect::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 16px;
+  }
+
+  .kakaoLogin {
+    width: 96%;
+    border-width: 0px;
+
+    &:hover,
+    &:active {
+      opacity: 0.8;
+    }
+    img {
+      width: 104%;
+      height: 3rem;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+  }
+}
