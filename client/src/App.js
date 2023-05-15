@@ -25,7 +25,7 @@ import {
   helperAll,
   allUserData,
 } from "../src/store/testCounter";
-import NotFound from "./pages/NotFound";
+//import NotFound from "./pages/NotFound";
 
 export default function App() {
   const dispatch = useDispatch();
