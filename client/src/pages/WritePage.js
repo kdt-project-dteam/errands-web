@@ -9,6 +9,7 @@ import SearchPage from "./SearchPage";
 import ModalAddress from "../components/ModalAddress";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
 
 export default function WritePage({ data }) {
   const [initialDate, setInitialDate] = useState(moment().format("YYYY-MM-DD"));
@@ -17,7 +18,6 @@ export default function WritePage({ data }) {
 
   // url : /api/${wanter,helper}
   // data : {}
-  const [userid, setUserid] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
@@ -37,8 +37,37 @@ export default function WritePage({ data }) {
       },
       withCredentials: true,
     });
-    console.log(localStorage.getItem("userName"));
-    console.log(result);
+
+    if (title.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "제목을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (content.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "내용을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (address.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "주소를 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "게시물이 작성되었습니다!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      window.location.href = "/board";
+    }
   };
 
   const submitSeeker = async (e) => {
@@ -54,7 +83,29 @@ export default function WritePage({ data }) {
       },
       withCredentials: true,
     });
-    console.log(result.data);
+    if (title.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "제목을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (content.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "내용을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "게시물이 작성되었습니다!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      window.location.href = "/board";
+    }
   };
 
   return (
