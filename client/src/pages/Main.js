@@ -96,15 +96,15 @@ export default function Main() {
                             return (
                                 <Link to={`/board/boardDetail/wanter/${data.wanter_board_id}`}>
                                     <div key={idx} className='swiper-card card'>
-                                        <p className='fs-22 d-flex-row'>
+                                        <p className='fs-22 d-flex-row jc-between'>
                                             <span><FontAwesomeIcon className='m-color' icon={faTruckFast} /> {data.wanter_board_title}</span>
                                             <span><FontAwesomeIcon className='s-color' icon={faLocationDot} />  {data.wanter_board_place}</span>
                                         </p>
                                         <p>{data.wanter_board_content.slice(0, 50) + '...'}</p>
                                         <div className='d-flex-row'>
                                             <div className='d-flex-row'>
-                                                <p className='d-flex-row jc-left'>
-                                                    <img src={process.env.PUBLIC_URL + '/userImg/1683804743316.png'} />
+                                                <p className='d-flex-row3'>
+                                                    <img src={process.env.PUBLIC_URL + '/userImg/default.png'} />
                                                     <p>{data.wanter_board_writer}</p>
                                                 </p>
                                                 <div className='d-flex-row1'>
@@ -175,7 +175,7 @@ export default function Main() {
                                                 {rankIcon[idx] ? <span className='rank-icon'>{rankIcon[idx]}</span> : ''}
                                             </p>
                                             <p className='rank-name'>
-                                                <img src={process.env.PUBLIC_URL + '/userImg/1683804743316.png'} />
+                                                <img src={process.env.PUBLIC_URL + '/userImg/default.png'} />
                                                 <div className='rank-user-info'>
                                                     <p>
                                                         {data.user_name}

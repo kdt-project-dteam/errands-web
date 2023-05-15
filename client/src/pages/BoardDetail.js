@@ -145,7 +145,6 @@ export default function BoardDetail() {
             })
             console.log(result)
         }
-
     }
 
     useEffect(() => {
