@@ -3,13 +3,36 @@
 
 
 ## 개요
-몸이아프거나 거동이불편하거나 현재 해야하는 일을 진행하기 힘든 사람들을 위한 커뮤니티 플랫폼
+몸이아프거나 거동이불편하거나 현재 해야하는 일을 진행하기 힘든 사람들을 위한 커뮤니티 플랫폼을 생각하던중
+심부름이라는 주제가 떠올라 시작하게 되었습니다.
 
 ## 주제
 심부름이 필요한 사람, 심부름으로 용돈을 벌사람을 위한 커뮤니티 플랫폼
 
+## 인원
+프론트 3명 ( 강민혁, 마상위, 김승윤 )
+백엔드 2명 ( 최희성, 배기호 )
+
+## 개발기간
+2023-05-01 ~ 2023-05-15 ( 약 2주 )
+
 ## 사용 기술
-https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
+<div align=left>
+  FrontEnd
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/sass-CC6699?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=react&logoColor=white">
+  <br/>
+  BackEnd
+  <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 
+<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+  <br/>
+  server
+  <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=amazonaws&logoColor=white">
+  </div>
+  
 ### Frontend
 
 - Reactjs
@@ -35,6 +58,12 @@ https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
 - cors
 - Session
 - multer
+
+## 페이지 흐름도
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/554e8ae8-7173-417d-85cf-c159052523e2)
+
+## DB ERD 모형도
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/a4549957-0d3c-4ae4-9784-4f008f27202c)
 
 ## api docs
 https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4

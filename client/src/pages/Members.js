@@ -58,15 +58,15 @@ export default function Members() {
                         )
                     }) : <Loading />}
                 </div>
-                <MyVerticallyCenteredModal show={modalShow} userData={userData} onHide={() => { setModalShow(false) }} />
+                {/* <MyVerticallyCenteredModal show={modalShow} userData={userData} onHide={() => { setModalShow(false) }} /> */}
             </div>
-            <MyVerticallyCenteredModal
+            {/* <MyVerticallyCenteredModal
                 show={modalShow}
                 userData={userData}
                 onHide={() => {
                     setModalShow(false);
                 }}
-            />
+            /> */}
         </>
     );
 }
