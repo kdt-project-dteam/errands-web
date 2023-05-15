@@ -10,6 +10,21 @@
 
 .card {
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.14);
+  transition: 0.5s;
+  &:hover {
+    transition: 0.5s;
+  }
+}
+
+.m-color {
+  color: $main-color;
+}
+.s-color {
+  color: skyblue;
+}
+
+.jc-left {
+  justify-content: left;
 }
 
 .main_page_all {
@@ -98,12 +113,19 @@
 
 .main {
   background-color: $background-color;
-  width: 90vw;
+  width: 80vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
   margin: 0 auto;
+  .main-1 {
+    .swiper-section {
+      .swiper-card {
+        height: 20vh;
+      }
+    }
+  }
   .main-2 {
     h2 {
       display: flex;
@@ -127,6 +149,9 @@
     width: 100%;
     height: 46vh;
     margin-top: 1rem;
+    &.h-80 {
+      height: 70vh;
+    }
     .swiper-wrapper {
       height: 44vh;
     }
@@ -140,15 +165,105 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      margin: 1rem auto;
+      .rank-head {
+        width: 100%;
+        height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.rank1 {
+          color: gold;
+          font-size: 2rem;
+        }
+        &.rank2 {
+          color: silver;
+          font-size: 1.8rem;
+        }
+        &.rank3 {
+          color: rgba(148, 62, 62, 0.843);
+          font-size: 1.6rem;
+        }
+        .rank-icon {
+          font-size: 40px;
+        }
+      }
+      .rank-name {
+        display: flex;
+        flex-direction: row;
+        height: 50%;
+        align-items: center;
+        img {
+          width: 30%;
+          height: 70%;
+          border-radius: 50%;
+          border: 1px solid gray;
+        }
+        .rank-user-info {
+          height: 70%;
+          padding-left: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          p {
+            font-size: 1.4rem;
+          }
+          p:last-child {
+            color: rgb(161, 161, 161);
+          }
+        }
+      }
+      .rank-div {
+        height: 30%;
+      }
+      .d-flex-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        p {
+          width: 50%;
+        }
+        img {
+          width: 20%;
+          height: 100%;
+          border: 1px solid gray;
+          border-radius: 50%;
+        }
+      }
       .d-flex {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        img {
+          width: 40%;
+          border: 1px solid gray;
+          border-radius: 50%;
+        }
+      }
+      .d-flex-row1 {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 50%;
+        justify-content: bottom;
+        align-items: bottom;
+        text-align: right;
+        color: gray;
+        p {
+          width: 100%;
+        }
       }
       .fs-16 {
         font-size: 18px;
       }
       .fs-22 {
-        font-size: 22px;
+        font-size: 18px;
+      }
+      .fs-30 {
+        font-size: 30px;
+      }
+      .c-red {
+        padding-right: 1rem;
+        color: orangered;
       }
     }
   }

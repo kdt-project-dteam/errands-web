@@ -19,10 +19,6 @@ const MyPage = () => {
                     <Link to="/mypage/signOut">로그아웃</Link>
                 </div>
             </div>
-            <img
-                src={process.env.PUBLIC_URL + "/userImg/21683803320680.png"}
-                alt="test img"
-            />
         </div>
     );
 };

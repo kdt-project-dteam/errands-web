@@ -249,3 +249,23 @@ exports.set_user_img = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.user_like = async (req, res) => {
+  try {
+    if (!req.session.user_info) {
+      const search = await Errands.User_info.findOne({
+        where: { id: { [Op.eq]: req.params.user } },
+      });
+      if (!search) {
+        res.send("오류임 모름이건");
+      } else {
+        search.addFollowing(parseInt(req.params.user, 10));
+        res.send(true);
+      }
+    } else {
+      res.send("로그인하시오");
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
