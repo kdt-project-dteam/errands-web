@@ -175,9 +175,6 @@ exports.search_wanter_board = async (req, res) => {
         });
         res.send(result);
       }
-    } else if (boardType == "helper") {
-      if (optionValue) {
-      }
     } else {
       res.send("알 수 없는 오류");
     }
@@ -239,7 +236,7 @@ exports.done_wanter_board = async (req, res) => {
 //       const [result] = await Errands.Wanter_board.update(
 //         {
 //           wanter_board_done: 2,
-//           // ture 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
+//           // true 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
 //         },
 //         { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
 //       );

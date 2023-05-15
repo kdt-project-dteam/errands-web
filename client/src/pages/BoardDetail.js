@@ -12,8 +12,8 @@ import KakaoMap from "../components/KakaoMap";
 
 export default function BoardDetail() {
   const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
-  const [inputCount, setInputCount] = useState(0);
-  const [valueCount, setValueCount] = useState("");
+  const [text, setText] = useState("");
+
   const value = useSelector((state) => {
     return state.someReducer.value;
   });
@@ -62,7 +62,7 @@ export default function BoardDetail() {
   };
   const inputChange = (e) => {
     setCommentData(e.target.value);
-    setInputCount(e.target.value.length);
+    setText(e.target.value);
   };
 
   const getCommentData = async () => {
@@ -145,6 +145,7 @@ export default function BoardDetail() {
                 <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
                 <button className="likes_btn">
                   <AiOutlineHeart />
+                  <span className="likes_number">3</span>
                 </button>
               </div>
               <div className="comment">
@@ -156,21 +157,22 @@ export default function BoardDetail() {
                       <textarea
                         className="comment_textarea"
                         onChange={inputChange}
+                        value={text}
                         maxLength={200}
                       ></textarea>
                       <div className="comment_submit_form">
-                        <span className="comment_count">{inputCount}/200</span>
+                        <span className="comment_count">{text.length}/200</span>
                         <button
                           type="button"
                           onClick={() => {
-                            inputCount == 0
+                            text.trim().length == 0
                               ? Swal.fire({
                                   icon: "error",
                                   title: `한글자 이상 입력하세요!`,
                                   showConfirmButton: false,
                                   timer: 1500,
                                 })
-                              : sendCommentData();
+                              : sendCommentData() && setText("");
                           }}
                           className="comment_submit"
                         >
@@ -181,7 +183,7 @@ export default function BoardDetail() {
                   </fieldset>
                 </div>
                 {commentList ? (
-                  commentList.map((data, idx) => {
+                  [...commentList].reverse().map((data, idx) => {
                     return (
                       <div className="comment_list" key={idx}>
                         <ul className="comment_list_user">
@@ -234,7 +236,7 @@ export default function BoardDetail() {
         <div key={data.helper_board_id} className="boardDetail_page">
           <div className="boardDetail_page left"></div>
           <div className="boardDetail_page center">
-            <h1 className="Detail_page_Header">구인 게시판</h1>
+            <h1 className="Detail_page_Header">구직 게시판</h1>
             <div className="writer_header_form">
               <span className="writer_header_form title">
                 {data[0].helper_board_title}
@@ -262,21 +264,22 @@ export default function BoardDetail() {
                     <textarea
                       className="comment_textarea"
                       onChange={inputChange}
+                      value={text}
                       maxLength={200}
                     ></textarea>
                     <div className="comment_submit_form">
-                      <span className="comment_count">{inputCount}/200</span>
+                      <span className="comment_count">{text.length}/200</span>
                       <button
                         type="button"
                         onClick={() => {
-                          inputCount == 0
+                          text.trim().length == 0
                             ? Swal.fire({
                                 icon: "error",
                                 title: `한글자 이상 입력하세요!`,
                                 showConfirmButton: false,
                                 timer: 1500,
                               })
-                            : sendCommentData();
+                            : sendCommentData() && setText("");
                         }}
                         className="comment_submit"
                       >
@@ -288,7 +291,7 @@ export default function BoardDetail() {
               </div>
 
               {commentList
-                ? commentList.map((data, idx) => {
+                ? [...commentList].reverse().map((data, idx) => {
                     return (
                       <div className="comment_list" key={idx}>
                         <ul className="comment_list_user">
