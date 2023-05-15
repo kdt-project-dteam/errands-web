@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import Swal from "sweetalert2";
 import KakaoMap from "../components/KakaoMap";
 export default function BoardDetail() {
+
     const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
     const value = useSelector((state) => {
         return state.someReducer.value;
@@ -108,6 +109,7 @@ export default function BoardDetail() {
         }
     };
 
+
     const updateComment = async (commentId) => {
         const result = await axios({
             method: "PATCH",
@@ -157,6 +159,7 @@ export default function BoardDetail() {
         }
     };
 
+  
 
     const deleteBoard = async () => {
         if (wanterHelper == "wanter") {
@@ -217,6 +220,7 @@ export default function BoardDetail() {
                             <section className="paragraph">
                                 <div className="user_paragraph">
                                     {data[0].wanter_board_content}
+
                                 </div>
                                 <p>
                                     주소 :{" "}
@@ -312,6 +316,7 @@ export default function BoardDetail() {
                                     <Loading />
                                 )}
                             </div>
+
                         </div>
                         <div className="boardDetail_page right"></div>
                     </div>
@@ -334,6 +339,7 @@ export default function BoardDetail() {
                         <section className="paragraph">
                             <div className="user_paragraph">
                                 {data[0].helper_board_content}
+
                             </div>
                         </section>
                         <div className="paragraph_ext">

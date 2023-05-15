@@ -117,7 +117,9 @@ router.delete("/helper/:boardId", helper_board.delete_helper_board);
 
 router.post("/helper/:boardId/hit", helper_board.hit_helper_board);
 
+
 router.post("/helper/:boardId/like", helper_board.helper_board_like);
+
 
 // ======= Helper_comment =======
 router.get("/helper/:boardId/comment", helper_comment.read_helper_comment);
