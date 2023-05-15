@@ -91,6 +91,20 @@ export default function BoardDetail() {
     setCommentData(e.target.value);
   };
 
+    const deleteBoard = async () => {
+        if (wanterHelper == 'wanter') {
+            const result = await axios({
+                method: "DELETE",
+                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}`
+            })
+            console.log(result)
+        } else {
+            const result = await axios({
+                method: "DELETE",
+                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}`
+            })
+            console.log(result)
+        }
   const getCommentData = async () => {
     if (wanterHelper === "wanter") {
       const result = await axios({
