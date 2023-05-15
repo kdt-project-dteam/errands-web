@@ -18,11 +18,11 @@ exports.read_helper_comment = async (req, res) => {
 exports.create_helper_comment = async (req, res) => {
   try {
     if (!req.session.user_info) {
-      res.send("로그인고");
+      res.send(false);
     } else {
       const result = await Errands.Helper_comment.create({
         helper_comment_board_id: req.params.boardId,
-        helper_comment_writer: req.session.user_name,
+        helper_comment_writer: req.session.user_info.user_name,
         helper_comment_content: req.body.helper_comment_content,
       });
       res.send(result);

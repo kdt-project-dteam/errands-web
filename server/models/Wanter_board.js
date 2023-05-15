@@ -42,6 +42,10 @@ const Wanter_board = function (Sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
+      wanter_board_like: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       wanter_board_done: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
