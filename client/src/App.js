@@ -16,7 +16,6 @@ import MyWrite from "./pages/MyWrite";
 import SignOut from "./pages/SignOut";
 import WithDraw from "./pages/WithDraw";
 import Board from "./pages/Board";
-
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import {
@@ -26,6 +25,7 @@ import {
   helperAll,
   allUserData,
 } from "../src/store/testCounter";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   const dispatch = useDispatch();
