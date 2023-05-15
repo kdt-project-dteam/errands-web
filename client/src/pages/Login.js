@@ -13,12 +13,27 @@ const Login = () => {
   const [userPw, setUserPw] = useState("");
   const LoginFunc = async (e) => {
     if (!userId && !userPw) {
-      return alert("ID와 Password를 입력하세요");
+      return Swal.fire({
+        icon: "error",
+        title: "아이디와 패스워드를 입력하세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       //  inputRef.current.focus();
     } else if (!userId) {
-      return alert("ID를 입력하세요");
+      return Swal.fire({
+        icon: "error",
+        title: "아이디를 입력하세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else if (!userPw) {
-      return alert("Password를 입력하세요");
+      return Swal.fire({
+        icon: "error",
+        title: "패스워드를 입력하세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
     const data = await axios({
       method: "post",
@@ -64,7 +79,7 @@ const Login = () => {
               id="id"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
-              //          ref={inputRef}
+            //          ref={inputRef}
             />
             <label htmlFor="id" title="아이디" data-title="아이디"></label>
           </div>

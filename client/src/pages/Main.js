@@ -55,18 +55,6 @@ export default function Main() {
         },
     }
     let rankIcon = ['🥇', '🥈', '🥉'];
-    const handleSize = () => {
-        if (window.innerWidth < 1000) {
-            setSwiperWidth(3)
-        } else if (window.innerWidth < 768) {
-            setSwiperWidth(2)
-        } else if (window.innerWidth < 450) {
-            setSwiperWidth(1)
-        }
-    }
-    useEffect(() => {
-        window.addEventListener('resize', handleSize)
-    }, [])
     return (
         <>
             <div className="main-banner">
@@ -110,6 +98,7 @@ export default function Main() {
                                                 <div className='d-flex-row1'>
                                                     <p>조회수 : {data.wanter_board_hit}</p>
                                                     <p>작성일 : {data.wanter_board_date.split(' ')[0]}</p>
+                                                    <p><FontAwesomeIcon className='m-color' icon={faHeart} /> {data.wanter_board_like}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,11 +115,26 @@ export default function Main() {
                     <div className='swiper-section'>
                         <Swiper
                             // install Swiper modules
+                            breakpoints={{
+                                0: {
+                                    slidesPerView: 1,
+                                },
+                                400: {
+                                    slidesPerView: 2,
+                                },
+                                639: {
+                                    slidesPerView: 3,
+                                },
+                                865: {
+                                    slidesPerView: 4
+                                },
+                            }}
                             modules={[Navigation, Pagination, Scrollbar, A11y]}
                             spaceBetween={50}
                             slidesPerView={swiperWidth}
                             navigation
                             onSwiper={(swiper) => console.log(swiper)}
+
                         >
                             {value?.map((data, idx) => {
                                 return (
@@ -165,6 +169,20 @@ export default function Main() {
                             navigation
                             onSwiper={(swiper) => console.log(swiper)}
                             onSlideChange={() => console.log('slide change')}
+                            breakpoints={{
+                                0: {
+                                    slidesPerView: 1,
+                                },
+                                400: {
+                                    slidesPerView: 2,
+                                },
+                                639: {
+                                    slidesPerView: 3,
+                                },
+                                865: {
+                                    slidesPerView: 4
+                                },
+                            }}
                         >
                             {allUserData ? allUserData.map((data, idx) => {
                                 return (

@@ -37,57 +37,57 @@ export default function BoardDetail() {
     const [commentData, setCommentData] = useState("");
     const [commentList, setCommentList] = useState([]);
     const sendCommentData = async () => {
-    if (inputCount > 0) {
-      if (wanterHelper === "wanter") {
-        const result = await axios({
-          method: "POST",
-          url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
-          data: {
-            wanter_comment_content: `${commentData}`,
-          },
-          withCredentials: true,
-        });
-        if (result.data == false) {
-          console.log("로그인고");
+        if (inputCount > 0) {
+            if (wanterHelper === "wanter") {
+                const result = await axios({
+                    method: "POST",
+                    url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
+                    data: {
+                        wanter_comment_content: `${commentData}`,
+                    },
+                    withCredentials: true,
+                });
+                if (result.data == false) {
+                    console.log("로그인고");
+                } else {
+                    setCommentList(
+                        commentList.concat({
+                            wanter_comment_board_id: result.data.wanter_comment_board_id,
+                            wanter_comment_content: result.data.wanter_comment_content,
+                            wanter_comment_id: result.data.wanter_comment_id,
+                            wanter_comment_writer: result.data.wanter_comment_writer,
+                            wanter_comment_date: nowTime,
+                        })
+                    );
+                }
+            } else if (wanterHelper == "helper") {
+                const result = await axios({
+                    method: "POST",
+                    url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/comment`,
+                    data: {
+                        helper_comment_content: `${commentData}`,
+                    },
+                    withCredentials: true,
+                });
+                if (result.data == false) {
+                    console.log("login go");
+                } else {
+                    setCommentList(
+                        commentList.concat({
+                            helper_comment_board_id: result.data.helper_comment_board_id,
+                            helper_comment_content: result.data.helper_comment_content,
+                            helper_comment_id: result.data.helper_comment_id,
+                            helper_comment_writer: result.data.helper_comment_writer,
+                            helper_comment_date: nowTime,
+                        })
+                    );
+                    console.log(result);
+                }
+            }
         } else {
-          setCommentList(
-            commentList.concat({
-              wanter_comment_board_id: result.data.wanter_comment_board_id,
-              wanter_comment_content: result.data.wanter_comment_content,
-              wanter_comment_id: result.data.wanter_comment_id,
-              wanter_comment_writer: result.data.wanter_comment_writer,
-              wanter_comment_date: nowTime,
-            })
-          );
+            console.log("not chat");
         }
-      } else if (wanterHelper == "helper") {
-        const result = await axios({
-          method: "POST",
-          url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/comment`,
-          data: {
-            helper_comment_content: `${commentData}`,
-          },
-          withCredentials: true,
-        });
-        if (result.data == false) {
-          console.log("login go");
-        } else {
-          setCommentList(
-            commentList.concat({
-              helper_comment_board_id: result.data.helper_comment_board_id,
-              helper_comment_content: result.data.helper_comment_content,
-              helper_comment_id: result.data.helper_comment_id,
-              helper_comment_writer: result.data.helper_comment_writer,
-              helper_comment_date: nowTime,
-            })
-          );
-          console.log(result);
-        }
-      }
-    } else {
-      console.log("not chat");
-    }
-  };
+    };
     const inputChange = (e) => {
         setCommentData(e.target.value);
         setInputCount(e.target.value.length);
@@ -175,24 +175,24 @@ export default function BoardDetail() {
             console.log(result)
         }
     }
-    
-  const wanter_like = async () => {
-    const result = await axios({
-      method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
-      withCredentials: true,
-    });
-    console.log(result);
-  };
 
-  const helper_like = async () => {
-    const result = await axios({
-      method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
-      withCredentials: true,
-    });
-    console.log(result);
-  };
+    const wanter_like = async () => {
+        const result = await axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
+            withCredentials: true,
+        });
+        console.log(result);
+    };
+
+    const helper_like = async () => {
+        const result = await axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
+            withCredentials: true,
+        });
+        console.log(result);
+    };
 
     useEffect(() => {
         getCommentData();
@@ -247,7 +247,12 @@ export default function BoardDetail() {
                                                     type="button"
                                                     onClick={() => {
                                                         inputCount == 0
-                                                            ? alert("한글자 이상 입력하세요!")
+                                                            ? Swal.fire({
+                                                                icon: "error",
+                                                                title: "한글자이상 입력하세요",
+                                                                showConfirmButton: false,
+                                                                timer: 1500,
+                                                            })
                                                             : sendCommentData();
                                                     }}
                                                     className="comment_submit"
@@ -302,9 +307,9 @@ export default function BoardDetail() {
                                     <Loading />
                                 )}
                             </div>
-                        </div>
+                        </div >
                         <div className="boardDetail_page right"></div>
-                    </div>
+                    </div >
                 ) : (
                     <Loading />
                 )
@@ -403,7 +408,8 @@ export default function BoardDetail() {
                 </div>
             ) : (
                 "null"
-            )}
+            )
+            }
         </>
     );
 }
