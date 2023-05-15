@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLinkClickHandler } from "react-router-dom";
 import { useState, useEffect } from "react";
 import JobOffer from "../components/JobOffer";
 import JobSeeker from "../components/JobSeeker";
@@ -26,11 +26,12 @@ export default function Board() {
     { id: 1, name: "구인" },
     { id: 2, name: "구직" },
   ];
-  const [search, setSearch] = useState();
+
+  const [search, setSearch] = useState("");
   const [info, setInfo] = useState([]);
   const [optionValue, setOptionValue] = useState();
 
-  const searchText = () => {
+  const searchText = (data) => {
     axios({
       method: "GET",
       url: `${process.env.REACT_APP_DB_HOST}/api/search/${search}/${optionValue}`,
@@ -49,6 +50,14 @@ export default function Board() {
     setOptionValue(e.target.value);
   };
 
+  const [currentState, setCurrentState] = useState("");
+
+  const toggleActive = (e) => {
+    setCurrentState(() => {
+      return e.target.value;
+    });
+  };
+
   return (
     <>
       <div className="board_page">
@@ -57,12 +66,18 @@ export default function Board() {
           <h1>구인/구직 게시판</h1>
           <h3>각종 심부름을 맡기거나 해결해주세요!</h3>
           <span className="option">
-            {menuArr.map((menu) => {
+            {menuArr.map((menu, idx) => {
               return (
                 <button
                   key={menu.id}
-                  className="option item card"
-                  onClick={() => setMenu(menu.id)}
+                  value={idx}
+                  className={
+                    "option item card " + (idx == currentState ? "change" : "")
+                  }
+                  onClick={(e) => {
+                    setMenu(menu.id);
+                    toggleActive(e);
+                  }}
                 >
                   {menu.name}
                 </button>
@@ -73,22 +88,25 @@ export default function Board() {
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>
           <div className="category card">
-            <Link to="/WritePage">
+            <Link to="/WritePage" className="go_write">
               <button className="writePage_btn">글 작성</button>
             </Link>
             <div className="category category_items">
               <div className="category category_items select">
-                <select onChange={optionValueChange}>
+                <select
+                  onChange={optionValueChange}
+                  className="category category_items select_form"
+                >
                   <option value="wanter_board_title">제목</option>
                   <option value="wanter_board_writer">작성자</option>
                   <option value="wanter_board_location">지역</option>
                 </select>
               </div>
-              <div className="category category_items input">
+              <label className="category category_items input">
                 <button
                   type="button"
                   onClick={searchText}
-                  style={{ backgroundColor: "#fff", border: "1px solid black" }}
+                  className="search_btn"
                 >
                   <BiSearchAlt2 />
                 </button>
@@ -96,9 +114,10 @@ export default function Board() {
                   type="text"
                   placeholder="검색어를 입력하세요"
                   value={search}
+                  className="search_input"
                   onChange={onChangeSearch}
                 />
-              </div>
+              </label>
             </div>
           </div>
           {menu === 1 ? (
