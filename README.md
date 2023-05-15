@@ -8,8 +8,15 @@
 ## 주제
 심부름이 필요한 사람, 심부름으로 용돈을 벌사람을 위한 커뮤니티 플랫폼
 
+## 인원
+프론트 3명 ( 강민혁, 마상위, 김승윤 )
+백엔드 2명 ( 최희성, 배기호 )
+
 ## 사용 기술
 https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/sass-CC6699?style=for-the-badge&logo=html5&logoColor=white">
+
 ### Frontend
 
 - Reactjs
