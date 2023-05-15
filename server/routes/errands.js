@@ -63,6 +63,9 @@ router.post(
   user_info.set_user_img
 );
 
+// 유저끼리 좋아요 (Follow)
+router.post("/user/:user/like", user_info.user_like);
+
 // ======= Wanter_board =======
 router.get("/mainWanter", wanter_board.read_few_wanter_board);
 
@@ -114,7 +117,9 @@ router.delete("/helper/:boardId", helper_board.delete_helper_board);
 
 router.post("/helper/:boardId/hit", helper_board.hit_helper_board);
 
-// router.post("/helper/:boardId/like", helper_board.helper_board_like);/
+
+router.post("/helper/:boardId/like", helper_board.helper_board_like);
+
 
 // ======= Helper_comment =======
 router.get("/helper/:boardId/comment", helper_comment.read_helper_comment);

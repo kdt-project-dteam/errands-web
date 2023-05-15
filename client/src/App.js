@@ -19,12 +19,16 @@ import Board from "./pages/Board";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import {
-    asyncUpAxios,
-    helperBoardSetter,
-    wanterBoardSetter,
-    helperAll,
-    allUserData,
+  asyncUpAxios,
+  helperBoardSetter,
+  wanterBoardSetter,
+  helperAll,
+  allUserData,
 } from "../src/store/testCounter";
+
+import NotFound from './pages/NotFound';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function App() {
     const dispatch = useDispatch();
@@ -39,6 +43,7 @@ export default function App() {
         dispatch(wanterBoardSetter());
         // user all
         dispatch(allUserData());
+        AOS.init();
     }, []);
     return (
         <div>
@@ -60,7 +65,8 @@ export default function App() {
                 <Route path="/mypage/myWrite" element={<MyWrite />}></Route>
                 <Route path="/mypage/myComment" element={<MyComment />}></Route>
                 <Route path="/mypage/withDraw" element={<WithDraw />}></Route>
-                <Route path="/mypage/signOut" element={<SignOut />}></Route>
+                <Route path="/mypage/signO<ut" element={<SignOut />}></Route>
+                <Route path="/*" element={<NotFound />} ></Route>
             </Routes>
         </div>
     );
