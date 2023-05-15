@@ -9,7 +9,6 @@ import "moment/locale/ko";
 import Loading from "../components/Loading";
 import Swal from "sweetalert2";
 import KakaoMap from "../components/KakaoMap";
-
 export default function BoardDetail() {
     const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
     const value = useSelector((state) => {
@@ -157,6 +156,7 @@ export default function BoardDetail() {
             console.log(result);
         }
     };
+
 
     const deleteBoard = async () => {
         if (wanterHelper == "wanter") {
@@ -427,4 +427,5 @@ export default function BoardDetail() {
             )}
         </>
     );
+
 }

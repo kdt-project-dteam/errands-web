@@ -19,12 +19,13 @@ import Board from "./pages/Board";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import {
-    asyncUpAxios,
-    helperBoardSetter,
-    wanterBoardSetter,
-    helperAll,
-    allUserData,
+  asyncUpAxios,
+  helperBoardSetter,
+  wanterBoardSetter,
+  helperAll,
+  allUserData,
 } from "../src/store/testCounter";
+
 import NotFound from './pages/NotFound';
 import AOS from "aos";
 import "aos/dist/aos.css";

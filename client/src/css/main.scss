@@ -29,10 +29,13 @@
 .main-banner {
   width: 80vw;
   height: calc(100vh - 80px);
-  margin: 0 auto;
+  margin: 0 0;
   display: flex;
   flex-direction: row;
   animation: fadeInLeft 2s;
+  @include mobile {
+    margin: none;
+  }
   .banner-left {
     width: 40%;
     height: 100%;
@@ -45,6 +48,14 @@
     h2 {
       font-size: 40px;
       font-weight: 900;
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+    h3 {
+      @include mobile {
+        font-size: 10px;
+      }
     }
     .h3-content {
       margin-top: 1rem;
@@ -55,6 +66,9 @@
       }
       &.mb-04 {
         margin-bottom: 1rem;
+      }
+      @include mobile {
+        font-size: 10px;
       }
     }
     .h3-content2 {
@@ -96,7 +110,6 @@
     width: 60%;
     height: 100%;
     animation: fadeInLeft 3s;
-
     @include mobile {
       display: none;
     }
@@ -275,210 +288,213 @@
       }
     }
   }
-  @include mobile {
-    width: 100vw;
-    flex-direction: column;
-  }
-  .main-left {
-    width: 50%;
-    background-color: $background-color;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
+  .fs-16 {
+    font-size: 18px;
     @include mobile {
-      margin-top: 50rem;
-      width: 100%;
-      height: 80vh;
+      font-size: 11px;
     }
-    h2 {
-      width: 80%;
-      margin: 0 auto;
-      padding: 1rem 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      div {
-        display: block;
-        width: 20%;
-        height: 100%;
-      }
-      .ft-08 {
-        font-size: 0.8rem;
-        height: 100%;
-        background-color: #fff;
-        text-align: center;
-        line-height: 100%;
-        border-radius: $bor-radius;
-        margin-left: 1rem;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        justify-content: center;
-        transition: 0.5s;
-        &:hover {
-          scale: 1.1;
-          transition: 0.5s;
-          color: black;
-        }
-        a {
-          color: black;
-        }
-      }
+  }
+  .fs-22 {
+    font-size: 22px;
+  }
+}
+
+.main-left {
+  width: 50%;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  h2 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    div {
+      display: block;
+      width: 20%;
+      height: 100%;
     }
-    .main-card {
-      width: 80%;
-      margin: 0 auto;
-      height: 80%;
+    .ft-08 {
+      font-size: 0.8rem;
+      height: 100%;
       background-color: #fff;
-      align-items: center;
+      text-align: center;
+      line-height: 100%;
       border-radius: $bor-radius;
-      padding: 1rem;
-      ul {
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      justify-content: center;
+      transition: 0.5s;
+      &:hover {
+        scale: 1.1;
+        transition: 0.5s;
+        color: black;
+      }
+      a {
+        color: black;
+      }
+    }
+  }
+  .main-card {
+    width: 80%;
+    margin: 0 auto;
+    height: 80%;
+    background-color: #fff;
+    align-items: center;
+    border-radius: $bor-radius;
+    padding: 1rem;
+    ul {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      li {
+        width: 100%;
+        height: 20%;
+        @include mobile {
+          height: 40%;
+        }
         width: 100%;
         height: 100%;
-        overflow-y: scroll;
-        li {
-          width: 100%;
-          height: 20%;
-          @include mobile {
-            height: 40%;
-          }
-          width: 100%;
-          height: 100%;
-          height: 20%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0 auto;
+        .li-top {
           display: flex;
-          flex-direction: column;
-          margin: 10px 0 auto;
-          .li-top {
-            display: flex;
-            flex-direction: row;
-            height: 70%;
-            .li-top-title {
-              width: 70%;
-              height: 100%;
-            }
-            .li-top-author {
-              width: 30%;
-              height: 100%;
-            }
+          flex-direction: row;
+          height: 70%;
+          .li-top-title {
+            width: 70%;
+            height: 100%;
           }
-          .li-bottom {
-            height: 30%;
-            display: flex;
-            flex-direction: row;
-            .li-bottom-time {
-              width: 70%;
-              height: 100%;
-            }
-            .li-bottom-hit {
-              width: 30%;
-              height: 100%;
-            }
+          .li-top-author {
+            width: 30%;
+            height: 100%;
           }
         }
-      }
-    }
-  }
-  .main-right {
-    width: 50%;
-    background-color: $background-color;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    @include mobile {
-      width: 100%;
-      padding-bottom: 10rem;
-    }
-    h2 {
-      width: 80%;
-      margin: 0 auto;
-      padding: 1rem 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      div {
-        display: block;
-        width: 20%;
-        height: 100%;
-      }
-      .ft-08 {
-        font-size: 0.8rem;
-        height: 100%;
-        background-color: #fff;
-        text-align: center;
-        line-height: 100%;
-        border-radius: $bor-radius;
-        margin-left: 1rem;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        justify-content: center;
-        transition: 0.5s;
-        &:hover {
-          scale: 1.1;
-          transition: 0.5s;
-        }
-      }
-    }
-    .sub-card {
-      width: 80%;
-      height: 35%;
-      background-color: #fff;
-      margin: 0 auto;
-      border-radius: $bor-radius;
-      padding: 1rem;
-      @include mobile {
-        height: 20rem;
-      }
-      ul {
-        width: 100%;
-        height: 100%;
-        overflow-y: scroll;
-        li {
-          @include mobile {
-            height: 50%;
+        .li-bottom {
+          height: 30%;
+          display: flex;
+          flex-direction: row;
+          .li-bottom-time {
+            width: 70%;
+            height: 100%;
           }
-          width: 100%;
-          height: 33%;
-          background-color: aqua;
-          border: 1px solid gray;
-          .li-top {
-            display: flex;
-            flex-direction: row;
-            height: 70%;
-            background-color: aquamarine;
-            .li-top-title {
-              width: 70%;
-              height: 100%;
-              background-color: brown;
-            }
-            .li-top-author {
-              width: 30%;
-              height: 100%;
-              background-color: antiquewhite;
-            }
-          }
-          .li-bottom {
-            height: 30%;
-            background-color: azure;
-            display: flex;
-            flex-direction: row;
-            .li-bottom-time {
-              width: 70%;
-              height: 100%;
-              background-color: cornflowerblue;
-            }
-            .li-bottom-hit {
-              width: 30%;
-              height: 100%;
-              background-color: coral;
-            }
+          .li-bottom-hit {
+            width: 30%;
+            height: 100%;
           }
         }
       }
     }
   }
 }
+.main-right {
+  width: 50%;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  @include mobile {
+    width: 100%;
+    padding-bottom: 10rem;
+  }
+  h2 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    div {
+      display: block;
+      width: 20%;
+      height: 100%;
+    }
+    .ft-08 {
+      font-size: 0.8rem;
+      height: 100%;
+      background-color: #fff;
+      text-align: center;
+      line-height: 100%;
+      border-radius: $bor-radius;
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      justify-content: center;
+      transition: 0.5s;
+      &:hover {
+        scale: 1.1;
+        transition: 0.5s;
+      }
+    }
+  }
+  .sub-card {
+    width: 80%;
+    height: 35%;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: $bor-radius;
+    padding: 1rem;
+    @include mobile {
+      height: 20rem;
+    }
+    ul {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      li {
+        @include mobile {
+          height: 50%;
+        }
+        width: 100%;
+        height: 33%;
+        background-color: aqua;
+        border: 1px solid gray;
+        .li-top {
+          display: flex;
+          flex-direction: row;
+          height: 70%;
+          background-color: aquamarine;
+          .li-top-title {
+            width: 70%;
+            height: 100%;
+            background-color: brown;
+          }
+          .li-top-author {
+            width: 30%;
+            height: 100%;
+            background-color: antiquewhite;
+          }
+        }
+        .li-bottom {
+          height: 30%;
+          background-color: azure;
+          display: flex;
+          flex-direction: row;
+          .li-bottom-time {
+            width: 70%;
+            height: 100%;
+            background-color: cornflowerblue;
+          }
+          .li-bottom-hit {
+            width: 30%;
+            height: 100%;
+            background-color: coral;
+          }
+        }
+      }
+    }
+  }
+}
+
 .sub-card-rank {
   display: flex;
   flex-direction: row;
