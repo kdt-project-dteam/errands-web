@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Loading from "./Loading";
 import "../css/board.scss";
 
-export default function JobOffer({ data }) {
+export default function JobOffer({ data, filteredData }) {
   // useEffect(() => {
   //   localStorage.setItem("value", JSON.stringify(data));
   // });
@@ -60,7 +60,7 @@ export default function JobOffer({ data }) {
         </li>
       );
     } else {
-      return "null";
+      return null;
     }
   });
 
@@ -82,7 +82,22 @@ export default function JobOffer({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data ? (
+          {filteredData ? filteredData.map((data) => {
+            return (
+              <tr className="board_son">
+                <td>{data.wanter_board_writer}</td>
+                <td className="son_title">
+                  <Link
+                    to={`/board/BoardDetail/wanter/${data.wanter_board_id}`}
+                  >
+                    {data.wanter_board_title}
+                  </Link>
+                </td>
+                <td>{data.wanter_board_date}</td>
+                <td>{data.wanter_board_hit}</td>
+              </tr>
+            )
+          }) : data ? (
             currentItems.map((currentItems) => {
               return (
                 <tr className="board_son">

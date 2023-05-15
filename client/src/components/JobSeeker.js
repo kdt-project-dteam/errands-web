@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import "../css/board.scss";
-export default function JobSeeker({ data }) {
+export default function JobSeeker({ data, filteredData }) {
   // useEffect(() => {
   //   localStorage.setItem("value", JSON.stringify(data));
   // });
@@ -72,7 +72,22 @@ export default function JobSeeker({ data }) {
           </tr>
         </thead>
         <tbody>
-          {currentItems ? (
+          {filteredData ? filteredData.map((data) => {
+            return (
+              <tr className="board_son">
+                <td>{data.helper_board_writer}</td>
+                <td className="son_title">
+                  <Link
+                    to={`/board/BoardDetail/helper/${data.helper_board_id}`}
+                  >
+                    {data.helper_board_title}
+                  </Link>
+                </td>
+                <td>{data.helper_board_date}</td>
+                <td>{data.helper_board_hit}</td>
+              </tr>
+            )
+          }) : currentItems ? (
             currentItems.map((currentItems) => {
               return (
                 <tr className="board_son">
@@ -92,6 +107,7 @@ export default function JobSeeker({ data }) {
           ) : (
             <Loading />
           )}
+
         </tbody>
       </table>
       <ul className="pagination">

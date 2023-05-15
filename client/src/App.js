@@ -26,6 +26,8 @@ import {
     allUserData,
 } from "../src/store/testCounter";
 import NotFound from './pages/NotFound';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function App() {
     const dispatch = useDispatch();
@@ -40,6 +42,7 @@ export default function App() {
         dispatch(wanterBoardSetter());
         // user all
         dispatch(allUserData());
+        AOS.init();
     }, []);
     return (
         <div>
