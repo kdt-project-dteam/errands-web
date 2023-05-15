@@ -105,7 +105,7 @@ export default function Main() {
                                         <div className='d-flex-row'>
                                             <div className='d-flex-row'>
                                                 <p className='d-flex-row3'>
-                                                    <img src={process.env.PUBLIC_URL + '/userImg/default.png'} />
+                                                    <img src={process.env.PUBLIC_URL + `/userImg/${data.user_img}`} />
                                                     <p>{data.wanter_board_writer}</p>
                                                 </p>
                                                 <div className='d-flex-row1'>
@@ -206,7 +206,7 @@ export default function Main() {
                                                 {rankIcon[idx] ? <span className='rank-icon'>{rankIcon[idx]}</span> : ''}
                                             </p>
                                             <p className='rank-name'>
-                                                <img src={process.env.PUBLIC_URL + '/userImg/default.png'} />
+                                                <img src={process.env.PUBLIC_URL + `/userImg/${data.user_img}`} />
                                                 <div className='rank-user-info'>
                                                     <p>
                                                         {data.user_name}
