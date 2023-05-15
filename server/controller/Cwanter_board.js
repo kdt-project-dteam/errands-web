@@ -171,9 +171,6 @@ exports.search_wanter_board = async (req, res) => {
         });
         res.send(result);
       }
-    } else if (boardType == "helper") {
-      if (optionValue) {
-      }
     } else {
       res.send("알 수 없는 오류");
     }
@@ -219,6 +216,32 @@ exports.done_wanter_board = async (req, res) => {
   }
 };
 
+exports.wanter_board_like = async (req, res) => {
+  try {
+    const auth = await Errands.Who_wanter_like.findOne({
+      where: {
+        where_wanter_board_id: { [Op.eq]: req.params.boardId },
+        who_user_name: { [Op.eq]: req.session.user_info.user_name },
+      },
+    });
+    if (!auth) {
+      await Errands.Who_wanter_like.create({
+        where_wanter_board_id: req.params.boardId,
+        who_user_name: req.session.user_info.user_name,
+      });
+      await Errands.Wanter_board.increment(
+        { wanter_board_like: 1 },
+        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+      );
+      res.send(true);
+    } else {
+      res.send(false); // 이미 좋아요 누른 게시글입니다
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // 게시물 진행 중 처리
 // exports.proceed_wanter_board = async (req, res) => {
 //   try {
@@ -235,7 +258,7 @@ exports.done_wanter_board = async (req, res) => {
 //       const [result] = await Errands.Wanter_board.update(
 //         {
 //           wanter_board_done: 2,
-//           // ture 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
+//           // true 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
 //         },
 //         { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
 //       );

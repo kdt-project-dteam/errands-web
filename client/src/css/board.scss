@@ -51,18 +51,34 @@
 
     .option {
       display: flex;
-      justify-content: space-evenly;
       height: 3rem;
+      border-bottom: 1px solid;
 
       .item {
+        display: flex;
+        justify-content: center;
         width: 12%;
         border: none;
-        background-color: $main-color;
-        border-radius: 10px;
+        border-bottom: 1px solid;
+        box-shadow: 0px 0px 0px 0px;
+        border-radius: 20px 20px 0 0;
+        background-color: white;
         font-size: 20px;
         cursor: pointer;
         padding: 0.5rem;
         align-items: center;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .change {
+        background-color: white;
+        border: 2px solid orange;
+        border-bottom: none;
+        color: orange;
+        font-weight: bold;
       }
     }
 
@@ -81,6 +97,7 @@
       height: 4rem;
       color: black;
       border-bottom: 1px solid gray;
+      border-top: 2px solid black;
     }
 
     .board_son {
@@ -89,7 +106,8 @@
       border-bottom: 1px solid gray;
 
       &:hover {
-        background-color: rgba(255, 166, 0, 0.589);
+        transition: 0.5s;
+        background-color: rgba(255, 166, 0, 0.144);
       }
 
       .son_title {
@@ -106,19 +124,56 @@
       display: flex;
       flex-direction: row-reverse;
       justify-content: center;
-      margin: 10px;
+      margin: 7px;
       font-size: 13px;
       outline: none;
-      background-color: $main-color;
-      border-radius: $bor-radius;
+      box-shadow: 0 0 0 0;
+      display: flex;
+      justify-content: space-between;
 
-      .card {
+      .go_write {
+        display: flex;
         align-items: center;
+        width: 100px;
       }
 
       .category_items {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        .select_form {
+          height: 30px;
+          width: 100px;
+          background-color: white;
+        }
+
+        .search_btn {
+          background-color: #fff;
+          border: 1px solid #d3d0d0;
+          border-left: none;
+          height: 50px;
+          font-size: xx-large;
+          display: flex;
+          align-items: center;
+          border-radius: 0 15px 15px 0;
+          cursor: pointer;
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .search_input {
+          border: 1px solid #d3d0d0;
+          border-right: none;
+          height: 50px;
+          width: 200px;
+          border-radius: 15px 0 0 15px;
+          font-size: 15px;
+
+          &:focus {
+            outline: none;
+          }
+        }
       }
     }
   }
@@ -192,12 +247,13 @@
   }
 
   .writePage_btn {
-    display: flex;
-    align-items: center;
     border-radius: 10px;
-    width: 60px;
+    width: 100px;
+    height: 40px;
+    border: $main-color;
     justify-content: center;
-    background-color: black;
+    background-color: $main-color;
     color: white;
+    cursor: pointer;
   }
 }

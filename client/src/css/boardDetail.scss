@@ -83,11 +83,25 @@
       display: block;
 
       .likes_btn {
-        width: 150px;
-        height: 60px;
-        border-radius: 10px;
+        width: 120px;
+        height: 50px;
+        border-radius: 30px;
+        background-color: white;
+        border: 1px solid #ddd;
+        color: orange;
         cursor: pointer;
-        font-size: xx-large;
+        font-size: x-large;
+        margin-top: 10px;
+        padding: 10px;
+
+        &:hover {
+          transition: 0.3s;
+          border-color: black;
+        }
+
+        .likes_number {
+          color: black;
+        }
       }
     }
     .comment {
