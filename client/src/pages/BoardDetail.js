@@ -12,8 +12,7 @@ import KakaoMap from "../components/KakaoMap";
 
 export default function BoardDetail() {
   const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
-  const [text, setText] = useState("");
-
+  const [likeNumber, setLikeNumber] = useState(0);
   const value = useSelector((state) => {
     return state.someReducer.value;
   });
@@ -38,31 +37,59 @@ export default function BoardDetail() {
   const [commentData, setCommentData] = useState("");
   const [commentList, setCommentList] = useState([]);
   const sendCommentData = async () => {
-    if (wanterHelper === "wanter") {
-      const result = await axios({
-        method: "POST",
-        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
-        data: {
-          user_name: "테스트",
-          wanter_comment_content: `${commentData}`,
-        },
-        withCredentials: true,
-      });
-      setCommentList(
-        commentList.concat({
-          wanter_comment_board_id: result.data.wanter_comment_board_id,
-          wanter_comment_content: result.data.wanter_comment_content,
-          wanter_comment_id: result.data.wanter_comment_id,
-          wanter_comment_writer: result.data.wanter_comment_writer,
-          wanter_comment_date: nowTime,
-        })
-      );
+    if (commentData.length > 0) {
+      if (wanterHelper === "wanter") {
+        const result = await axios({
+          method: "POST",
+          url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
+          data: {
+            wanter_comment_content: `${commentData}`,
+          },
+          withCredentials: true,
+        });
+        if (result.data == false) {
+          console.log("로그인고");
+        } else {
+          setCommentList(
+            commentList.concat({
+              wanter_comment_board_id: result.data.wanter_comment_board_id,
+              wanter_comment_content: result.data.wanter_comment_content,
+              wanter_comment_id: result.data.wanter_comment_id,
+              wanter_comment_writer: result.data.wanter_comment_writer,
+              wanter_comment_date: nowTime,
+            })
+          );
+        }
+      } else if (wanterHelper == "helper") {
+        const result = await axios({
+          method: "POST",
+          url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/comment`,
+          data: {
+            helper_comment_content: `${commentData}`,
+          },
+          withCredentials: true,
+        });
+        if (result.data == false) {
+          console.log("login go");
+        } else {
+          setCommentList(
+            commentList.concat({
+              helper_comment_board_id: result.data.helper_comment_board_id,
+              helper_comment_content: result.data.helper_comment_content,
+              helper_comment_id: result.data.helper_comment_id,
+              helper_comment_writer: result.data.helper_comment_writer,
+              helper_comment_date: nowTime,
+            })
+          );
+          console.log(result);
+        }
+      }
     } else {
+      console.log("not chat");
     }
   };
   const inputChange = (e) => {
     setCommentData(e.target.value);
-    setText(e.target.value);
   };
 
   const getCommentData = async () => {
@@ -116,8 +143,60 @@ export default function BoardDetail() {
     getCommentData();
   };
 
+  const hitUp = async () => {
+    if (wanterHelper == "wanter") {
+      const result = await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`,
+      });
+      console.log(result);
+    } else {
+      const result = await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`,
+      });
+      console.log(result);
+    }
+  };
+
+  const deleteBoard = async () => {
+    if (wanterHelper == "wanter") {
+      const result = await axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}`,
+      });
+      console.log(result);
+    } else {
+      const result = await axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}`,
+      });
+      console.log(result);
+    }
+  };
+
+  const wanter_like = async () => {
+    const result = await axios({
+      method: "POST",
+      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
+      withCredentials: true,
+    });
+    console.log(result);
+    // setLikeNumber(likeNumber + 1);
+  };
+
+  const helper_like = async () => {
+    const result = await axios({
+      method: "POST",
+      url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/like`,
+      withCredentials: true,
+    });
+    console.log(result);
+  };
+
   useEffect(() => {
     getCommentData();
+    hitUp();
   }, []);
 
   return (
@@ -133,19 +212,26 @@ export default function BoardDetail() {
                   {data[0].wanter_board_title}
                 </span>
                 <span className="writer_header_form date">
-                  {data[0].wanter_board_date}
+                  <span>{data[0].wanter_board_date}</span>
+                  <span onClick={deleteBoard}>삭제</span>
                 </span>
               </div>
               <section className="paragraph">
                 <div className="user_paragraph">
                   {data[0].wanter_board_content}
                 </div>
+                <p>
+                  주소 :{" "}
+                  {data[0].wanter_board_place +
+                    " " +
+                    data[0].wanter_board_place_detail}
+                </p>
+                <p>마감기한 : {data[0].wanter_board_dead_line}</p>
               </section>
               <div className="paragraph_ext">
-                <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
-                <button className="likes_btn">
+                <KakaoMap geoLocation={data[0].wanter_board_place} />
+                <button className="likes_btn" onClick={wanter_like}>
                   <AiOutlineHeart />
-                  <span className="likes_number">3</span>
                 </button>
               </div>
               <div className="comment">
@@ -157,22 +243,24 @@ export default function BoardDetail() {
                       <textarea
                         className="comment_textarea"
                         onChange={inputChange}
-                        value={text}
                         maxLength={200}
+                        value={commentData}
                       ></textarea>
                       <div className="comment_submit_form">
-                        <span className="comment_count">{text.length}/200</span>
+                        <span className="comment_count">
+                          {commentData.length}/200
+                        </span>
                         <button
                           type="button"
                           onClick={() => {
-                            text.trim().length == 0
+                            commentData.trim().length == 0
                               ? Swal.fire({
                                   icon: "error",
-                                  title: `한글자 이상 입력하세요!`,
+                                  title: "한 글자 이상 입력하세요!",
                                   showConfirmButton: false,
                                   timer: 1500,
                                 })
-                              : sendCommentData() && setText("");
+                              : sendCommentData() && setCommentData("");
                           }}
                           className="comment_submit"
                         >
@@ -183,7 +271,7 @@ export default function BoardDetail() {
                   </fieldset>
                 </div>
                 {commentList ? (
-                  [...commentList].reverse().map((data, idx) => {
+                  commentList.map((data, idx) => {
                     return (
                       <div className="comment_list" key={idx}>
                         <ul className="comment_list_user">
@@ -236,7 +324,7 @@ export default function BoardDetail() {
         <div key={data.helper_board_id} className="boardDetail_page">
           <div className="boardDetail_page left"></div>
           <div className="boardDetail_page center">
-            <h1 className="Detail_page_Header">구직 게시판</h1>
+            <h1 className="Detail_page_Header">구인 게시판</h1>
             <div className="writer_header_form">
               <span className="writer_header_form title">
                 {data[0].helper_board_title}
@@ -251,7 +339,7 @@ export default function BoardDetail() {
               </div>
             </section>
             <div className="paragraph_ext">
-              <button className="likes_btn">
+              <button className="likes_btn" onClick={helper_like}>
                 <AiOutlineHeart />
               </button>
             </div>
@@ -264,22 +352,24 @@ export default function BoardDetail() {
                     <textarea
                       className="comment_textarea"
                       onChange={inputChange}
-                      value={text}
                       maxLength={200}
+                      value={commentData}
                     ></textarea>
                     <div className="comment_submit_form">
-                      <span className="comment_count">{text.length}/200</span>
+                      <span className="comment_count">
+                        {commentData.length}/200
+                      </span>
                       <button
                         type="button"
                         onClick={() => {
-                          text.trim().length == 0
+                          commentData.trim().length == 0
                             ? Swal.fire({
                                 icon: "error",
-                                title: `한글자 이상 입력하세요!`,
+                                title: "한 글자 이상 입력하세요!",
                                 showConfirmButton: false,
                                 timer: 1500,
                               })
-                            : sendCommentData() && setText("");
+                            : sendCommentData() && setCommentData("");
                         }}
                         className="comment_submit"
                       >
@@ -289,9 +379,8 @@ export default function BoardDetail() {
                   </div>
                 </fieldset>
               </div>
-
               {commentList
-                ? [...commentList].reverse().map((data, idx) => {
+                ? commentList.map((data, idx) => {
                     return (
                       <div className="comment_list" key={idx}>
                         <ul className="comment_list_user">

@@ -78,6 +78,8 @@ router.delete("/wanter/:boardId", wanter_board.delete_wanter_board);
 
 router.post("/wanter/:boardId/hit", wanter_board.hit_wanter_board);
 
+router.post("/wanter/:boardId/like", wanter_board.wanter_board_like);
+
 router.patch("/wanter/:boardId/done", wanter_board.done_wanter_board);
 
 // router.patch("/wanter/:boardId/proceed", wanter_board.proceed_wanter_board);
@@ -111,6 +113,8 @@ router.patch("/helper/:boardId", helper_board.update_helper_board);
 router.delete("/helper/:boardId", helper_board.delete_helper_board);
 
 router.post("/helper/:boardId/hit", helper_board.hit_helper_board);
+
+// router.post("/helper/:boardId/like", helper_board.helper_board_like);/
 
 // ======= Helper_comment =======
 router.get("/helper/:boardId/comment", helper_comment.read_helper_comment);

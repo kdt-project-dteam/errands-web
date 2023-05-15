@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import SearchAddress from "./SearchAddress";
+import "../css/writePage.scss";
+import "../css/modal.scss";
 
 export default function ModalAddress({ setAddress }) {
   const [show, setShow] = useState(false);
@@ -11,7 +13,7 @@ export default function ModalAddress({ setAddress }) {
 
   return (
     <>
-      <Button variant="dark" onClick={handleShow}>
+      <Button onClick={handleShow} className="address_btn_search">
         주소 찾기
       </Button>
 
@@ -28,7 +30,7 @@ export default function ModalAddress({ setAddress }) {
           <SearchAddress handleClose={handleClose} setAddress={setAddress} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark">입력</Button>
+          <Button className="address_btn_search">입력</Button>
         </Modal.Footer>
       </Modal>
     </>

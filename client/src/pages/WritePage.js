@@ -196,22 +196,24 @@ export default function WritePage({ data }) {
               ></input>
             </div>
             <div className="submit-form">
-              <Button
-                variant="dark"
-                type="submit"
-                className="page-submit"
-                onClick={submitOffer}
-              >
-                구인글 작성
-              </Button>
-              <Button
-                variant="dark"
-                type="submit"
-                className="page-submit"
-                onClick={submitSeeker}
-              >
-                구직글 작성
-              </Button>
+              <div className="btn_parent">
+                <Button
+                  variant="dark"
+                  type="submit"
+                  className="page-submit"
+                  onClick={submitOffer}
+                >
+                  구인글 작성
+                </Button>
+                <Button
+                  variant="dark"
+                  type="submit"
+                  className="page-submit"
+                  onClick={submitSeeker}
+                >
+                  구직글 작성
+                </Button>
+              </div>
             </div>
           </div>
         </div>

@@ -100,7 +100,7 @@
 
       .form-textarea {
         width: 80%;
-        margin: 0 auto;
+        margin-left: 22px;
         height: 200px;
         border: 2px solid black;
         resize: none;
@@ -138,7 +138,7 @@
 
       .address_name {
         display: flex;
-        margin-left: 10px;
+        margin-left: 0;
         align-items: center;
         &.ml-0 {
           margin-left: 0;
@@ -148,13 +148,24 @@
       .submit-form {
         display: flex;
         margin-right: 2rem;
+        margin-top: 2rem;
         flex-direction: row-reverse;
+        justify-content: space-between;
         @include mobile {
           display: block;
         }
       }
 
+      .btn_parent {
+        margin: 10px;
+      }
+
       .page-submit {
+        background-color: black;
+        border-radius: 10px;
+        color: white;
+        height: 40px;
+        width: 70px;
         border: none;
         margin: 1rem;
         margin-top: 2rem;
@@ -162,6 +173,7 @@
 
       .address_title {
         border: 2px solid black;
+        margin-left: 10px;
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
@@ -177,7 +189,7 @@
       }
 
       .detail_address_text {
-        margin-left: 10px;
+        margin-left: 15px;
         width: 400px;
         border: 2px solid black;
 
@@ -221,6 +233,19 @@
     .form-address-btn {
       border: none;
       background-color: white;
+    }
+
+    .address_btn_search {
+      background-color: black;
+      border-radius: 10px;
+      color: white;
+      height: 40px;
+      width: 70px;
+      border: none;
+    }
+
+    .btn-close {
+      background-color: black;
     }
   }
 }
