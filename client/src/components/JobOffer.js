@@ -39,13 +39,13 @@ export default function JobOffer({ data }) {
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(data?.length / itemsPerPage); i++) {
-    console.log(i);
     pages.push(i);
   }
 
   const indexOfLastItems = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItems - itemsPerPage;
-  const currentItems = data?.slice(indexOfFirstItem, indexOfLastItems);
+  const reverseData = data?.slice(0).reverse();
+  const currentItems = reverseData?.slice(indexOfFirstItem, indexOfLastItems);
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -82,7 +82,7 @@ export default function JobOffer({ data }) {
           </tr>
         </thead>
         <tbody>
-          {currentItems ? (
+          {data ? (
             currentItems.map((currentItems) => {
               return (
                 <tr className="board_son">

@@ -174,32 +174,33 @@ exports.userWithdrawal = async (req, res) => {
 // 회원정보 수정
 exports.userUpdate = async (req, res) => {
   try {
-    // const auth = await Errands.User_info.findOne({
-    //   attributes: ['user_name'],
-    //   where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
-    // });
-    // if (auth.dataValues.user_name == req.session.user_info.user_name) {
-    const [result] = await Errands.User_info.update(
-      {
-        user_id: req.body.user_id,
-        user_pw: req.body.user_pw,
-        user_name: req.body.user_name,
-        user_type: req.body.user_type,
-      },
-      { where: { id: { [Op.eq]: req.params.userId } } }
-    );
-    if (result === 0) {
-      console.log(result);
-      return res.send(false);
-    } else {
-      //   const update_session = await Errands.User_info.findOne({
-      //     where: {
-      //       user_id: req.session.user_id,
-      //       user_pw: req.session.user_pw,
-      //     },
-      //   });
-      //   req.session.user_info = update_session.dataValues;
-      res.send(true);
+    const auth = await Errands.User_info.findOne({
+      attributes: ["user_name"],
+      where: { user_name: { [Op.eq]: req.session.user_info.user_name } },
+    });
+    if (auth.dataValues.user_name == req.session.user_info.user_name) {
+      const [result] = await Errands.User_info.update(
+        {
+          user_id: req.body.user_id,
+          user_pw: req.body.user_pw,
+          user_name: req.body.user_name,
+          user_type: req.body.user_type,
+        },
+        { where: { id: { [Op.eq]: req.params.userId } } }
+      );
+      if (result === 0) {
+        console.log(result);
+        return res.send(false);
+      } else {
+        //   const update_session = await Errands.User_info.findOne({
+        //     where: {
+        //       user_id: req.session.user_id,
+        //       user_pw: req.session.user_pw,
+        //     },
+        //   });
+        //   req.session.user_info = update_session.dataValues;
+        res.send(true);
+      }
     }
   } catch (err) {
     res.send(err);
@@ -243,6 +244,26 @@ exports.set_user_img = async (req, res) => {
       return res.send(false);
     } else {
       res.send(true);
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
+exports.user_like = async (req, res) => {
+  try {
+    if (!req.session.user_info) {
+      const search = await Errands.User_info.findOne({
+        where: { id: { [Op.eq]: req.params.user } },
+      });
+      if (!search) {
+        res.send("오류임 모름이건");
+      } else {
+        search.addFollowing(parseInt(req.params.user, 10));
+        res.send(true);
+      }
+    } else {
+      res.send("로그인하시오");
     }
   } catch (err) {
     res.send(err);

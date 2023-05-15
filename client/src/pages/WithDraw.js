@@ -16,6 +16,7 @@ export default function WithDraw() {
     const result = await axios({
       method: "DELETE",
       url: `${process.env.REACT_APP_DB_HOST}/api/user/${localId}`,
+      withCredentials: true,
     });
     console.log(result);
     if (result.data === true) {

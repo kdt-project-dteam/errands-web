@@ -5,6 +5,7 @@ import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
 import { newStore } from "../index.js";
+import axios from "axios";
 
 export default function Header() {
   const [displayToggle, setDisplayToggle] = useState("d-none");
@@ -32,6 +33,11 @@ export default function Header() {
                   href="/"
                   onClick={() => {
                     localStorage.clear();
+                    axios({
+                      method: "post",
+                      url: `${process.env.REACT_APP_DB_HOST}/api/logout`,
+                      withCredentials: true,
+                    });
                   }}
                 >
                   로그아웃

@@ -8,10 +8,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f2f2f2;
   .signup-contents {
     min-width: 350px;
     width: 25vw;
-    height: 70vh;
+    height: auto;
     border-radius: 0.8vw;
     overflow: hidden;
     background-color: white;

@@ -11,6 +11,7 @@ export default function WithDraw() {
     const result = await axios({
       method: "GET",
       url: `${process.env.REACT_APP_DB_HOST}/api/user/${myPageUser}`,
+      withCredentials: true,
     });
     setMyPageUserData(result.data);
     console.log(result.data);
@@ -33,6 +34,7 @@ export default function WithDraw() {
       method: "PATCH",
       url: `${process.env.REACT_APP_DB_HOST}/api/user/${myPageUserData.id}`,
       data: formData,
+      withCredentials: true,
     });
     console.log(formData);
     console.log(result);
