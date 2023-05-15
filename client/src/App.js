@@ -25,6 +25,7 @@ import {
     helperAll,
     allUserData,
 } from "../src/store/testCounter";
+import NotFound from './pages/NotFound';
 
 export default function App() {
     const dispatch = useDispatch();
@@ -60,7 +61,8 @@ export default function App() {
                 <Route path="/mypage/myWrite" element={<MyWrite />}></Route>
                 <Route path="/mypage/myComment" element={<MyComment />}></Route>
                 <Route path="/mypage/withDraw" element={<WithDraw />}></Route>
-                <Route path="/mypage/signOut" element={<SignOut />}></Route>
+                <Route path="/mypage/signO<ut" element={<SignOut />}></Route>
+                <Route path="/*" element={<NotFound />} ></Route>
             </Routes>
         </div>
     );
