@@ -9,41 +9,6 @@
     transform: translateZ(20);
   }
 }
-// .container {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100vw;
-//   height: 100vh;
-//   font-size: clamp(2rem, 2.8vw, 5rem);
-//   font-family: Raleway;
-//   font-weight: bold;
-// }
-
-// .typewriter {
-//   font-family: "Fuzzy Bubbles", cursive;
-//   width: 30ch;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   border-right: 4px solid #212121;
-//   animation: cursor 1s step-start infinite, text 3s steps(18) alternate infinite;
-// }
-
-// @keyframes cursor {
-//   0%,
-//   100% {
-//     border-color: #212121;
-//   }
-// }
-
-// @keyframes text {
-//   0% {
-//     width: 0;
-//   }
-//   100% {
-//     width: 45%;
-//   }
-// }
 
 .backgroundImage {
   position: relative;
@@ -75,6 +40,9 @@
     .explain {
       margin-top: 5rem;
       font-size: 1.2rem;
+      @include mobile {
+        font-size: 1rem;
+      }
     }
     button {
       background-color: black;

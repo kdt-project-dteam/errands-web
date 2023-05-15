@@ -34,6 +34,7 @@ export default function Board() {
     axios({
       method: "GET",
       url: `${process.env.REACT_APP_DB_HOST}/api/search/${search}/${optionValue}`,
+      withCredentials: true,
     }).then((res) => {
       console.log(res.data);
     });
@@ -67,10 +68,14 @@ export default function Board() {
                 </button>
               );
             })}
+
             {/* <button className="option item card" onClick={() => setMenu(JobOffer)}>구인</button>
                     <button className="option item card" onClick={() => setMenu(JobSeeker)}>구직</button> */}
           </span>
           <div className="category card">
+            <Link to="/WritePage">
+              <button className="writePage_btn">글 작성</button>
+            </Link>
             <div className="category category_items">
               <div className="category category_items select">
                 <select onChange={optionValueChange}>
@@ -80,7 +85,11 @@ export default function Board() {
                 </select>
               </div>
               <div className="category category_items input">
-                <button type="button" onClick={searchText}>
+                <button
+                  type="button"
+                  onClick={searchText}
+                  style={{ backgroundColor: "#fff", border: "1px solid black" }}
+                >
                   <BiSearchAlt2 />
                 </button>
                 <input

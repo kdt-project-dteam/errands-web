@@ -36,7 +36,7 @@ const Signup = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.href = "/";
+        window.location.href = "/Login";
       } else {
         Swal.fire({
           icon: "error",

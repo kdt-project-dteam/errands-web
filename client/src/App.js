@@ -16,7 +16,7 @@ import MyWrite from "./pages/MyWrite";
 import SignOut from "./pages/SignOut";
 import WithDraw from "./pages/WithDraw";
 import Board from "./pages/Board";
-import WritePage from './pages/WritePage';
+
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import {
