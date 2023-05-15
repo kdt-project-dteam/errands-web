@@ -1,8 +1,7 @@
-
-@import "~bootstrap/scss/_functions.scss";
-@import "~bootstrap/scss/_variables.scss";
-@import "~bootstrap/scss/_mixins.scss";
-@import "~bootstrap/scss/_modal.scss";
+// @import "~bootstrap/scss/_functions.scss";
+// @import "~bootstrap/scss/_variables.scss";
+// @import "~bootstrap/scss/_mixins.scss";
+// @import "~bootstrap/scss/_modal.scss";
 
 @font-face {
   font-family: SDGothic;
@@ -42,8 +41,8 @@
   }
 }
 
-.body {
-  background-color: #f2f2f2;
+body {
+  background-color: #f2f2f2 !important;
   overflow-x: hidden;
 }
 

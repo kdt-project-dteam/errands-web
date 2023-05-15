@@ -103,28 +103,24 @@ exports.update_wanter_board = async (req, res) => {
 // 게시물 삭제
 exports.delete_wanter_board = async (req, res) => {
   try {
-    if (!req.session.user_info) {
-      res.send("로그인하세욤");
+    const auth = await Errands.Wanter_board.findOne({
+      attributes: ["wanter_board_writer"],
+      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+    });
+    if (
+      auth.dataValues.wanter_board_writer !== req.session.user_info.user_name
+    ) {
+      res.send("작성자만 삭제 가능");
     } else {
-      const auth = await Errands.Wanter_board.findOne({
-        attributes: ["wanter_board_writer"],
-        where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+      const result = await Errands.Wanter_board.destroy({
+        where: {
+          wanter_board_id: { [Op.eq]: req.params.boardId },
+        },
       });
-      if (
-        auth.dataValues.wanter_board_writer !== req.session.user_info.user_name
-      ) {
-        res.send("작성자만 삭제 가능");
-      } else {
-        const result = await Errands.Wanter_board.destroy({
-          where: {
-            wanter_board_id: { [Op.eq]: req.params.boardId },
-          },
-        });
-        if (!result) {
-          return res.send(false);
-        }
-        res.send(true);
+      if (!result) {
+        return res.send(false);
       }
+      res.send(true);
     }
   } catch (err) {
     res.send(err);

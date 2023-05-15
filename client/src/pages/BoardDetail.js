@@ -22,7 +22,6 @@ export default function BoardDetail() {
   let data;
   const { boardId } = useParams();
   const { wanterHelper } = useParams();
-
   if (value && wanterHelper === "wanter") {
     const result = value.filter(
       (data) => data.wanter_board_id === Number(boardId)
@@ -145,9 +144,37 @@ export default function BoardDetail() {
     getCommentData();
   };
 
-  useEffect(() => {
-    getCommentData();
-  }, []);
+  const hitUp = async () => {
+    if (wanterHelper == "wanter") {
+      const result = await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`,
+      });
+      console.log(result);
+    } else {
+      const result = await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`,
+      });
+      console.log(result);
+    }
+  };
+
+  const deleteBoard = async () => {
+    if (wanterHelper == "wanter") {
+      const result = await axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}`,
+      });
+      console.log(result);
+    } else {
+      const result = await axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}`,
+      });
+      console.log(result);
+    }
+  };
 
   const wanter_like = async () => {
     const result = await axios({
@@ -167,6 +194,11 @@ export default function BoardDetail() {
     console.log(result);
   };
 
+  useEffect(() => {
+    getCommentData();
+    hitUp();
+  }, []);
+
   return (
     <>
       {wanterHelper === "wanter" ? (
@@ -180,16 +212,24 @@ export default function BoardDetail() {
                   {data[0].wanter_board_title}
                 </span>
                 <span className="writer_header_form date">
-                  {data[0].wanter_board_date}
+                  <span>{data[0].wanter_board_date}</span>
+                  <span onClick={deleteBoard}>삭제</span>
                 </span>
               </div>
               <section className="paragraph">
                 <div className="user_paragraph">
                   {data[0].wanter_board_content}
                 </div>
+                <p>
+                  주소 :{" "}
+                  {data[0].wanter_board_place +
+                    " " +
+                    data[0].wanter_board_place_detail}
+                </p>
+                <p>마감기한 : {data[0].wanter_board_dead_line}</p>
               </section>
               <div className="paragraph_ext">
-                <KakaoMap geoLocation={"서울특별시 마포구 대흥로 48"} />
+                <KakaoMap geoLocation={data[0].wanter_board_place} />
                 <button className="likes_btn" onClick={wanter_like}>
                   <AiOutlineHeart />
                 </button>
@@ -306,7 +346,7 @@ export default function BoardDetail() {
                       onChange={inputChange}
                     ></textarea>
                     <div className="comment_submit_form">
-                      <span className="comment_count">{inputCount}/200</span>
+                      <span className="comment_count">{inputCount}/100</span>
                       <button
                         type="button"
                         onClick={() => {
@@ -320,7 +360,6 @@ export default function BoardDetail() {
                   </div>
                 </fieldset>
               </div>
-
               {commentList
                 ? commentList.map((data, idx) => {
                     return (
