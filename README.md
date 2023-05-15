@@ -36,6 +36,9 @@ https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
 - Session
 - multer
 
+## 페이지 흐름도
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/554e8ae8-7173-417d-85cf-c159052523e2)
+
 ## api docs
 https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
 
