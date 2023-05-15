@@ -12,7 +12,6 @@ import KakaoMap from "../components/KakaoMap";
 
 export default function BoardDetail() {
     const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
-    const [inputCount, setInputCount] = useState(0);
     const value = useSelector((state) => {
         return state.someReducer.value;
     });
@@ -37,7 +36,7 @@ export default function BoardDetail() {
     const [commentData, setCommentData] = useState("");
     const [commentList, setCommentList] = useState([]);
     const sendCommentData = async () => {
-        if (inputCount > 0) {
+        if (commentData.length > 0) {
             if (wanterHelper === "wanter") {
                 const result = await axios({
                     method: "POST",
@@ -90,7 +89,6 @@ export default function BoardDetail() {
     };
     const inputChange = (e) => {
         setCommentData(e.target.value);
-        setInputCount(e.target.value.length);
     };
 
     const getCommentData = async () => {
@@ -145,36 +143,36 @@ export default function BoardDetail() {
     };
 
     const hitUp = async () => {
-        if (wanterHelper == 'wanter') {
+        if (wanterHelper == "wanter") {
             const result = await axios({
-                method: 'POST',
-                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`
-            })
-            console.log(result)
+                method: "POST",
+                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`,
+            });
+            console.log(result);
         } else {
             const result = await axios({
-                method: 'POST',
-                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`
-            })
-            console.log(result)
+                method: "POST",
+                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`,
+            });
+            console.log(result);
         }
-    }
+    };
 
     const deleteBoard = async () => {
-        if (wanterHelper == 'wanter') {
+        if (wanterHelper == "wanter") {
             const result = await axios({
                 method: "DELETE",
-                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}`
-            })
-            console.log(result)
+                url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}`,
+            });
+            console.log(result);
         } else {
             const result = await axios({
                 method: "DELETE",
-                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}`
-            })
-            console.log(result)
+                url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}`,
+            });
+            console.log(result);
         }
-    }
+    };
 
     const wanter_like = async () => {
         const result = await axios({
@@ -219,9 +217,13 @@ export default function BoardDetail() {
                             <section className="paragraph">
                                 <div className="user_paragraph">
                                     {data[0].wanter_board_content}
-
                                 </div>
-                                <p>주소 : {data[0].wanter_board_place + " " + data[0].wanter_board_place_detail}</p>
+                                <p>
+                                    주소 :{" "}
+                                    {data[0].wanter_board_place +
+                                        " " +
+                                        data[0].wanter_board_place_detail}
+                                </p>
                                 <p>마감기한 : {data[0].wanter_board_dead_line}</p>
                             </section>
                             <div className="paragraph_ext">
@@ -240,20 +242,23 @@ export default function BoardDetail() {
                                                 className="comment_textarea"
                                                 onChange={inputChange}
                                                 maxLength={200}
+                                                value={commentData}
                                             ></textarea>
                                             <div className="comment_submit_form">
-                                                <span className="comment_count">{inputCount}/200</span>
+                                                <span className="comment_count">
+                                                    {commentData.length}/200
+                                                </span>
                                                 <button
                                                     type="button"
                                                     onClick={() => {
-                                                        inputCount == 0
+                                                        commentData.trim().length == 0
                                                             ? Swal.fire({
                                                                 icon: "error",
-                                                                title: "한글자이상 입력하세요",
+                                                                title: "한 글자 이상 입력하세요!",
                                                                 showConfirmButton: false,
                                                                 timer: 1500,
                                                             })
-                                                            : sendCommentData();
+                                                            : sendCommentData() && setCommentData("");
                                                     }}
                                                     className="comment_submit"
                                                 >
@@ -307,9 +312,9 @@ export default function BoardDetail() {
                                     <Loading />
                                 )}
                             </div>
-                        </div >
+                        </div>
                         <div className="boardDetail_page right"></div>
-                    </div >
+                    </div>
                 ) : (
                     <Loading />
                 )
@@ -345,13 +350,24 @@ export default function BoardDetail() {
                                         <textarea
                                             className="comment_textarea"
                                             onChange={inputChange}
+                                            maxLength={200}
+                                            value={commentData}
                                         ></textarea>
                                         <div className="comment_submit_form">
-                                            <span className="comment_count">{inputCount}/100</span>
+                                            <span className="comment_count">
+                                                {commentData.length}/200
+                                            </span>
                                             <button
                                                 type="button"
                                                 onClick={() => {
-                                                    sendCommentData();
+                                                    commentData.trim().length == 0
+                                                        ? Swal.fire({
+                                                            icon: "error",
+                                                            title: "한 글자 이상 입력하세요!",
+                                                            showConfirmButton: false,
+                                                            timer: 1500,
+                                                        })
+                                                        : sendCommentData() && setCommentData("");
                                                 }}
                                                 className="comment_submit"
                                             >
@@ -408,8 +424,7 @@ export default function BoardDetail() {
                 </div>
             ) : (
                 "null"
-            )
-            }
+            )}
         </>
     );
 }

@@ -36,7 +36,8 @@ export default function JobSeeker({ data }) {
   }
   const indexOfLastItems = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItems - itemsPerPage;
-  const currentItems = data?.slice(indexOfFirstItem, indexOfLastItems);
+  const reverseData = data?.slice(0).reverse();
+  const currentItems = reverseData?.slice(indexOfFirstItem, indexOfLastItems);
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
