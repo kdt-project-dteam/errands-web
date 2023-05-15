@@ -33,7 +33,7 @@ const User_info = function (Sequelize, DataTypes) {
       user_img: {
         type: DataTypes.STRING(1000),
         allowNull: false,
-        defaultValue: "",
+        defaultValue: "default.png",
       },
     },
     { tableName: "user_info", freezeTableName: true, timestamps: false }
