@@ -171,6 +171,32 @@ exports.search_wanter_board = async (req, res) => {
         });
         res.send(result);
       }
+    } else if (boardType == "helper") {
+      if (optionValue == "helper_board_writer") {
+        const result = await Errands.Helper_board.findAll({
+          where: {
+            helper_board_writer: { [Op.like]: `%${search}%` },
+          },
+        });
+        console.log("====");
+        console.log(req.params);
+        console.log(result);
+        res.send(result);
+      } else if (optionValue === "helper_board_title") {
+        const result = await Errands.Helper_board.findAll({
+          where: {
+            helper_board_title: { [Op.like]: `%${search}%` },
+          },
+        });
+        res.send(result);
+      } else if (optionValue === "wanter_board_place") {
+        const result = await Errands.Helper_board.findAll({
+          where: {
+            helper_board_place: { [Op.like]: `%${search}%` },
+          },
+        });
+        res.send(result);
+      }
     } else {
       res.send("알 수 없는 오류");
     }
