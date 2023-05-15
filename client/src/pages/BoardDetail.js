@@ -306,7 +306,7 @@ export default function BoardDetail() {
                       onChange={inputChange}
                     ></textarea>
                     <div className="comment_submit_form">
-                      <span className="comment_count">{inputCount}/100</span>
+                      <span className="comment_count">{inputCount}/200</span>
                       <button
                         type="button"
                         onClick={() => {
