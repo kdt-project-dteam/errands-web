@@ -9,6 +9,7 @@ import SearchPage from "./SearchPage";
 import ModalAddress from "../components/ModalAddress";
 import moment from "moment";
 import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
 
 export default function WritePage({ data }) {
   const [initialDate, setInitialDate] = useState(moment().format("YYYY-MM-DD"));
@@ -17,7 +18,6 @@ export default function WritePage({ data }) {
 
   // url : /api/${wanter,helper}
   // data : {}
-  const [userid, setUserid] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
@@ -28,14 +28,46 @@ export default function WritePage({ data }) {
       method: "post",
       url: `${process.env.REACT_APP_DB_HOST}/api/wanter`,
       data: {
-        user_name: "cccc",
+        wanter_board_writer: localStorage.getItem("userName"),
         wanter_board_title: title,
         wanter_board_content: content,
         wanter_board_dead_line: initialDate + " " + detailDate,
         wanter_board_place: address,
         wanter_board_place_detail: detailAddress,
       },
+      withCredentials: true,
     });
+
+    if (title.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "제목을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (content.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "내용을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (address.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "주소를 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "게시물이 작성되었습니다!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      window.location.href = "/board";
+    }
   };
 
   const submitSeeker = async (e) => {
@@ -43,14 +75,37 @@ export default function WritePage({ data }) {
       method: "post",
       url: `${process.env.REACT_APP_DB_HOST}/api/helper`,
       data: {
-        user_name: "cccc",
+        user_name: localStorage.getItem("userName"),
         helper_board_title: title,
         helper_board_content: content,
         helper_board_place: address,
         helper_board_date: initialDate + " " + detailDate,
       },
+      withCredentials: true,
     });
-    console.log(result.data);
+    if (title.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "제목을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else if (content.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "내용을 입력하세요!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "success",
+        title: "게시물이 작성되었습니다!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      window.location.href = "/board";
+    }
   };
 
   return (

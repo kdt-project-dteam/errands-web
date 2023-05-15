@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import SocialLogin from "../components/SocialLogin";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 // /api/login
 const Signup = () => {
   const [userId, setUserId] = useState("");
@@ -28,6 +29,7 @@ const Signup = () => {
           user_name: userName,
           user_type: userType,
         },
+        withCredentials: true,
       });
       if (result.data === true) {
         Swal.fire({
@@ -36,7 +38,7 @@ const Signup = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.href = "/";
+        window.location.href = "/login";
       } else {
         Swal.fire({
           icon: "error",
@@ -61,6 +63,7 @@ const Signup = () => {
       data: {
         user_id: CheckId,
       },
+      withCredentials: true,
     }).then((res) => {
       if (res.data === false) {
         const element = document.getElementById("possibleId");
@@ -83,6 +86,7 @@ const Signup = () => {
       data: {
         user_name: userName,
       },
+      withCredentials: true,
     }).then((res) => {
       console.log(res.data);
       if (res.data === true) {
@@ -173,7 +177,7 @@ const Signup = () => {
           </div>
           <div className="goLogin">
             <p>이미 계정이 있으십니까?</p>
-            <a href="http://localhost:3000/login">로그인하기</a>
+            <Link to={"/login"}>로그인</Link>
           </div>
           <div className="hr-sect">또는</div>
           <button className="kakaoSignup">

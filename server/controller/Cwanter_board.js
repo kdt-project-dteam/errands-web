@@ -49,8 +49,8 @@ exports.create_wanter_board = async (req, res) => {
     if (!req.session.user_info) {
       res.send("로그인하시오");
     } else {
-      const [result] = await Errands.Wanter_board.create({
-        wanter_board_writer: req.body.user_name,
+      const result = await Errands.Wanter_board.create({
+        wanter_board_writer: req.session.user_info.user_name,
         wanter_board_title: req.body.wanter_board_title,
         wanter_board_content: req.body.wanter_board_content,
         wanter_board_place: req.body.wanter_board_place,
@@ -103,28 +103,24 @@ exports.update_wanter_board = async (req, res) => {
 // 게시물 삭제
 exports.delete_wanter_board = async (req, res) => {
   try {
-    if (!req.session.user_info) {
-      res.send("로그인하세욤");
+    const auth = await Errands.Wanter_board.findOne({
+      attributes: ["wanter_board_writer"],
+      where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+    });
+    if (
+      auth.dataValues.wanter_board_writer !== req.session.user_info.user_name
+    ) {
+      res.send("작성자만 삭제 가능");
     } else {
-      const auth = await Errands.Wanter_board.findOne({
-        attributes: ["wanter_board_writer"],
-        where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+      const result = await Errands.Wanter_board.destroy({
+        where: {
+          wanter_board_id: { [Op.eq]: req.params.boardId },
+        },
       });
-      if (
-        auth.dataValues.wanter_board_writer !== req.session.user_info.user_name
-      ) {
-        res.send("작성자만 삭제 가능");
-      } else {
-        const result = await Errands.Wanter_board.destroy({
-          where: {
-            wanter_board_id: { [Op.eq]: req.params.boardId },
-          },
-        });
-        if (!result) {
-          return res.send(false);
-        }
-        res.send(true);
+      if (!result) {
+        return res.send(false);
       }
+      res.send(true);
     }
   } catch (err) {
     res.send(err);
@@ -175,9 +171,6 @@ exports.search_wanter_board = async (req, res) => {
         });
         res.send(result);
       }
-    } else if (boardType == "helper") {
-      if (optionValue) {
-      }
     } else {
       res.send("알 수 없는 오류");
     }
@@ -223,6 +216,32 @@ exports.done_wanter_board = async (req, res) => {
   }
 };
 
+exports.wanter_board_like = async (req, res) => {
+  try {
+    const auth = await Errands.Who_wanter_like.findOne({
+      where: {
+        where_wanter_board_id: { [Op.eq]: req.params.boardId },
+        who_user_name: { [Op.eq]: req.session.user_info.user_name },
+      },
+    });
+    if (!auth) {
+      await Errands.Who_wanter_like.create({
+        where_wanter_board_id: req.params.boardId,
+        who_user_name: req.session.user_info.user_name,
+      });
+      await Errands.Wanter_board.increment(
+        { wanter_board_like: 1 },
+        { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
+      );
+      res.send(true);
+    } else {
+      res.send(false); // 이미 좋아요 누른 게시글입니다
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
+
 // 게시물 진행 중 처리
 // exports.proceed_wanter_board = async (req, res) => {
 //   try {
@@ -239,7 +258,7 @@ exports.done_wanter_board = async (req, res) => {
 //       const [result] = await Errands.Wanter_board.update(
 //         {
 //           wanter_board_done: 2,
-//           // ture 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
+//           // true 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
 //         },
 //         { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
 //       );
