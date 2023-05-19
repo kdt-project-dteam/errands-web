@@ -1,6 +1,8 @@
 # 심부릉 (심부름 커뮤니티)
 ![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/03b1414b-acbd-4117-b10d-0480921750f7)
 
+## 배포 링크
+http://43.201.96.28
 
 ## 개요
 몸이아프거나 거동이불편하거나 현재 해야하는 일을 진행하기 힘든 사람들을 위한 커뮤니티 플랫폼을 생각하던중
@@ -66,12 +68,13 @@
 ![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/a4549957-0d3c-4ae4-9784-4f008f27202c)
 
 ## api docs
+간략하게 정리해서 올리기
 https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
 
 ## 2주간 개인 개발 내역 정리
+간략하게 정리해서 올리기
 https://www.notion.so/84af8d9e88d844d4a3b943145f1b92d5?pvs=4
 
-## 페이지 링크
-http://43.201.96.28
+
 
 
