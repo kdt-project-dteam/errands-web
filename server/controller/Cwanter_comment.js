@@ -18,7 +18,7 @@ exports.read_wanter_comment = async (req, res) => {
 exports.create_wanter_comment = async (req, res) => {
   try {
     if (!req.session.user_info) {
-      res.send("로그인하시오");
+      res.send(false);
     } else {
       const result = await Errands.Wanter_comment.create({
         wanter_comment_board_id: req.params.boardId,

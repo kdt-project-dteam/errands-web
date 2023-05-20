@@ -2,7 +2,7 @@
 import KakaoLogin from "react-kakao-login";
 
 const SocialLogin = ({ getKakaoLoginAccess }) => {
-    const kakaoClientId = '1d7a27740708f0f2c4423af1652f080c'
+    const kakaoClientId = '636e15663d34807b5697edbf5735a3ad'
     const kakaoOnSuccess = async (data) => {
         console.log(data)
         getKakaoLoginAccess(data);

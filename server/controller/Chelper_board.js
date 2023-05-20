@@ -143,3 +143,29 @@ exports.hit_helper_board = async (req, res) => {
     res.send(err);
   }
 };
+
+exports.helper_board_like = async (req, res) => {
+  try {
+    const auth = await Errands.Who_helper_like.findOne({
+      where: {
+        where_helper_board_id: { [Op.eq]: req.params.boardId },
+        who_user_name: { [Op.eq]: req.session.user_info.user_name },
+      },
+    });
+    if (!auth) {
+      await Errands.Who_helper_like.create({
+        where_helper_board_id: req.params.boardId,
+        who_user_name: req.session.user_info.user_name,
+      });
+      await Errands.Helper_board.increment(
+        { helper_board_like: 1 },
+        { where: { helper_board_id: { [Op.eq]: req.params.boardId } } }
+      );
+      res.send(true);
+    } else {
+      res.send(false); // 이미 좋아요 누른 게시글입니다
+    }
+  } catch (err) {
+    res.send(err);
+  }
+};
