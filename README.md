@@ -151,12 +151,8 @@ r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션
 - multer
 
 ## api docs
-간략하게 정리해서 올리기
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/563f212a-0017-4a3d-b29e-a09006cb7d69)
 https://www.notion.so/6b5dfbba146246c0bae01cc3b77f67f9?pvs=4
-
-## 2주간 개인 개발 내역 정리
-간략하게 정리해서 올리기
-https://www.notion.so/84af8d9e88d844d4a3b943145f1b92d5?pvs=4
 
 
 
