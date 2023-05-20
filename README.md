@@ -1,3 +1,5 @@
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/1c838431-7d9c-46c6-bdc2-77c1041dc274)
+
 # 풀스택 웹 프로젝트 - 심부릉🚗
 
 Live Link : [http://52.62.33.115/](http://52.62.33.115/)
@@ -20,15 +22,13 @@ Github Repository : https://github.com/kdt-project-dteam/errands-web
 
 **Custom Card Design**
 
-![ezgif.com-video-to-gif.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/40291367-aa63-4480-804c-88ec5c92fb58/ezgif.com-video-to-gif.gif)
-
-![ezgif.com-video-to-gif (1).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c219ab7b-9e34-4edb-ab30-50dda0348b24/ezgif.com-video-to-gif_(1).gif)
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/f5e17ea4-c832-46c7-9cdd-0facc7cad2a7)
 
 **게시글 목록 조회**, **페이지네이션** 구현
 
 r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션 구현
 
-![ezgif.com-video-to-gif (2).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/77bc0371-8469-48d6-9841-97454cdf1e72/ezgif.com-video-to-gif_(2).gif)
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/ece6d372-9799-4b22-8eb1-b67b43774b88)
 
 게시판 **글 쓰기** 기능
 
@@ -101,26 +101,6 @@ r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션
 ### 페이지 흐름도
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1f0a559d-efbc-4300-9108-c6c4f476b84b/Untitled.png)
-
-# 심부릉 (심부름 커뮤니티)
-![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/03b1414b-acbd-4117-b10d-0480921750f7)
-
-## 배포 링크
-http://43.201.96.28
-
-## 개요
-몸이아프거나 거동이불편하거나 현재 해야하는 일을 진행하기 힘든 사람들을 위한 커뮤니티 플랫폼을 생각하던중
-심부름이라는 주제가 떠올라 시작하게 되었습니다.
-
-## 주제
-심부름이 필요한 사람, 심부름으로 용돈을 벌사람을 위한 커뮤니티 플랫폼
-
-## 인원
-프론트 3명 ( 강민혁, 마상위, 김승윤 )
-백엔드 2명 ( 최희성, 배기호 )
-
-## 개발기간
-2023-05-01 ~ 2023-05-15 ( 약 2주 )
 
 ## 사용 기술
 <div align=left>
