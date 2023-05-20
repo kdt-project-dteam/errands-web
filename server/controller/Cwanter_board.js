@@ -9,7 +9,6 @@ const auth = async () => {
   return result;
 };
 
-// ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {
   try {
@@ -264,42 +263,9 @@ exports.wanter_board_like = async (req, res) => {
       );
       res.send(true);
     } else {
-      res.send(false); // 이미 좋아요 누른 게시글입니다
+      res.send(false);
     }
   } catch (err) {
     res.send(err);
   }
 };
-
-// 게시물 진행 중 처리
-// exports.proceed_wanter_board = async (req, res) => {
-//   try {
-//     // if (!req.session.user_info) {
-//     //   res.send("로그인하시오");
-//     // } else {
-//     const auth = await Errands.Wanter_board.findOne({
-//       attributes: ["wanter_board_writer"],
-//       where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-//     });
-//     if (auth.dataValues.wanter_board_writer !== req.body.user_name) {
-//       res.send("작성자만 완료가능");
-//     } else {
-//       const [result] = await Errands.Wanter_board.update(
-//         {
-//           wanter_board_done: 2,
-//           // true 값 대신 다른 값으로 변경 (database 설정 추가 해야 함)
-//         },
-//         { where: { wanter_board_id: { [Op.eq]: req.params.boardId } } }
-//       );
-//       console.log("========");
-//       console.log(result);
-//       if (result === 0) {
-//         res.send(false);
-//       } else {
-//         res.send(true);
-//       }
-//     }
-//   } catch (err) {
-//     res.send(err);
-//   }
-// };
