@@ -33,7 +33,7 @@ create table helper_board (
     helper_board_writer varchar(20) not null,
     foreign key(helper_board_writer) references user_info(user_name) ON UPDATE CASCADE on delete cascade,
     helper_board_title varchar(100) not null,
-    helper_board_contengt varchar(1000) not null,
+    helper_board_content varchar(1000) not null,
     helper_board_place varchar(200) not null,
     helper_board_date timestamp not null default current_timestamp,
     helper_board_hit int default 0
