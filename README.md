@@ -22,25 +22,28 @@ Github Repository : https://github.com/kdt-project-dteam/errands-web
 
 **Custom Card Design**
 
-![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/f5e17ea4-c832-46c7-9cdd-0facc7cad2a7)
+![ezgif com-video-to-gif](https://github.com/kdt-project-dteam/errands-web/assets/96116158/3a3aa4d3-6983-4ca0-abef-f17ee1c3df8a)
+
 
 **게시글 목록 조회**, **페이지네이션** 구현
 
 r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션 구현
 
-![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/ece6d372-9799-4b22-8eb1-b67b43774b88)
+![ezgif com-video-to-gif (2)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/a71c04fe-cd14-4efb-beb0-51f510e78855)
 
 게시판 **글 쓰기** 기능
 
 **다음 주소 찾기 Open API** 사용
 
-![ezgif.com-video-to-gif (3).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/095cf8ca-f91a-41da-81e4-29b1b424234a/ezgif.com-video-to-gif_(3).gif)
+![ezgif com-video-to-gif (3)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/6901ec91-63f8-4978-9f13-24996eb232a9)
+
 
 유저 목록 **조회 및 추천** 기능
 
 **API DOCS** 참고 백엔드 로직 연결
 
-![ezgif.com-video-to-gif (4).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b0443b75-f430-4be8-8f61-14a648ea2876/ezgif.com-video-to-gif_(4).gif)
+![ezgif com-video-to-gif (4)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/089d71f9-5632-419e-8e1e-a7e800dab63a)
+
 
 **프로필 사진 변경** 기능
 
@@ -48,13 +51,15 @@ r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션
 
 **DB에 저장된 public 경로 바탕**으로 사진 랜더링
 
-![ezgif.com-video-to-gif (5).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/61d79fd3-e4a3-4443-9d9e-41c1adaa114c/ezgif.com-video-to-gif_(5).gif)
+![ezgif com-video-to-gif (5)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/4c952eff-889b-4f4e-a5cf-03e90ebcd901)
+
 
 **404 페이지, 마이페이지 본인 작성글 조회, 회원탈퇴** 기능
 
 **react-router-dom 사용**, 페이지 라우팅 구현
 
-![ezgif.com-video-to-gif (6).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d6f116e7-d5bb-4b4d-a396-1953c8677d18/ezgif.com-video-to-gif_(6).gif)
+![ezgif com-video-to-gif (6)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/0ea1a8d5-6d6b-4ce4-9644-f85473a3c5ff)
+
 
 **게시판 상세 조회, Kakao Map AP**I 사용
 
@@ -62,13 +67,15 @@ r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션
 
 **Kakao Map API**를 사용하여 **String 데이터**를 **좌표로 Parsing**후 지도에 마커표시 
 
-![ezgif.com-video-to-gif (7).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c24927d-7e9d-4596-96c5-b5bd7c84bde3/ezgif.com-video-to-gif_(7).gif)
+![ezgif com-video-to-gif (7)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/b6ae3db3-96dc-4973-aa87-67f59cffdd26)
+
 
 **댓글** 기능
 
 **게시글 테이블**과 **댓글 테이블** 분리 및 **moment.js** 활용 **timestamp 통일**
 
-![ezgif.com-video-to-gif (8).gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b07fa7a-8e59-460d-92de-95a3802ee39a/ezgif.com-video-to-gif_(8).gif)
+![ezgif com-video-to-gif (8)](https://github.com/kdt-project-dteam/errands-web/assets/96116158/9b4cc222-3c22-464d-87c3-175a04a795cc)
+
 
 ### 팀 내 역할
 
@@ -94,13 +101,11 @@ r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션
 
 ---
 
-### ERD 모형도
+## 페이지 흐름도
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/554e8ae8-7173-417d-85cf-c159052523e2)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/eb4d44dd-0614-4809-8a09-240df82b8dfa/Untitled.png)
-
-### 페이지 흐름도
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1f0a559d-efbc-4300-9108-c6c4f476b84b/Untitled.png)
+## DB ERD 모형도
+![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/a4549957-0d3c-4ae4-9784-4f008f27202c)
 
 ## 사용 기술
 <div align=left>
@@ -144,12 +149,6 @@ r**edux store에 저장된 게시글 배열** 슬라이싱후 페이지네이션
 - cors
 - Session
 - multer
-
-## 페이지 흐름도
-![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/554e8ae8-7173-417d-85cf-c159052523e2)
-
-## DB ERD 모형도
-![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/a4549957-0d3c-4ae4-9784-4f008f27202c)
 
 ## api docs
 간략하게 정리해서 올리기
