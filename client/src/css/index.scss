@@ -1,7 +1,8 @@
-// @import "~bootstrap/scss/_functions.scss";
-// @import "~bootstrap/scss/_variables.scss";
-// @import "~bootstrap/scss/_mixins.scss";
-// @import "~bootstrap/scss/_modal.scss";
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_mixins.scss";
+@import "~bootstrap/scss/_modal.scss";
+@import "./utils";
 
 @font-face {
   font-family: SDGothic;
