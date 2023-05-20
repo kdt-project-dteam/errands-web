@@ -3,15 +3,17 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   height: 100vh;
+  @include mobile {
+    display: grid;
+    grid-template-columns: 1fr 100fr 1fr;
+  }
   input {
     padding-left: 0.5rem;
     height: 40px;
   }
-
   .WritePage-Center {
     display: flex;
     justify-content: center;
-
     .Write_border_box {
       box-sizing: border-box;
       border-radius: 10px;
@@ -20,46 +22,41 @@
       height: 900px;
       background-color: #fff;
       margin-bottom: 3rem;
-
+      @include mobile {
+        width: 100%;
+      }
       .write-form {
         display: flex;
         align-items: center;
         margin-top: 1rem;
       }
-
       .form-input {
         display: flex;
         flex-direction: row-reverse;
         margin-left: 1rem;
       }
-
       h1 {
         text-align: center;
         padding-top: 2rem;
       }
-
       .address_form {
         width: 80%;
       }
-
       .form-input {
         border: 1px solid black;
         width: 80%;
         border-radius: 10px;
-
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
       }
-
       .form-text {
         display: flex;
         margin: 2rem;
         width: 600px;
       }
-
       .form-textarea {
         width: 80%;
         height: 200px;
@@ -68,28 +65,23 @@
         margin-left: 1rem;
         border-radius: 10px;
         padding: 5px;
-
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
       }
-
       .form-deadline {
         display: flex;
         margin: 2rem;
       }
-
       .form-date {
         margin-left: 10px;
       }
-
       .form-address {
         display: flex;
         margin-left: 2rem;
       }
-
       .address_name {
         display: flex;
         margin-left: 10px;
@@ -100,7 +92,6 @@
           justify-content: center;
         }
       }
-
       .submit-form {
         display: flex;
         margin-right: 2rem;
@@ -108,11 +99,9 @@
         flex-direction: row-reverse;
         justify-content: space-between;
       }
-
       .btn_parent {
         margin: 10px;
       }
-
       .page-submit {
         background-color: black;
         border-radius: 10px;
@@ -123,7 +112,6 @@
         margin: 1rem;
         margin-top: 2rem;
       }
-
       .address_title {
         border: 1px solid black;
         margin: 20px;
@@ -135,43 +123,35 @@
           box-shadow: 0 0 10px #e9af7d;
         }
       }
-
       .detail_address {
         display: flex;
       }
-
       .detail_address_text {
         margin-left: 15px;
         width: 400px;
         border: 1px solid black;
-
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
       }
-
       .form-date {
         border: 1px solid black;
-
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
       }
-
       .detail_date {
         margin-left: 2rem;
         display: flex;
       }
-
       .detail_date_text {
         margin-left: 10px;
         width: 400px;
         border: 1px solid black;
-
         &:focus {
           outline: none;
           border-color: #e9af7d;
@@ -183,12 +163,10 @@
       border: none;
       background-color: white;
     }
-
     .address_form {
       display: flex;
       justify-content: space-between;
     }
-
     .address_btn_search {
       background-color: black;
       border-radius: 10px;
@@ -197,11 +175,9 @@
       width: 70px;
       border: none;
     }
-
     .btn-close {
       background-color: black;
     }
-
     .address_form {
       display: flex;
       flex-direction: row-reverse;
