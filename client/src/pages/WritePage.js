@@ -26,7 +26,7 @@ export default function WritePage({ data }) {
   const submitOffer = async (e) => {
     const result = await axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter`,
+      url: `${process.env.REACT_APP_DB_HOST}/wanter`,
       data: {
         wanter_board_writer: localStorage.getItem("userName"),
         wanter_board_title: title,
@@ -73,7 +73,7 @@ export default function WritePage({ data }) {
   const submitSeeker = async (e) => {
     const result = await axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/api/helper`,
+      url: `${process.env.REACT_APP_DB_HOST}/helper`,
       data: {
         user_name: localStorage.getItem("userName"),
         helper_board_title: title,
@@ -196,22 +196,24 @@ export default function WritePage({ data }) {
               ></input>
             </div>
             <div className="submit-form">
-              <Button
-                variant="dark"
-                type="submit"
-                className="page-submit"
-                onClick={submitOffer}
-              >
-                구인글 작성
-              </Button>
-              <Button
-                variant="dark"
-                type="submit"
-                className="page-submit"
-                onClick={submitSeeker}
-              >
-                구직글 작성
-              </Button>
+              <div className="btn_parent">
+                <Button
+                  variant="dark"
+                  type="submit"
+                  className="page-submit"
+                  onClick={submitOffer}
+                >
+                  구인글 작성
+                </Button>
+                <Button
+                  variant="dark"
+                  type="submit"
+                  className="page-submit"
+                  onClick={submitSeeker}
+                >
+                  구직글 작성
+                </Button>
+              </div>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default function SignOut() {
   const logOut = async () => {
     const result = await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/logout`,
+      url: `${process.env.REACT_APP_DB_HOST}/user/logout`,
       data: {
         user_id: myPageUser,
       },

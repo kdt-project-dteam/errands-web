@@ -10,8 +10,8 @@ export default function MyWrite() {
   const getWanterPost = async () => {
     const result = await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/user/wanter`,
-      data: { user_name: localStorage.getItem('userName') },
+      url: `${process.env.REACT_APP_DB_HOST}/user/wanter`,
+      data: { user_name: localStorage.getItem("userName") },
     });
     console.log(result.data);
     setWanterPost(result.data);
@@ -19,8 +19,8 @@ export default function MyWrite() {
   const getHelperPost = async () => {
     const result = await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/user/helper`,
-      data: { user_name: localStorage.getItem('userName') },
+      url: `${process.env.REACT_APP_DB_HOST}/user/helper`,
+      data: { user_name: localStorage.getItem("userName") },
       withCredentials: true,
     });
     console.log(result.data);

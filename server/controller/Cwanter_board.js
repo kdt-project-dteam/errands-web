@@ -1,6 +1,14 @@
 const Errands = require("../models");
 const { Op } = require("sequelize");
 
+const auth = async () => {
+  const result = await Errands.Wanter_board.findOne({
+    attributes: ["wanter_board_writer"],
+    where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
+  });
+  return result;
+};
+
 // ======= Wanter_board =======
 // 매인페이지에 5개 보여주기 deadline순 5개
 exports.read_few_wanter_board = async (req, res) => {
@@ -71,10 +79,7 @@ exports.update_wanter_board = async (req, res) => {
     if (!req.session.user_info) {
       res.send("로그인하시오");
     } else {
-      const auth = await Errands.Wanter_board.findOne({
-        attributes: ["wanter_board_writer"],
-        where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-      });
+      auth();
       if (
         auth.dataValues.wanter_board_writer !== req.session.user_info_user_name
       ) {
@@ -141,7 +146,7 @@ exports.hit_wanter_board = async (req, res) => {
 };
 
 // 검색
-exports.search_wanter_board = async (req, res) => {
+exports.search_board = async (req, res) => {
   try {
     const { boardType, optionValue } = req.params;
     const search = req.query.search;
@@ -213,12 +218,10 @@ exports.done_wanter_board = async (req, res) => {
     if (!req.session.user_info) {
       res.send("로그인하시오");
     } else {
-      const auth = await Errands.Wanter_board.findOne({
-        attributes: ["wanter_board_writer"],
-        where: { wanter_board_id: { [Op.eq]: req.params.boardId } },
-      });
+      auth();
       if (
-        auth.dataValues.wanter_board_writer !== req.session.user_info.user_name
+        result.dataValues.wanter_board_writer !==
+        req.session.user_info.user_name
       ) {
         res.send("작성자만 완료가능");
       } else {

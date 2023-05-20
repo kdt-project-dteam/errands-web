@@ -9,7 +9,6 @@ import "moment/locale/ko";
 import Loading from "../components/Loading";
 import Swal from "sweetalert2";
 import KakaoMap from "../components/KakaoMap";
-
 export default function BoardDetail() {
   const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
   const value = useSelector((state) => {
@@ -40,7 +39,7 @@ export default function BoardDetail() {
       if (wanterHelper === "wanter") {
         const result = await axios({
           method: "POST",
-          url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
+          url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/comment`,
           data: {
             wanter_comment_content: `${commentData}`,
           },
@@ -62,7 +61,7 @@ export default function BoardDetail() {
       } else if (wanterHelper == "helper") {
         const result = await axios({
           method: "POST",
-          url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/comment`,
+          url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}/comment`,
           data: {
             helper_comment_content: `${commentData}`,
           },
@@ -95,14 +94,14 @@ export default function BoardDetail() {
     if (wanterHelper === "wanter") {
       const result = await axios({
         method: "GET",
-        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment`,
+        url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/comment`,
       });
       setCommentList(result.data);
       console.log(result);
     } else {
       const result = await axios({
         method: "GET",
-        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/comment`,
+        url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}/comment`,
       });
       setCommentList(result.data);
       console.log(result);
@@ -112,7 +111,7 @@ export default function BoardDetail() {
   const updateComment = async (commentId) => {
     const result = await axios({
       method: "PATCH",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment/${commentId}`,
+      url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/comment/${commentId}`,
       withCredentials: true,
     });
     console.log(result);
@@ -121,7 +120,7 @@ export default function BoardDetail() {
   const deleteComment = async (commentId) => {
     const result = await axios({
       method: "DELETE",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/comment/${commentId}`,
+      url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/comment/${commentId}`,
       withCredentials: true,
     });
     if (result.data === true) {
@@ -146,13 +145,13 @@ export default function BoardDetail() {
     if (wanterHelper == "wanter") {
       const result = await axios({
         method: "POST",
-        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/hit`,
+        url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/hit`,
       });
       console.log(result);
     } else {
       const result = await axios({
         method: "POST",
-        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}/hit`,
+        url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}/hit`,
       });
       console.log(result);
     }
@@ -162,13 +161,13 @@ export default function BoardDetail() {
     if (wanterHelper == "wanter") {
       const result = await axios({
         method: "DELETE",
-        url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}`,
+        url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}`,
       });
       console.log(result);
     } else {
       const result = await axios({
         method: "DELETE",
-        url: `${process.env.REACT_APP_DB_HOST}/api/helper/${boardId}`,
+        url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}`,
       });
       console.log(result);
     }
@@ -177,7 +176,7 @@ export default function BoardDetail() {
   const wanter_like = async () => {
     const result = await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
+      url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/like`,
       withCredentials: true,
     });
     console.log(result);
@@ -186,7 +185,7 @@ export default function BoardDetail() {
   const helper_like = async () => {
     const result = await axios({
       method: "POST",
-      url: `${process.env.REACT_APP_DB_HOST}/api/wanter/${boardId}/like`,
+      url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/like`,
       withCredentials: true,
     });
     console.log(result);

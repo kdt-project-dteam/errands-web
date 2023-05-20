@@ -13,16 +13,31 @@ const Login = () => {
   const [userPw, setUserPw] = useState("");
   const LoginFunc = async (e) => {
     if (!userId && !userPw) {
-      return alert("ID와 Password를 입력하세요");
+      return Swal.fire({
+        icon: "error",
+        title: "아이디와 패스워드를 입력하세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       //  inputRef.current.focus();
     } else if (!userId) {
-      return alert("ID를 입력하세요");
+      return Swal.fire({
+        icon: "error",
+        title: "아이디를 입력하세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else if (!userPw) {
-      return alert("Password를 입력하세요");
+      return Swal.fire({
+        icon: "error",
+        title: "패스워드를 입력하세요",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
     const data = await axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/api/login`,
+      url: `${process.env.REACT_APP_DB_HOST}/user/login`,
       data: {
         user_id: userId,
         user_pw: userPw,

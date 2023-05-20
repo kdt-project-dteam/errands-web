@@ -9,6 +9,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @include mobile {
+      display: block;
+    }
     .myWrite {
       width: 45%;
       height: 70vh;
@@ -17,6 +20,10 @@
       padding: 3rem;
       overflow-y: scroll;
       border-radius: $bor-radius;
+      @include mobile {
+        font-size: 12px;
+        width: 100%;
+      }
       h2 {
         font-size: 2rem;
         font-weight: 700;
@@ -27,6 +34,11 @@
         height: auto;
         margin: 0 auto;
         border-collapse: collapse;
+        border: 1px solid gray;
+        th {
+          background-color: #fca311;
+          height: 3rem;
+        }
         tr {
           height: 50px;
           &:hover,

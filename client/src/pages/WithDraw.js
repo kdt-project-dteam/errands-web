@@ -15,7 +15,7 @@ export default function WithDraw() {
   const userOut = async () => {
     const result = await axios({
       method: "DELETE",
-      url: `${process.env.REACT_APP_DB_HOST}/api/user/${localId}`,
+      url: `${process.env.REACT_APP_DB_HOST}/user/${localId}`,
       withCredentials: true,
     });
     console.log(result);
@@ -54,13 +54,12 @@ export default function WithDraw() {
         <div className="Content">
           <p>
             -회원 탈퇴 처리 후에는 회원님의 개인정보를 복원할 수 없으며,
-            회원탈퇴 진행 시 해당 아이디는 영구적으로 삭제되어 재가입이
-            불가능합니다.
+            회원탈퇴 진행 시 해당 아이디는 영구적으로 삭제됩니다
           </p>
 
           <p>
             -회원 탈퇴 시 개인 정보 및 사이트에서 만들어진 모든 데이터는
-            삭제됩니다. 아래 항목은 표기된 법률에 따라 1일동안 보관됩니다.
+            삭제됩니다.
           </p>
         </div>
         <hr />

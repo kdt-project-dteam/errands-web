@@ -22,7 +22,7 @@ const Signup = () => {
       console.log("=====");
       const result = await axios({
         method: "post",
-        url: `${process.env.REACT_APP_DB_HOST}/api/register`,
+        url: `${process.env.REACT_APP_DB_HOST}/user/register`,
         data: {
           user_id: userId,
           user_pw: userPw,
@@ -38,7 +38,7 @@ const Signup = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        window.location.href = "/login";
+        window.location.href = "/Login";
       } else {
         Swal.fire({
           icon: "error",
@@ -59,7 +59,7 @@ const Signup = () => {
   const CheckIdFunc = (e) => {
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/api/checkId`,
+      url: `${process.env.REACT_APP_DB_HOST}/user/checkId`,
       data: {
         user_id: CheckId,
       },
@@ -82,7 +82,7 @@ const Signup = () => {
   const CheckNameFunc = (e) => {
     axios({
       method: "post",
-      url: `${process.env.REACT_APP_DB_HOST}/api/checkName`,
+      url: `${process.env.REACT_APP_DB_HOST}/user/checkName`,
       data: {
         user_name: userName,
       },

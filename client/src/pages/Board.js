@@ -31,6 +31,7 @@ export default function Board() {
   const [search, setSearch] = useState("");
   const [info, setInfo] = useState([]);
   const [optionValue, setOptionValue] = useState();
+  const [filterData, setFilterData] = useState();
 
   const searchText = () => {
     if (menu == 1) {
@@ -40,11 +41,12 @@ export default function Board() {
     }
     axios({
       method: "GET",
-      url: `${process.env.REACT_APP_DB_HOST}/api/search/${boardType}/${optionValue}`,
+      url: `${process.env.REACT_APP_DB_HOST}/wanter/search/${boardType}/${optionValue}`,
       params: { search: search },
       withCredentials: true,
     }).then((res) => {
       console.log(res.data);
+      setFilterData(res.data);
     });
   };
 
@@ -140,9 +142,9 @@ export default function Board() {
             </div>
           </div>
           {menu === 1 ? (
-            <JobOffer data={value} />
+            <JobOffer data={value} filteredData={filterData} />
           ) : (
-            <JobSeeker data={helperAll} />
+            <JobSeeker data={helperAll} filteredData={filterData} />
           )}
         </div>
         <h1 className="board_page right"></h1>
