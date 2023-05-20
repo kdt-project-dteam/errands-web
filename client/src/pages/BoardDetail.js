@@ -95,6 +95,7 @@ export default function BoardDetail() {
       const result = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/comment`,
+        withCredentials: true,
       });
       setCommentList(result.data);
       console.log(result);
@@ -102,6 +103,7 @@ export default function BoardDetail() {
       const result = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}/comment`,
+        withCredentials: true,
       });
       setCommentList(result.data);
       console.log(result);
@@ -146,12 +148,14 @@ export default function BoardDetail() {
       const result = await axios({
         method: "POST",
         url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}/hit`,
+        withCredentials: true,
       });
       console.log(result);
     } else {
       const result = await axios({
         method: "POST",
         url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}/hit`,
+        withCredentials: true,
       });
       console.log(result);
     }
@@ -162,12 +166,14 @@ export default function BoardDetail() {
       const result = await axios({
         method: "DELETE",
         url: `${process.env.REACT_APP_DB_HOST}/wanter/${boardId}`,
+        withCredentials: true,
       });
       console.log(result);
     } else {
       const result = await axios({
         method: "DELETE",
         url: `${process.env.REACT_APP_DB_HOST}/helper/${boardId}`,
+        withCredentials: true,
       });
       console.log(result);
     }
