@@ -26,18 +26,27 @@ export default function Board() {
     { id: 1, name: "구인" },
     { id: 2, name: "구직" },
   ];
+  const [boardType, setBoardType] = useState("wanter");
 
   const [search, setSearch] = useState("");
   const [info, setInfo] = useState([]);
   const [optionValue, setOptionValue] = useState();
+  const [filterData, setFilterData] = useState();
 
-  const searchText = (data) => {
+  const searchText = () => {
+    if (menu == 1) {
+      setBoardType("wanter");
+    } else {
+      setBoardType("helper");
+    }
     axios({
       method: "GET",
-      url: `${process.env.REACT_APP_DB_HOST}/api/search/${search}/${optionValue}`,
+      url: `${process.env.REACT_APP_DB_HOST}/api/search/${boardType}/${optionValue}`,
+      params: { search: search },
       withCredentials: true,
     }).then((res) => {
       console.log(res.data);
+      setFilterData(res.data);
     });
   };
 
@@ -72,7 +81,7 @@ export default function Board() {
                   key={menu.id}
                   value={idx}
                   className={
-                    "option item card " + (idx == currentState ? "change" : "")
+                    "option item " + (idx == currentState ? "change" : "")
                   }
                   onClick={(e) => {
                     setMenu(menu.id);
@@ -97,9 +106,21 @@ export default function Board() {
                   onChange={optionValueChange}
                   className="category category_items select_form"
                 >
-                  <option value="wanter_board_title">제목</option>
-                  <option value="wanter_board_writer">작성자</option>
-                  <option value="wanter_board_location">지역</option>
+                  {menu === 1 ? (
+                    <>
+                      <option value="none">선택</option>
+                      <option value="wanter_board_title">제목</option>
+                      <option value="wanter_board_writer">작성자</option>
+                      <option value="wanter_board_place">지역</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="none">선택해주세요</option>
+                      <option value="helper_board_title">제목</option>
+                      <option value="helper_board_writer">작성자</option>
+                      <option value="helper_board_place">지역</option>
+                    </>
+                  )}
                 </select>
               </div>
               <label className="category category_items input">
@@ -121,9 +142,9 @@ export default function Board() {
             </div>
           </div>
           {menu === 1 ? (
-            <JobOffer data={value} />
+            <JobOffer data={value} filteredData={filterData} />
           ) : (
-            <JobSeeker data={helperAll} />
+            <JobSeeker data={helperAll} filteredData={filterData} />
           )}
         </div>
         <h1 className="board_page right"></h1>

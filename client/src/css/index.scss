@@ -1,8 +1,8 @@
-
 @import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
 @import "~bootstrap/scss/_mixins.scss";
 @import "~bootstrap/scss/_modal.scss";
+@import "./utils";
 
 @font-face {
   font-family: SDGothic;
@@ -42,14 +42,22 @@
   }
 }
 
-.body {
-  background-color: #f2f2f2;
+body {
+  background-color: #f2f2f2 !important;
   overflow-x: hidden;
 }
 
 ul,
 li {
   list-style: none;
+}
+
+.swiper-button-prev {
+  color: $main-color;
+}
+
+.swiper-button-next {
+  color: $main-color;
 }
 
 // @font-face {

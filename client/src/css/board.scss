@@ -13,6 +13,7 @@
     height: auto;
   }
 }
+
 .board_page {
   display: grid;
   box-sizing: border-box;
@@ -70,6 +71,10 @@
 
         &:focus {
           outline: none;
+        }
+
+        @include mobile {
+          font-size: 10px;
         }
       }
 
@@ -131,10 +136,28 @@
       display: flex;
       justify-content: space-between;
 
+      @include mobile {
+        margin: 2px;
+        justify-content: center;
+      }
+
       .go_write {
         display: flex;
         align-items: center;
         width: 100px;
+
+        @include mobile {
+          justify-content: flex-end;
+        }
+      }
+
+      .card {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 100fr 1fr;
+        margin: 5px;
+        margin-left: 0;
+        margin-right: 0;
       }
 
       .category_items {
@@ -144,6 +167,16 @@
           height: 30px;
           width: 100px;
           background-color: white;
+
+          @include mobile {
+            width: 60px;
+          }
+
+          .input {
+            @include mobile {
+              width: 170px;
+            }
+          }
         }
 
         .search_btn {
@@ -172,6 +205,10 @@
 
           &:focus {
             outline: none;
+          }
+
+          @include mobile {
+            width: 150px;
           }
         }
       }
@@ -255,5 +292,9 @@
     background-color: $main-color;
     color: white;
     cursor: pointer;
+
+    @include mobile {
+      width: 70px;
+    }
   }
 }
