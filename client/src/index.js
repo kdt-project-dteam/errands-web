@@ -17,7 +17,7 @@ const reducerSlice = createSlice({
   name: "store",
   initialState: {},
   reducers: {
-    someAction: function () { },
+    someAction: function () {},
   },
   extraReducers: (builder) => {
     builder.addCase(asyncUpAxios.pending, (state, action) => {
