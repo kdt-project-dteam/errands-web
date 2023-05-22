@@ -7,6 +7,7 @@ export default function JobSeeker({ data, filteredData }) {
   // useEffect(() => {
   //   localStorage.setItem("value", JSON.stringify(data));
   // });
+  //
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);

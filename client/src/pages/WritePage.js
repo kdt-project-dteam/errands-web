@@ -38,31 +38,31 @@ export default function WritePage({ data }) {
       withCredentials: true,
     });
 
-    if (title.length == 0) {
+    if (title.trim().length == 0) {
       Swal.fire({
         icon: "error",
-        title: "제목을 입력하세요!",
+        title: "제목을 입력해주세요.",
         showConfirmButton: false,
         timer: 1500,
       });
-    } else if (content.length == 0) {
+    } else if (content.trim().length == 0) {
       Swal.fire({
         icon: "error",
-        title: "내용을 입력하세요!",
+        title: "내용을 입력해주세요.",
         showConfirmButton: false,
         timer: 1500,
       });
-    } else if (address.length == 0) {
+    } else if (address.trim().length == 0) {
       Swal.fire({
         icon: "error",
-        title: "주소를 입력하세요!",
+        title: "주소를 입력해주세요.",
         showConfirmButton: false,
         timer: 1500,
       });
     } else {
       Swal.fire({
         icon: "success",
-        title: "게시물이 작성되었습니다!",
+        title: "게시물이 작성되었습니다.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -83,24 +83,24 @@ export default function WritePage({ data }) {
       },
       withCredentials: true,
     });
-    if (title.length == 0) {
+    if (title.trim().length == 0) {
       Swal.fire({
         icon: "error",
-        title: "제목을 입력하세요!",
+        title: "제목을 입력해주세요.",
         showConfirmButton: false,
         timer: 1500,
       });
-    } else if (content.length == 0) {
+    } else if (content.trim().length == 0) {
       Swal.fire({
         icon: "error",
-        title: "내용을 입력하세요!",
+        title: "내용을 입력해주세요.",
         showConfirmButton: false,
         timer: 1500,
       });
     } else {
       Swal.fire({
         icon: "success",
-        title: "게시물이 작성되었습니다!",
+        title: "게시물이 작성되었습니다.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -115,30 +115,32 @@ export default function WritePage({ data }) {
         <div className="WritePage-Center">
           <div className="Write_border_box card">
             <h1>⌨️게시글 작성⌨️</h1>
-            <div className="form-userid">
-              <h5>작성자</h5>
+            <div className="write-form">
+              <h5 className="address_name ml-0">작성자</h5>
               <input
                 type="text"
                 value={localStorage.getItem("userName")}
-                className="userid_text"
+                className="form-input"
+                style={{ backgroundColor: "rgb(205, 202, 202" }}
+                disabled
               ></input>
             </div>
-            <div className="form-title">
-              <h5 style={{ color: "black" }}>제목</h5>
+            <div className="write-form">
+              <h5 className="address_name ml-0">제목</h5>
               <input
                 type="text"
                 className="form-input"
-                placeholder="제목을 입력하세요."
+                placeholder="제목을 해주세요."
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
               ></input>
             </div>
-            <div className="form-text">
-              <h5>내용</h5>
+            <div className="write-form">
+              <h5 className="address_name ml-0">내용</h5>
               <textarea
-                placeholder="내용을 입력하세요."
+                placeholder="내용을 입력해주세요."
                 className="form-textarea"
                 value={content}
                 onChange={(e) => {
@@ -146,49 +148,46 @@ export default function WritePage({ data }) {
                 }}
               ></textarea>
             </div>
-            <div className="form-address">
-              <h5 className="address_name">주소</h5>
-              <div className="address-form-child">
+            <div className="write-form">
+              <h5 className="address_name ml-0"> 주소</h5>
+              <div className="address_form">
                 <button className="form-address-btn">
                   <ModalAddress setAddress={setAddress} />
                 </button>
                 <input
                   type="text"
-                  className="address_title"
-                  style={{ margin: "20px", width: "400px" }}
+                  className="form-input"
                   value={address}
                 ></input>
               </div>
             </div>
-            <div className="form-address">
+            <div className="write-form">
               <h5 className="address_name ml-0">상세주소</h5>
-              <div className="address-form-child">
-                <input
-                  type="text"
-                  className="detail_address_text"
-                  placeholder="상세주소를 입력하세요. ex) **동 **호"
-                  value={detailAddress}
-                  onChange={(e) => {
-                    setDetailAddress(e.target.value);
-                  }}
-                ></input>
-              </div>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="상세주소를 입력해주세요. ex) **동 **호"
+                value={detailAddress}
+                onChange={(e) => {
+                  setDetailAddress(e.target.value);
+                }}
+              ></input>
             </div>
-            <div className="form-deadline">
-              <h5 className="address_name ml-0">예약 시간</h5>
+            <div className="write-form">
+              <h5 className="address_name ml-0">예약시간</h5>
               <input
                 type="date"
-                className="form-date"
+                className="form-input"
                 value={initialDate}
                 onChange={(e) => setInitialDate(e.target.value)}
               ></input>
             </div>
-            <div className="detail_date">
-              <h5 className="address_name ml-0">상세 시간</h5>
+            <div className="write-form">
+              <h5 className="address_name ml-0">상세시간</h5>
               <input
                 type="text"
-                className="detail_date_text"
-                placeholder="상세시간을 입력하세요. ex) *시까지 부탁드립니다"
+                className="form-input"
+                placeholder="상세시간을 입력해주세요. ex) *시까지 부탁드립니다"
                 value={detailDate}
                 onChange={(e) => {
                   setDetailDate(e.target.value);

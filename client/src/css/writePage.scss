@@ -3,45 +3,17 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   height: 100vh;
+  @include mobile {
+    display: grid;
+    grid-template-columns: 1fr 100fr 1fr;
+  }
   input {
     padding-left: 0.5rem;
     height: 40px;
   }
-  // button {
-  //   margin: 0;
-  //   padding: 0.5rem 1rem;
-
-  //   font-family: "Noto Sans KR", sans-serif;
-  //   font-size: 1rem;
-  //   font-weight: 400;
-  //   text-align: center;
-  //   text-decoration: none;
-
-  //   border: none;
-  //   border-radius: 4px;
-
-  //   display: inline-block;
-  //   width: auto;
-
-  //   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  //     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-  //   cursor: pointer;
-
-  //   transition: 0.5s;
-
-  //   background-color: $main-color;
-  //   color: #fff;
-  // }
-
-  // @include mobile {
-  //   grid-template-columns: 1fr 100fr 1fr;
-  // }
-
   .WritePage-Center {
     display: flex;
     justify-content: center;
-
     .Write_border_box {
       box-sizing: border-box;
       border-radius: 10px;
@@ -51,121 +23,85 @@
       background-color: #fff;
       margin-bottom: 3rem;
       @include mobile {
-        width: 350px;
+        width: 100%;
+      }
+      .write-form {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+      }
+      .form-input {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-left: 1rem;
       }
       h1 {
         text-align: center;
         padding-top: 2rem;
       }
-
-      .form-userid {
-        display: flex;
-        margin: 2rem;
-        align-items: center;
-
-        .userid_text {
-          width: 50%;
-          height: 40px;
-          margin-left: 14px;
-          border: 2px solid black;
-        }
+      .address_form {
+        width: 80%;
       }
-
-      .form-title {
-        display: flex;
-        flex-direction: row;
-        margin: 2rem;
-        input {
-          width: 50%;
-          margin-left: 24px;
-          height: 40px;
-          @include mobile {
-            margin-left: 27px;
-          }
-        }
-      }
-
       .form-input {
-        border: 2px solid black;
-
+        border: 1px solid black;
+        width: 80%;
+        border-radius: 10px;
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
-        @include mobile {
-          margin-right: 7rem;
-        }
       }
-
       .form-text {
         display: flex;
         margin: 2rem;
         width: 600px;
       }
-
       .form-textarea {
         width: 80%;
-        margin-left: 22px;
         height: 200px;
-        border: 2px solid black;
+        border: 1px solid black;
         resize: none;
-        padding: 0.5rem;
-
+        margin-left: 1rem;
+        border-radius: 10px;
+        padding: 5px;
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
-        @include mobile {
-          font-size: 0.8rem;
-          width: 40%;
-          margin-left: 22px;
-        }
       }
-
       .form-deadline {
         display: flex;
         margin: 2rem;
       }
-
       .form-date {
         margin-left: 10px;
       }
-
       .form-address {
         display: flex;
         margin-left: 2rem;
-        .address-form-child {
-          display: flex;
-          flex-direction: row-reverse;
-        }
       }
-
       .address_name {
         display: flex;
-        margin-left: 0;
+        margin-left: 10px;
         align-items: center;
         &.ml-0 {
-          margin-left: 0;
+          width: 50px;
+          display: flex;
+          justify-content: center;
         }
       }
-
       .submit-form {
         display: flex;
         margin-right: 2rem;
         margin-top: 2rem;
         flex-direction: row-reverse;
         justify-content: space-between;
-        @include mobile {
-          display: block;
-        }
       }
-
       .btn_parent {
         margin: 10px;
       }
-
       .page-submit {
         background-color: black;
         border-radius: 10px;
@@ -176,62 +112,46 @@
         margin: 1rem;
         margin-top: 2rem;
       }
-
       .address_title {
-        border: 2px solid black;
+        border: 1px solid black;
+        margin: 20px;
+        width: 400px;
         margin-left: 10px;
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
-        @include mobile {
-          width: 40%;
-        }
       }
-
       .detail_address {
         display: flex;
       }
-
       .detail_address_text {
         margin-left: 15px;
         width: 400px;
-        border: 2px solid black;
-
+        border: 1px solid black;
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
-        @include mobile {
-          width: 50%;
-        }
       }
-
       .form-date {
-        border: 2px solid black;
-
+        border: 1px solid black;
         &:focus {
           outline: none !important;
           border-color: #e9af7d;
           box-shadow: 0 0 10px #e9af7d;
         }
       }
-
       .detail_date {
         margin-left: 2rem;
         display: flex;
       }
-
       .detail_date_text {
         margin-left: 10px;
         width: 400px;
-        border: 2px solid black;
-        @include mobile {
-          font-size: 10px;
-          width: 70%;
-        }
+        border: 1px solid black;
         &:focus {
           outline: none;
           border-color: #e9af7d;
@@ -243,7 +163,10 @@
       border: none;
       background-color: white;
     }
-
+    .address_form {
+      display: flex;
+      justify-content: space-between;
+    }
     .address_btn_search {
       background-color: black;
       border-radius: 10px;
@@ -252,9 +175,12 @@
       width: 70px;
       border: none;
     }
-
     .btn-close {
       background-color: black;
+    }
+    .address_form {
+      display: flex;
+      flex-direction: row-reverse;
     }
   }
 }

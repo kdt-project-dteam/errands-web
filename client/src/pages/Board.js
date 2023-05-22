@@ -81,7 +81,7 @@ export default function Board() {
                   key={menu.id}
                   value={idx}
                   className={
-                    "option item card " + (idx == currentState ? "change" : "")
+                    "option item " + (idx == currentState ? "change" : "")
                   }
                   onClick={(e) => {
                     setMenu(menu.id);
@@ -108,14 +108,14 @@ export default function Board() {
                 >
                   {menu === 1 ? (
                     <>
-                      <option value="none">선택해주세요</option>
+                      <option value="none">선택</option>
                       <option value="wanter_board_title">제목</option>
                       <option value="wanter_board_writer">작성자</option>
                       <option value="wanter_board_place">지역</option>
                     </>
                   ) : (
                     <>
-                      <option value="none">선택해주세요</option>
+                      <option value="none">선택</option>
                       <option value="helper_board_title">제목</option>
                       <option value="helper_board_writer">작성자</option>
                       <option value="helper_board_place">지역</option>

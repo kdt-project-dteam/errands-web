@@ -327,7 +327,7 @@ export default function BoardDetail() {
         <div key={data.helper_board_id} className="boardDetail_page">
           <div className="boardDetail_page left"></div>
           <div className="boardDetail_page center">
-            <h1 className="Detail_page_Header">구인 게시판</h1>
+            <h1 className="Detail_page_Header">구직 게시판</h1>
             <div className="writer_header_form">
               <span className="writer_header_form title">
                 {data[0].helper_board_title}
