@@ -19,7 +19,6 @@ db.Wanter_board = require("./Wanter_board")(sequelize, Sequelize);
 db.Wanter_comment = require("./Wanter_comment")(sequelize, Sequelize);
 db.Helper_board = require("./Helper_board")(sequelize, Sequelize);
 db.Helper_comment = require("./Helper_comment")(sequelize, Sequelize);
-db.Notice = require("./Notice")(sequelize, Sequelize);
 db.Who_wanter_like = require("./Who_wanter_like")(sequelize, Sequelize);
 db.Who_helper_like = require("./Who_helper_like")(sequelize, Sequelize);
 
@@ -87,17 +86,6 @@ db.Helper_comment.belongsTo(db.Helper_board, {
   sourceKey: "helper_board_id",
   onUpdate: "cascade",
   onDelete: "cascade",
-});
-
-db.User_info.hasMany(db.Notice, {
-  foreignKey: "notice_writer",
-  sourceKey: "user_name",
-});
-db.Notice.belongsTo(db.User_info, {
-  foreignKey: "notice_writer",
-  targetKey: "user_name",
-  onDelete: "cascade",
-  onUpdate: "cascade",
 });
 
 db.User_info.hasMany(db.Who_wanter_like, {
