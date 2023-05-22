@@ -43,9 +43,6 @@ export default function Main() {
   const allUserData = useSelector((state) => {
     return state.someReducer.allUserData;
   });
-  console.log("*************");
-  console.log(value);
-  console.log(typeof value);
   // 구인구직 게시판 상태 [offer : 구인] , [search : 구직]
   const [boardState, setBoardState] = useState("offer");
   const [swiperWidth, setSwiperWidth] = useState(4);
@@ -57,6 +54,16 @@ export default function Main() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  const handleSize = () => {
+    if (window.innerWidth < 1000) {
+      setSwiperWidth(3);
+    } else if (window.innerWidth < 768) {
+      setSwiperWidth(2);
+    } else if (window.innerWidth < 450) {
+      setSwiperWidth(1);
+    }
+  };
+
   let rankIcon = ["🥇", "🥈", "🥉"];
   return (
     <>
@@ -129,7 +136,7 @@ export default function Main() {
                             <img
                               src={
                                 process.env.PUBLIC_URL +
-                                `/userImg/default.png`
+                                `/userImg/${data.user_img}`
                               }
                             />
                             <p>{data.wanter_board_writer}</p>
@@ -166,13 +173,13 @@ export default function Main() {
                 0: {
                   slidesPerView: 1,
                 },
-                400: {
+                600: {
                   slidesPerView: 2,
                 },
-                639: {
+                800: {
                   slidesPerView: 3,
                 },
-                865: {
+                1000: {
                   slidesPerView: 4,
                 },
               }}
@@ -229,13 +236,13 @@ export default function Main() {
                 0: {
                   slidesPerView: 1,
                 },
-                400: {
+                600: {
                   slidesPerView: 2,
                 },
-                639: {
+                800: {
                   slidesPerView: 3,
                 },
-                865: {
+                1000: {
                   slidesPerView: 4,
                 },
               }}
@@ -257,7 +264,7 @@ export default function Main() {
                           <img
                             src={
                               process.env.PUBLIC_URL +
-                              `/userImg/default.png`
+                              `/userImg/${data.user_img}`
                             }
                           />
                           <div className="rank-user-info">
@@ -282,7 +289,7 @@ export default function Main() {
                 : "null"}
             </Swiper>
           </div>
-        </div>{" "}
+        </div>
       </div>
     </>
   );
