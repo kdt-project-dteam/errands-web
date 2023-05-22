@@ -29,12 +29,13 @@
 .main-banner {
   width: 80vw;
   height: calc(100vh - 80px);
-  margin: 0 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   animation: fadeInLeft 2s;
   @include mobile {
     margin: none;
+    height: 40vh;
   }
   .banner-left {
     width: 40%;
@@ -43,18 +44,19 @@
     flex-direction: column;
     padding: 7rem 0 0 8rem;
     @include mobile {
-      width: 80%;
+      width: 100%;
+      padding: 4rem 0 0 0;
     }
     h2 {
       font-size: 40px;
       font-weight: 900;
       @include mobile {
-        font-size: 20px;
+        font-size: 40px;
       }
     }
     h3 {
       @include mobile {
-        font-size: 10px;
+        font-size: 14px;
       }
     }
     .h3-content {

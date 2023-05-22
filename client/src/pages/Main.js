@@ -173,13 +173,13 @@ export default function Main() {
                 0: {
                   slidesPerView: 1,
                 },
-                400: {
+                600: {
                   slidesPerView: 2,
                 },
-                639: {
+                800: {
                   slidesPerView: 3,
                 },
-                865: {
+                1000: {
                   slidesPerView: 4,
                 },
               }}
@@ -236,56 +236,56 @@ export default function Main() {
                 0: {
                   slidesPerView: 1,
                 },
-                400: {
+                600: {
                   slidesPerView: 2,
                 },
-                639: {
+                800: {
                   slidesPerView: 3,
                 },
-                865: {
+                1000: {
                   slidesPerView: 4,
                 },
               }}
             >
               {allUserData
                 ? allUserData.map((data, idx) => {
-                    return (
-                      <SwiperSlide>
-                        <div data-aos="fade-left" className="swiper-card card">
-                          <p className={`rank-head fs-16 rank${data.id}`}>
-                            <span>#{idx + 1}위</span>
-                            {rankIcon[idx] ? (
-                              <span className="rank-icon">{rankIcon[idx]}</span>
-                            ) : (
-                              ""
-                            )}
-                          </p>
-                          <p className="rank-name">
-                            <img
-                              src={
-                                process.env.PUBLIC_URL +
-                                `/userImg/${data.user_img}`
-                              }
-                            />
-                            <div className="rank-user-info">
-                              <p>{data.user_name}</p>
-                              <p>{data.user_id}</p>
-                            </div>
-                          </p>
-                          <div className="d-flex rank-div">
-                            <p>추천 수</p>
-                            <p className="fs-30">
-                              <FontAwesomeIcon
-                                className="c-red"
-                                icon={faHeart}
-                              />
-                              {data.user_like}
-                            </p>
+                  return (
+                    <SwiperSlide>
+                      <div data-aos="fade-left" className="swiper-card card">
+                        <p className={`rank-head fs-16 rank${data.id}`}>
+                          <span>#{idx + 1}위</span>
+                          {rankIcon[idx] ? (
+                            <span className="rank-icon">{rankIcon[idx]}</span>
+                          ) : (
+                            ""
+                          )}
+                        </p>
+                        <p className="rank-name">
+                          <img
+                            src={
+                              process.env.PUBLIC_URL +
+                              `/userImg/${data.user_img}`
+                            }
+                          />
+                          <div className="rank-user-info">
+                            <p>{data.user_name}</p>
+                            <p>{data.user_id}</p>
                           </div>
+                        </p>
+                        <div className="d-flex rank-div">
+                          <p>추천 수</p>
+                          <p className="fs-30">
+                            <FontAwesomeIcon
+                              className="c-red"
+                              icon={faHeart}
+                            />
+                            {data.user_like}
+                          </p>
                         </div>
-                      </SwiperSlide>
-                    );
-                  })
+                      </div>
+                    </SwiperSlide>
+                  );
+                })
                 : "null"}
             </Swiper>
           </div>
