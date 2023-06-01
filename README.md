@@ -1,6 +1,6 @@
 ![image](https://github.com/kdt-project-dteam/errands-web/assets/96116158/1c838431-7d9c-46c6-bdc2-77c1041dc274)
 
-# 풀스택 웹 프로젝트 - 심부릉🚗
+# 풀스택 웹 프로젝트 - 심부릉 🚗
 
 Live Link : [http://52.62.33.115/](http://52.62.33.115/)
 
