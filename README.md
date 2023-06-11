@@ -16,7 +16,7 @@ Github Repository : https://github.com/kdt-project-dteam/errands-web
 
 ### 페이지 사용 및 기능 영상
 
-**소개** 페이지, **메인** 페이지
+**소개** 페이지, **메인** 페이지.
 
 **AOS 라이브러리** 사용하여 애니매이션 구현
 
